@@ -42,7 +42,7 @@
 				team: {
 					author: {
 						name: 'Lu Sacramento',
-						link: 'https://lusacramento.com.br',
+						link: 'https://github.com/lusacramento',
 					},
 					design: {
 						name: 'Gabriel Barreto',
