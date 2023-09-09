@@ -98,37 +98,6 @@
 				},
 			}
 		},
-
-		head() {
-			return {
-				title: 'Cordaria - O Tutorial',
-				meta: [
-					{
-						hid: 'titletutorial',
-						name: 'title',
-						content: 'Cordaria - Tutorial simples e prático de nossa aplicação',
-					},
-					{
-						hid: 'tutorial',
-						name: 'description',
-						content:
-							'Aprenda como usar o cordaria neste tutorial simples e prático.',
-					},
-					{
-						hid: 'tutorialkeys',
-						name: 'keywords',
-						content:
-							'Tutorial, Treinamento, Passo-a-Passo, Instrumento, Cordas, Digitação',
-					},
-				],
-				link: [
-					{
-						rel: 'canonical',
-						href: 'https://cordaria.com.br/o-tutorial',
-					},
-				],
-			}
-		},
 	}
 </script>
 
