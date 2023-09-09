@@ -6,13 +6,11 @@
 		<main id="main">
 			<slot />
 		</main>
-		<div id="footer">
+		<div id="footer container-fluid">
 			<LayoutsFooter />
 		</div>
 	</div>
 </template>
-
-<script lang="ts" setup></script>
 
 <style>
 	@media (min-width: 991.98px) {

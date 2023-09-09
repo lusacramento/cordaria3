@@ -1,38 +1,38 @@
 <template>
-	<div>
-		<footer class="footer container-fluid d-flex justify-content-center">
-			<div class="row align-items-center d-flex justify-content-center">
-				<div class="col-sm-3 credits">
-					<div id="credits" class="">
-						<p class="d-block">
-							Developer:
-							<a :href="team.author.link" rel="nofollow" target="_blank">{{
-								team.author.name
-							}}</a>
+	<footer class="footer container-fluid justify-content-center">
+		<div class="row justify-content-center align-items-center">
+			<div class="col">
+				<div id="credits" class="">
+					<p class="d-block text-center">
+						Developer:
+						<a :href="team.author.link" rel="nofollow" target="_blank">{{
+							team.author.name
+						}}</a>
 
-							<br />
-							Designer: &nbsp;
-							<a :href="team.design.link" rel="nofollow" target="_blank">{{
-								team.design.name
-							}}</a>
-						</p>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="copyright text-center">
-						<p>
-							Todos os Direitos Reservados
-							<br />
-							Versão {{ version }}
-						</p>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="financied">Divulgue sua marca aqui!</div>
+						<br />
+						Designer: &nbsp;
+						<a :href="team.design.link" rel="nofollow" target="_blank">{{
+							team.design.name
+						}}</a>
+					</p>
 				</div>
 			</div>
-		</footer>
-	</div>
+			<div class="col">
+				<div class="copyright text-center">
+					<p>
+						Todos os Direitos Reservados
+						<br />
+						Versão {{ version }}
+					</p>
+				</div>
+			</div>
+			<div class="col">
+				<div class="sponsed text-center">
+					Espaço reservado para patrocinador.<br />Divulgue sua marca aqui!
+				</div>
+			</div>
+		</div>
+	</footer>
 </template>
 
 <script>
@@ -62,12 +62,14 @@
 	}
 
 	.credits,
-	.copyright {
+	.copyright,
+	.sponsed {
 		font-family: 'Encode Sans';
 		font-weight: var(--font-light);
 	}
 
-	.credits {
+	.credits,
+	.sponsed {
 		font-size: 0.8em;
 	}
 
