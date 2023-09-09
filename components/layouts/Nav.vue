@@ -5,15 +5,15 @@
 				id="link-principal"
 				to="/"
 				class="navbar-brand logo-cordaria"
-				:class="{ active: isActiveTheProject }"
+				:class="{ active: links.theProject.isLight }"
 				aria-current="page"
 			>
 				<img
 					:src="icons.cordaria.url"
 					:alt="icons.cordaria.altText"
 					class="img img-fluid"
-					@mouseover="icons.cordaria.url = imageMouseOver(icons.cordaria)"
-					@mouseleave="icons.cordaria.url = imageMouseLeave(icons.cordaria)"
+					@mouseover="icons.cordaria.url = icons.cordaria.toLight()"
+					@mouseleave="icons.cordaria.url = icons.cordaria.toDark()"
 				/>
 			</nuxt-link>
 			<button
@@ -40,7 +40,7 @@
 								to="/"
 								class="nav-link the-project-link"
 								:class="{
-									theProjectLinkActive: isActiveTheProject,
+									theProjectLinkActive: links.theProject.isLight,
 								}"
 								aria-current="page"
 								><span>O Projeto</span></nuxt-link
@@ -50,7 +50,7 @@
 							<nuxt-link
 								to="/a-pesquisa"
 								class="nav-link the-research-link"
-								:class="{ theResearchLinkActive: isActiveTheResearch }"
+								:class="{ theResearchLinkActive: links.theResearch.isLight }"
 								aria-current="page"
 							>
 								<span>A Pesquisa</span></nuxt-link
@@ -60,7 +60,7 @@
 							<nuxt-link
 								to="/a-pratica"
 								class="nav-link the-pratice-link"
-								:class="{ thePraticeLinkActive: isActiveThePratice }"
+								:class="{ thePraticeLinkActive: links.thePratice.isLight }"
 								><span>A Prática</span></nuxt-link
 							>
 						</li>
@@ -68,7 +68,7 @@
 							<nuxt-link
 								to="/o-tutorial"
 								class="nav-link the-tutorial-link"
-								:class="{ theTutorialLinkActive: isActiveTheTutorial }"
+								:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
 								><span>O Tutorial</span></nuxt-link
 							>
 						</li>
@@ -76,7 +76,7 @@
 							<nuxt-link
 								to="/dicas"
 								class="nav-link clues-link"
-								:class="{ cluesLinkActive: isActiveClues }"
+								:class="{ cluesLinkActive: links.clues.isLight }"
 								><span>Dicas</span></nuxt-link
 							>
 						</li>
@@ -86,8 +86,8 @@
 									class="img img-fluid"
 									:src="icons.email.url"
 									:alt="icons.email.altText"
-									@mouseover="icons.email.url = imageMouseOver(icons.email)"
-									@mouseleave="icons.email.url = imageMouseLeave(icons.email)"
+									@mouseover="icons.email.url = icons.email.toLight()"
+									@mouseleave="icons.email.url = icons.email.toDark()"
 								/>
 							</a>
 						</li>
@@ -101,8 +101,8 @@
 									class="img img-fluid"
 									:src="icons.insta.url"
 									:alt="icons.insta.altText"
-									@mouseover="icons.insta.url = imageMouseOver(icons.insta)"
-									@mouseleave="icons.insta.url = imageMouseLeave(icons.insta)"
+									@mouseover="icons.insta.url = icons.insta.toLight()"
+									@mouseleave="icons.insta.url = icons.insta.toDark()"
 								/>
 							</a>
 						</li>
@@ -123,70 +123,66 @@
 	import instaIconDisabled from '@/assets/imgs/logo-insta-disabled.png'
 	import instaIconEnabled from '@/assets/imgs/logo-insta-enabled.png'
 	export default {
-		props: {
-			baseUrl: {
-				type: String,
-				default() {
-					return ''
-				},
-			},
-		},
 		data() {
 			return {
 				icons: {
 					cordaria: {
 						url: cordariaIconDisabled,
 						altText: 'Logotipo do Cordaria',
-						enabled: cordariaIconEnabled,
-						disabled: cordariaIconDisabled,
+						toLight: () => cordariaIconEnabled,
+						toDark: () => cordariaIconDisabled,
 					},
 
 					email: {
 						href: 'mailto:japraticouhoje@cordaria.com.br',
 						url: emailIconDisabled,
 						altText: 'Ícone contato',
-						enabled: emailIconEnabled,
-						disabled: emailIconDisabled,
+						toLight: () => emailIconEnabled,
+						toDark: () => emailIconDisabled,
 					},
 
 					insta: {
 						url: instaIconDisabled,
 						altText: 'Ícone Instagram',
-						enabled: instaIconEnabled,
-						disabled: instaIconDisabled,
+						toLight: () => instaIconEnabled,
+						toDark: () => instaIconDisabled,
 					},
 				},
-				currentUrl: this.baseUrl,
-				isActiveTheProject: false,
-				isActiveTheResearch: false,
-				isActiveThePratice: false,
-				isActiveTheTutorial: false,
-				isActiveClues: false,
-				isOverIconMenu: false,
-				isOverIcontEmail: false,
-				isOverIconInstagram: false,
+
+				links: {
+					theProject: {
+						isLight: false,
+					},
+					theResearch: {
+						isLight: false,
+					},
+					thePratice: {
+						isLight: false,
+					},
+					theTutorial: {
+						isLight: false,
+					},
+					clues: {
+						isLight: false,
+					},
+				},
+
 				isCollapse: true,
 			}
 		},
+		async mounted() {
+			await this.iniciateActive()
+		},
+
 		watch: {
 			$route() {
 				this.iniciateActive()
 			},
 		},
-		async mounted() {
-			this.currentUrl = await this.getUrl()
-			this.iniciateActive()
-		},
 
 		methods: {
 			getUrl: function async() {
 				return window.location.href
-			},
-			imageMouseOver(img) {
-				return img.enabled
-			},
-			imageMouseLeave(img) {
-				return img.disabled
 			},
 
 			showMenu() {
@@ -194,32 +190,35 @@
 			},
 
 			removeAllActive() {
-				this.isActiveTheProject = false
-				this.isActiveTheResearch = false
-				this.isActiveThePratice = false
-				this.isActiveTheTutorial = false
-				this.isActiveClues = false
+				this.links.theProject.isLight = false
+				this.links.theResearch.isLight = false
+				this.links.thePratice.isLight = false
+				this.links.theTutorial.isLight = false
+				this.links.clues.isLight = false
 				this.isOverIconMenu = false
 			},
 
 			iniciateActive() {
 				this.removeAllActive()
-				switch (window.location.href) {
-					case `${this.baseUrl}`:
-						this.isActiveTheProject = true
+				const url = window.location.href
+				const baseUrl = window.location.origin
+				console.log(window.location.origin)
+				console.log('url iniciate active:', url)
+				switch (url) {
+					case `${baseUrl}/`:
+						this.links.theProject.isLight = true
 						break
-					case `${this.baseUrl}a-pesquisa`:
-						this.isActiveTheResearch = true
+					case `${baseUrl}/a-pesquisa`:
+						this.links.theResearch.isLight = true
 						break
-					case `${this.baseUrl}a-pratica`:
-						this.isActiveThePratice = true
+					case `${baseUrl}/a-pratica`:
+						this.links.thePratice.isLight = true
 						break
-					case `${this.baseUrl}o-tutorial`:
-						this.isActiveTheTutorial = true
+					case `${baseUrl}/o-tutorial`:
+						this.links.theTutorial.isLight = true
 						break
-					case `${this.baseUrl}dicas`:
-						this.isActiveClues = true
-						break
+					case `${baseUrl}/dicas`:
+						this.links.clues.isLight = true
 					default:
 						break
 				}
