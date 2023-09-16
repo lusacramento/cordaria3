@@ -104,9 +104,6 @@
 				],
 			}
 		},
-		mounted() {
-			console.log(Splide)
-		},
 	}
 </script>
 <style>
