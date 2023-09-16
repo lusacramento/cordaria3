@@ -1,7 +1,8 @@
 <template>
 	<div class="container-fluid">
 		<div
-			class="offcanvas offcanvas-start show"
+			class="offcanvas offcanvas-start"
+			:class="{ show: isShow }"
 			data-bs-backdrop="static"
 			tabindex="-1"
 			id="staticBackdrop"
@@ -150,6 +151,8 @@
 	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 	library.add(faPlay)
 	const playIcon = 'play'
+
+	const isShow = false
 
 	const instruments = useSettings().getInstruments()
 	const instrumentDefault = instruments.acousticGuitar
