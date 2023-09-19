@@ -202,8 +202,7 @@
 				this.removeAllActive()
 				const url = window.location.href
 				const baseUrl = window.location.origin
-				console.log(window.location.origin)
-				console.log('url iniciate active:', url)
+
 				switch (url) {
 					case `${baseUrl}/`:
 						this.links.theProject.isLight = true
