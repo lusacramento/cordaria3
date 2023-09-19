@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div
 			class="offcanvas offcanvas-start"
-			:class="{ show: isShow }"
+			:class="{ show: isMenuShow }"
 			data-bs-backdrop="static"
 			tabindex="-1"
 			id="staticBackdrop"
@@ -51,13 +51,13 @@
 					</div>
 
 					<div class="form-group col-6 col-lg-12 col-6 col-lg-12 select-screen">
-						<label for="select-screen-mode" class="form-label"
+						<label for="select-view-mode" class="form-label"
 							>Visualização
 						</label>
 						<br />
-						<select id="select-screen-mode" v-model="view" class="controls">
-							<option value="3CardsMode">3 cartas</option>
-							<option value="fullCardsMode">Todas as cartas</option>
+						<select id="select-view-mode" v-model="viewMode" class="controls">
+							<option value="3Cards">3 cartas</option>
+							<option value="allCards">Todas as cartas</option>
 						</select>
 					</div>
 					<div class="form-group col-6 col-lg-12 select-lesson">
@@ -152,13 +152,13 @@
 	library.add(faPlay)
 	const playIcon = 'play'
 
-	const isShow = false
+	let isMenuShow = ref(true)
 
 	const instruments = useSettings().getInstruments()
 	const instrumentDefault = instruments.acousticGuitar
 	const instrument = ref(instrumentDefault.name)
 
-	const view = ref('3CardsMode')
+	const viewMode = ref('3Cards')
 
 	const lessons = useLessons().getLessons()
 	let lessonDefault = lessons[0]
@@ -181,6 +181,11 @@
 
 	const sendProps = () => {
 		const toast = useTt('Iniciando em 5!', 'warning', 5000)
+
+		isMenuShow.value = false
+
+		useExecise().loadScreen(viewMode.value)
+		useExecise().loadDeck(finger.value)
 	}
 </script>
 
