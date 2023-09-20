@@ -34,6 +34,10 @@
 			</div>
 		</div>
 	</div>
+	<div>
+		<button @click="mouvimentCards()">AVANCAR</button>
+		{{ deck[23].value }}
+	</div>
 	<!-- </div> -->
 </template>
 
@@ -42,6 +46,8 @@
 	const viewMode = ref(useExecise().viewMode)
 	const card = ref(useExecise().card)
 	const deck = ref(useExecise().deck)
+
+	const mouvimentCards = () => useExecise().animateCards()
 </script>
 
 <style>

@@ -1,6 +1,8 @@
 const isStart = ref(false)
 let viewMode = ref('allCards')
 
+const emptyCard = ref({ fragments: [] })
+
 const card = {
 	prev: ref({ fragments: [] }),
 	current: ref({ fragments: [] }),
@@ -26,9 +28,35 @@ const loadDeck = function (finger: string) {
 	isStart.value = true
 	deck.value = useDeck().getDeck(finger)
 
-	card.prev.value = deck.value[0]
-	card.current.value = deck.value[1]
-	card.next.value = deck.value[2]
+	card.current.value = deck.value[0]
+	card.next.value = deck.value[1]
+}
+
+function startLesson() {
+	let counter = deck.value.length
+
+	const timer = setInterval(startPractice, 1000)
+	function startPractice() {
+		animateCards()
+		counter--
+		if (counter == 0) finishPractice()
+	}
+	function finishPractice() {
+		clearInterval(timer)
+	}
+}
+
+let index = 2
+const animateCards = () => {
+	card.prev.value = card.current.value
+	card.current.value = card.next.value
+	if (index < deck.value.length) {
+		card.next.value = deck.value[index]
+	}
+	if (index == deck.value.length) {
+		card.next.value = emptyCard.value
+	}
+	index++
 }
 
 export const useExecise = () => {
@@ -39,5 +67,7 @@ export const useExecise = () => {
 		deck,
 		loadScreen,
 		loadDeck,
+		animateCards,
+		startLesson,
 	}
 }

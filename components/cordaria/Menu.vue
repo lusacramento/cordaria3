@@ -179,13 +179,14 @@
 		string = ref(`${lessons[newLesson].stringNumber}`)
 	})
 
-	const sendProps = () => {
+	const sendProps = async () => {
 		const toast = useTt('Iniciando em 5!', 'warning', 5000)
 
 		isMenuShow.value = false
 
-		useExecise().loadScreen(viewMode.value)
-		useExecise().loadDeck(finger.value)
+		await useExecise().loadScreen(viewMode.value)
+		await useExecise().loadDeck(finger.value)
+		await useExecise().startLesson()
 	}
 </script>
 
