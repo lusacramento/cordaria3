@@ -1,6 +1,7 @@
 <template>
 	<div class="container-fluid">
 		<div
+			v-if="!loading"
 			class="offcanvas offcanvas-start"
 			:class="{ show: isMenuShow }"
 			data-bs-backdrop="static"
@@ -134,7 +135,11 @@
 								class="btn btn-success control-button align-items-center justify-content-center d-flex"
 								@click="sendProps"
 							>
-								<font-awesome-icon class="fa fa-code" :icon="playIcon" />
+								<font-awesome-icon
+									v-if="!loading"
+									class="fa fa-code"
+									:icon="playIcon"
+								/>
 							</button>
 						</div>
 						<!-- v-if="isVisibleButtonPlay" -->
@@ -151,6 +156,11 @@
 	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 	library.add(faPlay)
 	const playIcon = 'play'
+	const loading = ref(true)
+	const nuxtApp = useNuxtApp()
+	nuxtApp.hook('page:finish', () => {
+		loading.value = false
+	})
 
 	let isMenuShow = ref(true)
 
