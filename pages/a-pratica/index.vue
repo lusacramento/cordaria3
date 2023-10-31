@@ -23,7 +23,7 @@
 
 <script lang="ts" setup>
 	const title = 'A PRÁTICA'
-	const toast = useTt('Aguardando início', '', 3000)
+	const toast = useTt('wait', 'Aguardando início', '', 3000)
 </script>
 
 <style></style>

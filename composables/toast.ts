@@ -2,13 +2,19 @@ import { useToast } from 'vue-toastification'
 import { POSITION } from 'vue-toastification'
 const toast = useToast()
 
-export const useTt = (message: string, type: string, timeout: number) => {
+export const useTt = (
+	id: string,
+	message: string,
+	type: string,
+	timeout: number,
+) => {
 	const options = {
-		position: POSITION.BOTTOM_RIGHT,
+		id: id,
+		position: POSITION.TOP_RIGHT,
 		timeout: timeout,
-		closeOnClick: true,
-		pauseOnFocusLoss: true,
-		pauseOnHover: true,
+		closeOnClick: false,
+		pauseOnFocusLoss: false,
+		pauseOnHover: false,
 	}
 
 	switch (type) {
@@ -24,6 +30,8 @@ export const useTt = (message: string, type: string, timeout: number) => {
 		case 'warning':
 			toast.warning(message, options)
 			break
+		case 'update':
+			toast.update(options.id, { options })
 
 		default:
 			toast(message, options)

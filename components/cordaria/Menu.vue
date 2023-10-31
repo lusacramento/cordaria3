@@ -1,6 +1,7 @@
 <template>
 	<div class="container-fluid">
 		<div
+			v-if="!loading"
 			class="offcanvas offcanvas-start"
 			:class="{ show: isMenuShow }"
 			data-bs-backdrop="static"
@@ -132,9 +133,13 @@
 							<button
 								type="button"
 								class="btn btn-success control-button align-items-center justify-content-center d-flex"
-								@click="sendProps"
+								@click="loadExercise"
 							>
-								<font-awesome-icon class="fa fa-code" :icon="playIcon" />
+								<font-awesome-icon
+									v-if="!loading"
+									class="fa fa-code"
+									:icon="playIcon"
+								/>
 							</button>
 						</div>
 						<!-- v-if="isVisibleButtonPlay" -->
@@ -151,6 +156,11 @@
 	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 	library.add(faPlay)
 	const playIcon = 'play'
+	const loading = ref(true)
+	const nuxtApp = useNuxtApp()
+	nuxtApp.hook('page:finish', () => {
+		loading.value = false
+	})
 
 	let isMenuShow = ref(true)
 
@@ -158,7 +168,7 @@
 	const instrumentDefault = instruments.acousticGuitar
 	const instrument = ref(instrumentDefault.name)
 
-	const viewMode = ref('3Cards')
+	const viewMode = ref(useState().viewMode.value)
 
 	const lessons = useLessons().getLessons()
 	let lessonDefault = lessons[0]
@@ -179,14 +189,11 @@
 		string = ref(`${lessons[newLesson].stringNumber}`)
 	})
 
-	const sendProps = async () => {
-		const toast = useTt('Iniciando em 5!', 'warning', 5000)
-
+	const loadExercise = () => {
+		// Close Menu
 		isMenuShow.value = false
 
-		await useExecise().loadScreen(viewMode.value)
-		await useExecise().loadDeck(finger.value)
-		await useExecise().startLesson()
+		useState().loadDeck(finger.value, viewMode.value, parseInt(bpm.value))
 	}
 </script>
 

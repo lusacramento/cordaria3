@@ -1,21 +1,17 @@
 <template>
 	<div
-		:id="id"
-		:key="id"
+		:id="fragment.id"
+		:key="fragment.id"
 		class="card-fragment p-1"
-		:class="{ highlight: isHighlight }"
+		:class="{ highlight: fragment.isHighlight }"
 	>
-		{{ fragment }}
+		{{ fragment.value }}
 	</div>
 </template>
 
 <script lang="ts" setup>
-	//	import '@/assets/animate/animate.min.css'
-	defineProps({
-		id: String,
-		fragment: String,
-		isHighlight: Boolean,
-	})
+	import 'animate.css'
+	defineProps(['fragment'])
 </script>
 
 <style>
