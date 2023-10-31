@@ -1,0 +1,23 @@
+<template>
+	<div v-if="isShow">
+		<div id="counter" class="text-center">
+			{{ counter }}
+		</div>
+	</div>
+</template>
+
+<script lang="ts" setup>
+	const counter = ref(useState().counter)
+	const isShow = ref(useState().isShowCounter)
+</script>
+<style>
+	#counter {
+		font-size: 16rem;
+		color: var(--font-color-p);
+		position: absolute;
+		top: 25%;
+		right: 40%;
+		bottom: 40%;
+		left: 40%;
+	}
+</style>
