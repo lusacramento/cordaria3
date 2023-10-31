@@ -1,53 +1,49 @@
 <template>
 	<!-- <div class="exercise-screen layer-center mt-2 mb-4"> -->
 	<div class="container-fluid mt-3">
+		<CordariaScreenCounter />
 		<div v-if="isStart">
-			<div v-if="viewMode == '3Cards'">
+			<div v-if="viewMode === '3Cards'">
 				<div class="row mt-4 d-flex align-items-center justify-content-around">
 					<CordariaScreenCard
 						id="prev-card"
-						key="999"
-						:fragments="card.prev.fragments"
+						:key="card.prev.id"
+						:card="card.prev"
 					/>
 					<CordariaScreenCard
 						id="current-card"
-						key="998"
-						:fragments="card.current.fragments"
+						:key="card.current.id"
+						:card="card.current"
 					/>
 					<CordariaScreenCard
 						id="next-card"
-						key="997"
-						:fragments="card.next.fragments"
+						:key="card.next.id"
+						:card="card.next"
 					/>
 				</div>
 			</div>
 			<div v-else>
 				<div class="row justify-content-center align-items-center">
 					<CordariaScreenCard
-						v-for="cardDeck in deck"
-						:id="cardDeck.id.toString()"
-						:key="cardDeck.value"
-						:fragments="cardDeck.fragments"
+						v-for="card in deck"
+						:id="card.id"
+						:key="card.id"
+						:card="card"
 						class="card cardView"
 					/>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div>
-		<button @click="mouvimentCards()">AVANCAR</button>
-		{{ deck[23].value }}
+		<CordariaScreenCounter />
 	</div>
 	<!-- </div> -->
 </template>
 
 <script lang="ts" setup>
-	const isStart = ref(useExecise().isStart)
-	const viewMode = ref(useExecise().viewMode)
-	const card = ref(useExecise().card)
-	const deck = ref(useExecise().deck)
-
-	const mouvimentCards = () => useExecise().animateCards()
+	const viewMode = ref(useState().viewMode)
+	const deck = ref(useState().deck)
+	const isStart = ref(useState().isStart)
+	const card = ref(useState().card)
 </script>
 
 <style>

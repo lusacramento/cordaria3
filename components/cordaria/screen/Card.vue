@@ -1,32 +1,29 @@
 <template>
 	<div
-		:id="id"
-		:key="id"
+		:id="card.id"
+		:key="card.id"
 		class="m-2 card align-items-center justify-content-center"
 		:class="{
-			// pastCardColor: card.isPastCard,
-			// currentCardColor: card.isCurrentCard,
-			// futureCardColor: card.isFutureCard,
+			pastCardColor: card.status === 'prev',
+			currentCardColor: card.status === 'current',
+			futureCardColor: card.status === 'next',
 		}"
 	>
 		<CordariaScreenCardFragment
-			v-for="(frag, i) in fragments"
-			:key="frag + ' ' + i"
-			:is-highlight="frag.isHighlight"
-			:fragment="frag.fragment"
+			v-for="fragment in card.fragments"
+			:id="fragment.id"
+			:key="fragment.id"
+			:fragment="fragment"
 		/>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	defineProps({
-		fragments: Array(Object),
-		id: String,
-	})
+	defineProps(['card'])
 
-	const isPastCardColor = true
-	const isCurrentCardColor = false
-	const isFutureCardColor = true
+	// const isPastCardColor = true
+	// const isCurrentCardColor = false
+	// const isFutureCardColor = true
 </script>
 
 <style>
