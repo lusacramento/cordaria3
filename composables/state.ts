@@ -5,7 +5,7 @@ const tempo = ref()
 
 const isStart = ref(false)
 
-const counter = ref(1)
+const counter = ref(5)
 const isShowCounter = ref(false)
 
 const deck = ref()
