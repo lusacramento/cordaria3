@@ -1,5 +1,16 @@
 export const useGuitar = () => {
-	const guitarMap = [
+	const acoustGuitarHead = {
+		name: 'Acoustic Guitar',
+		baseUrl: '/cordariaapp/audios/acoustic-guitar/',
+		stringsNumber: 6,
+	}
+
+	const eletricGuitarHead = {
+		name: 'Eletric Guitar',
+		baseUrl: '/cordariaapp/audios/eletric-guitar/',
+		stringsNumber: 6,
+	}
+	const map = [
 		[
 			{
 				note: 'E4',
@@ -194,9 +205,9 @@ export const useGuitar = () => {
 		],
 	]
 
-	const getGuitarMap = () => guitarMap
+	const getMap = () => map
 
 	return {
-		getGuitarMap,
+		getMap,
 	}
 }
