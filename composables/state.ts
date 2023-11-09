@@ -27,6 +27,8 @@ let fragmentIndex = 0
 
 let toDo = ''
 
+const instrument = { map: {} }
+
 // Methods
 
 function loadDeck(firstFinger: string, viewModeValue: string, bpm: number) {
@@ -38,7 +40,7 @@ function loadDeck(firstFinger: string, viewModeValue: string, bpm: number) {
 
 	getTempo(bpm)
 
-	isStart.value = true
+	getInstrument()
 
 	startLesson()
 }
@@ -64,6 +66,10 @@ function updateViewMode(viewModeValue: string) {
 
 function getTempo(bpm: number) {
 	tempo.value = convertBpmToMs(bpm)
+}
+
+function getInstrument() {
+	instrument.map = useAudio('bass')
 }
 
 function convertBpmToMs(bpm: number) {
