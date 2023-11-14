@@ -1,5 +1,11 @@
 export const useCavaco = () => {
-	const cavacoMap = [
+	const cavacoHead = {
+		name: 'Cavaco',
+		baseUrl: '/cordariaapp/audios/cavaco/',
+		stringsNumber: 4,
+	}
+
+	const map = [
 		[
 			{
 				note: 'D5',
@@ -130,7 +136,7 @@ export const useCavaco = () => {
 		],
 	]
 
-	const getCavacoMap = () => cavacoMap
+	const getMap = () => map
 
-	return { getCavacoMap }
+	return { getMap }
 }

@@ -1,5 +1,11 @@
 export const useBass = () => {
-	const bassMap = [
+	const bassHead = {
+		name: 'Bass',
+		baseUrl: '/cordariaapp/audios/bass/',
+		stringsNumber: 4,
+	}
+
+	const map = [
 		[
 			{
 				note: 'G2',
@@ -130,9 +136,9 @@ export const useBass = () => {
 		],
 	]
 
-	const getBassMap = () => bassMap
+	const getMap = () => map
 
 	return {
-		getBassMap,
+		getMap,
 	}
 }
