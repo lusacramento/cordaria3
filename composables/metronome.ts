@@ -1,5 +1,8 @@
 export const useMetronome = () => {
-	const metronome = [
+	const metronomeHead = {
+		name: 'Metronome',
+	}
+	const map = [
 		{
 			note: 'C1',
 			enharmony: 'null',
@@ -12,7 +15,7 @@ export const useMetronome = () => {
 		},
 	]
 
-	const getMetronome = () => metronome
+	const getMap = () => map
 
-	return { getMetronome }
+	return { getMap }
 }
