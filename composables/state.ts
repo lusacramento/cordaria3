@@ -69,6 +69,8 @@ function updateViewMode(viewModeValue: string) {
 }
 
 function getTempo(bpm: number) {
+	tempo.value = useMath().convertBpmToMs(bpm)
+}
 
 function getInstrument() {
 	instrumentMap.value = useAudio().selectInstrument(instrument.value)
@@ -115,6 +117,11 @@ function getAudios(this: any) {
 	seq.start(1000)
 }
 
+function generateSequence(sampler: any, notes: string[][]) {
+	return new Tone.Sequence((time, note) => {
+		sampler.triggerAttackRelease(note, 1000, time)
+		// subdivisions are given as subarrays
+	}, notes).start(0)
 }
 
 function convertBpmToMs(bpm: number) {
