@@ -44,7 +44,11 @@ function loadDeck(firstFinger: string, viewModeValue: string, bpm: number) {
 
 	getTempo(bpm)
 
-	isStart.value = true
+	// getInstrument()
+
+	// getAudios()
+
+	// sequence.start()
 
 	startLesson()
 }
@@ -150,9 +154,6 @@ async function startLesson() {
 			case 'play':
 				play()
 				break
-			// case 'finish':
-			// 	finishPractice()
-			// 	break
 		}
 	}
 
