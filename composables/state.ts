@@ -46,6 +46,8 @@ function loadDeck(firstFinger: string, viewModeValue: string, bpm: number) {
 
 	getInstrument()
 
+	getAudios()
+
 	startLesson()
 }
 
@@ -122,11 +124,6 @@ function generateSequence(sampler: any, notes: string[][]) {
 		sampler.triggerAttackRelease(note, 1000, time)
 		// subdivisions are given as subarrays
 	}, notes).start(0)
-}
-
-function convertBpmToMs(bpm: number) {
-	const newTempo = 60000 / bpm
-	return newTempo
 }
 
 async function startLesson() {
