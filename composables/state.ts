@@ -130,6 +130,8 @@ function convertBpmToMs(bpm: number) {
 }
 
 async function startLesson() {
+	isStart.value = true
+
 	fragment.current.value = card.current.value.fragments[fragmentIndex]
 	fragment.next.value = card.current.value.fragments[fragmentIndex + 1]
 
