@@ -44,11 +44,7 @@ function loadDeck(firstFinger: string, viewModeValue: string, bpm: number) {
 
 	getTempo(bpm)
 
-	// getInstrument()
-
-	// getAudios()
-
-	// sequence.start()
+	getInstrument()
 
 	startLesson()
 }
