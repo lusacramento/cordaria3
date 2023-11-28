@@ -73,6 +73,48 @@ function getTempo(bpm: number) {
 function getInstrument() {
 	instrumentMap.value = useAudio().selectInstrument(instrument.value)
 }
+
+function getAudios(this: any) {
+	const playlist: string[][] = []
+	let urls: any = {}
+	for (let str = 0; str < instrumentMap.value.length; str++) {
+		const frets = instrumentMap.value[str]
+		for (let fret = 0; fret < frets.length; fret++) {
+			const note: string = frets[fret].note
+
+			playlist.push([note])
+
+			const tablature = frets[fret].tablature
+			urls[note] = `${tablature}.mp3`
+		}
+	}
+
+	const baseUrl = `/audios/${instrument.value}/`
+
+	const sampler = new Tone.Sampler({
+		urls,
+		baseUrl: baseUrl,
+		onload: () => {
+			sampler.loaded
+		},
+	}).toDestination()
+
+	const seq = generateSequence(sampler, playlist)
+
+	seq.loop = false
+	Tone.Transport.start()
+
+	Tone.Transport.bpm.value = 40
+	//   Tone.Transport.start()
+	onchange = (seq: any) => {
+		this.$emit('sequence', seq)
+	}
+	Tone.start()
+	Tone.Transport.start()
+
+	seq.start(1000)
+}
+
 }
 
 function convertBpmToMs(bpm: number) {
