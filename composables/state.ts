@@ -1,3 +1,5 @@
+import * as Tone from 'tone'
+
 // Attributes
 const viewMode = ref('allCards')
 
@@ -26,6 +28,10 @@ let deckIndex = 0
 let fragmentIndex = 0
 
 let toDo = ''
+
+const instrument = ref('bass')
+let instrumentMap = ref()
+let isLoaded = false
 
 // Methods
 
@@ -63,7 +69,10 @@ function updateViewMode(viewModeValue: string) {
 }
 
 function getTempo(bpm: number) {
-	tempo.value = convertBpmToMs(bpm)
+
+function getInstrument() {
+	instrumentMap.value = useAudio().selectInstrument(instrument.value)
+}
 }
 
 function convertBpmToMs(bpm: number) {
