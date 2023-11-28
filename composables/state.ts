@@ -124,11 +124,6 @@ function generateSequence(sampler: any, notes: string[][]) {
 	}, notes).start(0)
 }
 
-function convertBpmToMs(bpm: number) {
-	const newTempo = 60000 / bpm
-	return newTempo
-}
-
 async function startLesson() {
 	isStart.value = true
 
