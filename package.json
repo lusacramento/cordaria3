@@ -12,7 +12,7 @@
     "@nuxt/devtools": "latest",
     "@types/bootstrap": "^5.2.6",
     "fibers": "^5.0.3",
-    "nuxt": "^3.7.3",
+    "nuxt": "^3.8.1",
     "postcss": "^8.4.5",
     "postcss-loader": "^7.3.3",
     "sass": "^1.66.1",
@@ -26,6 +26,7 @@
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.1",
     "sweetalert2": "^11.7.28",
+    "tone": "^14.7.77",
     "vue-toastification": "^2.0.0-rc.5"
   }
 }
