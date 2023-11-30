@@ -1,7 +1,7 @@
 export const useBass = () => {
 	const bassHead = {
 		name: 'Bass',
-		baseUrl: '/cordariaapp/audios/bass/',
+		baseUrl: '/audios/bass/',
 		stringsNumber: 4,
 	}
 

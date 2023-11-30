@@ -1,7 +1,7 @@
 export const useCavaco = () => {
 	const cavacoHead = {
 		name: 'Cavaco',
-		baseUrl: '/cordariaapp/audios/cavaco/',
+		baseUrl: '/audios/cavaco/',
 		stringsNumber: 4,
 	}
 

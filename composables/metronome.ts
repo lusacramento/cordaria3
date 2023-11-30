@@ -1,7 +1,7 @@
 export const useMetronome = () => {
 	const metronomeHead = {
 		name: 'Metronome',
-		baseUrl: '/cordariaapp/audios/metronome',
+		baseUrl: '/audios/metronome/',
 		stringsNumber: 0,
 	}
 	const map = [
