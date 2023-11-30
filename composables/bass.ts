@@ -1,7 +1,6 @@
 export const useBass = () => {
 	const bassHead = {
 		name: 'Bass',
-		baseUrl: '/audios/bass/',
 		stringsNumber: 4,
 	}
 

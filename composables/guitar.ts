@@ -1,13 +1,11 @@
 export const useGuitar = () => {
 	const acoustGuitarHead = {
 		name: 'Acoustic Guitar',
-		baseUrl: '/audios/acoustic-guitar/',
 		stringsNumber: 6,
 	}
 
 	const eletricGuitarHead = {
 		name: 'Eletric Guitar',
-		baseUrl: '/audios/eletric-guitar/',
 		stringsNumber: 6,
 	}
 	const map = [
@@ -176,6 +174,8 @@ export const useGuitar = () => {
 	]
 
 	const getMap = () => map
+
+	const getHead = (isg) => guitar
 
 	return {
 		getMap,

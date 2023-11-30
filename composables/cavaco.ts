@@ -1,7 +1,6 @@
 export const useCavaco = () => {
 	const cavacoHead = {
 		name: 'Cavaco',
-		baseUrl: '/audios/cavaco/',
 		stringsNumber: 4,
 	}
 
@@ -118,5 +117,7 @@ export const useCavaco = () => {
 
 	const getMap = () => map
 
-	return { getMap }
+	const getHead = () => cavacoHead
+
+	return { getMap, getHead }
 }

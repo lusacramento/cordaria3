@@ -19,5 +19,7 @@ export const useMetronome = () => {
 
 	const getMap = () => map
 
-	return { getMap }
+	const getHead = () => metronomeHead
+
+	return { getMap, getHead }
 }
