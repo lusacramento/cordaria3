@@ -4,6 +4,7 @@ import * as Tone from 'tone'
 const viewMode = ref('allCards')
 
 const tempo = ref()
+const bpm = ref(0)
 
 const isStart = ref(false)
 
@@ -27,11 +28,8 @@ const fragment = {
 let deckIndex = 0
 let fragmentIndex = 0
 
-let toDo = ''
-
 const instrument = ref('bass')
 let instrumentMap = ref()
-let isLoaded = false
 
 // Methods
 
@@ -42,13 +40,18 @@ function payLoad(firstFinger: string, viewModeValue: string, newBpm: number) {
 
 	updateViewMode(viewModeValue)
 
-	getTempo(bpm)
+	updateTempo(newBpm)
 
 	getInstrument()
 
-	getAudios()
-
-	startLesson()
+	useAudio().getAudios(
+		counter.value,
+		instrument.value,
+		instrumentMap.value,
+		deck.value,
+		bpm.value,
+		tempo.value,
+	)
 }
 
 function initializeDeck(firstFinger: string) {
@@ -70,60 +73,13 @@ function updateViewMode(viewModeValue: string) {
 	viewMode.value = viewModeValue
 }
 
-function getTempo(bpm: number) {
-	tempo.value = useMath().convertBpmToMs(bpm)
+function updateTempo(newBpm: number) {
+	bpm.value = newBpm
+	tempo.value = useMath().convertBpmToMs(newBpm)
 }
 
 function getInstrument() {
 	instrumentMap.value = useAudio().selectInstrument(instrument.value)
-}
-
-function getAudios(this: any) {
-	const playlist: string[][] = []
-	let urls: any = {}
-	for (let str = 0; str < instrumentMap.value.length; str++) {
-		const frets = instrumentMap.value[str]
-		for (let fret = 0; fret < frets.length; fret++) {
-			const note: string = frets[fret].note
-
-			playlist.push([note])
-
-			const tablature = frets[fret].tablature
-			urls[note] = `${tablature}.mp3`
-		}
-	}
-
-	const baseUrl = `/audios/${instrument.value}/`
-
-	const sampler = new Tone.Sampler({
-		urls,
-		baseUrl: baseUrl,
-		onload: () => {
-			sampler.loaded
-		},
-	}).toDestination()
-
-	const seq = generateSequence(sampler, playlist)
-
-	seq.loop = false
-	Tone.Transport.start()
-
-	Tone.Transport.bpm.value = 40
-	//   Tone.Transport.start()
-	onchange = (seq: any) => {
-		this.$emit('sequence', seq)
-	}
-	Tone.start()
-	Tone.Transport.start()
-
-	seq.start(1000)
-}
-
-function generateSequence(sampler: any, notes: string[][]) {
-	return new Tone.Sequence((time, note) => {
-		sampler.triggerAttackRelease(note, 1000, time)
-		// subdivisions are given as subarrays
-	}, notes).start(0)
 }
 
 async function startLesson() {
@@ -134,6 +90,9 @@ async function startLesson() {
 
 	isShowCounter.value = true
 	let toDo = 'counter'
+
+	Tone.start()
+	Tone.Transport.start()
 
 	function startPractice() {
 		switch (toDo) {
@@ -242,8 +201,8 @@ export const useState = () => {
 		deck,
 		counter,
 		isShowCounter,
-		
-		payLoad,
 
+		payLoad,
+		startLesson,
 	}
 }
