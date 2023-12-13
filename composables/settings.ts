@@ -138,24 +138,9 @@ const settings = {
 		},
 	},
 	fingers: [
-		{
-			finger: '0',
-		},
-		{
-			finger: '1',
-		},
-		{
-			finger: '2',
-		},
-		{
-			finger: '3',
-		},
-		{
-			finger: '4',
-		},
-		{
-			finger: 'P',
-		},
+	viewMode: [
+		{ label: '3 cartas', value: '3Cards' },
+		{ label: 'Todas as cartas', value: 'allCards' },
 	],
 }
 
