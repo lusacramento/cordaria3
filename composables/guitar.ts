@@ -1,13 +1,11 @@
 export const useGuitar = () => {
 	const acoustGuitarHead = {
 		name: 'Acoustic Guitar',
-		baseUrl: '/cordariaapp/audios/acoustic-guitar/',
 		stringsNumber: 6,
 	}
 
 	const eletricGuitarHead = {
 		name: 'Eletric Guitar',
-		baseUrl: '/cordariaapp/audios/eletric-guitar/',
 		stringsNumber: 6,
 	}
 	const map = [
@@ -16,31 +14,26 @@ export const useGuitar = () => {
 				note: 'E4',
 				enharmony: 'null',
 				tablature: '10',
-				'10': 'E4',
 			},
 			{
 				note: 'F4',
 				enharmony: 'null',
 				tablature: '11',
-				'11': 'F4',
 			},
 			{
 				note: 'F#4',
 				enharmony: 'Gb4',
 				tablature: '12',
-				'12': 'F#4',
 			},
 			{
 				note: 'G4',
 				enharmony: 'null',
 				tablature: '13',
-				'13': 'G4',
 			},
 			{
 				note: 'G#4',
 				enharmony: 'Ab4',
 				tablature: '14',
-				'14': 'G#4',
 			},
 		],
 		[
@@ -48,31 +41,26 @@ export const useGuitar = () => {
 				note: 'B3',
 				enharmony: 'null',
 				tablature: '20',
-				'20': 'B3',
 			},
 			{
 				note: 'C4',
 				enharmony: 'null',
 				tablature: '21',
-				'21': 'C4',
 			},
 			{
 				note: 'C#4',
 				enharmony: 'Db4',
 				tablature: '22',
-				'22': 'C#4',
 			},
 			{
 				note: 'D4',
 				enharmony: 'null',
 				tablature: '23',
-				'23': 'D4',
 			},
 			{
 				note: 'D#4',
 				enharmony: 'Eb4',
 				tablature: '24',
-				'24': 'D#4',
 			},
 		],
 		[
@@ -80,31 +68,26 @@ export const useGuitar = () => {
 				note: 'G3',
 				enharmony: 'null',
 				tablature: '30',
-				'30': 'G3',
 			},
 			{
 				note: 'G#3',
 				enharmony: 'Ab3',
 				tablature: '31',
-				'31': 'G#3',
 			},
 			{
 				note: 'A3',
 				enharmony: 'null',
 				tablature: '32',
-				'32': 'A3',
 			},
 			{
 				note: 'A#3',
 				enharmony: 'Bb3',
 				tablature: '33',
-				'33': 'A#3',
 			},
 			{
 				note: 'B3',
 				enharmony: 'null',
 				tablature: '34',
-				'34': 'B3',
 			},
 		],
 		[
@@ -112,31 +95,26 @@ export const useGuitar = () => {
 				note: 'D3',
 				enharmony: 'null',
 				tablature: '40',
-				'40': 'D3',
 			},
 			{
 				note: 'D#3',
 				enharmony: 'Eb3',
 				tablature: '41',
-				'41': 'D#3',
 			},
 			{
 				note: 'E3',
 				enharmony: 'null',
 				tablature: '42',
-				'42': 'E3',
 			},
 			{
 				note: 'F3',
 				enharmony: 'null',
 				tablature: '43',
-				'43': 'F3',
 			},
 			{
 				note: 'F#3',
 				enharmony: 'Gb3',
 				tablature: '44',
-				'44': 'F#3',
 			},
 		],
 		[
@@ -144,31 +122,26 @@ export const useGuitar = () => {
 				note: 'A2',
 				enharmony: 'null',
 				tablature: '50',
-				'50': 'A2',
 			},
 			{
 				note: 'A#2',
 				enharmony: 'Bb2',
 				tablature: '51',
-				'51': 'A#2',
 			},
 			{
 				note: 'B2',
 				enharmony: 'null',
 				tablature: '52',
-				'52': 'B2',
 			},
 			{
 				note: 'C3',
 				enharmony: 'null',
 				tablature: '53',
-				'53': 'C3',
 			},
 			{
 				note: 'C#3',
 				enharmony: 'Db3',
 				tablature: '54',
-				'54': 'C#3',
 			},
 		],
 		[
@@ -176,36 +149,33 @@ export const useGuitar = () => {
 				note: 'E2',
 				enharmony: 'null',
 				tablature: '60',
-				'60': 'E2',
 			},
 			{
 				note: 'F2',
 				enharmony: 'null',
 				tablature: '61',
-				'61': 'F2',
 			},
 			{
 				note: 'F#2',
 				enharmony: 'Gb2',
 				tablature: '62',
-				'62': 'F#2',
 			},
 			{
 				note: 'G2',
 				enharmony: 'null',
 				tablature: '63',
-				'63': 'G2',
 			},
 			{
 				note: 'G#2',
 				enharmony: 'Ab2',
 				tablature: '64',
-				'64': 'G#2',
 			},
 		],
 	]
 
 	const getMap = () => map
+
+	// const getHead = () => guitar
 
 	return {
 		getMap,

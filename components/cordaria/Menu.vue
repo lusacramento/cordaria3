@@ -193,7 +193,7 @@
 		// Close Menu
 		isMenuShow.value = false
 
-		useState().loadDeck(finger.value, viewMode.value, parseInt(bpm.value))
+		useState().payLoad(finger.value, viewMode.value, parseInt(bpm.value))
 	}
 </script>
 
