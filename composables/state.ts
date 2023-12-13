@@ -35,7 +35,7 @@ let isLoaded = false
 
 // Methods
 
-function loadDeck(firstFinger: string, viewModeValue: string, bpm: number) {
+function payLoad(firstFinger: string, viewModeValue: string, newBpm: number) {
 	initializeDeck(firstFinger)
 
 	initializeCard()
@@ -242,6 +242,8 @@ export const useState = () => {
 		deck,
 		counter,
 		isShowCounter,
-		loadDeck,
+		
+		payLoad,
+
 	}
 }
