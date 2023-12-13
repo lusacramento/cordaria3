@@ -142,7 +142,6 @@
 								/>
 							</button>
 						</div>
-						<!-- v-if="isVisibleButtonPlay" -->
 					</div>
 				</form>
 			</div>
