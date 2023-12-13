@@ -93,8 +93,6 @@ function addInstrumentToPlaylist(
 			const fret = fragment.value
 			const note = instrumentMap[str][fret].note
 
-			const tablature = `${str}${fragment.value}`
-
 			playlist.push([note])
 		})
 	})
