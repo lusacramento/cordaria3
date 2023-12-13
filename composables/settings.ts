@@ -38,6 +38,7 @@ const settings = {
 				},
 			],
 		},
+
 		electricGuitar: {
 			name: 'eletric-guitar',
 			label: 'Guitarra',
@@ -76,6 +77,7 @@ const settings = {
 				},
 			],
 		},
+
 		cavaco: {
 			name: 'cavaco',
 			label: 'Cavaquinho',
@@ -106,6 +108,7 @@ const settings = {
 				},
 			],
 		},
+
 		bass: {
 			name: 'bass',
 			label: 'Baixo',
@@ -137,7 +140,16 @@ const settings = {
 			],
 		},
 	},
+
 	fingers: [
+		{ finger: '0' },
+		{ finger: '1' },
+		{ finger: '2' },
+		{ finger: '3' },
+		{ finger: '4' },
+		{ finger: 'P' },
+	],
+
 	viewMode: [
 		{ label: '3 cartas', value: '3Cards' },
 		{ label: 'Todas as cartas', value: 'allCards' },
