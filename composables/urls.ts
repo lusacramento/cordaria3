@@ -1,29 +1,36 @@
-export const useUrls = (instrumentName: string) => {
+export const useUrls = () => {
 	const urls = [
 		{
-			name: 'Acoustic Guitar',
+			name: 'metronome',
+			baseUrl: '/audios/metronome/',
+		},
+		{
+			name: 'acoustic-guitar',
 			baseUrl: '/audios/acoustic-guitar/',
 		},
 
 		{
-			name: 'Eletric Guitar',
+			name: 'eletric-guitar',
 			baseUrl: '/audios/eletric-guitar/',
 		},
 		{
-			name: 'Bass',
+			name: 'bass',
 			baseUrl: '/audios/bass/',
 		},
 		{
-			name: 'Cavaco',
+			name: 'cavaco',
 			baseUrl: '/audios/cavaco/',
 		},
 	]
 
 	const getUrl = function (instrumentName: string) {
-		urls.forEach((url) => {
-			if (instrumentName === url.name) return url.baseUrl
-			return 'Url não encontrada!'
+		let url: string = ''
+		urls.forEach((object) => {
+			if (instrumentName === object.name) url = object.baseUrl
 		})
+
+		if (url !== '') return url
+		else return 'Url não encontrada!'
 	}
 
 	return {
