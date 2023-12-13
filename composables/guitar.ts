@@ -175,7 +175,7 @@ export const useGuitar = () => {
 
 	const getMap = () => map
 
-	const getHead = (isg) => guitar
+	// const getHead = () => guitar
 
 	return {
 		getMap,
