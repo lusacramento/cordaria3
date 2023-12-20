@@ -151,7 +151,7 @@
 
 <script lang="ts" setup>
 	import { library } from '@fortawesome/fontawesome-svg-core'
-	import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
+	import { faPlay } from '@fortawesome/free-solid-svg-icons'
 	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 	library.add(faPlay)
 	const playIcon = 'play'
