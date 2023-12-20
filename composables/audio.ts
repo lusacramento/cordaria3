@@ -5,7 +5,7 @@ const playlist: string[] = []
 
 const adjustSync = 1.1 // <-- ajust here the release duration for legattos notes
 
-const selectInstrument = function (instrument: string) {
+function selectInstrument(instrument: string) {
 	let instrumentMap = {}
 	switch (instrument) {
 		case 'acoustic-guitar':
@@ -26,7 +26,7 @@ const selectInstrument = function (instrument: string) {
 	return instrumentMap
 }
 
-const getAudios = function (
+function getAudios(
 	counter: number,
 	instrument: string,
 	instrumentMap: [],
