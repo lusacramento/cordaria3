@@ -158,7 +158,8 @@ const settings = {
 
 const getInstruments = () => settings.instruments
 const getFingers = () => settings.fingers
+const getViewModes = () => settings.viewModes
 
 export const useSettings = () => {
-	return { getInstruments, getFingers }
+	return { getInstruments, getFingers, getViewModes }
 }
