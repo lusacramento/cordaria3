@@ -150,7 +150,7 @@ const settings = {
 		{ finger: 'P' },
 	],
 
-	viewMode: [
+	viewModes: [
 		{ label: '3 cartas', value: '3Cards' },
 		{ label: 'Todas as cartas', value: 'allCards' },
 	],
