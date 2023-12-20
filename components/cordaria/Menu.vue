@@ -57,8 +57,13 @@
 						</label>
 						<br />
 						<select id="select-view-mode" v-model="viewMode" class="controls">
-							<option value="3Cards">3 cartas</option>
-							<option value="allCards">Todas as cartas</option>
+							<option
+								v-for="viewMode in viewModes"
+								:key="viewMode.value"
+								:value="viewMode.value"
+							>
+								{{ viewMode.label }}
+							</option>
 						</select>
 					</div>
 					<div class="form-group col-6 col-lg-12 select-lesson">
@@ -167,7 +172,8 @@
 	const instrumentDefault = instruments.acousticGuitar
 	const instrument = ref(instrumentDefault.name)
 
-	const viewMode = ref(useState().viewMode.value)
+	const viewModes = useSettings().getViewModes()
+	const viewMode = ref(viewModes[1].value)
 
 	const lessons = useLessons().getLessons()
 	let lessonDefault = lessons[0]
@@ -192,7 +198,13 @@
 		// Close Menu
 		isMenuShow.value = false
 
-		useState().payLoad(finger.value, viewMode.value, parseInt(bpm.value))
+		useState().payLoad(
+			instrument.value,
+			viewMode.value,
+			finger.value,
+			str.value,
+			parseInt(bpm.value),
+		)
 	}
 </script>
 
