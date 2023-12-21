@@ -36,17 +36,12 @@
 							v-model="instrument"
 							class="controls justify-self-center"
 						>
-							<option :value="instruments.acousticGuitar.name">
-								{{ instruments.acousticGuitar.label }}
-							</option>
-							<option :value="instruments.cavaco.name">
-								{{ instruments.cavaco.label }}
-							</option>
-							<option :value="instruments.electricGuitar.name">
-								{{ instruments.electricGuitar.label }}
-							</option>
-							<option :value="instruments.bass.name">
-								{{ instruments.bass.label }}
+							<option
+								v-for="instr in instruments"
+								:key="instr.name"
+								:value="instr.name"
+							>
+								{{ instr.label }}
 							</option>
 						</select>
 					</div>
@@ -169,8 +164,8 @@
 	let isMenuShow = ref(true)
 
 	const instruments = useSettings().getInstruments()
-	const instrumentDefault = instruments.acousticGuitar
-	const instrument = ref(instrumentDefault.name)
+	let instrumentDefault = ref(instruments[0])
+	const instrument = ref(instrumentDefault.value.name)
 
 	const viewModes = useSettings().getViewModes()
 	const viewMode = ref(viewModes[1].value)
@@ -182,8 +177,8 @@
 	const fingers = useSettings().getFingers()
 	let finger = ref(`${fingers[0].finger}`)
 
-	const strings = instrumentDefault.strings
-	let str = ref(strings[0].string)
+	const strings = ref(instrumentDefault.value.strings)
+	let str = ref(strings.value[0].string)
 
 	let bpm = ref(`${lessons[0].bpm}`)
 
@@ -191,7 +186,20 @@
 		lessonDefault = lessons[newLesson]
 		finger = ref(`${lessons[newLesson].firstFinger}`)
 		bpm = ref(`${lessons[newLesson].bpm}`)
-		string = ref(`${lessons[newLesson].stringNumber}`)
+		str = ref(`${lessons[newLesson].stringNumber}`)
+	})
+
+	watch(instrument, async (newInstrument) => {
+		instrumentDefault.value = instruments.filter(
+			(el) => el.name == newInstrument,
+		)[0]
+
+		strings.value = instrumentDefault.value.strings
+	})
+
+	watch(instrumentDefault, async (newInstrumentDefault) => {
+		console.log(newInstrumentDefault)
+		instrumentDefault.value = newInstrumentDefault
 	})
 
 	const loadExercise = () => {

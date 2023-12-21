@@ -1,16 +1,15 @@
 import * as Tone from 'tone'
 
 // Attributes
-const viewMode = ref('allCards')
 
-const tempo = ref()
+// views
+const instrument = ref()
+const viewMode = ref()
+const firstFinger = ref()
+const str = ref()
 const bpm = ref(0)
 
-const isStart = ref(false)
-
-const counter = ref(5)
-const isShowCounter = ref(false)
-
+// data
 const deck = ref()
 
 const card = {
@@ -25,24 +24,43 @@ const fragment = {
 	next: ref(),
 }
 
+// indexes
 let deckIndex = 0
 let fragmentIndex = 0
 
-const instrument = ref('bass')
+// auxialiaries
+const tempo = ref()
+const isStart = ref(false)
+
+const counter = ref(5)
+const isShowCounter = ref(false)
+
 let instrumentMap = ref()
 
 // Methods
 
-function payLoad(firstFinger: string, viewModeValue: string, newBpm: number) {
-	initializeDeck(firstFinger)
+function payLoad(
+	instrument2: string,
+	viewMode2: string,
+	firstFinger2: string,
+	str2: string,
+	bpm2: number,
+) {
+	instrument.value = instrument2
+	viewMode.value = viewMode2
+	firstFinger.value = firstFinger2
+	str.value = str2
+	bpm.value = bpm2
+
+	initializeDeck(firstFinger.value)
 
 	initializeCard()
 
-	updateViewMode(viewModeValue)
+	// updateViewMode(viewMode.value)
 
-	updateTempo(newBpm)
+	getTempo(bpm.value)
 
-	getInstrument()
+	getInstrumentMap(instrument.value)
 
 	useAudio().getAudios(
 		counter.value,
@@ -51,6 +69,8 @@ function payLoad(firstFinger: string, viewModeValue: string, newBpm: number) {
 		deck.value,
 		bpm.value,
 		tempo.value,
+		firstFinger.value,
+		str.value,
 	)
 }
 
@@ -69,17 +89,17 @@ function clearCard() {
 	return { id: 0, value: '', fragments: [] }
 }
 
-function updateViewMode(viewModeValue: string) {
-	viewMode.value = viewModeValue
+// function updateViewMode(viewModeValue: string) {
+// 	viewMode.value = viewModeValue
+// }
+
+function getTempo(bpm: number) {
+	// bpm.value = newBpm
+	tempo.value = useMath().convertBpmToMs(bpm)
 }
 
-function updateTempo(newBpm: number) {
-	bpm.value = newBpm
-	tempo.value = useMath().convertBpmToMs(newBpm)
-}
-
-function getInstrument() {
-	instrumentMap.value = useAudio().selectInstrument(instrument.value)
+function getInstrumentMap(instrument: string) {
+	instrumentMap.value = useAudio().selectInstrument(instrument)
 }
 
 async function startLesson() {

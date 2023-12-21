@@ -1,6 +1,6 @@
 const settings = {
-	instruments: {
-		acousticGuitar: {
+	instruments: [
+		{
 			name: 'acoustic-guitar',
 			label: 'Violão',
 			strings: [
@@ -39,7 +39,7 @@ const settings = {
 			],
 		},
 
-		electricGuitar: {
+		{
 			name: 'eletric-guitar',
 			label: 'Guitarra',
 			strings: [
@@ -78,7 +78,7 @@ const settings = {
 			],
 		},
 
-		cavaco: {
+		{
 			name: 'cavaco',
 			label: 'Cavaquinho',
 			strings: [
@@ -109,7 +109,7 @@ const settings = {
 			],
 		},
 
-		bass: {
+		{
 			name: 'bass',
 			label: 'Baixo',
 			strings: [
@@ -139,7 +139,7 @@ const settings = {
 				},
 			],
 		},
-	},
+	],
 
 	fingers: [
 		{ finger: '0' },

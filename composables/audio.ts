@@ -33,13 +33,15 @@ function getAudios(
 	deck: [],
 	bpm: number,
 	tempo: number,
+	firstFinger: number,
+	str: string,
 ) {
 	urls = getMetronomeUrls(urls)
 	urls = getInstrumentUrls(urls, instrument, instrumentMap)
 
 	addMetronomeToPlaylist(counter, playlist)
 
-	addInstrumentToPlaylist(deck, playlist, instrumentMap)
+	addInstrumentToPlaylist(deck, playlist, instrumentMap, str)
 
 	const sampler = new Tone.Sampler({
 		urls: urls,
@@ -86,12 +88,12 @@ function addInstrumentToPlaylist(
 	deck: [],
 	playlist: any[],
 	instrumentMap: any,
+	str: string,
 ) {
 	deck.forEach((card: any) => {
-		const str = '1'
 		card.fragments.forEach((fragment: any) => {
 			const fret = fragment.value
-			const note = instrumentMap[str][fret].note
+			const note = instrumentMap[parseInt(str)][parseInt(fret)].note
 
 			playlist.push([note])
 		})
