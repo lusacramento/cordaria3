@@ -36,17 +36,12 @@
 							v-model="instrument"
 							class="controls justify-self-center"
 						>
-							<option :value="instruments.acousticGuitar.name">
-								{{ instruments.acousticGuitar.label }}
-							</option>
-							<option :value="instruments.cavaco.name">
-								{{ instruments.cavaco.label }}
-							</option>
-							<option :value="instruments.electricGuitar.name">
-								{{ instruments.electricGuitar.label }}
-							</option>
-							<option :value="instruments.bass.name">
-								{{ instruments.bass.label }}
+							<option
+								v-for="instr in instruments"
+								:key="instr.name"
+								:value="instr.name"
+							>
+								{{ instr.label }}
 							</option>
 						</select>
 					</div>
@@ -57,8 +52,13 @@
 						</label>
 						<br />
 						<select id="select-view-mode" v-model="viewMode" class="controls">
-							<option value="3Cards">3 cartas</option>
-							<option value="allCards">Todas as cartas</option>
+							<option
+								v-for="viewMode in viewModes"
+								:key="viewMode.value"
+								:value="viewMode.value"
+							>
+								{{ viewMode.label }}
+							</option>
 						</select>
 					</div>
 					<div class="form-group col-6 col-lg-12 select-lesson">
@@ -93,7 +93,7 @@
 					<div class="form-group col-6 col-lg-12 select-string">
 						<label for="select-string" class="form-label"> Corda</label>
 						<br />
-						<select id="select-string" v-model="string" class="controls">
+						<select id="select-string" v-model="str" class="controls">
 							<option v-for="st in strings" :key="st.string" :value="st.string">
 								{{ st.label }}
 							</option>
@@ -142,7 +142,6 @@
 								/>
 							</button>
 						</div>
-						<!-- v-if="isVisibleButtonPlay" -->
 					</div>
 				</form>
 			</div>
@@ -152,7 +151,7 @@
 
 <script lang="ts" setup>
 	import { library } from '@fortawesome/fontawesome-svg-core'
-	import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
+	import { faPlay } from '@fortawesome/free-solid-svg-icons'
 	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 	library.add(faPlay)
 	const playIcon = 'play'
@@ -165,10 +164,11 @@
 	let isMenuShow = ref(true)
 
 	const instruments = useSettings().getInstruments()
-	const instrumentDefault = instruments.acousticGuitar
-	const instrument = ref(instrumentDefault.name)
+	let instrumentDefault = ref(instruments[0])
+	const instrument = ref(instrumentDefault.value.name)
 
-	const viewMode = ref(useState().viewMode.value)
+	const viewModes = useSettings().getViewModes()
+	const viewMode = ref(viewModes[1].value)
 
 	const lessons = useLessons().getLessons()
 	let lessonDefault = lessons[0]
@@ -177,8 +177,8 @@
 	const fingers = useSettings().getFingers()
 	let finger = ref(`${fingers[0].finger}`)
 
-	const strings = instrumentDefault.strings
-	let string = ref(strings[0].string)
+	const strings = ref(instrumentDefault.value.strings)
+	let str = ref(strings.value[0].string)
 
 	let bpm = ref(`${lessons[0].bpm}`)
 
@@ -186,14 +186,33 @@
 		lessonDefault = lessons[newLesson]
 		finger = ref(`${lessons[newLesson].firstFinger}`)
 		bpm = ref(`${lessons[newLesson].bpm}`)
-		string = ref(`${lessons[newLesson].stringNumber}`)
+		str = ref(`${lessons[newLesson].stringNumber}`)
+	})
+
+	watch(instrument, async (newInstrument) => {
+		instrumentDefault.value = instruments.filter(
+			(el) => el.name == newInstrument,
+		)[0]
+
+		strings.value = instrumentDefault.value.strings
+	})
+
+	watch(instrumentDefault, async (newInstrumentDefault) => {
+		console.log(newInstrumentDefault)
+		instrumentDefault.value = newInstrumentDefault
 	})
 
 	const loadExercise = () => {
 		// Close Menu
 		isMenuShow.value = false
 
-		useState().payLoad(finger.value, viewMode.value, parseInt(bpm.value))
+		useState().payLoad(
+			instrument.value,
+			viewMode.value,
+			finger.value,
+			str.value,
+			parseInt(bpm.value),
+		)
 	}
 </script>
 

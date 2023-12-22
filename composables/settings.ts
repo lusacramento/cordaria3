@@ -1,31 +1,31 @@
 const settings = {
-	instruments: {
-		acousticGuitar: {
+	instruments: [
+		{
 			name: 'acoustic-guitar',
 			label: 'Violão',
 			strings: [
 				{
-					string: 1,
+					string: '0',
 					label: 'Corda 1 (Mi4)',
 				},
 				{
-					string: 2,
+					string: '1',
 					label: 'Corda 2 (Si3)',
 				},
 				{
-					string: 3,
+					string: '2',
 					label: 'Corda 3 (Sol3)',
 				},
 				{
-					string: 4,
+					string: '3',
 					label: 'Corda 4 (Ré3)',
 				},
 				{
-					string: 5,
+					string: '4',
 					label: 'Corda 5 (Lá2)',
 				},
 				{
-					string: 6,
+					string: '5',
 					label: 'Corda 6 (E2)',
 				},
 				{
@@ -39,32 +39,32 @@ const settings = {
 			],
 		},
 
-		electricGuitar: {
+		{
 			name: 'eletric-guitar',
 			label: 'Guitarra',
 			strings: [
 				{
-					string: 1,
+					string: '0',
 					label: 'Corda 1 (Mi4)',
 				},
 				{
-					string: 2,
+					string: '1',
 					label: 'Corda 2 (Si3)',
 				},
 				{
-					string: 3,
+					string: '2',
 					label: 'Corda 3 (Sol3)',
 				},
 				{
-					string: 4,
+					string: '3',
 					label: 'Corda 4 (Ré3)',
 				},
 				{
-					string: 5,
+					string: '4',
 					label: 'Corda 5 (Lá2)',
 				},
 				{
-					string: 6,
+					string: '5',
 					label: 'Corda 6 (E2)',
 				},
 				{
@@ -78,24 +78,24 @@ const settings = {
 			],
 		},
 
-		cavaco: {
+		{
 			name: 'cavaco',
 			label: 'Cavaquinho',
 			strings: [
 				{
-					string: 1,
+					string: '0',
 					label: 'Corda 1 (Ré5)',
 				},
 				{
-					string: 2,
+					string: '1',
 					label: 'Corda 2 (Si4)',
 				},
 				{
-					string: 3,
+					string: '2',
 					label: 'Corda 3 (Sol4)',
 				},
 				{
-					string: 4,
+					string: '3',
 					label: 'Corda 4 (Ré4)',
 				},
 				{
@@ -109,24 +109,24 @@ const settings = {
 			],
 		},
 
-		bass: {
+		{
 			name: 'bass',
 			label: 'Baixo',
 			strings: [
 				{
-					string: 1,
+					string: '0',
 					label: 'Corda 1 (Sol2)',
 				},
 				{
-					string: 2,
+					string: '1',
 					label: 'Corda 2 (Ré2)',
 				},
 				{
-					string: 3,
+					string: '2',
 					label: 'Corda 3 (Lá1)',
 				},
 				{
-					string: 4,
+					string: '3',
 					label: 'Corda 4 (Mi1)',
 				},
 				{
@@ -139,7 +139,7 @@ const settings = {
 				},
 			],
 		},
-	},
+	],
 
 	fingers: [
 		{ finger: '0' },
@@ -150,7 +150,7 @@ const settings = {
 		{ finger: 'P' },
 	],
 
-	viewMode: [
+	viewModes: [
 		{ label: '3 cartas', value: '3Cards' },
 		{ label: 'Todas as cartas', value: 'allCards' },
 	],
@@ -158,7 +158,8 @@ const settings = {
 
 const getInstruments = () => settings.instruments
 const getFingers = () => settings.fingers
+const getViewModes = () => settings.viewModes
 
 export const useSettings = () => {
-	return { getInstruments, getFingers }
+	return { getInstruments, getFingers, getViewModes }
 }

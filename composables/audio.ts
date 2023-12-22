@@ -5,13 +5,10 @@ const playlist: string[] = []
 
 const adjustSync = 1.1 // <-- ajust here the release duration for legattos notes
 
-const selectInstrument = function (instrument: string) {
+function selectInstrument(instrument: string) {
 	let instrumentMap = {}
 	switch (instrument) {
-		case 'acoustic-guitar':
-			instrumentMap = useGuitar().getMap()
-			break
-		case 'eletric-guitar':
+		case 'acoustic-guitar' || 'eletric-guitar':
 			instrumentMap = useGuitar().getMap()
 			break
 		case 'cavaco':
@@ -26,20 +23,22 @@ const selectInstrument = function (instrument: string) {
 	return instrumentMap
 }
 
-const getAudios = function (
+function getAudios(
 	counter: number,
 	instrument: string,
 	instrumentMap: [],
 	deck: [],
 	bpm: number,
 	tempo: number,
+	firstFinger: number,
+	str: string,
 ) {
 	urls = getMetronomeUrls(urls)
 	urls = getInstrumentUrls(urls, instrument, instrumentMap)
 
 	addMetronomeToPlaylist(counter, playlist)
 
-	addInstrumentToPlaylist(deck, playlist, instrumentMap)
+	addInstrumentToPlaylist(deck, playlist, instrumentMap, str)
 
 	const sampler = new Tone.Sampler({
 		urls: urls,
@@ -86,14 +85,12 @@ function addInstrumentToPlaylist(
 	deck: [],
 	playlist: any[],
 	instrumentMap: any,
+	str: string,
 ) {
 	deck.forEach((card: any) => {
-		const str = '1'
 		card.fragments.forEach((fragment: any) => {
 			const fret = fragment.value
-			const note = instrumentMap[str][fret].note
-
-			const tablature = `${str}${fragment.value}`
+			const note = instrumentMap[parseInt(str)][parseInt(fret)].note
 
 			playlist.push([note])
 		})
