@@ -12,7 +12,7 @@
     "@nuxt/devtools": "latest",
     "@types/bootstrap": "^5.2.6",
     "nuxt": "^3.8.1",
-    "sass": "^1.66.1"
+    "sass": "^1.69.6"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
