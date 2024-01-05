@@ -1,9 +1,4 @@
 export const useBass = () => {
-	const bassHead = {
-		name: 'Bass',
-		stringsNumber: 4,
-	}
-
 	const map = [
 		[
 			{

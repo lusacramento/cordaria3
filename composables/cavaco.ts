@@ -1,9 +1,4 @@
 export const useCavaco = () => {
-	const cavacoHead = {
-		name: 'Cavaco',
-		stringsNumber: 4,
-	}
-
 	const map = [
 		[
 			{
@@ -117,7 +112,5 @@ export const useCavaco = () => {
 
 	const getMap = () => map
 
-	const getHead = () => cavacoHead
-
-	return { getMap, getHead }
+	return { getMap }
 }
