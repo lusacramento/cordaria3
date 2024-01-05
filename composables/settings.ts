@@ -5,36 +5,36 @@ const settings = {
 			label: 'Violão',
 			strings: [
 				{
-					string: '0',
+					stringIndex: '0',
 					label: 'Corda 1 (Mi4)',
 				},
 				{
-					string: '1',
+					stringIndex: '1',
 					label: 'Corda 2 (Si3)',
 				},
 				{
-					string: '2',
+					stringIndex: '2',
 					label: 'Corda 3 (Sol3)',
 				},
 				{
-					string: '3',
+					stringIndex: '3',
 					label: 'Corda 4 (Ré3)',
 				},
 				{
-					string: '4',
+					stringIndex: '4',
 					label: 'Corda 5 (Lá2)',
 				},
 				{
-					string: '5',
+					stringIndex: '5',
 					label: 'Corda 6 (E2)',
 				},
 				{
-					string: 'fromBassToTreble',
-					label: 'Todas (ínicio corda 6)',
+					stringIndex: 'bass',
+					label: 'Todas (ínicio grave)',
 				},
 				{
-					string: 'fromTrebleToBass',
-					label: 'Todas (início corda 1',
+					stringIndex: 'treble',
+					label: 'Todas (início agudo)',
 				},
 			],
 		},
@@ -44,36 +44,36 @@ const settings = {
 			label: 'Guitarra',
 			strings: [
 				{
-					string: '0',
+					stringIndex: '0',
 					label: 'Corda 1 (Mi4)',
 				},
 				{
-					string: '1',
+					stringIndex: '1',
 					label: 'Corda 2 (Si3)',
 				},
 				{
-					string: '2',
+					stringIndex: '2',
 					label: 'Corda 3 (Sol3)',
 				},
 				{
-					string: '3',
+					stringIndex: '3',
 					label: 'Corda 4 (Ré3)',
 				},
 				{
-					string: '4',
+					stringIndex: '4',
 					label: 'Corda 5 (Lá2)',
 				},
 				{
-					string: '5',
+					stringIndex: '5',
 					label: 'Corda 6 (E2)',
 				},
 				{
-					string: 'fromBassToTreble',
-					label: 'Todas (ínicio corda 6)',
+					stringIndex: 'bass',
+					label: 'Todas (ínicio grave)',
 				},
 				{
-					string: 'fromTrebleToBass',
-					label: 'Todas (início corda 1',
+					stringIndex: 'treble',
+					label: 'Todas (início agudo)',
 				},
 			],
 		},
@@ -83,28 +83,28 @@ const settings = {
 			label: 'Cavaquinho',
 			strings: [
 				{
-					string: '0',
+					stringIndex: '0',
 					label: 'Corda 1 (Ré5)',
 				},
 				{
-					string: '1',
+					stringIndex: '1',
 					label: 'Corda 2 (Si4)',
 				},
 				{
-					string: '2',
+					stringIndex: '2',
 					label: 'Corda 3 (Sol4)',
 				},
 				{
-					string: '3',
+					stringIndex: '3',
 					label: 'Corda 4 (Ré4)',
 				},
 				{
-					string: 'fromBassToTreble',
-					label: 'Todas (início corda 4)',
+					stringIndex: 'bass',
+					label: 'Todas (início grave)',
 				},
 				{
-					string: 'fromTrebleToBass',
-					label: 'Todas (início corda 1)',
+					stringIndex: 'treble',
+					label: 'Todas (início agudo)',
 				},
 			],
 		},
@@ -114,28 +114,28 @@ const settings = {
 			label: 'Baixo',
 			strings: [
 				{
-					string: '0',
+					stringIndex: '0',
 					label: 'Corda 1 (Sol2)',
 				},
 				{
-					string: '1',
+					stringIndex: '1',
 					label: 'Corda 2 (Ré2)',
 				},
 				{
-					string: '2',
+					stringIndex: '2',
 					label: 'Corda 3 (Lá1)',
 				},
 				{
-					string: '3',
+					stringIndex: '3',
 					label: 'Corda 4 (Mi1)',
 				},
 				{
-					string: 'fromBassToTreble',
-					label: 'Todas (início corda 4)',
+					stringIndex: 'bass',
+					label: 'Todas (início grave)',
 				},
 				{
-					string: 'fromTrebleToBass',
-					label: 'Todas (início corda 1)',
+					stringIndex: 'treble',
+					label: 'Todas (início agudo)',
 				},
 			],
 		},
@@ -147,7 +147,7 @@ const settings = {
 		{ finger: '2' },
 		{ finger: '3' },
 		{ finger: '4' },
-		{ finger: 'P' },
+		// { finger: 'P' },
 	],
 
 	viewModes: [

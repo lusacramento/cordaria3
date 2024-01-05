@@ -94,7 +94,11 @@
 						<label for="select-string" class="form-label"> Corda</label>
 						<br />
 						<select id="select-string" v-model="str" class="controls">
-							<option v-for="st in strings" :key="st.string" :value="st.string">
+							<option
+								v-for="st in strings"
+								:key="st.stringIndex"
+								:value="st.stringIndex"
+							>
 								{{ st.label }}
 							</option>
 						</select>
@@ -178,7 +182,7 @@
 	let finger = ref(`${fingers[0].finger}`)
 
 	const strings = ref(instrumentDefault.value.strings)
-	let str = ref(strings.value[0].string)
+	let str = ref(strings.value[0].stringIndex)
 
 	let bpm = ref(`${lessons[0].bpm}`)
 
