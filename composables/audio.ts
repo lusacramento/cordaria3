@@ -7,14 +7,14 @@ const adjustSync = 1.1 // <-- ajust here the release duration for legattos notes
 
 function selectInstrument(instrument: string) {
 	let instrumentMap = {}
-	switch (instrument) {
-		case 'acoustic-guitar' || 'eletric-guitar':
+	switch (true) {
+		case instrument === 'acoustic-guitar' || instrument === 'eletric-guitar':
 			instrumentMap = useGuitar().getMap()
 			break
-		case 'cavaco':
+		case instrument === 'cavaco':
 			instrumentMap = useCavaco().getMap()
 			break
-		case 'bass':
+		case instrument === 'bass':
 			instrumentMap = useBass().getMap()
 			break
 		default:
@@ -30,15 +30,14 @@ function getAudios(
 	deck: [],
 	bpm: number,
 	tempo: number,
-	firstFinger: number,
-	str: string,
+	stringIndex: string,
 ) {
 	urls = getMetronomeUrls(urls)
 	urls = getInstrumentUrls(urls, instrument, instrumentMap)
 
 	addMetronomeToPlaylist(counter, playlist)
 
-	addInstrumentToPlaylist(deck, playlist, instrumentMap, str)
+	addInstrumentToPlaylist(deck, playlist, instrumentMap, stringIndex)
 
 	const sampler = new Tone.Sampler({
 		urls: urls,
@@ -85,16 +84,50 @@ function addInstrumentToPlaylist(
 	deck: [],
 	playlist: any[],
 	instrumentMap: any,
-	str: string,
+	stringIndex: string,
 ) {
+	const stringsNumber = instrumentMap.length - 1
+	let stringIndexNumber = 0
+
+	switch (stringIndex) {
+		case 'bass':
+			stringIndexNumber = stringsNumber
+			break
+		case 'treble':
+			stringIndexNumber = 0
+			break
+		default:
+			stringIndexNumber = parseInt(stringIndex)
+			break
+	}
+
 	deck.forEach((card: any) => {
+		switch (stringIndex) {
+			case 'bass':
+				addCardToPlaylist(card, stringIndexNumber)
+				stringIndexNumber--
+				if (stringIndexNumber == 0) stringIndex = 'treble'
+				break
+
+			case 'treble':
+				addCardToPlaylist(card, stringIndexNumber)
+				stringIndexNumber++
+				if (stringIndexNumber == stringsNumber - 1) stringIndex = 'bass'
+				break
+			default:
+				addCardToPlaylist(card, stringIndexNumber)
+				break
+		}
+	})
+
+	function addCardToPlaylist(card: any, str: number) {
 		card.fragments.forEach((fragment: any) => {
 			const fret = fragment.value
-			const note = instrumentMap[parseInt(str)][parseInt(fret)].note
+			const note = instrumentMap[str][parseInt(fret)].note
 
 			playlist.push([note])
 		})
-	})
+	}
 
 	return playlist
 }
