@@ -69,7 +69,6 @@ function payLoad(
 		deck.value,
 		bpm.value,
 		tempo.value,
-		firstFinger.value,
 		str.value,
 	)
 }
@@ -89,12 +88,7 @@ function clearCard() {
 	return { id: 0, value: '', fragments: [] }
 }
 
-// function updateViewMode(viewModeValue: string) {
-// 	viewMode.value = viewModeValue
-// }
-
 function getTempo(bpm: number) {
-	// bpm.value = newBpm
 	tempo.value = useMath().convertBpmToMs(bpm)
 }
 
