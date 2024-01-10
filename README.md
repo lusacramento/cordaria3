@@ -4,6 +4,13 @@ This application was developed with Nuxt 3. Look at the [Nuxt 3 documentation](h
 ## Setup
 This app requires [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) to run.
 
+## Environment Variables
+```bash
+# Create .env file from .env-exemple
+cp .env.example .env
+```
+Put your data config variables like as host names and ports to will used it.
+
 ## Development Server
 Build the application for development:
 ```bash

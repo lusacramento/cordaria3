@@ -1,12 +1,13 @@
 version: "3"
 
 services:
-  my-app-dev:
+  app-dev:
+    container_name: app-dev
     build:
       context: .
       dockerfile: ./Dockerfile.dev
     ports:
-      - "8000:8000"
+      - $APP_DEVELOP_PORT:$APP_DEVELOP_PORT
       - "24678:24678"
       - "9229:9229"
     volumes:
