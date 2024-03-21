@@ -1,17 +1,18 @@
 <map version="freeplane 1.11.5">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
-<node TEXT="Cordaria" FOLDED="false" ID="ID_696401721" CREATED="1610381621824" MODIFIED="1704900202021" STYLE="oval">
-<font SIZE="18"/>
-<hook NAME="MapStyle" zoom="1.5">
-    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" associatedTemplateLocation="template:/standard-1.6.mm" fit_to_viewport="false"/>
+<node TEXT="CORDARIA" FOLDED="false" ID="ID_1090958577" CREATED="1606664858024" MODIFIED="1706100172828" VGAP_QUANTITY="3 pt">
+<hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
+<hook NAME="MapStyle" background="#3c3836" zoom="0.455">
+    <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" fit_to_viewport="false" associatedTemplateLocation="template:/dark_gruvbox_template.mm" followedTemplateLocation="template:/dark_gruvbox_template.mm" followedMapLastTime="0"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24 pt">
 <font SIZE="24"/>
 <stylenode LOCALIZED_TEXT="styles.predefined" POSITION="bottom_or_right" STYLE="bubble">
-<stylenode LOCALIZED_TEXT="default" ID="ID_271890427" ICON_SIZE="12 pt" COLOR="#000000" STYLE="fork">
-<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" DASH="" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_271890427" STARTARROW="NONE" ENDARROW="DEFAULT"/>
-<font NAME="SansSerif" SIZE="10" BOLD="false" ITALIC="false"/>
+<stylenode LOCALIZED_TEXT="default" ID="ID_602083445" ICON_SIZE="12 pt" FORMAT_AS_HYPERLINK="false" COLOR="#3c3836" BACKGROUND_COLOR="#fbf1c7" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="8 pt" SHAPE_VERTICAL_MARGIN="5 pt" BORDER_WIDTH_LIKE_EDGE="false" BORDER_WIDTH="1.9 px" BORDER_COLOR_LIKE_EDGE="true" BORDER_COLOR="#f0f0f0" BORDER_DASH_LIKE_EDGE="true" BORDER_DASH="SOLID" VGAP_QUANTITY="3 pt">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#a89984" WIDTH="2" TRANSPARENCY="255" DASH="" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_602083445" STARTINCLINATION="102.75 pt;-19.5 pt;" ENDINCLINATION="102.75 pt;3 pt;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+<font NAME="SansSerif" SIZE="11" BOLD="false" STRIKETHROUGH="false" ITALIC="false"/>
+<edge STYLE="bezier" COLOR="#93a1a1" WIDTH="3" DASH="SOLID"/>
 <richcontent TYPE="DETAILS" CONTENT-TYPE="plain/auto"/>
 <richcontent TYPE="NOTE" CONTENT-TYPE="plain/auto"/>
 </stylenode>
@@ -19,57 +20,124 @@
 <stylenode LOCALIZED_TEXT="defaultstyle.attributes">
 <font SIZE="9"/>
 </stylenode>
-<stylenode LOCALIZED_TEXT="defaultstyle.note" COLOR="#000000" BACKGROUND_COLOR="#ffffff" TEXT_ALIGN="LEFT"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.note" TEXT_ALIGN="LEFT"/>
 <stylenode LOCALIZED_TEXT="defaultstyle.floating">
 <edge STYLE="hide_edge"/>
 <cloud COLOR="#f0f0f0" SHAPE="ROUND_RECT"/>
 </stylenode>
-<stylenode LOCALIZED_TEXT="defaultstyle.selection" BACKGROUND_COLOR="#afd3f7" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#afd3f7"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.selection" COLOR="#ffffff" BACKGROUND_COLOR="#458588" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#458588"/>
 </stylenode>
 <stylenode LOCALIZED_TEXT="styles.user-defined" POSITION="bottom_or_right" STYLE="bubble">
-<stylenode LOCALIZED_TEXT="styles.topic" COLOR="#18898b" STYLE="fork">
-<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
-</stylenode>
-<stylenode LOCALIZED_TEXT="styles.subtopic" COLOR="#cc3300" STYLE="fork">
-<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
-</stylenode>
-<stylenode LOCALIZED_TEXT="styles.subsubtopic" COLOR="#669900">
-<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
-</stylenode>
-<stylenode LOCALIZED_TEXT="styles.important" ID="ID_67550811">
+<stylenode LOCALIZED_TEXT="styles.important" ID="ID_749235638" BORDER_WIDTH="3 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#cc241d">
 <icon BUILTIN="yes"/>
-<arrowlink COLOR="#003399" TRANSPARENCY="255" DESTINATION="ID_67550811"/>
+<arrowlink COLOR="#cc241d" TRANSPARENCY="255" DESTINATION="ID_749235638"/>
+<font SIZE="12" ITALIC="false"/>
 </stylenode>
 </stylenode>
 <stylenode LOCALIZED_TEXT="styles.AutomaticLayout" POSITION="bottom_or_right" STYLE="bubble">
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level.root" COLOR="#000000" STYLE="oval" SHAPE_HORIZONTAL_MARGIN="10 pt" SHAPE_VERTICAL_MARGIN="10 pt">
-<font SIZE="18"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level.root" COLOR="#fdf6e3" BACKGROUND_COLOR="#282828" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="10 pt" SHAPE_VERTICAL_MARGIN="10 pt" BORDER_WIDTH="3.1 px" BORDER_COLOR_LIKE_EDGE="true" BORDER_COLOR="#2c2b29" BORDER_DASH_LIKE_EDGE="true">
+<font NAME="Ubuntu" SIZE="18"/>
 </stylenode>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,1" COLOR="#0033ff">
-<font SIZE="16"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,1" COLOR="#282828" BACKGROUND_COLOR="#fbf1c7" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="8 pt" SHAPE_VERTICAL_MARGIN="5 pt" BORDER_COLOR="#2c2b29">
+<font NAME="Ubuntu" SIZE="16"/>
 </stylenode>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,2" COLOR="#00b439">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,2" COLOR="#282828" BACKGROUND_COLOR="#ebdbb2" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="8 pt" SHAPE_VERTICAL_MARGIN="5 pt" BORDER_COLOR_LIKE_EDGE="true" BORDER_COLOR="#f0f0f0">
 <font SIZE="14"/>
 </stylenode>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,3" COLOR="#990000">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,3" COLOR="#282828" BACKGROUND_COLOR="#d79921" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="8 pt" SHAPE_VERTICAL_MARGIN="5 pt" BORDER_COLOR_LIKE_EDGE="true" BORDER_COLOR="#f0f0f0">
 <font SIZE="12"/>
 </stylenode>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,4" COLOR="#111111">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,4" COLOR="#ffffff" BACKGROUND_COLOR="#98971a" BORDER_COLOR_LIKE_EDGE="true" BORDER_COLOR="#f0f0f0">
+<font SIZE="11"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,5" COLOR="#ffffff" BACKGROUND_COLOR="#b16286" BORDER_COLOR_LIKE_EDGE="true" BORDER_COLOR="#f0f0f0">
+<font SIZE="11"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,6" COLOR="#ffffff" BACKGROUND_COLOR="#689d6a" BORDER_COLOR_LIKE_EDGE="true" BORDER_COLOR="#f0f0f0">
 <font SIZE="10"/>
 </stylenode>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,5"/>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,6"/>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,7"/>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,8"/>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,9"/>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,10"/>
-<stylenode LOCALIZED_TEXT="AutomaticLayout.level,11"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,7" COLOR="#ffffff" BACKGROUND_COLOR="#a89984" BORDER_COLOR="#f0f0f0">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,8" BACKGROUND_COLOR="#ebdbb2" BORDER_COLOR="#f0f0f0">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,9" BORDER_COLOR="#f0f0f0" BACKGROUND_COLOR="#ebdbb2">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,10" BORDER_COLOR="#f0f0f0">
+<font SIZE="9"/>
+</stylenode>
 </stylenode>
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="17" RULE="ON_BRANCH_CREATION"/>
-<node TEXT="Frontend" POSITION="top_or_left" ID="ID_375762650" CREATED="1704902439559" MODIFIED="1704902475624">
+<node TEXT="Backend" POSITION="bottom_or_right" ID="ID_91123675" CREATED="1704902455679" MODIFIED="1705439340495">
+<icon BUILTIN="emoji-1F4BD"/>
+<edge COLOR="#7c0000"/>
+<node TEXT="Data Base" POSITION="bottom_or_right" ID="ID_641754645" CREATED="1704812950202" MODIFIED="1705358645094">
+<node TEXT="user" POSITION="bottom_or_right" ID="ID_1632985893" CREATED="1704812608528" MODIFIED="1705439573073">
+<icon BUILTIN="male2"/>
+<node TEXT="email: string" ID="ID_917346424" CREATED="1704812631596" MODIFIED="1704812788983"/>
+<node TEXT="full_name: string" ID="ID_1320791572" CREATED="1704812613542" MODIFIED="1704813895759"/>
+<node TEXT="user: string" ID="ID_1995582033" CREATED="1704812624519" MODIFIED="1704812630948"/>
+<node TEXT="password: string" ID="ID_237775767" CREATED="1704812636178" MODIFIED="1704812641187"/>
+<node TEXT="lesson-progress: string" ID="ID_1190577453" CREATED="1705438749384" MODIFIED="1705438780932"/>
+<node TEXT="reward: number" ID="ID_1581654842" CREATED="1705438781544" MODIFIED="1705438917831"/>
+<node TEXT="created: date" ID="ID_1886128093" CREATED="1705438514675" MODIFIED="1705438523454"/>
+<node TEXT="updated: date" ID="ID_1662412801" CREATED="1705438524257" MODIFIED="1705438532712"/>
+</node>
+<node TEXT="config" POSITION="bottom_or_right" ID="ID_909915249" CREATED="1704812800298" MODIFIED="1705440178585">
+<icon BUILTIN="emoji-2699"/>
+<hook NAME="accessories/plugins/HierarchicalIcons.properties"/>
+<node TEXT="id:string" POSITION="bottom_or_right" ID="ID_1634511856" CREATED="1704812662178" MODIFIED="1706100196701">
+<arrowlink DESTINATION="ID_917346424"/>
+</node>
+<node TEXT="counter: number" POSITION="bottom_or_right" ID="ID_176327439" CREATED="1704812675858" MODIFIED="1704812838900"/>
+<node TEXT="instrument_default: ENUM[]" POSITION="bottom_or_right" ID="ID_435131889" CREATED="1704812697158" MODIFIED="1704813240912">
+<node TEXT="ACOUSTIC_GUITAR" ID="ID_936387742" CREATED="1704813202913" MODIFIED="1704813318073"/>
+<node TEXT="ELETRIC_GUITAR" ID="ID_1632418005" CREATED="1704813211981" MODIFIED="1704813312673"/>
+<node TEXT="BASS" ID="ID_1266825247" CREATED="1704813217422" MODIFIED="1704813323992"/>
+<node TEXT="CAVACO" ID="ID_1380999338" CREATED="1704813219542" MODIFIED="1704813326977"/>
+</node>
+<node TEXT="theme: ENUM[]" POSITION="bottom_or_right" ID="ID_213830459" CREATED="1704812711698" MODIFIED="1704813260871">
+<node TEXT="LIGHT" ID="ID_1785908695" CREATED="1704813260891" MODIFIED="1704813288512"/>
+<node TEXT="DARK" ID="ID_756195648" CREATED="1704813289686" MODIFIED="1704813291174"/>
+</node>
+<node TEXT="view-mode: ENUM[]" POSITION="bottom_or_right" ID="ID_900401001" CREATED="1705358500412" MODIFIED="1705358624738">
+<node TEXT="ALL_CARDS" ID="ID_897336967" CREATED="1705358535511" MODIFIED="1705358554678"/>
+<node TEXT="3_CARDS" ID="ID_543674941" CREATED="1705358555451" MODIFIED="1705358563738"/>
+<node TEXT="2_CARDS" ID="ID_1763767344" CREATED="1705358564528" MODIFIED="1705358571762"/>
+</node>
+</node>
+<node TEXT="lessons" ID="ID_1673859949" CREATED="1705358602591" MODIFIED="1705439610476" HGAP_QUANTITY="16.25 pt">
+<icon BUILTIN="list"/>
+<node TEXT="id: string" ID="ID_658069388" CREATED="1705358678771" MODIFIED="1705358688098"/>
+<node TEXT="first_finger: string" ID="ID_1815529767" CREATED="1705358696151" MODIFIED="1705358748098"/>
+<node TEXT="str: string" ID="ID_706528137" CREATED="1705358749207" MODIFIED="1705358768031"/>
+<node TEXT="bpm: number" ID="ID_465513985" CREATED="1705358734431" MODIFIED="1705358780202"/>
+<node TEXT="instrument: string" ID="ID_760325623" CREATED="1705358792674" MODIFIED="1705358812402"/>
+</node>
+<node TEXT="deck" ID="ID_1143201826" CREATED="1705358879435" MODIFIED="1705439923153">
+<icon BUILTIN="emoji-2663"/>
+<node TEXT="id: string" ID="ID_733866950" CREATED="1705358896774" MODIFIED="1705358900963"/>
+<node TEXT="value: string" ID="ID_1257969989" CREATED="1705358901634" MODIFIED="1705358910522"/>
+</node>
+<node TEXT="progress" ID="ID_1731119610" CREATED="1705438574424" MODIFIED="1705440029431">
+<icon BUILTIN="checked"/>
+<node TEXT="id: string" ID="ID_1509385593" CREATED="1705438580214" MODIFIED="1705438591748"/>
+<node TEXT="id-user: string" ID="ID_821221045" CREATED="1705438592501" MODIFIED="1706100196701">
+<arrowlink DESTINATION="ID_917346424"/>
+</node>
+<node TEXT="id-lesson: string" ID="ID_998311428" CREATED="1705438639820" MODIFIED="1706100196701">
+<arrowlink DESTINATION="ID_658069388"/>
+</node>
+<node TEXT="is-finished-lesson: boolean" ID="ID_1296523180" CREATED="1705438620720" MODIFIED="1705438736689"/>
+</node>
+</node>
+</node>
+<node TEXT="Frontend" POSITION="top_or_left" ID="ID_375762650" CREATED="1704902439559" MODIFIED="1705439541045">
+<icon BUILTIN="links/link/web"/>
 <edge COLOR="#00ffff"/>
 <node TEXT="Cabeçalho" POSITION="top_or_left" ID="ID_112041355" CREATED="1704900191921" MODIFIED="1704902598592" HGAP_QUANTITY="64.25 pt" VSHIFT_QUANTITY="23.25 pt">
 <node TEXT="Home" POSITION="top_or_left" ID="ID_488861170" CREATED="1704901837795" MODIFIED="1704901849654"/>
@@ -88,7 +156,6 @@
 </node>
 </node>
 <node TEXT="Rodapé" POSITION="top_or_left" ID="ID_98461245" CREATED="1704902599683" MODIFIED="1704902605390">
-<node TEXT="" ID="ID_1214052960" CREATED="1704902607443" MODIFIED="1704902607443"/>
 <node TEXT="Logos Contato" FOLDED="true" POSITION="top_or_left" ID="ID_908093362" CREATED="1704901935475" MODIFIED="1704902247107">
 <node TEXT="Email" POSITION="top_or_left" ID="ID_1796163011" CREATED="1704901895475" MODIFIED="1704901897803"/>
 <node TEXT="Instagram" POSITION="top_or_left" ID="ID_1436403723" CREATED="1704901913896" MODIFIED="1704901919683"/>
@@ -96,33 +163,6 @@
 </node>
 <node TEXT="Licença" POSITION="top_or_left" ID="ID_1656736767" CREATED="1704902713203" MODIFIED="1704902744613"/>
 <node TEXT="Logos patrocínio" POSITION="top_or_left" ID="ID_1875673601" CREATED="1704902637323" MODIFIED="1704902701170"/>
-</node>
-</node>
-<node TEXT="Backend" POSITION="bottom_or_right" ID="ID_91123675" CREATED="1704902455679" MODIFIED="1704902460385">
-<edge COLOR="#7c0000"/>
-<node TEXT="Data Base" POSITION="bottom_or_right" ID="ID_641754645" CREATED="1704812950202" MODIFIED="1704902492459">
-<node TEXT="User" POSITION="bottom_or_right" ID="ID_1632985893" CREATED="1704812608528" MODIFIED="1704812973286">
-<node TEXT="email: string" ID="ID_917346424" CREATED="1704812631596" MODIFIED="1704812788983"/>
-<node TEXT="full_name: string" ID="ID_1320791572" CREATED="1704812613542" MODIFIED="1704813895759"/>
-<node TEXT="user: string" ID="ID_1995582033" CREATED="1704812624519" MODIFIED="1704812630948"/>
-<node TEXT="password: string" ID="ID_237775767" CREATED="1704812636178" MODIFIED="1704812641187"/>
-</node>
-<node TEXT="config" POSITION="bottom_or_right" ID="ID_909915249" CREATED="1704812800298" MODIFIED="1704812964062">
-<node TEXT="id:string" POSITION="bottom_or_right" ID="ID_1634511856" CREATED="1704812662178" MODIFIED="1704813104595">
-<arrowlink DESTINATION="ID_917346424"/>
-</node>
-<node TEXT="counter: number" POSITION="bottom_or_right" ID="ID_176327439" CREATED="1704812675858" MODIFIED="1704812838900"/>
-<node TEXT="instrument_default: ENUM[]" POSITION="bottom_or_right" ID="ID_435131889" CREATED="1704812697158" MODIFIED="1704813240912">
-<node TEXT="ACOUSTIC_GUITAR" ID="ID_936387742" CREATED="1704813202913" MODIFIED="1704813318073"/>
-<node TEXT="ELETRIC_GUITAR" ID="ID_1632418005" CREATED="1704813211981" MODIFIED="1704813312673"/>
-<node TEXT="BASS" ID="ID_1266825247" CREATED="1704813217422" MODIFIED="1704813323992"/>
-<node TEXT="CAVACO" ID="ID_1380999338" CREATED="1704813219542" MODIFIED="1704813326977"/>
-</node>
-<node TEXT="theme: ENUM[]" POSITION="bottom_or_right" ID="ID_213830459" CREATED="1704812711698" MODIFIED="1704813260871">
-<node TEXT="LIGHT" ID="ID_1785908695" CREATED="1704813260891" MODIFIED="1704813288512"/>
-<node TEXT="DARK" ID="ID_756195648" CREATED="1704813289686" MODIFIED="1704813291174"/>
-</node>
-</node>
 </node>
 </node>
 </node>
