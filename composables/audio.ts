@@ -45,7 +45,7 @@ function getAudios(
 			const sequence = await generateSequence(sampler, tempo).start(0)
 
 			await playAudios(sequence, bpm)
-			useState().startLesson()
+			usePractice().startLesson()
 		},
 
 		onerror: (error) => {

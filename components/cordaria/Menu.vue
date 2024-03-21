@@ -210,7 +210,7 @@
 		// Close Menu
 		isMenuShow.value = false
 
-		useState().payLoad(
+		usePractice().payLoad(
 			instrument.value,
 			viewMode.value,
 			finger.value,

@@ -44,10 +44,10 @@
 </template>
 
 <script lang="ts" setup>
-	const viewMode = ref(useState().viewMode)
-	const deck = ref(useState().deck)
-	const isStart = ref(useState().isStart)
-	const card = ref(useState().card)
+	const viewMode = ref(usePractice().viewMode)
+	const deck = ref(usePractice().deck)
+	const isStart = ref(usePractice().isStart)
+	const card = ref(usePractice().card)
 </script>
 
 <style>

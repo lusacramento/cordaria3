@@ -207,7 +207,7 @@ async function startLesson() {
 	}
 }
 
-export const useState = () => {
+export const usePractice = () => {
 	return {
 		viewMode,
 		isStart,
