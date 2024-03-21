@@ -11,7 +11,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@types/bootstrap": "^5.2.6",
-    "nuxt": "^3.8.1",
+    "nuxt": "^3.11.1",
     "sass": "^1.69.6"
   },
   "dependencies": {
