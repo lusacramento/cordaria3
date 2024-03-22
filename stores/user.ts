@@ -6,9 +6,9 @@ export const useMyUserStore = defineStore({
 		nameUser: '',
 		loggedIn: false,
 		lastLesson: 120,
-		viewMode: '3Cards',
+		viewMode: '2Cards',
 		theme: 'dark',
-		counter: 5,
+		counter: 2,
 	}),
 
 	getters: {
