@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-	const counter = ref(useState().counter)
-	const isShow = ref(useState().isShowCounter)
+	const counter = ref(usePractice().counter)
+	const isShow = ref(usePractice().isShowCounter)
 </script>
 <style>
 	#counter {
