@@ -8,21 +8,27 @@
 					<div
 						class="row mt-4 d-flex align-items-center justify-content-around"
 					>
-						<CordariaScreenCard
-							id="prev-card"
-							:key="card.prev.id"
-							:card="card.prev"
-						/>
+						<CordariaScreenCard id="prev-card" :key="prev.id" :card="prev" />
 						<CordariaScreenCard
 							id="current-card"
-							:key="card.current.id"
-							:card="card.current"
+							:key="current.id"
+							:card="current"
 						/>
+						<CordariaScreenCard id="next-card" :key="next.id" :card="next" />
+					</div>
+				</div>
+
+
+				<div v-else-if="viewMode === '2Cards'">
+					<div
+						class="row mt-4 d-flex align-items-center justify-content-around"
+					>
 						<CordariaScreenCard
-							id="next-card"
-							:key="card.next.id"
-							:card="card.next"
+							id="current-card"
+							:key="current.id"
+							:card="current"
 						/>
+						<CordariaScreenCard id="next-card" :key="next.id" :card="next" />
 					</div>
 				</div>
 				<div v-else>
@@ -47,7 +53,7 @@
 	const viewMode = ref(useMyUserStore().getViewMode)
 	const deck = ref(usePractice().deck)
 	const isStart = ref(usePractice().isStart)
-	const card = ref(usePractice().card)
+	const { prev, current, next } = toRefs(usePractice().cards)
 </script>
 
 <style>
