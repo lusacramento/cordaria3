@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-	const counter = ref(usePractice().counter)
+	const counter = ref(useMyUserStore().getCounter)
 	const isShow = ref(usePractice().isShowCounter)
 </script>
 <style>
