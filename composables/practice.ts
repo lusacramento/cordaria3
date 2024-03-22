@@ -4,7 +4,6 @@ import * as Tone from 'tone'
 
 // views
 const instrument = ref()
-const viewMode = ref()
 const firstFinger = ref()
 const str = ref()
 const bpm = ref(0)
@@ -41,13 +40,11 @@ let instrumentMap = ref()
 
 function payLoad(
 	instrument2: string,
-	viewMode2: string,
 	firstFinger2: string,
 	str2: string,
 	bpm2: number,
 ) {
 	instrument.value = instrument2
-	viewMode.value = viewMode2
 	firstFinger.value = firstFinger2
 	str.value = str2
 	bpm.value = bpm2
@@ -209,7 +206,6 @@ async function startLesson() {
 
 export const usePractice = () => {
 	return {
-		viewMode,
 		isStart,
 		card,
 		deck,

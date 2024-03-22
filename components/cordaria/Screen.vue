@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-	const viewMode = ref(usePractice().viewMode)
+	const viewMode = ref(useMyUserStore().getViewMode)
 	const deck = ref(usePractice().deck)
 	const isStart = ref(usePractice().isStart)
 	const card = ref(usePractice().card)

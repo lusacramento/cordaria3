@@ -46,7 +46,7 @@
 						</select>
 					</div>
 
-					<div class="form-group col-6 col-lg-12 col-6 col-lg-12 select-screen">
+					<!-- <div class="form-group col-6 col-lg-12 col-6 col-lg-12 select-screen">
 						<label for="select-view-mode" class="form-label"
 							>Visualização
 						</label>
@@ -60,7 +60,7 @@
 								{{ viewMode.label }}
 							</option>
 						</select>
-					</div>
+					</div> -->
 					<div class="form-group col-6 col-lg-12 select-lesson">
 						<label for="select-lesson" class="form-label">Lições</label><br />
 						<select id="select-lesson" v-model="lesson" class="controls">
@@ -212,7 +212,6 @@
 
 		usePractice().payLoad(
 			instrument.value,
-			viewMode.value,
 			finger.value,
 			str.value,
 			parseInt(bpm.value),
