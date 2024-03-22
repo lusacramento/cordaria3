@@ -18,7 +18,6 @@
 					</div>
 				</div>
 
-
 				<div v-else-if="viewMode === '2Cards'">
 					<div
 						class="row mt-4 d-flex align-items-center justify-content-around"

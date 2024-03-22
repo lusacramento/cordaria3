@@ -20,10 +20,6 @@
 
 <script lang="ts" setup>
 	defineProps(['card'])
-
-	// const isPastCardColor = true
-	// const isCurrentCardColor = false
-	// const isFutureCardColor = true
 </script>
 
 <style>
