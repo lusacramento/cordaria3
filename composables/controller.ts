@@ -61,9 +61,16 @@ export const useController = () => {
 
 		const tempo = getTempo(lesson.bpm)
 
-		getAudios(instrument, instrumentMap, tempo)
-
-		// startLesson(tempo)
+		const stringIndex = (parseInt(lesson.stringNumber) - 1).toString()
+		useAudio().getAudios(
+			counter.value,
+			defaultInstrumentName,
+			instrumentMap,
+			deck.value,
+			lesson.bpm,
+			tempo,
+			stringIndex,
+		)
 	}
 
 	function updateLesson(lessonNumber: number) {
@@ -73,19 +80,6 @@ export const useController = () => {
 
 	function getTempo(bpm: number) {
 		return useMath().convertBpmToMs(bpm)
-	}
-
-	function getAudios(instrument: string, instrumentMap: {}, tempo: number) {
-		const stringIndex = (parseInt(lesson.stringNumber) - 1).toString()
-		useAudio().getAudios(
-			counter.value,
-			instrument,
-			instrumentMap,
-			deck.value,
-			lesson.bpm,
-			tempo,
-			stringIndex,
-		)
 	}
 
 	async function startLesson(tempo: number) {
