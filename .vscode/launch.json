@@ -4,27 +4,21 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"address": "localhost",
-			"localRoot": "${workspaceFolder}",
-			"name": "server: nuxt",
-			"port": 9229,
-			"remoteRoot": "/usr/src/app",
-			"request": "attach",
-			"skipFiles": ["<node_internals>/**"],
-			"type": "node",
-			"restart": true,
-			"preLaunchTask": "docker-compose: debug",
-			"postDebugTask": "docker-compose: down"
-		},
-		{
 			"type": "chrome",
 			"request": "launch",
 			"name": "client: chrome",
 			"url": "http://localhost:8000",
 			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "server: nuxt",
+			"outputCapture": "std",
+			"program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+			"args": ["dev"]
 		}
 	],
-
 	"compounds": [
 		{
 			"name": "fullstack: nuxt",
