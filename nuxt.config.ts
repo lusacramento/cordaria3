@@ -1,5 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	// experimental: {
+	// 	asyncContext: true,
+	// 	renderJsonPayloads: false,
+	// },
 	devtools: { enabled: false },
 
 	devServer: {
@@ -10,7 +14,7 @@ export default defineNuxtConfig({
 
 	sourcemap: true,
 
-	debug: true,
+	// debug: true,
 
 	css: ['~/assets/styles/main.scss'],
 
