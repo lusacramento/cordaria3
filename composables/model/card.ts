@@ -17,8 +17,9 @@ export const useCard = (value?: string) => {
 
 			this.isLast = false
 
-			this.status = 'next'
-		}
+	static getEmptyCard() {
+		return new Card('')
+	}
 
 		getFragments(content: string) {
 			const Fragment = useFragment()
