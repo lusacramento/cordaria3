@@ -1,7 +1,8 @@
 import { useData } from './data'
+import { Card } from './card'
 
 class Deck {
-	deck: Array<any> = []
+	deck: Card[] = []
 
 	constructor(firstFinger: string) {
 		if (firstFinger === '') {
@@ -68,3 +69,6 @@ class Deck {
 	toJson() {
 		return { ...this.deck }
 	}
+}
+
+export { Deck }
