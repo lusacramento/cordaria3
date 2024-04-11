@@ -1,4 +1,5 @@
 import { Fragment } from './fragment'
+
 export class Card {
 	id: string
 	content: string
@@ -36,10 +37,6 @@ export class Card {
 		}
 
 		return fragments
-	}
-
-	setIsLast() {
-		this.isLast = true
 	}
 
 	setStatus(status: string) {
