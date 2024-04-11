@@ -58,9 +58,7 @@ class Deck {
 	markLastCard() {
 		this.deck[this.deck.length - 1].isLast = true
 	}
-}
 
-export const useDeck = () => {
-	const getDeck = (firstFinger: string) => new Deck(firstFinger).getDeck()
-	return { getDeck }
-}
+	static getEmptyDeck() {
+		return ref([new Card('')])
+	}
