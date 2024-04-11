@@ -98,6 +98,9 @@
 </script>
 
 <style scoped>
+	.box-title {
+		cursor: pointer;
+	}
 	a {
 		font-size: 1.5em !important;
 	}
