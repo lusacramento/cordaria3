@@ -1,11 +1,12 @@
 import * as Tone from 'tone'
+import type { Card } from './model/card'
 
 let urls: any = {}
 const playlist: string[] = []
 
 const adjustSync = 1.1 // <-- ajust here the release duration for legattos notes
 
-function selectInstrument(instrument: string) {
+function getInstrumentMapping(instrument: string) {
 	let instrumentMap = {}
 	switch (true) {
 		case instrument === 'acoustic-guitar' || instrument === 'eletric-guitar':
@@ -26,8 +27,8 @@ function selectInstrument(instrument: string) {
 function getAudios(
 	counter: number,
 	instrument: string,
-	instrumentMap: [],
-	deck: [],
+	instrumentMap: {},
+	deck: Card[],
 	bpm: number,
 	tempo: number,
 	stringIndex: string,
@@ -45,11 +46,11 @@ function getAudios(
 			const sequence = await generateSequence(sampler, tempo).start(0)
 
 			await playAudios(sequence, bpm)
-			useState().startLesson()
+			useController().startLesson(tempo)
 		},
 
 		onerror: (error) => {
-			console.log('Error loading sample: ', error)
+			new Error('Error loading sample: ', error)
 		},
 	}).toDestination()
 }
@@ -63,14 +64,17 @@ function getMetronomeUrls(urls: any) {
 	return urls
 }
 
-function getInstrumentUrls(urls: any, instrument: string, instrumentMap: []) {
+function getInstrumentUrls(urls: any, instrument: string, instrumentMap: {}) {
 	const baseUrl = useUrls().getUrl(instrument)
 
-	instrumentMap.forEach((str: any[]) => {
-		str.forEach((fret) => {
-			urls[fret.note] = `${baseUrl}${fret.tablature}.mp3`
+	if (!Array.isArray(instrumentMap)) {
+		new Error('instrumentMap  is not an array')
+	} else
+		instrumentMap.forEach((str: any[]) => {
+			str.forEach((fret) => {
+				urls[fret.note] = `${baseUrl}${fret.tablature}.mp3`
+			})
 		})
-	})
 
 	return urls
 }
@@ -81,7 +85,7 @@ function addMetronomeToPlaylist(counter: number, playlist: any[]) {
 }
 
 function addInstrumentToPlaylist(
-	deck: [],
+	deck: Card[],
 	playlist: any[],
 	instrumentMap: any,
 	stringIndex: string,
@@ -101,7 +105,7 @@ function addInstrumentToPlaylist(
 			break
 	}
 
-	deck.forEach((card: any) => {
+	deck.forEach((card: Card) => {
 		switch (stringIndex) {
 			case 'bass':
 				addCardToPlaylist(card, stringIndexNumber)
@@ -120,7 +124,7 @@ function addInstrumentToPlaylist(
 		}
 	})
 
-	function addCardToPlaylist(card: any, str: number) {
+	function addCardToPlaylist(card: Card, str: number) {
 		card.fragments.forEach((fragment: any) => {
 			const fret = fragment.value
 			const note = instrumentMap[str][parseInt(fret)].note
@@ -151,7 +155,7 @@ function calculateRelease(tempo: number) {
 
 export const useAudio = () => {
 	return {
-		selectInstrument,
+		getInstrumentMapping,
 		getAudios,
 	}
 }

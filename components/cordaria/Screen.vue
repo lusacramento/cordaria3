@@ -8,21 +8,26 @@
 					<div
 						class="row mt-4 d-flex align-items-center justify-content-around"
 					>
-						<CordariaScreenCard
-							id="prev-card"
-							:key="card.prev.id"
-							:card="card.prev"
-						/>
+						<CordariaScreenCard id="prev-card" :key="prev.id" :card="prev" />
 						<CordariaScreenCard
 							id="current-card"
-							:key="card.current.id"
-							:card="card.current"
+							:key="current.id"
+							:card="current"
 						/>
+						<CordariaScreenCard id="next-card" :key="next.id" :card="next" />
+					</div>
+				</div>
+
+				<div v-else-if="viewMode === '2Cards'">
+					<div
+						class="row mt-4 d-flex align-items-center justify-content-around"
+					>
 						<CordariaScreenCard
-							id="next-card"
-							:key="card.next.id"
-							:card="card.next"
+							id="current-card"
+							:key="current.id"
+							:card="current"
 						/>
+						<CordariaScreenCard id="next-card" :key="next.id" :card="next" />
 					</div>
 				</div>
 				<div v-else>
@@ -44,10 +49,10 @@
 </template>
 
 <script lang="ts" setup>
-	const viewMode = ref(useState().viewMode)
-	const deck = ref(useState().deck)
-	const isStart = ref(useState().isStart)
-	const card = ref(useState().card)
+	const viewMode = ref(useMySettingsStore().getViewMode)
+
+	const { deck, isStart, cards } = useController()
+	const { prev, current, next } = cards
 </script>
 
 <style>

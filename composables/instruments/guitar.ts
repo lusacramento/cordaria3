@@ -1,5 +1,5 @@
 export const useGuitar = () => {
-	const map = [
+	const mapping = [
 		[
 			{
 				note: 'E4',
@@ -164,7 +164,7 @@ export const useGuitar = () => {
 		],
 	]
 
-	const getMap = () => map
+	const getMap = () => mapping
 
 	return {
 		getMap,

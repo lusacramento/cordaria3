@@ -1,116 +1,118 @@
-export const useCavaco = () => {
-	const map = [
+export const useBass = () => {
+	const mapping = [
 		[
 			{
-				note: 'D5',
+				note: 'G2',
 				enharmony: 'null',
 				tablature: '10',
 			},
 			{
-				note: 'D#5',
-				enharmony: 'Eb5',
+				note: 'G#2',
+				enharmony: 'Ab2',
 				tablature: '11',
 			},
 			{
-				note: 'E5',
+				note: 'A2',
 				enharmony: 'null',
 				tablature: '12',
 			},
 			{
-				note: 'F5',
-				enharmony: 'null',
+				note: 'A#2',
+				enharmony: 'Bb2',
 				tablature: '13',
 			},
 			{
-				note: 'F#5',
-				enharmony: 'Gb5',
+				note: 'B2',
+				enharmony: 'null',
 				tablature: '14',
 			},
 		],
 		[
 			{
-				note: 'B4',
+				note: 'D2',
 				enharmony: 'null',
 				tablature: '20',
 			},
 			{
-				note: 'C5',
-				enharmony: 'null',
+				note: 'D#2',
+				enharmony: 'Eb2',
 				tablature: '21',
 			},
 			{
-				note: 'C#5',
-				enharmony: 'Db5',
+				note: 'E2',
+				enharmony: 'null',
 				tablature: '22',
 			},
 			{
-				note: 'D5',
+				note: 'F2',
 				enharmony: 'null',
 				tablature: '23',
 			},
 			{
-				note: 'D#5',
-				enharmony: 'Eb5',
+				note: 'F#2',
+				enharmony: 'Gb2',
 				tablature: '24',
 			},
 		],
 		[
 			{
-				note: 'G4',
+				note: 'A1',
 				enharmony: 'null',
 				tablature: '30',
 			},
 			{
-				note: 'G#4',
-				enharmony: 'Ab4',
+				note: 'A#1',
+				enharmony: 'Bb1',
 				tablature: '31',
 			},
 			{
-				note: 'A4',
+				note: 'B1',
 				enharmony: 'null',
 				tablature: '32',
 			},
 			{
-				note: 'A#4',
-				enharmony: 'Bb4',
+				note: 'C2',
+				enharmony: 'null',
 				tablature: '33',
 			},
 			{
-				note: 'B4',
-				enharmony: 'null',
+				note: 'C#2',
+				enharmony: 'Db2',
 				tablature: '34',
 			},
 		],
 		[
 			{
-				note: 'D4',
+				note: 'E1',
 				enharmony: 'null',
 				tablature: '40',
 			},
 			{
-				note: 'D#4',
-				enharmony: 'Eb4',
+				note: 'F1',
+				enharmony: 'null',
 				tablature: '41',
 			},
 			{
-				note: 'E4',
-				enharmony: 'null',
+				note: 'F#1',
+				enharmony: 'Gb1',
 				tablature: '42',
 			},
 			{
-				note: 'F4',
+				note: 'G1',
 				enharmony: 'null',
 				tablature: '43',
 			},
 			{
-				note: 'F#4',
-				enharmony: 'Gb4',
+				note: 'G#1',
+				enharmony: 'Ab1',
 				tablature: '44',
 			},
 		],
 	]
 
-	const getMap = () => map
+	const getMap = () => mapping
 
-	return { getMap }
+	return {
+		getMap,
+	}
 }

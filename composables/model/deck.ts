@@ -1,16 +1,18 @@
 import { useData } from './data'
+import { Card } from './card'
 
 class Deck {
-	deck: Array<any> = []
+	deck: Card[] = []
 
 	constructor(firstFinger: string) {
 		const data = useData()
 
-		if (!this.isEmptyData(data)) {
-			this.getCards(data, firstFinger)
-			this.suffleDeck()
-			this.markLastCard()
-		}
+		if (data.length <= 0 || data === null || data === undefined)
+			new Error('There is not  data')
+
+		this.getCards(data, firstFinger)
+		this.suffleDeck()
+		this.markLastCard()
 	}
 
 	getDeck() {
@@ -18,41 +20,28 @@ class Deck {
 	}
 
 	getCards(data: string[], firstFinger: string) {
-		const Card = useCard()
+		const dataFiltered = data.filter((item) => item[0] === firstFinger)
 
-		for (let index = 0; index < data.length; index++) {
-			const value = data[index]
+		dataFiltered.forEach((element) => {
+			const card = new Card(element)
 
-			if (this.filterFirstFinger(value, firstFinger)) {
-				const card = new Card(value)
-
-				this.deck.push(card)
-			}
-		}
-	}
-
-	filterFirstFinger(value: string, firstFinger: string) {
-		return value[0] === firstFinger
-	}
-
-	isEmptyData(data: string[]) {
-		if (data.length <= 0) return true
-		return false
+			this.deck.push(card)
+		})
 	}
 
 	suffleDeck() {
-		if (this.deck) {
-			let suffledDeck = this.deck.slice()
+		if (!this.deck) new Error('There  are no cards in the deck to suffle')
 
-			for (let i = suffledDeck.length; i > 0; i--) {
-				const sortedIndex = useMath().sortIndex(i)
-				const card = suffledDeck[sortedIndex]
-				suffledDeck.push(card)
-				suffledDeck.splice(sortedIndex, 1)
-			}
+		let suffledDeck = this.deck.slice()
 
-			this.deck = suffledDeck
+		for (let i = suffledDeck.length; i > 0; i--) {
+			const sortedIndex = useMath().sortIndex(i)
+			const card = suffledDeck[sortedIndex]
+			suffledDeck.push(card)
+			suffledDeck.splice(sortedIndex, 1)
 		}
+
+		this.deck = suffledDeck
 	}
 
 	markLastCard() {
@@ -60,7 +49,4 @@ class Deck {
 	}
 }
 
-export const useDeck = () => {
-	const getDeck = (firstFinger: string) => new Deck(firstFinger).getDeck()
-	return { getDeck }
-}
+export { Deck }
