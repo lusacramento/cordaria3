@@ -50,6 +50,7 @@
 
 <script lang="ts" setup>
 	const viewMode = ref(useMySettingsStore().getViewMode)
+
 	const { deck, isStart, cards } = useController()
 	const { prev, current, next } = cards
 </script>

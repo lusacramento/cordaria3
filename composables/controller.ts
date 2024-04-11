@@ -1,6 +1,5 @@
 import { useMySettingsStore } from './../stores/settings'
 import { Card } from './model/card'
-import * as Tone from 'tone'
 
 const isStart = ref(false)
 const isShowCounter = ref(false)
@@ -38,7 +37,6 @@ export const useController = () => {
 	}
 
 	function payload(repeatedLesson?: number) {
-		console.log(useMySettingsStore().getCounter)
 		switch (true) {
 			case repeatedLesson !== undefined:
 				updateLesson(repeatedLesson)

@@ -57,12 +57,6 @@
 
 	const { isStart } = controller
 
-	const showModal = ref(false)
-
-	function toogleModal() {
-		showModal.value = !showModal
-	}
-
 	const boxes = {
 		what: {
 			text: '<h2>O que é?</h2>',
