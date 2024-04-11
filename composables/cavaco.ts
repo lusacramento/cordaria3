@@ -1,5 +1,5 @@
 export const useCavaco = () => {
-	const map = [
+	const mapping = [
 		[
 			{
 				note: 'D5',
@@ -110,7 +110,7 @@ export const useCavaco = () => {
 		],
 	]
 
-	const getMap = () => map
+	const getMap = () => mapping
 
 	return { getMap }
 }

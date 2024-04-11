@@ -1,5 +1,5 @@
 export const useBass = () => {
-	const map = [
+	const mapping = [
 		[
 			{
 				note: 'G2',
@@ -110,7 +110,7 @@ export const useBass = () => {
 		],
 	]
 
-	const getMap = () => map
+	const getMap = () => mapping
 
 	return {
 		getMap,
