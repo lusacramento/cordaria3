@@ -49,10 +49,9 @@
 </template>
 
 <script lang="ts" setup>
-	const viewMode = ref(useMyUserStore().getViewMode)
-	const deck = ref(usePractice().deck)
-	const isStart = ref(usePractice().isStart)
-	const { prev, current, next } = toRefs(usePractice().cards)
+	const viewMode = ref(useMySettingsStore().getViewMode)
+	const { deck, isStart, cards } = useController()
+	const { prev, current, next } = cards
 </script>
 
 <style>

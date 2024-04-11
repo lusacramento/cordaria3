@@ -20,9 +20,22 @@
 			</div>
 			<div class="row justify-content-center bg-exercise-screen">
 				<div class="col-lg-10 layer-center">
-					<!-- <div class="exercise-screen"> -->
-					<CordariaScreen />
-					<!-- </div> -->
+					<div
+						class="exercise-screen d-flex align-items-center justify-content-center"
+					>
+						<div v-if="!isStart">
+							<Box
+								:title-text="boxes.callInAction.text"
+								:schema="boxes.callInAction.schema"
+								:left-logo="boxes.callInAction.leftLogo"
+								:right-logo="boxes.callInAction.rightLogo"
+								@click.prevent="start()"
+							/>
+						</div>
+						<div v-if="isStart">
+							<CordariaScreen />
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -31,7 +44,50 @@
 
 <script lang="ts" setup>
 	const title = 'A PRÁTICA'
-	const toast = useTt('wait', 'Aguardando início', '', 3000)
+	definePageMeta({
+		middleware: 'auth',
+	})
+
+	const controller = useController()
+
+	controller.init()
+
+	const { isStart } = controller
+
+	const showModal = ref(false)
+
+	function toogleModal() {
+		showModal.value = !showModal
+	}
+
+	const boxes = {
+		what: {
+			text: '<h2>O que é?</h2>',
+			schema: 'the-project',
+			leftLogo: false,
+			rightLogo: false,
+		},
+		doing: {
+			text: '<h2>O que faz?</h2>',
+			schema: 'the-project',
+			leftLogo: false,
+			rightLogo: false,
+		},
+		callInAction: {
+			text: '<div style="font-size:1.5em">Inicie agora seu treinamento!</div>',
+			schema: 'the-project',
+			leftLogo: true,
+			rightLogo: false,
+		},
+	}
+
+	function start() {
+		controller.payload()
+	}
 </script>
 
-<style></style>
+<style scoped>
+	#start-button:hover {
+		cursor: pointer !important;
+	}
+</style>

@@ -71,7 +71,7 @@ function payLoad(
 }
 
 function initializeDeck(firstFinger: string) {
-	deck.value = useDeck().getDeck(firstFinger)
+	// deck.value = useDeck().getDeck(firstFinger)
 }
 
 function initializeCard() {

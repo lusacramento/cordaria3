@@ -1,5 +1,5 @@
 <template>
-	<div v-if="isShow">
+	<div v-if="isShowCounter">
 		<div id="counter" class="text-center">
 			{{ counter }}
 		</div>
@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-	const counter = ref(useMyUserStore().getCounter)
-	const isShow = ref(usePractice().isShowCounter)
+	// const counter = ref(useMySettingsStore().getCounter)
+	const { isShowCounter, counter } = useController()
 </script>
 <style>
 	#counter {

@@ -1,4 +1,5 @@
 import * as Tone from 'tone'
+import type { Card } from './model/card'
 
 let urls: any = {}
 const playlist: string[] = []
@@ -26,8 +27,8 @@ function selectInstrument(instrument: string) {
 function getAudios(
 	counter: number,
 	instrument: string,
-	instrumentMap: [],
-	deck: [],
+	instrumentMap: {},
+	deck: Card[],
 	bpm: number,
 	tempo: number,
 	stringIndex: string,
@@ -45,7 +46,7 @@ function getAudios(
 			const sequence = await generateSequence(sampler, tempo).start(0)
 
 			await playAudios(sequence, bpm)
-			usePractice().startLesson()
+			useController().startLesson(tempo)
 		},
 
 		onerror: (error) => {
@@ -63,14 +64,15 @@ function getMetronomeUrls(urls: any) {
 	return urls
 }
 
-function getInstrumentUrls(urls: any, instrument: string, instrumentMap: []) {
+function getInstrumentUrls(urls: any, instrument: string, instrumentMap: {}) {
 	const baseUrl = useUrls().getUrl(instrument)
 
-	instrumentMap.forEach((str: any[]) => {
-		str.forEach((fret) => {
-			urls[fret.note] = `${baseUrl}${fret.tablature}.mp3`
+	if (Array.isArray(instrumentMap))
+		instrumentMap.forEach((str: any[]) => {
+			str.forEach((fret) => {
+				urls[fret.note] = `${baseUrl}${fret.tablature}.mp3`
+			})
 		})
-	})
 
 	return urls
 }
@@ -81,7 +83,7 @@ function addMetronomeToPlaylist(counter: number, playlist: any[]) {
 }
 
 function addInstrumentToPlaylist(
-	deck: [],
+	deck: Card[],
 	playlist: any[],
 	instrumentMap: any,
 	stringIndex: string,
