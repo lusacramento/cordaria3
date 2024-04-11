@@ -83,7 +83,8 @@ export const useController = () => {
 	}
 
 	async function startLesson(tempo: number) {
-		// isStart.value = true
+		isStart.value = true
+
 		const fragment = {
 			prev: ref(),
 			current: ref(),
@@ -119,11 +120,11 @@ export const useController = () => {
 
 		function updateTodo() {
 			counter.value--
-			if (isFinishCount()) {
-				return 'play'
-			}
+			return isFinishCount() ? 'play' : 'counter'
+		}
 
-			return 'counter'
+		function hideCounter() {
+			isShowCounter.value = !isShowCounter.value
 		}
 
 		function isFinishCount() {
@@ -188,8 +189,8 @@ export const useController = () => {
 			fragment.current.value = cards.current.value.fragments[fragmentIndex]
 		}
 
-		function hideCounter() {
-			isShowCounter.value = !isShowCounter.value
+		function resetIndex() {
+			return 0
 		}
 
 		function finishPractice() {
