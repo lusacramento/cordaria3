@@ -130,13 +130,10 @@ export const useController = () => {
 			return counter.value === 0
 		}
 
-		function resetIndex() {
-			return 0
-		}
-
 		function play() {
-			if (isLastCard() && isLastFragment()) {
+			if (isFinished()) {
 				fragment.prev.value.setIsHighlight(false)
+
 				finishPractice()
 			} else {
 				if (isLastFragment()) {
@@ -146,6 +143,10 @@ export const useController = () => {
 
 				getNextFragment()
 			}
+		}
+
+		function isFinished() {
+			return isLastCard() && isLastFragment()
 		}
 
 		function isLastCard() {
