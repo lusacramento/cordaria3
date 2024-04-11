@@ -50,7 +50,7 @@ function getAudios(
 		},
 
 		onerror: (error) => {
-			console.log('Error loading sample: ', error)
+			new Error('Error loading sample: ', error)
 		},
 	}).toDestination()
 }
@@ -67,7 +67,9 @@ function getMetronomeUrls(urls: any) {
 function getInstrumentUrls(urls: any, instrument: string, instrumentMap: {}) {
 	const baseUrl = useUrls().getUrl(instrument)
 
-	if (Array.isArray(instrumentMap))
+	if (!Array.isArray(instrumentMap)) {
+		new Error('instrumentMap  is not an array')
+	} else
 		instrumentMap.forEach((str: any[]) => {
 			str.forEach((fret) => {
 				urls[fret.note] = `${baseUrl}${fret.tablature}.mp3`
