@@ -62,3 +62,7 @@ class Deck {
 	static getEmptyDeck() {
 		return ref([new Card('')])
 	}
+
+	toJson() {
+		return { ...this.deck }
+	}
