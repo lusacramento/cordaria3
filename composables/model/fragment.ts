@@ -14,10 +14,7 @@ export const useFragment = (
 			this.isHighlight = false
 		}
 
-		setIsHighlight(isHighlight: boolean) {
-			this.isHighlight = isHighlight
-		}
+	getEmptyFragment() {
+		return new Fragment('null', 'null')
 	}
-
-	return Fragment
 }
