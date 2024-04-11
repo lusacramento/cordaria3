@@ -1,13 +1,21 @@
 <template>
 	<div id="the-pratice" class="cordaria">
-		<CordariaMenu />
+		<OffCanvas />
+		<button
+			class="btn btn-primary"
+			type="button"
+			data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvasWithBothOptions"
+			aria-controls="offcanvasWithBothOptions"
+		>
+			Configurações
+		</button>
 		<div class="exercise-nav container-fluid">
 			<div
 				class="row text-center layer-top justify-content-center align-items-center"
 			>
 				<div class="col-12 col-lg-4">
 					<h1 class="title mt-3 mb-4">{{ title }}</h1>
-					<!-- :visible="isEnabledMenu" -->
 				</div>
 			</div>
 			<div class="row justify-content-center bg-exercise-screen">
