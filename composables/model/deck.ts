@@ -4,6 +4,10 @@ class Deck {
 	deck: Array<any> = []
 
 	constructor(firstFinger: string) {
+		if (firstFinger === '') {
+			this.deck.push(new Card(''))
+			return // Empty card
+		}
 		const data = useData()
 
 		if (!this.isEmptyData(data)) {
@@ -18,8 +22,6 @@ class Deck {
 	}
 
 	getCards(data: string[], firstFinger: string) {
-		const Card = useCard()
-
 		for (let index = 0; index < data.length; index++) {
 			const value = data[index]
 
