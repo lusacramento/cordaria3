@@ -5,10 +5,7 @@ export const useMyUserStore = defineStore({
 	state: () => ({
 		nameUser: '',
 		loggedIn: false,
-		lastLesson: 120,
-		viewMode: '2Cards',
 		theme: 'dark',
-		counter: 2,
 	}),
 
 	getters: {
@@ -17,18 +14,6 @@ export const useMyUserStore = defineStore({
 		},
 		getloggedIn(state) {
 			return state.loggedIn
-		},
-		getLastLesson(state) {
-			return state.lastLesson
-		},
-		getViewMode(state) {
-			return state.viewMode
-		},
-		getTheme(state) {
-			return state.theme
-		},
-		getCounter(state) {
-			return state.counter
 		},
 	},
 	actions: {},
