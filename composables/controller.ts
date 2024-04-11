@@ -50,11 +50,8 @@ export const useController = () => {
 				break
 		}
 
-		isStart.value = true
-
-		const instrument = useMySettingsStore().getInstrumentDefault
-
-		const instrumentMap = useAudio().selectInstrument(instrument)
+		const defaultInstrumentName = useMySettingsStore().getInstrumentDefault
+		const instrumentMap = useAudio().getInstrumentMapping(defaultInstrumentName)
 
 		const tempo = getTempo(lesson.bpm)
 
@@ -104,7 +101,7 @@ export const useController = () => {
 		function startPractice() {
 			switch (toDo) {
 				case 'counter':
-					toDo = updateCounter()
+					toDo = updateTodo()
 					if (toDo === 'play') {
 						hideCounter()
 						cards.current.value.setStatus('current')
@@ -120,7 +117,7 @@ export const useController = () => {
 
 		const timer = setInterval(startPractice, tempo)
 
-		function updateCounter() {
+		function updateTodo() {
 			counter.value--
 			if (isFinishCount()) {
 				return 'play'
@@ -147,7 +144,7 @@ export const useController = () => {
 					toAnimate()
 				} else toAnimate()
 
-				updateValues()
+				getNextFragment()
 			}
 		}
 
@@ -162,7 +159,7 @@ export const useController = () => {
 			fragment.current.value.setIsHighlight(true)
 		}
 
-		function updateValues() {
+		function getNextFragment() {
 			fragment.prev.value = fragment.current.value
 			fragmentIndex++
 			fragment.current.value = cards.current.value.fragments[fragmentIndex]

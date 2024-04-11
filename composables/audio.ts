@@ -6,7 +6,7 @@ const playlist: string[] = []
 
 const adjustSync = 1.1 // <-- ajust here the release duration for legattos notes
 
-function selectInstrument(instrument: string) {
+function getInstrumentMapping(instrument: string) {
 	let instrumentMap = {}
 	switch (true) {
 		case instrument === 'acoustic-guitar' || instrument === 'eletric-guitar':
@@ -103,7 +103,7 @@ function addInstrumentToPlaylist(
 			break
 	}
 
-	deck.forEach((card: any) => {
+	deck.forEach((card: Card) => {
 		switch (stringIndex) {
 			case 'bass':
 				addCardToPlaylist(card, stringIndexNumber)
@@ -122,7 +122,7 @@ function addInstrumentToPlaylist(
 		}
 	})
 
-	function addCardToPlaylist(card: any, str: number) {
+	function addCardToPlaylist(card: Card, str: number) {
 		card.fragments.forEach((fragment: any) => {
 			const fret = fragment.value
 			const note = instrumentMap[str][parseInt(fret)].note
@@ -153,7 +153,7 @@ function calculateRelease(tempo: number) {
 
 export const useAudio = () => {
 	return {
-		selectInstrument,
+		getInstrumentMapping,
 		getAudios,
 	}
 }
