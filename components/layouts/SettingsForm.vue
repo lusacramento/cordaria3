@@ -46,7 +46,7 @@
 				<span class="d-flex justify-content-center">{{ counter }}</span>
 			</div>
 			<div class="d-flex justify-content-center">
-				<NuxtLink to="statistics">Estatísticas</NuxtLink>
+				<NuxtLink to="estatisticas">Estatísticas</NuxtLink>
 			</div>
 		</form>
 	</div>

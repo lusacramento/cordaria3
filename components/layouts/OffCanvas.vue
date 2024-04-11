@@ -18,20 +18,7 @@
 			></button>
 		</div>
 		<div class="offcanvas-body">
-			<SettingsForm class="" />
+			<LayoutsSettingsForm />
 		</div>
 	</div>
 </template>
-
-<script lang="ts" setup></script>
-
-<style scoped>
-	/* .btn-close {
-		color: var(--font-color-p);
-		background-color: white !important;
-	}
-	#btn-close:hover {
-		background-color: rgba(255, 255, 255, 0.8);
-		color: rgba(255, 255, 255, 0.7);
-	} */
-</style>

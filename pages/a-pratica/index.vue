@@ -1,6 +1,6 @@
 <template>
 	<div id="the-pratice" class="cordaria">
-		<OffCanvas />
+		<LayoutsOffCanvas />
 		<button
 			class="btn btn-primary"
 			type="button"
@@ -43,7 +43,10 @@
 </template>
 
 <script lang="ts" setup>
+	import OffCanvas from '~/components/layouts/OffCanvas.vue'
+
 	const title = 'A PRÁTICA'
+
 	definePageMeta({
 		middleware: 'auth',
 	})
