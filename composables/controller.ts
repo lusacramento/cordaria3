@@ -1,18 +1,23 @@
 import { useMySettingsStore } from './../stores/settings'
 import { Card } from './model/card'
 
+// Views variables
 const isStart = ref(false)
 const isShowCounter = ref(false)
-const deck: Ref<Card[]> = ref([])
 
+//  Model variable
+const deck: Ref<Card[]> = ref([])
 const cards = {
 	prev: ref(Card.getEmptyCard()),
 	current: ref(Card.getEmptyCard()),
 	next: ref(Card.getEmptyCard()),
 }
 
+// lesson variables
 let lesson = useLessons().getEmptyLesson()
 let lessonNumber = 0
+
+// counter variable
 const counter = ref(0)
 
 export const useController = () => {
@@ -47,6 +52,7 @@ export const useController = () => {
 				break
 
 			default:
+				new Error('No valid argument provided')
 				break
 		}
 
