@@ -1,6 +1,7 @@
 <template>
 	<div id="the-pratice" class="cordaria">
-		<LayoutsOffCanvas />
+		<LayoutsOffCanvas @showStatistics="payload" />
+
 		<button
 			class="btn btn-primary"
 			type="button"
