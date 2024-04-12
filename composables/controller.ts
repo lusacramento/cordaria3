@@ -2,7 +2,10 @@ import { useMySettingsStore } from './../stores/settings'
 import { Card } from './model/card'
 
 // Views variables
-const isStart = ref(false)
+const showCards = ref(false)
+const showStatistics = ref(false)
+const showBox = ref(true)
+
 const isShowCounter = ref(false)
 
 //  Model variable
@@ -83,7 +86,8 @@ export const useController = () => {
 	}
 
 	async function startLesson(tempo: number) {
-		isStart.value = true
+		showStatistics.value = false
+		showCards.value = true
 
 		const fragment = {
 			prev: ref(),
@@ -201,11 +205,19 @@ export const useController = () => {
 		}
 	}
 
+	function toogleShowStatistics() {
+		showStatistics.value = !showStatistics.value
+		showBox.value = !showBox.value
+	}
+
 	return {
 		deck,
 		cards,
-		isStart,
+		showCards,
+		showStatistics,
+		showBox,
 		isShowCounter,
+		toogleShowStatistics,
 		payload,
 		init,
 		counter,

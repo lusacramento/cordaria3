@@ -3,7 +3,7 @@
 	<div class="container-fluid mt-3">
 		<CordariaScreenCounter />
 		<Transition name="flip" mode="in-out">
-			<div v-if="isStart">
+			<div v-if="showCards">
 				<div v-if="viewMode === '3Cards'">
 					<div
 						class="row mt-4 d-flex align-items-center justify-content-around"
@@ -49,9 +49,9 @@
 </template>
 
 <script lang="ts" setup>
-	const viewMode = ref(useMySettingsStore().getViewMode)
+	const { viewMode } = useMySettingsStore()
 
-	const { deck, isStart, cards } = useController()
+	const { deck, showCards, cards } = useController()
 	const { prev, current, next } = cards
 </script>
 

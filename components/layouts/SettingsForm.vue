@@ -46,7 +46,14 @@
 				<span class="d-flex justify-content-center">{{ counter }}</span>
 			</div>
 			<div class="d-flex justify-content-center">
-				<NuxtLink to="estatisticas">Estatísticas</NuxtLink>
+				<button
+					type="button"
+					@click.prevent="showStatistics()"
+					data-bs-dismiss="offcanvas"
+					aria-label="Close"
+				>
+					Estatísticas
+				</button>
 			</div>
 		</form>
 	</div>
@@ -72,7 +79,6 @@
 
 	watch(viewMode, (newValue) => {
 		settingsStore.setViewMode(newValue)
-		console.log(settingsStore.getViewMode)
 	})
 
 	const counter = ref(settingsStore.getCounter)
@@ -86,6 +92,10 @@
 	watch(theme, () => {
 		settingsStore.toogleTheme()
 	})
+
+	function showStatistics() {
+		useController().toogleShowStatistics()
+	}
 </script>
 
 <style scoped>
