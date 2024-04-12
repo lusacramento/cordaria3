@@ -7,8 +7,9 @@ export const useMySettingsStore = defineStore({
 		counter: 4,
 		lastLesson: 1,
 		viewMode: '2Cards',
-		instrumentDefault: 'bass',
+		instrumentDefault: 'acoustic-guitar',
 		themeDark: true,
+		showStatistics: false,
 	}),
 
 	getters: {
@@ -31,6 +32,10 @@ export const useMySettingsStore = defineStore({
 		getTheme(state) {
 			return state.themeDark
 		},
+
+		getShowStatistics(state) {
+			return state.showStatistics
+		},
 	},
 
 	actions: {
@@ -44,6 +49,10 @@ export const useMySettingsStore = defineStore({
 
 		toogleTheme() {
 			this.themeDark = !this.themeDark
+		},
+
+		toogleShowStatistics() {
+			this.showStatistics = !this.showStatistics
 		},
 	},
 })

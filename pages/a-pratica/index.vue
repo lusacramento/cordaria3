@@ -1,6 +1,7 @@
 <template>
 	<div id="the-pratice" class="cordaria">
-		<LayoutsOffCanvas />
+		<LayoutsOffCanvas @showStatistics="payload" />
+
 		<button
 			class="btn btn-primary"
 			type="button"
@@ -23,7 +24,7 @@
 					<div
 						class="exercise-screen d-flex align-items-center justify-content-center"
 					>
-						<div v-if="!isStart">
+						<div v-if="showBox">
 							<Box
 								:title-text="boxes.callInAction.text"
 								:schema="boxes.callInAction.schema"
@@ -32,7 +33,10 @@
 								@click.prevent="start()"
 							/>
 						</div>
-						<div v-if="isStart">
+						<div v-if="showStatistics" class="d-block">
+							<StatisticsTable />
+						</div>
+						<div v-if="showCards">
 							<CordariaScreen />
 						</div>
 					</div>
@@ -43,8 +47,6 @@
 </template>
 
 <script lang="ts" setup>
-	import OffCanvas from '~/components/layouts/OffCanvas.vue'
-
 	const title = 'A PRÁTICA'
 
 	definePageMeta({
@@ -55,7 +57,7 @@
 
 	controller.init()
 
-	const { isStart } = controller
+	const { showBox, showCards, showStatistics } = controller
 
 	const boxes = {
 		what: {
@@ -80,6 +82,10 @@
 
 	function start() {
 		controller.payload()
+	}
+
+	function payload() {
+		console.log('payload')
 	}
 </script>
 
