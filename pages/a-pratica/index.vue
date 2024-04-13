@@ -2,23 +2,21 @@
 	<div id="the-pratice" class="cordaria">
 		<LayoutsOffCanvas @showStatistics="payload" />
 
-		<button
-			class="btn btn-primary"
-			type="button"
-			data-bs-toggle="offcanvas"
-			data-bs-target="#offcanvasWithBothOptions"
-			aria-controls="offcanvasWithBothOptions"
-		>
-			Configurações
-		</button>
 		<div class="exercise-nav container-fluid">
-			<div
-				class="row text-center layer-top justify-content-center align-items-center"
-			>
-				<div class="col-12 col-lg-4">
-					<h1 class="title mt-3 mb-4">{{ title }}</h1>
-				</div>
-			</div>
+			<LayoutsHeader :title="title">
+				<template #left>
+					<button
+						class="btn btn-primary"
+						type="button"
+						data-bs-toggle="offcanvas"
+						data-bs-target="#offcanvasWithBothOptions"
+						aria-controls="offcanvasWithBothOptions"
+					>
+						Preferências
+					</button>
+				</template>
+			</LayoutsHeader>
+
 			<div class="row justify-content-center bg-exercise-screen">
 				<div class="col-lg-10 layer-center">
 					<div

@@ -1,11 +1,7 @@
 <template>
 	<div id="the-project" class="the-project">
 		<div class="container-fluid">
-			<div class="row text-center layer-top align-items-center">
-				<div class="col">
-					<h1 class="title mt-3 mb-4">{{ title }}</h1>
-				</div>
-			</div>
+			<LayoutsHeader :title="title" />
 		</div>
 		<div class="container layer-center">
 			<div class="row justify-content-around">

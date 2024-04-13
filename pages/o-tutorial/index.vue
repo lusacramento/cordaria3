@@ -1,12 +1,6 @@
 <template>
 	<div id="the-tutorial" class="the-tutorial">
-		<div class="container-fluid">
-			<div class="row text-center layer-top align-items-around">
-				<div class="col">
-					<h1 class="title mt-3 mb-4">{{ title }}</h1>
-				</div>
-			</div>
-		</div>
+		<LayoutsHeader :title="title" />
 		<div class="container layer-center">
 			<div class="row justify-content-around">
 				<section class="col-md-6 col">
