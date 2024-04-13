@@ -58,22 +58,10 @@
 	const { showBox, showCards, showStatistics } = controller
 
 	const boxes = {
-		what: {
-			text: '<h2>O que é?</h2>',
-			schema: 'the-project',
-			leftLogo: false,
-			rightLogo: false,
-		},
-		doing: {
-			text: '<h2>O que faz?</h2>',
-			schema: 'the-project',
-			leftLogo: false,
-			rightLogo: false,
-		},
 		callInAction: {
-			text: '<div style="font-size:1.5em">Inicie agora seu treinamento!</div>',
+			text: '<div style="font-size:1.5em">JOGAR</div>',
 			schema: 'the-project',
-			leftLogo: true,
+			leftLogo: false,
 			rightLogo: false,
 		},
 	}
@@ -90,5 +78,16 @@
 <style scoped>
 	#start-button:hover {
 		cursor: pointer !important;
+	}
+
+	.btn {
+		background-color: transparent;
+		color: rgba(255, 255, 255, 0.7);
+		border-color: transparent;
+	}
+
+	.btn:hover {
+		color: rgba(255, 255, 255, 1);
+		background-color: rgba(0, 0, 0, 0.1);
 	}
 </style>
