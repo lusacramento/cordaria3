@@ -17,8 +17,13 @@
 				aria-label="Close"
 			></button>
 		</div>
-		<div class="offcanvas-body">
+		<div class="offcanvas-body align-items-center d-flex">
 			<LayoutsSettingsForm />
 		</div>
 	</div>
 </template>
+<style scoped>
+	.offcanvas {
+		background-color: rgba(0, 0, 0, 0.2) !important;
+	}
+</style>

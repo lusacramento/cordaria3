@@ -87,6 +87,8 @@ export const useController = () => {
 
 	async function startLesson(tempo: number) {
 		showStatistics.value = false
+		showBox.value = false
+
 		showCards.value = true
 
 		const fragment = {

@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid justify-content-center d-flex">
+	<div class="container justify-content-center d-flex">
 		<form>
 			<div class="form-group col-6 col-lg-12 col-6 col-lg-12 mb-4">
 				<label for="select-schema" class="form-label">Tema</label>
