@@ -209,6 +209,7 @@ export const useController = () => {
 			cards.current.value = Card.getEmptyCard()
 			title.value = 'Lição finalizada!'
 
+			if (lesson.message) alert(lesson.message)
 		}
 	}
 
