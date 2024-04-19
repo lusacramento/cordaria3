@@ -17,7 +17,7 @@ const cards = {
 }
 
 // lesson variables
-let lesson = useLessons().getEmptyLesson()
+const title = ref('A PRÁTICA')
 let lessonNumber = 0
 
 // counter variable
@@ -204,6 +204,8 @@ export const useController = () => {
 			cards.current.value.setStatus('prev')
 			cards.prev.value = cards.current.value
 			cards.current.value = Card.getEmptyCard()
+			title.value = 'Lição finalizada!'
+
 		}
 	}
 
@@ -215,6 +217,7 @@ export const useController = () => {
 	return {
 		deck,
 		cards,
+		title,
 		showCards,
 		showStatistics,
 		showBox,
