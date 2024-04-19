@@ -86,6 +86,9 @@ export const useController = () => {
 	}
 
 	async function startLesson(tempo: number) {
+		title.value = `Lição: ${lesson.id} - Corda: ${useHelpers().translate(
+			lesson.stringNumber,
+		)} - BPM: ${lesson.bpm} - Nível: ${lesson.level}`
 		showStatistics.value = false
 		showBox.value = false
 
