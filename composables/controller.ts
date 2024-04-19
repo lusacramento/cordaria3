@@ -1,5 +1,6 @@
 import { useMySettingsStore } from './../stores/settings'
 import { Card } from './model/card'
+import type { Lesson } from './model/lesson'
 
 // Views variables
 const showCards = ref(false)
@@ -17,8 +18,10 @@ const cards = {
 }
 
 // lesson variables
-let lesson = useLessons().getEmptyLesson()
+const title = ref('A PRÁTICA')
+let lesson: Lesson = useLessons().getEmptyLesson()
 let lessonNumber = 0
+let defaultInstrumentName = ''
 
 // counter variable
 const counter = ref(0)
@@ -33,8 +36,12 @@ export const useController = () => {
 	}
 
 	function initLesson() {
+		defaultInstrumentName = useMySettingsStore().getInstrumentDefault
 		lessonNumber = useMySettingsStore().getLastLesson + 1
-		lesson = useLessons().getLesson(lessonNumber)
+		lesson = useLessons().getLesson(
+			lessonNumber,
+			defaultInstrumentName,
+		) as Lesson
 	}
 
 	function initDeck(lesson: Lesson) {
@@ -59,12 +66,10 @@ export const useController = () => {
 				break
 		}
 
-		const defaultInstrumentName = useMySettingsStore().getInstrumentDefault
 		const instrumentMap = useAudio().getInstrumentMapping(defaultInstrumentName)
 
 		const tempo = getTempo(lesson.bpm)
 
-		const stringIndex = (parseInt(lesson.stringNumber) - 1).toString()
 		useAudio().getAudios(
 			counter.value,
 			defaultInstrumentName,
@@ -72,12 +77,15 @@ export const useController = () => {
 			deck.value,
 			lesson.bpm,
 			tempo,
-			stringIndex,
+			lesson.stringNumber,
 		)
 	}
 
 	function updateLesson(lessonNumber: number) {
-		lesson = useLessons().getLesson(lessonNumber)
+		lesson = useLessons().getLesson(
+			lessonNumber,
+			defaultInstrumentName,
+		) as Lesson
 		initDeck(lesson)
 	}
 
@@ -86,6 +94,9 @@ export const useController = () => {
 	}
 
 	async function startLesson(tempo: number) {
+		title.value = `Lição: ${lesson.id} - Corda: ${useHelpers().translate(
+			lesson.stringNumber,
+		)} - BPM: ${lesson.bpm} - Nível: ${lesson.level}`
 		showStatistics.value = false
 		showBox.value = false
 
@@ -204,6 +215,9 @@ export const useController = () => {
 			cards.current.value.setStatus('prev')
 			cards.prev.value = cards.current.value
 			cards.current.value = Card.getEmptyCard()
+			title.value = 'Lição finalizada!'
+
+			if (lesson.message) alert(lesson.message)
 		}
 	}
 
@@ -215,6 +229,7 @@ export const useController = () => {
 	return {
 		deck,
 		cards,
+		title,
 		showCards,
 		showStatistics,
 		showBox,

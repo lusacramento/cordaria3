@@ -1,7 +1,8 @@
 export interface Lesson {
 	id: number
-	name: string
+	level: string
 	firstFinger: number
 	stringNumber: string
 	bpm: number
+	message: string
 }

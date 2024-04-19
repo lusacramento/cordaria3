@@ -1,6 +1,8 @@
 <template>
-	<div class="">
-		<table class="table table-striped table-dark table-hover mt-5">
+	<div class="container">
+		<table
+			class="table table-striped table-dark table-hover mt-5 align-middle text-center"
+		>
 			<thead>
 				<tr>
 					<th scope="col">Lição</th>
@@ -36,9 +38,11 @@
 <script lang="ts" setup>
 	import Tr from './Tr.vue'
 
-	const lessons = useLessons().getLessons()
+	const defaultInstrumentName = useMySettingsStore().getInstrumentDefault
 
-	const lessonPerPage = 5
+	const lessons = useLessons().getLessons(defaultInstrumentName)
+
+	const lessonPerPage = 10
 
 	const lessonsTable = ref(lessons.slice(0, lessonPerPage))
 

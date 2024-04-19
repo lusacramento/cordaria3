@@ -45,13 +45,12 @@
 </template>
 
 <script lang="ts" setup>
-	const title = 'A PRÁTICA'
-
 	definePageMeta({
 		middleware: 'auth',
 	})
 
 	const controller = useController()
+	const title = ref(controller.title)
 
 	controller.init()
 
