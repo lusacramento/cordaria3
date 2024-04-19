@@ -1,6 +1,8 @@
 <template>
-	<div class="">
-		<table class="table table-striped table-dark table-hover mt-5">
+	<div class="container">
+		<table
+			class="table table-striped table-dark table-hover mt-5 align-middle text-center"
+		>
 			<thead>
 				<tr>
 					<th scope="col">Lição</th>
