@@ -1,5 +1,6 @@
 import { useMySettingsStore } from './../stores/settings'
 import { Card } from './model/card'
+import type { Lesson } from './model/lesson'
 
 // Views variables
 const showCards = ref(false)
@@ -18,7 +19,9 @@ const cards = {
 
 // lesson variables
 const title = ref('A PRÁTICA')
+let lesson: Lesson = useLessons().getEmptyLesson()
 let lessonNumber = 0
+let defaultInstrumentName = ''
 
 // counter variable
 const counter = ref(0)
@@ -33,8 +36,12 @@ export const useController = () => {
 	}
 
 	function initLesson() {
+		defaultInstrumentName = useMySettingsStore().getInstrumentDefault
 		lessonNumber = useMySettingsStore().getLastLesson + 1
-		lesson = useLessons().getLesson(lessonNumber)
+		lesson = useLessons().getLesson(
+			lessonNumber,
+			defaultInstrumentName,
+		) as Lesson
 	}
 
 	function initDeck(lesson: Lesson) {
@@ -59,12 +66,10 @@ export const useController = () => {
 				break
 		}
 
-		const defaultInstrumentName = useMySettingsStore().getInstrumentDefault
 		const instrumentMap = useAudio().getInstrumentMapping(defaultInstrumentName)
 
 		const tempo = getTempo(lesson.bpm)
 
-		const stringIndex = (parseInt(lesson.stringNumber) - 1).toString()
 		useAudio().getAudios(
 			counter.value,
 			defaultInstrumentName,
@@ -72,12 +77,15 @@ export const useController = () => {
 			deck.value,
 			lesson.bpm,
 			tempo,
-			stringIndex,
+			lesson.stringNumber,
 		)
 	}
 
 	function updateLesson(lessonNumber: number) {
-		lesson = useLessons().getLesson(lessonNumber)
+		lesson = useLessons().getLesson(
+			lessonNumber,
+			defaultInstrumentName,
+		) as Lesson
 		initDeck(lesson)
 	}
 

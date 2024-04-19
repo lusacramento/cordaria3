@@ -31,14 +31,14 @@ function getAudios(
 	deck: Card[],
 	bpm: number,
 	tempo: number,
-	stringIndex: string,
+	str: string,
 ) {
 	urls = getMetronomeUrls(urls)
 	urls = getInstrumentUrls(urls, instrument, instrumentMap)
 
 	addMetronomeToPlaylist(counter, playlist)
 
-	addInstrumentToPlaylist(deck, playlist, instrumentMap, stringIndex)
+	addInstrumentToPlaylist(deck, playlist, instrumentMap, str)
 
 	const sampler = new Tone.Sampler({
 		urls: urls,
@@ -88,38 +88,38 @@ function addInstrumentToPlaylist(
 	deck: Card[],
 	playlist: any[],
 	instrumentMap: any,
-	stringIndex: string,
+	str: string,
 ) {
-	const stringsNumber = instrumentMap.length - 1
-	let stringIndexNumber = 0
+	const stringsNumber = instrumentMap.length
+	let strNumber = 0
 
-	switch (stringIndex) {
-		case 'bass':
-			stringIndexNumber = stringsNumber
+	switch (str) {
+		case 'downToUp':
+			strNumber = stringsNumber
 			break
-		case 'treble':
-			stringIndexNumber = 0
+		case 'upToDown':
+			strNumber = 1
 			break
 		default:
-			stringIndexNumber = parseInt(stringIndex)
+			strNumber = parseInt(str)
 			break
 	}
 
 	deck.forEach((card: Card) => {
-		switch (stringIndex) {
-			case 'bass':
-				addCardToPlaylist(card, stringIndexNumber)
-				stringIndexNumber--
-				if (stringIndexNumber == 0) stringIndex = 'treble'
+		switch (str) {
+			case 'downToUp':
+				addCardToPlaylist(card, strNumber)
+				strNumber--
+				if (strNumber == 1) str = 'upToDown'
 				break
 
-			case 'treble':
-				addCardToPlaylist(card, stringIndexNumber)
-				stringIndexNumber++
-				if (stringIndexNumber == stringsNumber - 1) stringIndex = 'bass'
+			case 'upToDown':
+				addCardToPlaylist(card, strNumber)
+				strNumber++
+				if (strNumber == stringsNumber) str = 'downToUp'
 				break
 			default:
-				addCardToPlaylist(card, stringIndexNumber)
+				addCardToPlaylist(card, strNumber)
 				break
 		}
 	})
@@ -127,7 +127,8 @@ function addInstrumentToPlaylist(
 	function addCardToPlaylist(card: Card, str: number) {
 		card.fragments.forEach((fragment: any) => {
 			const fret = fragment.value
-			const note = instrumentMap[str][parseInt(fret)].note
+			const strIndex = str - 1
+			const note = instrumentMap[strIndex][parseInt(fret)].note
 
 			playlist.push([note])
 		})
