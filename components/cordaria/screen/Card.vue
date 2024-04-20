@@ -15,6 +15,7 @@
 			:key="fragment.id"
 			:fragment="fragment"
 		/>
+		<div class="string text-center">{{ card.str }}</div>
 	</div>
 </template>
 
@@ -73,6 +74,15 @@
 			height: 180px;
 			font-size: 2.5em;
 		}
+
+		.string {
+			position: absolute;
+			bottom: 20px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.7rem;
+			width: 18px;
+		}
 	}
 	@media (min-width: 576px) and (max-width: 991.98px) {
 		div.card {
@@ -86,6 +96,15 @@
 			width: 160px;
 			height: 160px;
 			font-size: 2.3em;
+		}
+
+		.string {
+			position: absolute;
+			bottom: 20px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.7rem;
+			width: 20px;
 		}
 	}
 
@@ -101,6 +120,15 @@
 			width: 250px;
 			height: 250px;
 			font-size: 3.3em;
+		}
+
+		.string {
+			position: absolute;
+			bottom: 30px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 1rem;
+			width: 25px;
 		}
 	}
 </style>
