@@ -31,14 +31,13 @@ function getAudios(
 	deck: Card[],
 	bpm: number,
 	tempo: number,
-	str: string,
 ) {
 	urls = getMetronomeUrls(urls)
 	urls = getInstrumentUrls(urls, instrument, instrumentMap)
 
 	addMetronomeToPlaylist(counter, playlist)
 
-	addInstrumentToPlaylist(deck, playlist, instrumentMap, str)
+	addInstrumentToPlaylist(deck, playlist, instrumentMap)
 
 	const sampler = new Tone.Sampler({
 		urls: urls,
@@ -88,40 +87,9 @@ function addInstrumentToPlaylist(
 	deck: Card[],
 	playlist: any[],
 	instrumentMap: any,
-	str: string,
 ) {
-	const stringsNumber = instrumentMap.length
-	let strNumber = 0
-
-	switch (str) {
-		case 'downToUp':
-			strNumber = stringsNumber
-			break
-		case 'upToDown':
-			strNumber = 1
-			break
-		default:
-			strNumber = parseInt(str)
-			break
-	}
-
 	deck.forEach((card: Card) => {
-		switch (str) {
-			case 'downToUp':
-				addCardToPlaylist(card, strNumber)
-				strNumber--
-				if (strNumber == 1) str = 'upToDown'
-				break
-
-			case 'upToDown':
-				addCardToPlaylist(card, strNumber)
-				strNumber++
-				if (strNumber == stringsNumber) str = 'downToUp'
-				break
-			default:
-				addCardToPlaylist(card, strNumber)
-				break
-		}
+		addCardToPlaylist(card, parseInt(card.str))
 	})
 
 	function addCardToPlaylist(card: Card, str: number) {

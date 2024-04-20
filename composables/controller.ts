@@ -27,6 +27,8 @@ let defaultInstrumentName = ''
 const counter = ref(0)
 
 export const useController = () => {
+	defaultInstrumentName = useMySettingsStore().getInstrumentDefault
+	const instrumentMap = useAudio().getInstrumentMapping(defaultInstrumentName)
 	counter.value = useMySettingsStore().getCounter
 	let deckIndex = 0
 
@@ -36,7 +38,6 @@ export const useController = () => {
 	}
 
 	function initLesson() {
-		defaultInstrumentName = useMySettingsStore().getInstrumentDefault
 		lessonNumber = useMySettingsStore().getLastLesson + 1
 		lesson = useLessons().getLesson(
 			lessonNumber,
@@ -45,7 +46,14 @@ export const useController = () => {
 	}
 
 	function initDeck(lesson: Lesson) {
-		deck.value = new Deck(lesson.firstFinger.toString()).deck
+		let stringsNumber = 0
+		if (Array.isArray(instrumentMap)) stringsNumber = instrumentMap.length
+
+		deck.value = new Deck(
+			lesson.firstFinger.toString(),
+			lesson.stringNumber,
+			stringsNumber,
+		).deck
 
 		cards.current.value = deck.value[deckIndex]
 		cards.next.value = deck.value[deckIndex + 1]
@@ -66,8 +74,6 @@ export const useController = () => {
 				break
 		}
 
-		const instrumentMap = useAudio().getInstrumentMapping(defaultInstrumentName)
-
 		const tempo = getTempo(lesson.bpm)
 
 		useAudio().getAudios(
@@ -77,7 +83,6 @@ export const useController = () => {
 			deck.value,
 			lesson.bpm,
 			tempo,
-			lesson.stringNumber,
 		)
 	}
 
@@ -94,9 +99,7 @@ export const useController = () => {
 	}
 
 	async function startLesson(tempo: number) {
-		title.value = `Lição: ${lesson.id} - Corda: ${useHelpers().translate(
-			lesson.stringNumber,
-		)} - BPM: ${lesson.bpm} - Nível: ${lesson.level}`
+		title.value = `Lição ${lesson.id} - ${lesson.level} <br> ${lesson.bpm} BPM`
 		showStatistics.value = false
 		showBox.value = false
 
