@@ -5,7 +5,7 @@
 				<slot name="left"></slot>
 			</div>
 			<div class="col justify-content-center text-center">
-				<h1 class="title mt-3 mb-4">{{ props.title }}</h1>
+				<h1 v-html="$props.title" class="title mt-3 mb-4" />
 			</div>
 			<div class="col">
 				<slot name="right"></slot>
