@@ -6,8 +6,9 @@ export class Card {
 	fragments: Fragment[]
 	isLast: boolean = false
 	status: string
+	str: string
 
-	constructor(content: string) {
+	constructor(content: string, stringNumber: string) {
 		this.id = content
 		this.content = content
 
@@ -16,10 +17,11 @@ export class Card {
 		this.isLast = false
 
 		this.status = 'next'
+		this.str = stringNumber
 	}
 
 	static getEmptyCard() {
-		return new Card('')
+		return new Card('', '')
 	}
 
 	getFragments(content: string) {
