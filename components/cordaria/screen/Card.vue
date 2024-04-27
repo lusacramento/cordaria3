@@ -15,12 +15,21 @@
 			:key="fragment.id"
 			:fragment="fragment"
 		/>
-		<div class="string text-center">{{ card.str }}</div>
+		<div
+			class="text-center"
+			:class="{ string: !allCard, stringAllCard: allCard }"
+		>
+			{{ card.str }}
+		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	defineProps(['card'])
+	const props = defineProps({
+		card: { type: Object, required: true },
+		allCard: { type: Boolean, required: false, default: false },
+	})
+	console.log(props.allCard)
 </script>
 
 <style>
@@ -83,6 +92,15 @@
 			font-size: 0.7rem;
 			width: 18px;
 		}
+
+		.stringAllCard {
+			position: absolute;
+			bottom: 10px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.5rem;
+			width: 15px;
+		}
 	}
 	@media (min-width: 576px) and (max-width: 991.98px) {
 		div.card {
@@ -101,6 +119,15 @@
 		.string {
 			position: absolute;
 			bottom: 20px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.7rem;
+			width: 20px;
+		}
+
+		.stringAllCard {
+			position: absolute;
+			bottom: 10px;
 			border: solid black 1px;
 			border-radius: 50%;
 			font-size: 0.7rem;
@@ -129,6 +156,14 @@
 			border-radius: 50%;
 			font-size: 1rem;
 			width: 25px;
+		}
+		.stringAllCard {
+			position: absolute;
+			bottom: 10px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.7rem;
+			width: 18px;
 		}
 	}
 </style>

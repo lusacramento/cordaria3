@@ -37,6 +37,7 @@
 							:id="card.id"
 							:key="card.id"
 							:card="card"
+							:allCard="true"
 							class="card cardView"
 						/>
 					</div>
