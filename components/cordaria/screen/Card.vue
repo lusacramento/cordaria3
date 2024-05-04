@@ -15,15 +15,21 @@
 			:key="fragment.id"
 			:fragment="fragment"
 		/>
+		<div
+			class="text-center"
+			:class="{ string: !allCard, stringAllCard: allCard }"
+		>
+			{{ card.str }}
+		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	defineProps(['card'])
-
-	// const isPastCardColor = true
-	// const isCurrentCardColor = false
-	// const isFutureCardColor = true
+	const props = defineProps({
+		card: { type: Object, required: true },
+		allCard: { type: Boolean, required: false, default: false },
+	})
+	console.log(props.allCard)
 </script>
 
 <style>
@@ -77,6 +83,24 @@
 			height: 180px;
 			font-size: 2.5em;
 		}
+
+		.string {
+			position: absolute;
+			bottom: 20px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.7rem;
+			width: 18px;
+		}
+
+		.stringAllCard {
+			position: absolute;
+			bottom: 10px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.5rem;
+			width: 15px;
+		}
 	}
 	@media (min-width: 576px) and (max-width: 991.98px) {
 		div.card {
@@ -90,6 +114,24 @@
 			width: 160px;
 			height: 160px;
 			font-size: 2.3em;
+		}
+
+		.string {
+			position: absolute;
+			bottom: 20px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.7rem;
+			width: 20px;
+		}
+
+		.stringAllCard {
+			position: absolute;
+			bottom: 10px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.7rem;
+			width: 20px;
 		}
 	}
 
@@ -105,6 +147,23 @@
 			width: 250px;
 			height: 250px;
 			font-size: 3.3em;
+		}
+
+		.string {
+			position: absolute;
+			bottom: 30px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 1rem;
+			width: 25px;
+		}
+		.stringAllCard {
+			position: absolute;
+			bottom: 10px;
+			border: solid black 1px;
+			border-radius: 50%;
+			font-size: 0.7rem;
+			width: 18px;
 		}
 	}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div id="app" class="app container-fluid">
-		<div id="nav" class="d-flex justify-content-center">
+		<div id="nav" class="d-flex">
 			<LayoutsNav />
 		</div>
 		<main id="main">

@@ -1,63 +1,30 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Cordaria
+This application was developed with Nuxt 3. Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
+This app requires [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) to run.
 
-Make sure to install the dependencies:
-
+## Environment Variables
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
+# Create .env file from .env-exemple
+cp .env.example .env
 ```
+Put your data config variables like as host names and ports to will used it.
 
 ## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+Build the application for development:
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
+# run docker compose
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
+Start the development server on `http://localhost:8000`:
 
 ## Production
-
 Build the application for production:
-
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
+# run docker compose
+docker compose -f docker-compose.yml --build
 ```
+Start the production server on `http://localhost:3000`:
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Contributing

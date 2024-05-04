@@ -1,58 +1,88 @@
 import { useData } from './data'
+import { Card } from './card'
 
 class Deck {
-	deck: Array<any> = []
+	deck: Card[] = []
 
-	constructor(firstFinger: string) {
+	constructor(
+		firstFinger: string,
+		stringNumber: string,
+		stringsNumber: number,
+	) {
 		const data = useData()
 
-		if (!this.isEmptyData(data)) {
-			this.getCards(data, firstFinger)
-			this.suffleDeck()
-			this.markLastCard()
-		}
+		if (data.length <= 0 || data === null || data === undefined)
+			new Error('There is not  data')
+
+		this.getCards(data, firstFinger, stringNumber)
+		this.suffleDeck()
+		this.insertStringsOnCards(stringNumber, stringsNumber)
+		this.markLastCard()
 	}
 
 	getDeck() {
 		return this.deck
 	}
 
-	getCards(data: string[], firstFinger: string) {
-		const Card = useCard()
+	getCards(data: string[], firstFinger: string, stringNumber: string) {
+		const dataFiltered = data.filter((item) => item[0] === firstFinger)
 
-		for (let index = 0; index < data.length; index++) {
-			const value = data[index]
+		dataFiltered.forEach((element) => {
+			const card = new Card(element, stringNumber)
 
-			if (this.filterFirstFinger(value, firstFinger)) {
-				const card = new Card(value)
+			this.deck.push(card)
+		})
+	}
 
-				this.deck.push(card)
-			}
+	insertStringsOnCards(str: string, stringsNumber: number) {
+		let strNumber = 0
+
+		switch (str) {
+			case 'downToUp':
+				strNumber = stringsNumber
+				break
+			case 'upToDown':
+				strNumber = 1
+				break
+			default:
+				strNumber = parseInt(str)
+				break
 		}
-	}
 
-	filterFirstFinger(value: string, firstFinger: string) {
-		return value[0] === firstFinger
-	}
+		this.deck.forEach((card: Card) => {
+			switch (str) {
+				case 'downToUp':
+					card.str = strNumber.toString()
+					strNumber--
+					if (strNumber == 1) str = 'upToDown'
+					break
 
-	isEmptyData(data: string[]) {
-		if (data.length <= 0) return true
-		return false
+				case 'upToDown':
+					card.str = strNumber.toString()
+
+					strNumber++
+					if (strNumber == stringsNumber) str = 'downToUp'
+					break
+				default:
+					card.str = str
+					break
+			}
+		})
 	}
 
 	suffleDeck() {
-		if (this.deck) {
-			let suffledDeck = this.deck.slice()
+		if (!this.deck) new Error('There  are no cards in the deck to suffle')
 
-			for (let i = suffledDeck.length; i > 0; i--) {
-				const sortedIndex = useMath().sortIndex(i)
-				const card = suffledDeck[sortedIndex]
-				suffledDeck.push(card)
-				suffledDeck.splice(sortedIndex, 1)
-			}
+		let suffledDeck = this.deck.slice()
 
-			this.deck = suffledDeck
+		for (let i = suffledDeck.length; i > 0; i--) {
+			const sortedIndex = useMath().sortIndex(i)
+			const card = suffledDeck[sortedIndex]
+			suffledDeck.push(card)
+			suffledDeck.splice(sortedIndex, 1)
 		}
+
+		this.deck = suffledDeck
 	}
 
 	markLastCard() {
@@ -60,7 +90,4 @@ class Deck {
 	}
 }
 
-export const useDeck = () => {
-	const getDeck = (firstFinger: string) => new Deck(firstFinger).getDeck()
-	return { getDeck }
-}
+export { Deck }
