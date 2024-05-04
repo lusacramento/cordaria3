@@ -10,13 +10,20 @@
 				class="btn btn-success"
 				@click.prevent="start(lesson.id)"
 			>
-				Play
+				<font-awesome-icon class="fa fa-code" :icon="iconPlay" />
 			</button>
 		</td>
 	</tr>
 </template>
 
 <script lang="ts" setup>
+	import { library } from '@fortawesome/fontawesome-svg-core'
+	import { faPlay } from '@fortawesome/free-solid-svg-icons'
+	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+	library.add(faPlay)
+
+	const iconPlay = 'play'
+
 	defineProps({
 		lessons: {
 			type: Array<Lesson>,
