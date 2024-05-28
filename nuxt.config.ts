@@ -4,6 +4,15 @@ export default defineNuxtConfig({
 	// 	asyncContext: true,
 	// 	renderJsonPayloads: false,
 	// },
+
+	runtimeConfig: {
+		mongorUrl: process.env.MONGODB_URI,
+	},
+
+	nitro: {
+		plugins: ['~/server/index.ts'],
+	},
+
 	devtools: { enabled: false },
 
 	devServer: {
