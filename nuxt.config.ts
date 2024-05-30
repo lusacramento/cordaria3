@@ -19,7 +19,22 @@ export default defineNuxtConfig({
 		port: 8000,
 	},
 
-	modules: ['@pinia/nuxt'],
+	modules: [
+		'@pinia/nuxt',
+		[
+			'@vee-validate/nuxt',
+			{
+				autoImports: true,
+
+				componentNames: {
+					Form: 'VeeForm',
+					Field: 'VeeField',
+					FieldArray: 'VeeFieldArray',
+					ErrorMessage: 'VeeErrorMessage',
+				},
+			},
+		],
+	],
 
 	sourcemap: true,
 
