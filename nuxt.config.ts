@@ -34,6 +34,16 @@ export default defineNuxtConfig({
 				},
 			},
 		],
+		[
+			'@nuxtjs/google-fonts',
+			{
+				families: {
+					'Encode+Sans': true,
+					wght: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+				},
+				download: true,
+			},
+		],
 	],
 
 	sourcemap: true,
