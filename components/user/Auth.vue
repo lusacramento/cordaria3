@@ -111,7 +111,7 @@
 			rightLogo: false,
 		},
 		signIn: {
-			text: 'entrar',
+			text: 'Entrar',
 			schema: 'the-pratice',
 			leftLogo: false,
 			rightLogo: false,
