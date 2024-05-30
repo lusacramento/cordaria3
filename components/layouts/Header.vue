@@ -8,7 +8,7 @@
 				<h1 v-html="$props.title" class="title mt-3 mb-4" />
 			</div>
 			<div class="col">
-				<slot name="right"></slot>
+				<slot name="right"><UserAuth /> </slot>
 			</div>
 		</div>
 	</header>
