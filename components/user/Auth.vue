@@ -7,21 +7,23 @@
 		aria-hidden="true"
 	>
 		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content bg-dark d-flex">
+			<div class="modal-content d-flex">
 				<div class="d-flex justify-content-between p-3">
-					<Box
-						:title-text="boxes.signUp.text"
-						:schema="boxes.signUp.schema"
-						:left-logo="boxes.signUp.leftLogo"
-						:right-logo="boxes.signUp.rightLogo"
-						@click.prevent="loadSignUpForm"
-					/>
 					<Box
 						:title-text="boxes.signIn.text"
 						:schema="boxes.signIn.schema"
 						:left-logo="boxes.signIn.leftLogo"
 						:right-logo="boxes.signIn.rightLogo"
 						@click.prevent="loadSignInForm"
+						class="h2 m-1"
+					/>
+					<Box
+						:title-text="boxes.signUp.text"
+						:schema="boxes.signUp.schema"
+						:left-logo="boxes.signUp.leftLogo"
+						:right-logo="boxes.signUp.rightLogo"
+						@click.prevent="loadSignUpForm"
+						class="h2 m-1"
 					/>
 					<button
 						type="button"
@@ -133,5 +135,19 @@
 	.form-control,
 	.btn-primary {
 		background-color: transparent;
+		font-family: 'encode sans';
+	}
+
+	.modal-content {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.btn-close {
+		background-color: transparent !important;
+	}
+
+	.btn-close:hover {
+		background-color: rgba(255, 255, 255, 1) !important;
+		color: black !important;
 	}
 </style>
