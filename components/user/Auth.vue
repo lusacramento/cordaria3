@@ -1,9 +1,9 @@
 <template>
 	<div
 		class="modal fade"
-		id="exampleModal"
+		id="authModal"
 		tabindex="-1"
-		aria-labelledby="exampleModalLabel"
+		aria-labelledby="authModalLabel"
 		aria-hidden="true"
 	>
 		<div class="modal-dialog modal-dialog-centered">

@@ -77,7 +77,7 @@
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
 							data-bs-toggle="modal"
-							data-bs-target="#exampleModal"
+							data-bs-target="#authModal"
 							><span>Entrar</span></nuxt-link
 						>
 					</li>
