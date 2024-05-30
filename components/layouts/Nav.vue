@@ -47,14 +47,14 @@
 							<span>A Pesquisa</span></nuxt-link
 						>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<nuxt-link
 							to="/a-pratica"
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
 							><span>A Prática</span></nuxt-link
 						>
-					</li>
+					</li> -->
 					<li class="nav-item">
 						<nuxt-link
 							to="/o-tutorial"
@@ -69,6 +69,16 @@
 							class="nav-link clues-link"
 							:class="{ cluesLinkActive: links.clues.isLight }"
 							><span>Dicas</span></nuxt-link
+						>
+					</li>
+					<li class="nav-item">
+						<nuxt-link
+							to="/dicas"
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							data-bs-toggle="modal"
+							data-bs-target="#exampleModal"
+							><span>Entrar</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">
