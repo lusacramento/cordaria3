@@ -80,6 +80,10 @@
 						this.inboxColor = 'inbox-tutorial'
 						this.outboxColor = 'outbox-tutorial'
 						break
+					case 'the-pratice':
+						this.inboxColor = 'inbox-pratice'
+						this.outboxColor = 'outbox-pratice'
+						break
 					case 'the-research':
 						this.inboxColor = 'inbox-research'
 						this.outboxColor = 'outbox-research'
@@ -135,6 +139,16 @@
 
 	.outbox-tutorial {
 		background-color: var(--the-tutorial-outbox);
+		border-radius: 10px;
+	}
+
+	.inbox-pratice {
+		background-color: var(--the-pratice-inbox);
+		border-radius: 10px;
+	}
+
+	.outbox-pratice {
+		background-color: var(--the-pratice-outbox);
 		border-radius: 10px;
 	}
 
