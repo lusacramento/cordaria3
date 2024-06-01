@@ -34,17 +34,38 @@
 								theProjectLinkActive: links.theProject.isLight,
 							}"
 							aria-current="page"
-							><span>O Projeto</span></nuxt-link
+							><span>Home</span></nuxt-link
+						>
+					</li>
+					
+					
+					<!-- 
+						MOVER PARA AREA DE USUÁRIO
+						
+						<li class="nav-item">
+						<nuxt-link
+							to="/o-tutorial"
+							class="nav-link the-tutorial-link"
+							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
+							><span>O Tutorial</span></nuxt-link
+						>
+					</li> -->
+					<li class="nav-item">
+						<nuxt-link
+							to="/ranqueamento"
+							class="nav-link clues-link"
+							:class="{ cluesLinkActive: links.clues.isLight }"
+							><span>Ranqueamento</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">
 						<nuxt-link
-							to="/a-pesquisa"
+							to="/sobre"
 							class="nav-link the-research-link"
 							:class="{ theResearchLinkActive: links.theResearch.isLight }"
 							aria-current="page"
 						>
-							<span>A Pesquisa</span></nuxt-link
+							<span>Sobre</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">
@@ -52,26 +73,13 @@
 							to="/a-pratica"
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>A Prática</span></nuxt-link
+							><span>Login</span></nuxt-link
 						>
 					</li>
-					<li class="nav-item">
-						<nuxt-link
-							to="/o-tutorial"
-							class="nav-link the-tutorial-link"
-							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
-							><span>O Tutorial</span></nuxt-link
-						>
-					</li>
-					<li class="nav-item">
-						<nuxt-link
-							to="/dicas"
-							class="nav-link clues-link"
-							:class="{ cluesLinkActive: links.clues.isLight }"
-							><span>Dicas</span></nuxt-link
-						>
-					</li>
-					<li class="nav-item">
+					<!-- 
+						MOVER PARA RODAPÉ
+
+						<li class="nav-item">
 						<a class="nav-link email-link" :href="icons.email.href">
 							<img
 								class="img img-fluid"
@@ -96,7 +104,8 @@
 								@mouseleave="icons.insta.url = icons.insta.toDark()"
 							/>
 						</a>
-					</li>
+					</li> -->
+					
 				</ul>
 			</div>
 		</div>
