@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
 			event.node.res.statusCode = 409
 			return {
 				code: 'USER_EXISTS',
-				message: 'User with given email already exists.',
+				message: `Usuário com email "${email}" já existe.`,
 			}
 		} else {
 			console.log('Create user')
