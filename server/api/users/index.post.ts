@@ -8,6 +8,7 @@ interface IRequestBody {
 export default defineEventHandler(async (event) => {
 	console.log('POST /api/users')
 
+	const { email, password, userName } = await readBody(event)
 
 	try {
 		const userData = await users.findOne({
@@ -25,12 +26,12 @@ export default defineEventHandler(async (event) => {
 			const newUserData = await users.create({
 				email,
 				password,
-				name,
+				userName,
 			})
 
 			return {
 				id: newUserData._id,
-				name: newUserData.name,
+				userName: newUserData.userName,
 			}
 		}
 	} catch (err) {
