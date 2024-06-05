@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 import bcrypt from 'mongoose-bcrypt'
-const schema = new mongoose.Schema(
+const schema: any = new mongoose.Schema(
 	{
 		email: { type: String, unique: true },
 		password: { type: String, bcrypt: true },
-		name: String,
+		userName: { type: String },
 	},
 	{ timestamps: true, strict: true, strictQuery: true },
 )

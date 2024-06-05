@@ -1,4 +1,3 @@
-import { useBody } from '~/composables/body'
 import { users } from '../../dbModels'
 
 interface IRequestBody {
@@ -8,7 +7,7 @@ interface IRequestBody {
 }
 export default defineEventHandler(async (event) => {
 	console.log('POST /api/users')
-	const { email, password, name } = await useBody()
+
 
 	try {
 		const userData = await users.findOne({
