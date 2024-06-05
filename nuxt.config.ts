@@ -19,7 +19,32 @@ export default defineNuxtConfig({
 		port: 8000,
 	},
 
-	modules: ['@pinia/nuxt'],
+	modules: [
+		'@pinia/nuxt',
+		[
+			'@vee-validate/nuxt',
+			{
+				autoImports: true,
+
+				componentNames: {
+					Form: 'VeeForm',
+					Field: 'VeeField',
+					FieldArray: 'VeeFieldArray',
+					ErrorMessage: 'VeeErrorMessage',
+				},
+			},
+		],
+		[
+			'@nuxtjs/google-fonts',
+			{
+				families: {
+					'Encode+Sans': true,
+					wght: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+				},
+				download: true,
+			},
+		],
+	],
 
 	sourcemap: true,
 

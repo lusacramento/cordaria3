@@ -16,5 +16,14 @@ export const useMyUserStore = defineStore({
 			return state.loggedIn
 		},
 	},
-	actions: {},
+	actions: {
+		async createUser(values: any) {
+			const response = await useFetch('/api/users', {
+				method: 'post',
+				body: values,
+			})
+			console.log(response.error.value?.data)
+			return response
+		},
+	},
 })

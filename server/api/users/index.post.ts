@@ -1,4 +1,3 @@
-import { useBody } from '~/composables/body'
 import { users } from '../../dbModels'
 
 interface IRequestBody {
@@ -8,7 +7,8 @@ interface IRequestBody {
 }
 export default defineEventHandler(async (event) => {
 	console.log('POST /api/users')
-	const { email, password, name } = await useBody()
+
+	const { email, password, userName } = await readBody(event)
 
 	try {
 		const userData = await users.findOne({
@@ -19,19 +19,19 @@ export default defineEventHandler(async (event) => {
 			event.node.res.statusCode = 409
 			return {
 				code: 'USER_EXISTS',
-				message: 'User with given email already exists.',
+				message: `Usuário com email "${email}" já existe.`,
 			}
 		} else {
 			console.log('Create user')
 			const newUserData = await users.create({
 				email,
 				password,
-				name,
+				userName,
 			})
 
 			return {
 				id: newUserData._id,
-				name: newUserData.name,
+				userName: newUserData.userName,
 			}
 		}
 	} catch (err) {
