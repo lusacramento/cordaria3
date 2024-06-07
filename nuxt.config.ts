@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 	},
 
 	modules: [
-		'@pinia/nuxt',
+		['@pinia/nuxt', { storesDirs: './stores/**' }],
 		[
 			'@vee-validate/nuxt',
 			{
