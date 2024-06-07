@@ -22,6 +22,11 @@ export const useMyUserStore = defineStore({
 				method: 'post',
 				body: values,
 			})
+			console.log(values)
+			if (!response.error.value) {
+				this.userName = values.userName
+				this.loggedIn = true
+			}
 			console.log(response.error.value?.data)
 			return response
 		},
