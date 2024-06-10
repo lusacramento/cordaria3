@@ -1,13 +1,6 @@
 import { users } from '../../dbModels'
 
-interface IRequestBody {
-	email: string
-	password: string
-	name: string
-}
 export default defineEventHandler(async (event) => {
-	console.log('POST /api/users')
-
 	const { email, password, userName } = await readBody(event)
 
 	try {
@@ -15,14 +8,12 @@ export default defineEventHandler(async (event) => {
 			email,
 		})
 		if (userData) {
-			console.log(`User with email ${email} already exists`)
 			event.node.res.statusCode = 409
 			return {
 				code: 'USER_EXISTS',
 				message: `Usuário com email "${email}" já existe.`,
 			}
 		} else {
-			console.log('Create user')
 			const newUserData = await users.create({
 				email,
 				password,
