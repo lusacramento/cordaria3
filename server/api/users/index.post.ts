@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
 		event.node.res.statusCode = 500
 		return {
 			code: 'ERROR',
-			message: 'Something wrong.',
+			message: 'algo deu errado.',
 		}
 	}
 })
