@@ -131,7 +131,8 @@
 
 		async function createUser() {
 			try {
-				const response = await useMyUserStore().createUser(values)
+				const response = await useIUser().createUser(values)
+
 				if (response.error.value) {
 					showErrorMessage(response.error.value.data)
 					reg_in_submission.value = false
