@@ -79,25 +79,41 @@
 
 	const login_in_submission = ref(false)
 	const login_show_alert = ref(false)
-	const login_alert_variant = ref('bg-blue-500')
+	const login_alert_variant = ref('bg-primary')
 	const login_alert_msg = ref('Espere! Estamos conectando você.')
 
-	function signIn(values: any) {
-		console.log(values)
-
+	async function signIn(values: any) {
 		login_show_alert.value = true
 		login_in_submission.value = true
 
 		login_alert_variant.value = 'bg-primary'
 		login_alert_msg.value = 'Espere! Estamos conectando você.'
 
-		let response: any = ''
-		// response = await useMyUserStore().authenticate(values)
-		if (response.code !== 'auth/invalid-credential') {
-			showSuccessMessage()
+		releaseTrigger()
+		resetDefaultValues()
 
-			window.location.reload()
-		} else showErrorMessage()
+		try {
+			const response = await useIUser().authenticate(values)
+			if (response.error.value) {
+				showErrorMessage(response.error.value.data)
+			} else {
+				showSuccessMessage()
+			}
+		} catch (error) {
+			showErrorMessage(error)
+		}
+
+		// 	window.location.reload()
+	}
+
+	function releaseTrigger() {
+		login_show_alert.value = true
+		login_in_submission.value = true
+	}
+
+	function resetDefaultValues() {
+		login_alert_variant.value = 'bg-primary'
+		login_alert_msg.value = 'Espere! Sua conta está sendo criada.'
 	}
 
 	function showSuccessMessage() {
@@ -105,10 +121,10 @@
 		login_alert_msg.value = 'Successo! Você agora está conectado!'
 	}
 
-	function showErrorMessage() {
+	function showErrorMessage(error: any) {
 		login_in_submission.value = false
-		login_alert_variant.value = 'bg-error'
-		login_alert_msg.value = 'Login inválido!'
+		login_alert_variant.value = 'bg-danger'
+		login_alert_msg.value = error.message!
 	}
 </script>
 
