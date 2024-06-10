@@ -16,19 +16,5 @@ export const useMyUserStore = defineStore({
 			return state.loggedIn
 		},
 	},
-	actions: {
-		async createUser(values: any) {
-			const response = await useFetch('/api/users', {
-				method: 'post',
-				body: values,
-			})
-			console.log(values)
-			if (!response.error.value) {
-				this.userName = values.userName
-				this.loggedIn = true
-			}
-			console.log(response.error.value?.data)
-			return response
-		},
-	},
+	actions: {},
 })
