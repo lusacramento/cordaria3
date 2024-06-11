@@ -2,22 +2,15 @@ import { users } from '../../dbModels'
 
 export default defineEventHandler(async (event) => {
 	const { email, password } = await readBody(event)
-	// Check if email is passed.
-	if (!email) {
+	// Check if email e password is passed.
+	if (!email || !password) {
 		event.node.res.statusCode = 400
 		return {
 			code: 'EMAIL_REQUIRED',
-			message: 'Email não informado.',
+			message: 'Email e senha são requeridos.',
 		}
 	}
-	// Check if password is passed.
-	if (!password) {
-		event.node.res.statusCode = 400
-		return {
-			code: 'PASSWORD_REQUIRED',
-			message: 'Senha não informada.',
-		}
-	}
+
 	try {
 		const userData = await users.findOne({
 			email: email.toLowerCase(),
