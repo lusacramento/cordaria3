@@ -32,7 +32,6 @@ export default defineEventHandler(async (event) => {
 				}
 			}
 		} else {
-			console.log('User not found')
 			event.node.res.statusCode = 404
 			return {
 				code: 'USER_NOT_FOUND',
