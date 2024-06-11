@@ -4,26 +4,41 @@ export default defineEventHandler(async (event) => {
 	const { email, password, userName } = await readBody(event)
 
 	try {
-		const userData = await users.findOne({
+		const userByName = await users.findOne({
+			userName,
+		})
+
+		// verify if exists user with this name
+		if (userByName) {
+			event.node.res.statusCode = 409
+			return {
+				code: 'USER_EXISTS',
+				message: `Usuário com o nome "${userName}" já existe.`,
+			}
+		}
+
+		// verify if exists user with this email
+		const userByEmail = await users.findOne({
 			email,
 		})
-		if (userData) {
+		if (userByEmail) {
 			event.node.res.statusCode = 409
 			return {
 				code: 'USER_EXISTS',
 				message: `Usuário com email "${email}" já existe.`,
 			}
-		} else {
-			const newUserData = await users.create({
-				email,
-				password,
-				userName,
-			})
+		}
 
-			return {
-				id: newUserData._id,
-				userName: newUserData.userName,
-			}
+		// add user on database
+		const newUserData = await users.create({
+			email,
+			password,
+			userName,
+		})
+
+		return {
+			id: newUserData._id,
+			userName: newUserData.userName,
 		}
 	} catch (err) {
 		console.dir(err)
