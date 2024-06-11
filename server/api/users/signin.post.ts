@@ -2,7 +2,7 @@ import { users } from '../../dbModels'
 
 export default defineEventHandler(async (event) => {
 	const { email, password } = await readBody(event)
-	// Check if email e password is passed.
+	// Check if email and password is passed.
 	if (!email || !password) {
 		event.node.res.statusCode = 400
 		return {
@@ -25,10 +25,10 @@ export default defineEventHandler(async (event) => {
 					name: userData.name,
 				}
 			} else {
-				event.node.res.statusCode = 404
+				event.node.res.statusCode = 401
 				return {
-					code: 'USER_NOT_FOUND',
-					message: 'Usuário com email e senha não existe.',
+					code: 'USER_NOT_AUTHORIZED',
+					message: 'Usuário ou senha incorreta.',
 				}
 			}
 		} else {
@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
 			event.node.res.statusCode = 404
 			return {
 				code: 'USER_NOT_FOUND',
-				message: 'Usuário com email e senha não existe.',
+				message: 'Usuário com este email não existe.',
 			}
 		}
 	} catch (err) {
