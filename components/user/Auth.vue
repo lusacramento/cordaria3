@@ -2,6 +2,7 @@
 	<div
 		class="modal fade"
 		id="authModal"
+		ref="authModal"
 		tabindex="-1"
 		aria-labelledby="authModalLabel"
 		aria-hidden="true"
@@ -26,6 +27,7 @@
 						class="h2 m-1"
 					/>
 					<button
+						ref="closeButton"
 						type="button"
 						class="btn-close"
 						data-bs-dismiss="modal"
@@ -34,7 +36,7 @@
 				</div>
 				<div class="modal-body">
 					<div v-if="isSignIn">
-						<UserSignIn />
+						<UserSignIn :closeModal="closeModal" />
 					</div>
 					<div v-else>
 						<UserSignUp />
@@ -48,7 +50,6 @@
 					>
 						Fechar
 					</button>
-					<!-- <button type="button" class="btn btn-primary">Registrar</button> -->
 				</div>
 			</div>
 		</div>
@@ -67,6 +68,7 @@
 		confirmed,
 	} from '@vee-validate/rules'
 
+	const closeButton: Ref<HTMLElement | null> = ref(null)
 	defineRule('required', required)
 	defineRule('tos', required)
 	defineRule('min', min)
@@ -129,6 +131,15 @@
 	function loadSignUpForm() {
 		isSignIn.value = false
 	}
+
+	function closeModal() {
+		closeButton.value!.click()
+	}
+	// onMounted(() => {
+	// 	setTimeout(() => {
+	// 		closeModal()
+	// 	}, 10000)
+	// })
 </script>
 
 <style>

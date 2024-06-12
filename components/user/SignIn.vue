@@ -51,6 +51,20 @@
 					<VeeErrorMessage name="password" class="text-danger" />
 				</div>
 			</div>
+			<div class="mb-3">
+				<div class="form-check d-flex justify-content-center">
+					<VeeField
+						id="rememberMe"
+						type="checkbox"
+						class="form-check-input mx-1"
+						name="rememberMe"
+						:value="true"
+					/>
+					<label class="form-check-label mx-1" for="rememberMe">
+						Ficar conectado
+					</label>
+				</div>
+			</div>
 
 			<div class="mb-3 d-flex justify-content-center mt-1">
 				<button
@@ -72,9 +86,12 @@
 		ErrorMessage as VeeErrorMessage,
 	} from 'vee-validate'
 
+	const props = defineProps(['closeModal'])
+
 	const schema = {
 		email: 'required|min:3|max:100|email',
 		password: 'required|min:9|max:100',
+		rememberMe: '',
 	}
 
 	const login_in_submission = ref(false)
@@ -98,6 +115,9 @@
 				showErrorMessage(response.error.value.data)
 			} else {
 				showSuccessMessage()
+
+				props.closeModal()
+				navigateTo('a-pratica')
 			}
 		} catch (error) {
 			showErrorMessage(error)
@@ -119,6 +139,8 @@
 	function showSuccessMessage() {
 		login_alert_variant.value = 'bg-success'
 		login_alert_msg.value = 'Successo! Você agora está conectado!'
+
+		props.closeModal()
 	}
 
 	function showErrorMessage(error: any) {
