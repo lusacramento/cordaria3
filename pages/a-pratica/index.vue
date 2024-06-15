@@ -46,7 +46,7 @@
 
 <script lang="ts" setup>
 	definePageMeta({
-		middleware: 'user-only',
+		middleware: 'auth',
 	})
 
 	const controller = useController()
