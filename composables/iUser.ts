@@ -8,11 +8,5 @@ export const useIUser = () => {
 		})
 	}
 
-	async function authenticate(values: any) {
-		return await useFetch('/api/users/signin', {
-			method: 'post',
-			body: values,
-		})
-	}
-	return { createUser, authenticate }
+	return { createUser }
 }
