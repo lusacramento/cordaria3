@@ -3,12 +3,18 @@ import { defineStore } from 'pinia'
 export const useMyUserStore = defineStore({
 	id: 'myUserStore',
 	state: () => ({
+		id: '',
 		userName: '',
+		email: '',
 		loggedIn: false,
 		theme: 'dark',
 	}),
 
 	getters: {
+		getId(state) {
+			return state.id
+		},
+
 		getNameUser(state) {
 			return state.userName
 		},
@@ -17,18 +23,22 @@ export const useMyUserStore = defineStore({
 		},
 	},
 	actions: {
-		async createUser(values: any) {
-			const response = await useFetch('/api/users', {
-				method: 'post',
-				body: values,
-			})
-			console.log(values)
-			if (!response.error.value) {
-				this.userName = values.userName
-				this.loggedIn = true
-			}
-			console.log(response.error.value?.data)
-			return response
+		setId(id: string) {
+			this.id = id
+		},
+
+		setUserName(userName: string) {
+			this.userName = userName
+			return
+		},
+
+		logIn() {
+			this.loggedIn = true
+			return this.loggedIn
+		},
+
+		logOut() {
+			this.loggedIn = false
 		},
 	},
 })

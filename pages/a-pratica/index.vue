@@ -15,10 +15,13 @@
 						Preferências
 					</button>
 				</template>
+				Olá {{ userName }}
 			</LayoutsHeader>
 
 			<div class="row justify-content-center bg-exercise-screen">
 				<div class="col-lg-10 layer-center">
+					Olá {{ userName }}!
+
 					<div
 						class="exercise-screen d-flex align-items-center justify-content-center"
 					>
@@ -48,6 +51,8 @@
 	definePageMeta({
 		middleware: 'auth',
 	})
+
+	const { userName } = storeToRefs(useMyUserStore())
 
 	const controller = useController()
 	const title = ref(controller.title)

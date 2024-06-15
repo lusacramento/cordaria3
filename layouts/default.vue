@@ -12,6 +12,17 @@
 	</div>
 </template>
 
+<script lang="ts" setup>
+	onMounted(() => {
+		inicializeStores()
+	})
+
+	function inicializeStores() {
+		useMyUserStore()
+		useMySettingsStore()
+	}
+</script>
+
 <style>
 	@media (min-width: 991.98px) {
 		div.app {

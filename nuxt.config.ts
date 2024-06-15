@@ -6,6 +6,7 @@ export default defineNuxtConfig({
 	// },
 
 	runtimeConfig: {
+		authSecret: process.env.AUTH_SECRET,
 		mongorUrl: process.env.MONGODB_URI,
 	},
 
@@ -13,14 +14,24 @@ export default defineNuxtConfig({
 		plugins: ['~/server/index.ts'],
 	},
 
-	devtools: { enabled: false },
+	devtools: { enabled: true },
 
 	devServer: {
 		port: 8000,
 	},
 
 	modules: [
-		['@pinia/nuxt', { storesDirs: './stores/**' }],
+		'@pinia/nuxt',
+		[
+			'nuxt-server-utils',
+			{
+				enabled: true, // default
+				enableDevTools: true, // default
+				mongodbUri: process.env.MONGODB_URI,
+			},
+		],
+
+		['@sidebase/nuxt-auth', { auth: { baseURL: process.env.AUTH_ORIGIN } }],
 		[
 			'@vee-validate/nuxt',
 			{
@@ -46,7 +57,7 @@ export default defineNuxtConfig({
 		],
 	],
 
-	sourcemap: true,
+	// sourcemap: true,
 
 	// debug: true,
 
