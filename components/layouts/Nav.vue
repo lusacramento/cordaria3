@@ -93,11 +93,9 @@
 					</li> -->
 					<li v-if="!loggedIn" class="nav-item">
 						<nuxt-link
-							to=""
+							to="entrar"
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							data-bs-toggle="modal"
-							data-bs-target="#authModal"
 							><span>Entrar</span></nuxt-link
 						>
 					</li>
@@ -106,7 +104,7 @@
 							to=""
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							@click.prevent="loggoff()"
+							@click.prevent="handleLogout()"
 							><span>Sair</span></nuxt-link
 						>
 					</li>
@@ -205,7 +203,13 @@
 		iniciateActive()
 	})
 
-	function loggoff() {}
+	const { signOut, status } = useAuth()
+
+	async function handleLogout() {
+		await signOut()
+		useMyUserStore().$reset()
+		useRouter().push('index')
+	}
 
 	function removeAllActive() {
 		links.theProject.isLight = false
