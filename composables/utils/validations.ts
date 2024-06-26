@@ -59,5 +59,10 @@ export const useValidations = () => {
 		validateUserName,
 		validatePassword,
 		validateConfirmPassword,
+		validateFullName,
+		validateAge,
+		validateState,
+		validateCountry,
+		sanitize,
 	}
 }
