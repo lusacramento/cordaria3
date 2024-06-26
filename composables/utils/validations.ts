@@ -20,6 +20,18 @@ export const useValidations = () => {
 		return false
 	}
 
+	function validateFullName(fullName: string) {
+		if (
+			fullName.length >= 3 &&
+			fullName.length <= 50 &&
+			fullName !== ' ' &&
+			sanitize(fullName)
+		)
+			return true
+		return false
+	}
+
+
 	return {
 		validateEmail,
 		validateUserName,
