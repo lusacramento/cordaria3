@@ -3,25 +3,55 @@
 		<LayoutsOffCanvas @showStatistics="payload" />
 
 		<div class="exercise-nav container-fluid">
-			<LayoutsHeader :title="title">
+			<LayoutsHeader>
 				<template #left>
-					<button
-						class="btn btn-primary"
-						type="button"
-						data-bs-toggle="offcanvas"
-						data-bs-target="#offcanvasWithBothOptions"
-						aria-controls="offcanvasWithBothOptions"
+					<div
+						class="container d-flex justify-content-start align-items-center"
 					>
-						Preferências
-					</button>
+						<div
+							class="avatar d-flex justify-content-center align-items-center"
+						>
+							<small>Avatar</small>
+						</div>
+						<div class="mx-2">@{{ userStore.getUserName }}</div>
+					</div>
 				</template>
-				Olá {{ userName }}
+				<template #center>
+					<div class="d-flex justify-content-center">Lição X</div>
+				</template>
+				<template #right>
+					<div class="d-flex align-items-center justify-content-end">
+						<div class="mx-3">
+							<button
+								ref="userDetailsButton"
+								type="button"
+								class="btn btn-primary"
+								data-bs-toggle="modal"
+								:data-bs-target="`#${modal.id}`"
+								hidden
+							>
+								Launch demo modal
+							</button>
+						</div>
+						<div class="mx-3">Pontos: 908</div>
+						<button
+							class="btn btn-primary"
+							type="button"
+							data-bs-toggle="offcanvas"
+							data-bs-target="#offcanvasWithBothOptions"
+							aria-controls="offcanvasWithBothOptions"
+						>
+							Preferências
+						</button>
+					</div>
+				</template>
 			</LayoutsHeader>
+			<LayoutsModal :modal="modal" @callFunction="postUserDetails">
+				<template #body><UserDetailsForm /></template>
+			</LayoutsModal>
 
 			<div class="row justify-content-center bg-exercise-screen">
 				<div class="col-lg-10 layer-center">
-					Olá {{ userName }}!
-
 					<div
 						class="exercise-screen d-flex align-items-center justify-content-center"
 					>
@@ -40,6 +70,7 @@
 						<div v-if="showCards">
 							<CordariaScreen />
 						</div>
+						<br />
 					</div>
 				</div>
 			</div>
@@ -52,10 +83,69 @@
 		middleware: 'auth',
 	})
 
-	const { userName } = storeToRefs(useMyUserStore())
+	onBeforeMount(async () => {
+		await loadUserStore()
+		verifyIfUserDetailsExist()
+	})
+
+	// Stores
+	const userStore = useMyUserStore()
+	const userDetailsStore = useMyUserDetailsStore()
+
+	const userDetailsButton: any = ref()
+
+	async function loadUserStore() {
+		const { getSession } = useAuth()
+		const { user } = await getSession()
+		// @ts-ignore
+		userStore.setId(user._id)
+		// @ts-ignore
+		userStore.setUserName(user?.username)
+		// @ts-ignore
+		userDetailsStore.setUserId(user._id)
+		userStore.logIn()
+	}
+
+	async function verifyIfUserDetailsExist() {
+		try {
+			const userDetailsResponse = await getUserDetails()
+			userDetailsResponse.error.value?.statusCode === 404
+				? toogleUserDetailsForm()
+				: saveUserDetailsOnStore(userDetailsResponse.data.value)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	function toogleUserDetailsForm() {
+		userDetailsButton.value.click()
+	}
+
+	async function postUserDetails() {
+		const userDetails = {
+			userId: userStore.getId,
+			...useMyUserDetailsStore().getAll,
+		}
+		const userDetailsResponse = await useIUser().postUserDetails(userDetails)
+		// @ts-ignore
+		await toogleUserDetailsForm()
+		useRouter().go(0)
+	}
+
+	async function getUserDetails() {
+		return await useIUser().getUserDetails(userStore.getId)
+	}
+
+	function saveUserDetailsOnStore(userDetails: any) {
+		useMyUserDetailsStore().update(userDetails)
+	}
+
+	const modal = {
+		title: 'Finalize seu cadastro',
+		id: 'userDetailsModal',
+	}
 
 	const controller = useController()
-	const title = ref(controller.title)
 
 	controller.init()
 
@@ -93,5 +183,13 @@
 	.btn:hover {
 		color: rgba(255, 255, 255, 1);
 		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	.avatar {
+		color: darkgray;
+		height: 60px;
+		width: 60px;
+		border-radius: 50%;
+		border: 1px solid rgba(255, 255, 255, 0.7);
 	}
 </style>

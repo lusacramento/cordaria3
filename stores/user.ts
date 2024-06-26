@@ -3,9 +3,10 @@ import { defineStore } from 'pinia'
 export const useMyUserStore = defineStore({
 	id: 'myUserStore',
 	state: () => ({
-		id: '',
+		id: ('' as string) || null,
 		userName: '',
 		email: '',
+		password: '',
 		loggedIn: false,
 		theme: 'dark',
 	}),
@@ -15,9 +16,18 @@ export const useMyUserStore = defineStore({
 			return state.id
 		},
 
-		getNameUser(state) {
+		getUserName(state) {
 			return state.userName
 		},
+
+		getEmail(state) {
+			return state.email
+		},
+
+		getPassword(state) {
+			return state.password
+		},
+
 		getloggedIn(state) {
 			return state.loggedIn
 		},
@@ -30,6 +40,14 @@ export const useMyUserStore = defineStore({
 		setUserName(userName: string) {
 			this.userName = userName
 			return
+		},
+
+		setPassword(password: string) {
+			this.password = password
+		},
+
+		clearPassword() {
+			this.password = ''
 		},
 
 		logIn() {

@@ -1,73 +1,28 @@
 <template>
 	<div id="the-pratice" class="cordaria">
 		<div class="exercise-nav container-fluid">
-			<LayoutsHeader :title="title"> </LayoutsHeader>
+			<LayoutsHeader :title="title"></LayoutsHeader>
 
 			<div class="row justify-content-center bg-exercise-screen">
 				<div class="col-lg-10 layer-center">
 					<div
 						class="exercise-screen d-flex align-items-center justify-content-center"
 					>
-						<form @submit.prevent="handleLogin" class="">
-							<div
-								v-if="isShowMessageError"
-								class="justify-content-center text-center alert alert-danger d-flex align-items-center"
-								role="alert"
-							>
-								<div class="messageError">
-									{{ messageError }}<br />
-									<NuxtLink to="/recuperar-senha">Esqueceu a senha?</NuxtLink>
-								</div>
-							</div>
-							<div v-for="field in user">
-								<div class="mb-3 row">
-									<div class="col-3">
-										<label
-											:for="`register-${field.id}-label`"
-											class="form-label"
-											>{{ field.label }}</label
-										>
-									</div>
-									<div v class="col-9">
-										<input
-											:type="field.type"
-											:name="`register-${field.id}-input`"
-											:id="`register-${field.id}-input`"
-											v-model="field.content"
-											class="form-control"
-											required
-											:placeholder="field.placeHolder"
-											@focus="field.isShowInfo = true"
-											@focusout="field.isShowInfo = false"
-											:class="{
-												'is-valid': field.isValidated,
-												'is-invalid': !field.isValidated,
-											}"
-										/>
-										<div v-if="field.isShowInfo">
-											<small>{{ field.info }}</small>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="mb-3 row justify-content-center">
-								<div class="col-3">
-									<button
-										type="submit"
-										:disabled="isLoading"
-										class="btn btn-primary"
-									>
-										ENTRAR
-									</button>
-								</div>
-							</div>
-							<div class="mt-3 row justify-content-center">
-								<div class="col-auto">
-									<NuxtLink to="/registrar">Não tem uma conta?</NuxtLink>
-								</div>
-							</div>
-						</form>
+						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
+							<template #body>
+								<LoginForm :status="status" />
+							</template>
+						</LayoutsModal>
+						<button
+							ref="userDetailsButton"
+							type="button"
+							class="btn btn-primary"
+							data-bs-toggle="modal"
+							:data-bs-target="`#${modal.id}`"
+							hidden
+						>
+							Launch demo modal
+						</button>
 					</div>
 				</div>
 			</div>
@@ -82,68 +37,36 @@
 
 	const title = ref('ENTRAR')
 
-	// user data
-	const user: any = ref({
-		email: {
-			id: 'email',
-			label: 'Email',
-			content: '',
-			isValidated: false,
-			isShowInfo: false,
-			info: 'Digite um email válido.',
-			type: 'email',
-			placeHolder: 'Digite seu email',
-		},
-		password: {
-			id: 'password',
-			label: 'Senha',
-			content: '',
-			isValidated: false,
-			isShowInfo: false,
-			info: 'A senha deve conter pelo menos 9 caracteres!',
-			type: 'password',
-			placeHolder: 'Digite uma senha',
-		},
-	})
-
-	// Validations
-
-	const isLoading = ref(true)
-	const validator = useValidations()
-	const allValidated = ref(false)
-
-	watch(user.value, () => {
-		user.value.email.isValidated = validator.validateEmail(
-			user.value.email.content,
-		)
-
-		user.value.password.isValidated = validator.validatePassword(
-			user.value.password.content,
-		)
-		allValidated.value = isAllValidations()
-	})
-
-	function isAllValidations() {
-		if (user.value.email.isValidated && user.value.password.isValidated) {
-			isLoading.value = false
-			return true
-		} else {
-			isLoading.value = true
-			return false
-		}
+	// modal
+	const modal = {
+		title: 'Cadastrar',
+		id: 'registerModal',
 	}
+	const userDetailsButton: any = ref()
 
-	// handle
+	onMounted(() => {
+		userDetailsButton.value.click()
+	})
 
-	const messageError = ref('')
-	const isShowMessageError = ref(false)
+	onBeforeUnmount(() => {
+		userDetailsButton.value.click()
+	})
 
+	// status
+	const status = ref({
+		isShow: false,
+		message: 'test',
+		isError: false,
+		isSuccess: false,
+	})
+
+	// handle ogin
 	const { signIn, data } = useAuth()
 
-	async function handleLogin() {
+	async function handleFormSubmit() {
 		const newUser = {
-			email: user.value.email.content,
-			password: user.value.password.content,
+			email: useMyUserStore().getEmail,
+			password: useMyUserStore().getPassword,
 		}
 
 		try {
@@ -153,10 +76,13 @@
 			})
 
 			if (response.error) {
-				if (response.error === 'Unauthorized') isShowMessageError.value = true
-				messageError.value = 'Usuário ou senha inválida!'
+				if (response.error === 'Unauthorized')
+					setStatus('error', 'Usuário ou senha inválida!')
 				return
 			}
+
+			setStatus('success', 'Cadastro finalizado com sucesso!')
+
 			const responseUser: any = { ...data.value?.user }
 
 			loadUserOnstore(responseUser)
@@ -165,10 +91,26 @@
 				name: 'a-pratica',
 			})
 		} catch (e: any) {
-			messageError.value = e
-		} finally {
-			isLoading.value = false
+			setStatus('error', e)
 		}
+	}
+
+	function setStatus(type: string, message: string) {
+		switch (type) {
+			case 'error':
+				status.value.isSuccess = false
+				status.value.isError = true
+				status.value.message = message
+				break
+			case 'success':
+				status.value.isError = false
+				status.value.isSuccess = true
+				status.value.message = message
+
+			default:
+				break
+		}
+		status.value.isShow = true
 	}
 
 	const userStore = useMyUserStore()
