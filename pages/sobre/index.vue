@@ -48,7 +48,7 @@
 					</p>
 				</div>
 			</div>
-			<aside class="row d-flex justify-content-center mt-4">
+			<aside class="row d-flex justify-content-center mt-5 mb-5">
 				<div class="col-lg-6 col-md-9 col-12">
 					<Box
 						:title-text="boxes.callInAction.text"
@@ -59,7 +59,7 @@
 				</div>
 			</aside>
 		</div>
-        <div class="container layer-center">
+		<div class="container mt-5">
 			<div class="row justify-content-around">
 				<section class="col-md-5">
 					<Box
@@ -119,7 +119,7 @@
 				</div>
 			</div>
 		</div>
-		<aside class="row justify-content-center mt-3 m-3">
+		<aside class="row justify-content-center mt-5 m-3">
 			<div class="col-9">
 				<p id="credit-text" class="text-center">
 					Esta pesquisa foi possível devido ao apoio da Lei Emergencial de
@@ -136,8 +136,7 @@
 
 <script>
 	import Box from '@/components/box/Box.vue'
-    import Pdf from '@/assets/pdfs/SACRAMENTO-Luciano-Cordaria-desenvolvimento-de-aplicacao-web-para-violao-e-guitarra.pdf'
-
+	import Pdf from '@/assets/pdfs/SACRAMENTO-Luciano-Cordaria-desenvolvimento-de-aplicacao-web-para-violao-e-guitarra.pdf'
 
 	export default {
 		components: { Box },
@@ -145,7 +144,7 @@
 		data() {
 			return {
 				title: 'SOBRE',
-                pdf: Pdf,
+				pdf: Pdf,
 
 				boxes: {
 					what: {
@@ -166,7 +165,7 @@
 						leftLogo: true,
 						rightLogo: false,
 					},
-                    aboutResearch: {
+					aboutResearch: {
 						text: '<h2>Como surgiu?</h2>',
 						schema: 'the-research',
 						leftLogo: false,
@@ -205,8 +204,7 @@
 						rightLogo: true,
 					},
 				},
-                researchUrl: '/files/pdf/pesquisa.pdf',
-
+				researchUrl: '/files/pdf/pesquisa.pdf',
 			}
 		},
 		head() {
@@ -254,7 +252,7 @@
 		line-height: 1.7;
 	}
 
-    #credit-text {
+	#credit-text {
 		font-family: var(--font-light);
 		font-size: var(--font-size-light) !important;
 	}
