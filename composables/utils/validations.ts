@@ -47,6 +47,14 @@ export const useValidations = () => {
 		return false
 	}
 
+	function validateInstrument(instrument: string) {
+		return instrument === 'acoustic-guitar' ||
+			instrument === 'eletric-guitar' ||
+			instrument === 'bass' ||
+			instrument === 'cavaco'
+			? true
+			: false
+	}
 
 	function sanitize(text: string) {
 		const regex =
@@ -63,6 +71,7 @@ export const useValidations = () => {
 		validateAge,
 		validateState,
 		validateCountry,
+		validateInstrument,
 		sanitize,
 	}
 }
