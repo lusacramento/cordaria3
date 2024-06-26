@@ -1,5 +1,3 @@
-import { faTruckMonster } from '@fortawesome/free-solid-svg-icons'
-
 export const useValidations = () => {
 	function validateEmail(email: string) {
 		var re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
