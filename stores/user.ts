@@ -20,6 +20,10 @@ export const useMyUserStore = defineStore({
 			return state.userName
 		},
 
+		getEmail(state) {
+			return state.email
+		},
+
 		getPassword(state) {
 			return state.password
 		},
