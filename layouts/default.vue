@@ -6,9 +6,7 @@
 		<main id="main">
 			<slot />
 		</main>
-		<div id="footer container-fluid">
-			<LayoutsFooter />
-		</div>
+		<div id="footer container-fluid"></div>
 	</div>
 </template>
 
