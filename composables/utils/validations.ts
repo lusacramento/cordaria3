@@ -48,6 +48,12 @@ export const useValidations = () => {
 	}
 
 
+	function sanitize(text: string) {
+		const regex =
+			/^(?=.{1,80}$)[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+(?: *[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+)*$/
+		return regex.test(text)
+	}
+
 	return {
 		validateEmail,
 		validateUserName,
