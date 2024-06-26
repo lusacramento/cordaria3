@@ -31,6 +31,11 @@ export const useValidations = () => {
 		return false
 	}
 
+	function validateAge(age: number) {
+		if (age >= 5 && age <= 120) return true
+		return false
+	}
+
 
 	return {
 		validateEmail,
