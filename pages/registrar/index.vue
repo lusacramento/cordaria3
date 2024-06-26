@@ -10,7 +10,7 @@
 					>
 						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
 							<template #body>
-								<RegisterForm :status="status" />
+								<AuthRegisterForm :status="status" />
 							</template>
 						</LayoutsModal>
 						<button
@@ -69,8 +69,6 @@
 		}
 		useMyUserStore().clearPassword()
 		try {
-			useMyUtilsStore().setValidatedAllFields(false)
-
 			const response = await useIUser().createUser(user)
 			if (response.error.value) {
 				const messageRes: String = response.error.value?.data.message
@@ -86,8 +84,6 @@
 			setStatus('error', e)
 
 			return
-		} finally {
-			useMyUtilsStore().setValidatedAllFields(true)
 		}
 
 		setStatus('success', 'Usuário cadastrado com sucesso!')

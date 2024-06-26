@@ -10,7 +10,7 @@
 					>
 						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
 							<template #body>
-								<LoginForm :status="status" />
+								<AuthLoginForm :status="status" />
 							</template>
 						</LayoutsModal>
 						<button
