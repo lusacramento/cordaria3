@@ -1,14 +1,14 @@
 <template>
 	<header>
-		<div class="row layer-top d-flex align-items-center">
+		<div class="layer-top row d-flex align-items-center justify-content-center">
 			<div class="col">
-				<slot name="left"></slot>
-			</div>
-			<div class="col justify-content-center text-center">
-				<h1 v-html="$props.title" class="title mt-3 mb-4" />
+				<slot name="left" class=""></slot>
 			</div>
 			<div class="col">
-				<slot name="right"><UserAuth /> </slot>
+				<slot name="center" class=""></slot>
+			</div>
+			<div class="col">
+				<slot name="right" class=""></slot>
 			</div>
 		</div>
 	</header>
@@ -16,12 +16,16 @@
 
 <script lang="ts" setup>
 	const props = defineProps({
-		title: { type: String, required: false, default: 'Title' },
+		title: { type: String, required: false },
 	})
 </script>
 
 <style scoped>
 	.layer-top {
 		height: 120px;
+	}
+
+	.slot {
+		display: flex;
 	}
 </style>
