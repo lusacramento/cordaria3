@@ -6,6 +6,7 @@ export const useMyUserStore = defineStore({
 		id: '',
 		userName: '',
 		email: '',
+		password: '',
 		loggedIn: false,
 		theme: 'dark',
 	}),
@@ -18,6 +19,11 @@ export const useMyUserStore = defineStore({
 		getUserName(state) {
 			return state.userName
 		},
+
+		getPassword(state) {
+			return state.password
+		},
+
 		getloggedIn(state) {
 			return state.loggedIn
 		},
@@ -30,6 +36,14 @@ export const useMyUserStore = defineStore({
 		setUserName(userName: string) {
 			this.userName = userName
 			return
+		},
+
+		setPassword(password: string) {
+			this.password = password
+		},
+
+		clearPassword() {
+			this.password = ''
 		},
 
 		logIn() {
