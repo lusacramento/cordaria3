@@ -5,7 +5,7 @@ export const useValidations = () => {
 	}
 
 	function validateUserName(name: string) {
-		if (name.length > 3 && name.length <= 16) return true
+		if (name.length >= 3 && name.length <= 16 && sanitize(name)) return true
 
 		return false
 	}
