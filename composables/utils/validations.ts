@@ -41,6 +41,12 @@ export const useValidations = () => {
 		return false
 	}
 
+	function validateCountry(country: string) {
+		if (country.length >= 2 && country.length <= 30 && sanitize(country))
+			return true
+		return false
+	}
+
 
 	return {
 		validateEmail,
