@@ -52,10 +52,6 @@
 </template>
 
 <script lang="ts" setup>
-	onBeforeMount(() => {
-		useMyUtilsStore().$reset
-	})
-
 	defineProps({
 		status: {
 			type: Object,
@@ -101,8 +97,6 @@
 		user.value.password.isValidated = validator.validatePassword(
 			user.value.password.content,
 		)
-
-		useMyUtilsStore().setValidatedAllFields(verifyAllValidations())
 	})
 
 	function verifyAllValidations() {

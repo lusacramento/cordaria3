@@ -82,10 +82,6 @@
 </template>
 
 <script lang="ts" setup>
-	onBeforeMount(() => {
-		useMyUtilsStore().$reset
-	})
-
 	defineProps({
 		status: {
 			type: Object,
@@ -168,13 +164,10 @@
 		)
 
 		acceptTerms.value.content = acceptTerms.value.content
-
-		useMyUtilsStore().setValidatedAllFields(verifyAllValidations())
 	})
 
 	watch(acceptTerms.value, (newValue) => {
 		acceptTerms.value.isValidated = newValue.content
-		useMyUtilsStore().setValidatedAllFields(verifyAllValidations())
 	})
 
 	function verifyAllValidations() {

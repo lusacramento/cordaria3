@@ -30,7 +30,6 @@
 						type="button"
 						@click="$emit('callFunction')"
 						class="btn btn-primary"
-						:disabled="!useMyUtilsStore().getValidatedAllFields"
 					>
 						Salvar
 					</button>
