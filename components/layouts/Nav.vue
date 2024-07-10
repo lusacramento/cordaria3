@@ -109,6 +109,14 @@
 						>
 					</li>
 					<li class="nav-item">
+						<nuxt-link
+							to="/admin"
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							><span>Administrar</span></nuxt-link
+						>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link email-link" :href="icons.email.href">
 							<img
 								class="img img-fluid"
@@ -208,7 +216,7 @@
 	async function handleLogout() {
 		await signOut()
 		useMyUserStore().$reset()
-		useRouter().push('index')
+		await useRouter().push('index')
 	}
 
 	function removeAllActive() {

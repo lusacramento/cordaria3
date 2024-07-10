@@ -10,7 +10,7 @@
 					>
 						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
 							<template #body>
-								<LoginForm :status="status" />
+								<AuthLoginForm :status="status" />
 							</template>
 						</LayoutsModal>
 						<button
@@ -39,8 +39,8 @@
 
 	// modal
 	const modal = {
-		title: 'Cadastrar',
-		id: 'registerModal',
+		title: 'Entrar',
+		id: 'loginModal',
 	}
 	const userDetailsButton: any = ref()
 

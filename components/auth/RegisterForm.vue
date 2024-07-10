@@ -15,12 +15,12 @@
 		</div>
 		<div v-for="field in user">
 			<div class="mb-3 row align-items-center">
-				<div class="col-2">
+				<div class="col-5">
 					<label :for="`register-${field.id}-label`" class="form-label">{{
 						field.label
 					}}</label>
 				</div>
-				<div v class="col-10">
+				<div v class="col-7">
 					<input
 						:type="field.type"
 						:name="`register-${field.id}-input`"
@@ -42,20 +42,46 @@
 				</div>
 			</div>
 		</div>
+		<div class="mb-3 row">
+			<div class="form-check justify-content-center d-flex">
+				<input
+					class="form-check-input mx-2"
+					:type="acceptTerms.type"
+					value=""
+					:id="`login-${acceptTerms}-input`"
+					v-model="acceptTerms.content"
+				/>
+				<label
+					class="form-check-label"
+					:class="{
+						'text-danger': !acceptTerms.isValidated,
+						'text-success': acceptTerms.isValidated,
+					}"
+					:for="`login-${acceptTerms.id}-input`"
+				>
+					Aceito os termos e
+					<NuxtLink
+						to="/"
+						:class="{
+							'alert-success': status.isSuccess,
+							'alert-danger': status.isError,
+						}"
+					>
+						condições de uso
+					</NuxtLink>
+				</label>
+			</div>
+		</div>
 
 		<div class="mt-3 row justify-content-center">
 			<div class="col-auto">
-				<NuxtLink to="/registrar">Não tem uma conta?</NuxtLink>
+				<NuxtLink to="/entrar">Já tem uma conta?</NuxtLink>
 			</div>
 		</div>
 	</form>
 </template>
 
 <script lang="ts" setup>
-	onBeforeMount(() => {
-		useMyUtilsStore().$reset
-	})
-
 	defineProps({
 		status: {
 			type: Object,
@@ -64,8 +90,7 @@
 	})
 
 	// user data
-	const { email, password } = storeToRefs(useMyUserStore())
-
+	const { email, userName, password } = storeToRefs(useMyUserStore())
 	const user: any = ref({
 		email: {
 			id: 'email',
@@ -77,6 +102,16 @@
 			type: 'email',
 			placeHolder: 'Digite seu email',
 		},
+		name: {
+			id: 'name',
+			label: 'Nome de Usuário',
+			content: userName,
+			isValidated: false,
+			isShowInfo: false,
+			info: 'O nome deve conter, pelo menos 3 caracteres!',
+			type: 'text',
+			placeHolder: 'Digite um nome de usuário',
+		},
 		password: {
 			id: 'password',
 			label: 'Senha',
@@ -87,26 +122,62 @@
 			type: 'password',
 			placeHolder: 'Digite uma senha',
 		},
+		confirmPassword: {
+			id: 'confirm-password',
+			label: 'Confirmar Senha',
+			content: '',
+			isValidated: false,
+			isShowInfo: false,
+			info: 'As senhas devem ser iguais.',
+			type: 'password',
+			placeHolder: 'Repita a senha acima',
+		},
+	})
+
+	const acceptTerms = ref({
+		id: 'accept-terms',
+		label: 'Aceitar Termos',
+		content: false,
+		isValidated: false,
+		isShowInfo: false,
+		info: 'É obrigatório aceitar os termos.',
+		type: 'checkbox',
+		placeHolder: 'Aceite os termos do serviço.',
 	})
 
 	// validations
-
 	const validator = useValidations()
 
 	watch(user.value, () => {
 		user.value.email.isValidated = validator.validateEmail(
 			user.value.email.content,
 		)
-
+		user.value.name.isValidated = validator.validateUserName(
+			user.value.name.content,
+		)
 		user.value.password.isValidated = validator.validatePassword(
 			user.value.password.content,
 		)
+		user.value.confirmPassword.isValidated = validator.validateConfirmPassword(
+			user.value.password.content,
+			user.value.confirmPassword.content,
+		)
 
-		useMyUtilsStore().setValidatedAllFields(verifyAllValidations())
+		acceptTerms.value.content = acceptTerms.value.content
+	})
+
+	watch(acceptTerms.value, (newValue) => {
+		acceptTerms.value.isValidated = newValue.content
 	})
 
 	function verifyAllValidations() {
-		if (user.value.email.isValidated && user.value.password.isValidated) {
+		if (
+			user.value.email.isValidated &&
+			user.value.name.isValidated &&
+			user.value.password.isValidated &&
+			user.value.confirmPassword.isValidated &&
+			acceptTerms.value.isValidated
+		) {
 			isLoading.value = false
 			return true
 		} else {
@@ -123,7 +194,7 @@
 		color: rgba(255, 255, 255, 1);
 	}
 	.alert-danger {
-		background-color: red;
+		background-color: red !important;
 	}
 
 	.alert-success {
