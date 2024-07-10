@@ -39,8 +39,8 @@
 
 	// modal
 	const modal = {
-		title: 'Cadastrar',
-		id: 'registerModal',
+		title: 'Entrar',
+		id: 'loginModal',
 	}
 	const userDetailsButton: any = ref()
 
