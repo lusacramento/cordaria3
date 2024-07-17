@@ -155,7 +155,12 @@
 		if (userStore.getId) {
 			const progress = await useIProgress().getProgress(userStore.getId)
 			if (progress.error.value?.statusCode === 404) {
-				const lessonQuery = { number: 130, quantityOfStrings: 4 }
+				const lessonQuery = {
+					number: 1,
+					quantityOfStrings: useHelpers().getQuantityOfStrings(
+						userDetailsStore.getInstrument,
+					),
+				}
 				const lesson = await useILesson().getLesson(lessonQuery)
 
 				if (lesson?.lesson) {
