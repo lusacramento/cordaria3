@@ -199,8 +199,6 @@
 		fields.value.instrument.isValidated = useValidations().validateInstrument(
 			instrument.value,
 		)
-
-		useMyUtilsStore().setValidatedAllFields(verifyAllValidations())
 	})
 
 	function verifyAllValidations() {
