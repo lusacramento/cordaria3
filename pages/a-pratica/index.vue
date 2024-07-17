@@ -17,7 +17,9 @@
 					</div>
 				</template>
 				<template #center>
-					<div class="d-flex justify-content-center">Lição X</div>
+					<div class="d-flex justify-content-center">
+						<h1>Lição {{ lesson?.number }}</h1>
+					</div>
 				</template>
 				<template #right>
 					<div class="d-flex align-items-center justify-content-end">
@@ -79,18 +81,26 @@
 </template>
 
 <script lang="ts" setup>
+	import { useIProgress } from '~/composables/interfaces/iProgress'
+	import { useMyProgressStore } from '~/stores/progress'
+	import type { Lesson } from '~/types/Lesson'
+
 	definePageMeta({
 		middleware: 'auth',
 	})
 
 	onBeforeMount(async () => {
 		await loadUserStore()
-		verifyIfUserDetailsExist()
+		await verifyIfUserDetailsExist()
+		await loadProgress()
+		await useController().init()
 	})
 
 	// Stores
 	const userStore = useMyUserStore()
 	const userDetailsStore = useMyUserDetailsStore()
+
+	const { lesson } = storeToRefs(useMyProgressStore())
 
 	const userDetailsButton: any = ref()
 
@@ -114,6 +124,25 @@
 				: saveUserDetailsOnStore(userDetailsResponse.data.value)
 		} catch (error) {
 			console.log(error)
+		}
+	}
+
+	loadProgress()
+
+	async function loadProgress() {
+		if (userStore.getId) {
+			const progress = await useIProgress().getProgress(userStore.getId)
+			if (progress.error.value?.statusCode === 404) {
+				const lessonQuery = { number: 130, quantityOfStrings: 4 }
+				const lesson = await useILesson().getLesson(lessonQuery)
+
+				if (lesson?.lesson) {
+					useMyProgressStore().setLesson(lesson.lesson as Lesson)
+				}
+			} else {
+				console.log('else')
+				// await useMyProgressStore().setProgress(progress.data.value)
+			}
 		}
 	}
 
