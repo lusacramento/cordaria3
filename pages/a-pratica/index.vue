@@ -11,14 +11,23 @@
 						<div
 							class="avatar d-flex justify-content-center align-items-center"
 						>
-							<small>Avatar</small>
+							<!-- <small>Avatar</small> -->
+							<img
+								src="/users-avatar/lusacramento-avatar.jpg"
+								class="img-fluid"
+								alt=""
+							/>
 						</div>
 						<div class="mx-2">@{{ userStore.getUserName }}</div>
 					</div>
 				</template>
 				<template #center>
-					<div class="d-flex justify-content-center">
-						<h1>Lição {{ lesson?.number }}</h1>
+					<div class="d-flex justify-content-between">
+						<div>Lição: {{ lesson?.number }}</div>
+						<div>BPM {{ lesson?.bpm }}</div>
+						<div>PC {{ lesson?.firstFinger }}</div>
+						<div>{{ lesson?.level }}</div>
+						<div>PC: {{ firstString }}</div>
 					</div>
 				</template>
 				<template #right>
@@ -101,6 +110,19 @@
 	const userDetailsStore = useMyUserDetailsStore()
 
 	const { lesson } = storeToRefs(useMyProgressStore())
+
+	const firstString = computed(() => {
+		switch (lesson.value?.stringNumber) {
+			case 'upToDown':
+				return 'Primeira para Última'
+
+			case 'downToUp':
+				return 'Última para Primeira'
+
+			default:
+				return lesson.value?.firstFinger
+		}
+	})
 
 	const userDetailsButton: any = ref()
 
@@ -220,5 +242,10 @@
 		width: 60px;
 		border-radius: 50%;
 		border: 1px solid rgba(255, 255, 255, 0.7);
+	}
+	.img-fluid {
+		width: 59px;
+		height: 59px;
+		border-radius: 50%;
 	}
 </style>
