@@ -26,7 +26,13 @@ export const useILesson = () => {
 		})
 	}
 
+	async function getLessonById(id: string) {
+		return await $fetch('/api/lessons/' + id, {
+			method: 'get',
+		})
+	}
+
 	async function deleteAll() {}
 
-	return { postMany, getAll, deleteAll, getLesson }
+	return { postMany, getAll, deleteAll, getLesson, getLessonById }
 }
