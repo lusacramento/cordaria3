@@ -16,7 +16,7 @@ export const useMyProgressStore = defineStore({
 	},
 
 	actions: {
-		setProgress(progress: Progress[]) {
+		async setProgress(progress: Progress[]) {
 			this.progress = progress
 		},
 
