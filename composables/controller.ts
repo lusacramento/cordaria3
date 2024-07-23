@@ -28,13 +28,19 @@ let lessonNumber = 0
 // counter variable
 const counter = ref(0)
 
+const isCompleted = ref(false)
+
 export const useController = () => {
 	let deckIndex = 0
 
+	const detailsStore = useMyUserDetailsStore()
+	const progressStore = useMyProgressStore()
+	const settingsStore = useMySettingsStore()
+
 	async function init() {
-		instrument.value = await useMyUserDetailsStore().getInstrument
-		lesson.value = await useMyProgressStore().getCurrentLesson
-		counter.value = await useMySettingsStore().getCounter
+		instrument.value = await detailsStore.getInstrument
+		lesson.value = await progressStore.getCurrentLesson
+		counter.value = await settingsStore.getCounter
 		instrumentMap.value = await useAudio().getInstrumentMapping(
 			instrument.value,
 		)
@@ -193,7 +199,9 @@ export const useController = () => {
 			cards.prev.value = cards.current.value
 			cards.current.value = Card.getEmptyCard()
 
-			if (lesson.value?.message) alert(lesson.value.message)
+			// if (lesson.value?.message) alert(lesson.value.message)
+
+			isCompleted.value = true
 		}
 	}
 
@@ -214,5 +222,6 @@ export const useController = () => {
 		init,
 		counter,
 		startLesson,
+		isCompleted,
 	}
 }

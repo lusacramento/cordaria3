@@ -93,6 +93,9 @@
 	import { useIProgress } from '~/composables/interfaces/iProgress'
 	import { useMyProgressStore } from '~/stores/progress'
 	import type { Lesson } from '~/types/Lesson'
+	import type { Progress } from '~/types/Progress'
+	import { type ObjectId } from 'mongoose'
+	import { Instrument } from '~/types/Instrument'
 
 	definePageMeta({
 		middleware: 'auth',
@@ -108,6 +111,10 @@
 	// Stores
 	const userStore = useMyUserStore()
 	const userDetailsStore = useMyUserDetailsStore()
+	const progressStore = useMyProgressStore()
+	const iProgress = useIProgress()
+	const iLesson = useILesson()
+	const helpers = useHelpers()
 
 	const { lesson } = storeToRefs(useMyProgressStore())
 
@@ -152,25 +159,49 @@
 	loadProgress()
 
 	async function loadProgress() {
-		if (userStore.getId) {
-			const progress = await useIProgress().getProgress(userStore.getId)
-			if (progress.error.value?.statusCode === 404) {
-				const lessonQuery = {
-					number: 1,
-					quantityOfStrings: useHelpers().getQuantityOfStrings(
-						userDetailsStore.getInstrument,
-					),
-				}
-				const lesson = await useILesson().getLesson(lessonQuery)
+		if (!userStore.getId) throw Error
 
-				if (lesson?.lesson) {
-					useMyProgressStore().setLesson(lesson.lesson as Lesson)
-				}
-			} else {
-				console.log('else')
-				// await useMyProgressStore().setProgress(progress.data.value)
-			}
+		const response = await useIProgress().getProgress(userStore.getId)
+
+		if (response.error.value?.statusCode === 404) {
+			const lesson = await getLesson(1)
+			if (!lesson) throw Error
+
+			const progress: Progress = generateProgress(lesson)
+			const response = await postProgress(progress)
 		}
+
+		if (response.data.value) {
+			const progress = response.data.value as Progress[]
+			progressStore.setProgress(progress)
+
+			const lastLessonId = progress[progress.length - 1]
+				.lesson as unknown as string
+
+			const lastLesson = (await iLesson.getLessonById(lastLessonId)) as Lesson
+			progressStore.setLesson(lastLesson)
+			console.log('else')
+			console.log(lastLesson)
+		}
+	}
+
+	async function getLesson(number: number) {
+		const quantityOfStrings = useHelpers().getQuantityOfStrings(
+			userDetailsStore.getInstrument,
+		)
+
+		const lessonQuery = {
+			number: number,
+			quantityOfStrings: quantityOfStrings,
+		}
+		const response = await useILesson().getLesson(lessonQuery)
+
+		if (response?.lesson) {
+			const lesson = response.lesson as Lesson
+			progressStore.setLesson(lesson)
+			return lesson
+		}
+		return null
 	}
 
 	function toogleUserDetailsForm() {
@@ -202,10 +233,17 @@
 	}
 
 	const controller = useController()
-
 	controller.init()
 
-	const { showBox, showCards, showStatistics } = controller
+	const { showBox, showCards, showStatistics, isCompleted } = controller
+
+	watch(isCompleted, async (newValue) => {
+		if (newValue) {
+			alert(`Lição ${lesson.value?.number} Finalizada!`)
+
+			// useIProgress().postProgress(useMyProgressStore.)
+		}
+	})
 
 	const boxes = {
 		callInAction: {
@@ -214,6 +252,20 @@
 			leftLogo: false,
 			rightLogo: false,
 		},
+	}
+
+	function generateProgress(lesson: Lesson) {
+		return {
+			userId: userStore.getId as unknown as ObjectId,
+			lesson: lesson._id as unknown as ObjectId,
+			isCompleted: false,
+			instrument: helpers.getInstrumentEnum('bass') as Instrument,
+			currentLesson: lesson.number,
+		}
+	}
+
+	async function postProgress(progress: Progress) {
+		return await iProgress.postProgress(progress)
 	}
 
 	function start() {
