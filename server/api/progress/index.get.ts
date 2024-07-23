@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
 
 	try {
 		const response = await Progress.find({ userId: userId })
-		if (!response)
+		if (response.length === 0)
 			throw createError({
 				statusCode: 404,
 				statusMessage: 'Not Found',
