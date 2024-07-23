@@ -1,7 +1,7 @@
 import type { Progress } from '~/types/Progress'
 
 export const useIProgress = () => {
-	const url = '/api/progress'
+	const url = '/api/progress/'
 
 	async function getProgress(userId: string) {
 		return await useFetch(url, {
