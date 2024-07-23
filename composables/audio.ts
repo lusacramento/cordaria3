@@ -9,7 +9,7 @@ const adjustSync = 1.1 // <-- ajust here the release duration for legattos notes
 function getInstrumentMapping(instrument: string) {
 	let instrumentMap = {}
 	switch (true) {
-		case instrument === 'acoustic-guitar' || instrument === 'eletric-guitar':
+		case instrument === 'acoustic-guitar' || instrument === 'electric-guitar':
 			instrumentMap = useGuitar().getMap()
 			break
 		case instrument === 'cavaco':

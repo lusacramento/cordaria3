@@ -95,12 +95,12 @@
 					type="radio"
 					class="btn-check"
 					name="instrument-input"
-					id="eletric-guitar"
+					id="electric-guitar"
 					autocomplete="off"
 					v-model="instrument"
-					value="eletric-guitar"
+					value="electric-guitar"
 				/>
-				<label class="btn btn-outline-danger" for="eletric-guitar"
+				<label class="btn btn-outline-danger" for="electric-guitar"
 					>Guitarra</label
 				>
 			</div>
@@ -199,8 +199,6 @@
 		fields.value.instrument.isValidated = useValidations().validateInstrument(
 			instrument.value,
 		)
-
-		useMyUtilsStore().setValidatedAllFields(verifyAllValidations())
 	})
 
 	function verifyAllValidations() {

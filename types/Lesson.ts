@@ -1,4 +1,4 @@
-interface Lesson {
+export interface Lesson {
 	_id: string
 	number: number
 	level: string
@@ -8,5 +8,3 @@ interface Lesson {
 	message: string
 	quantityOfStrings: number
 }
-
-export type { Lesson }

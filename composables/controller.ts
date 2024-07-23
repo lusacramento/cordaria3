@@ -1,6 +1,6 @@
 import { useMySettingsStore } from './../stores/settings'
 import { Card } from './model/card'
-import type { Lesson } from './model/lesson'
+import type { Lesson } from '~/types/Lesson'
 
 // Views variables
 const showCards = ref(false)
@@ -17,37 +17,40 @@ const cards = {
 	next: ref(Card.getEmptyCard()),
 }
 
+const instrument = ref('')
+const instrumentMap = ref([]) as Ref<any>
+
+const lesson = ref() as Ref<Lesson> | Ref<null>
+
 // lesson variables
-const title = ref('A PRÁTICA')
-let lesson: Lesson = useLessons().getEmptyLesson()
 let lessonNumber = 0
-let defaultInstrumentName = ''
 
 // counter variable
 const counter = ref(0)
 
+const isCompleted = ref(false)
+
 export const useController = () => {
-	defaultInstrumentName = useMySettingsStore().getInstrumentDefault
-	const instrumentMap = useAudio().getInstrumentMapping(defaultInstrumentName)
-	counter.value = useMySettingsStore().getCounter
 	let deckIndex = 0
 
-	function init() {
-		initLesson()
-		initDeck(lesson)
-	}
+	const detailsStore = useMyUserDetailsStore()
+	const progressStore = useMyProgressStore()
+	const settingsStore = useMySettingsStore()
 
-	function initLesson() {
-		lessonNumber = useMySettingsStore().getLastLesson + 1
-		lesson = useLessons().getLesson(
-			lessonNumber,
-			defaultInstrumentName,
-		) as Lesson
+	async function init() {
+		instrument.value = await detailsStore.getInstrument
+		lesson.value = await progressStore.getCurrentLesson
+		counter.value = await settingsStore.getCounter
+		instrumentMap.value = await useAudio().getInstrumentMapping(
+			instrument.value,
+		)
+		if (lesson.value !== null) initDeck(lesson.value)
 	}
 
 	function initDeck(lesson: Lesson) {
 		let stringsNumber = 0
-		if (Array.isArray(instrumentMap)) stringsNumber = instrumentMap.length
+		if (Array.isArray(instrumentMap.value))
+			stringsNumber = instrumentMap.value.length
 
 		deck.value = new Deck(
 			lesson.firstFinger.toString(),
@@ -59,39 +62,17 @@ export const useController = () => {
 		cards.next.value = deck.value[deckIndex + 1]
 	}
 
-	function payload(repeatedLesson?: number) {
-		switch (true) {
-			case repeatedLesson !== undefined:
-				updateLesson(repeatedLesson)
-				break
-			case counter.value !== useMySettingsStore().getCounter:
-				counter.value = useMySettingsStore().getCounter
-				updateLesson(lessonNumber)
-				break
-
-			default:
-				new Error('No valid argument provided')
-				break
-		}
-
-		const tempo = getTempo(lesson.bpm)
+	async function payload(repeatedLesson?: number) {
+		const tempo = getTempo(lesson.value?.bpm as number)
 
 		useAudio().getAudios(
 			counter.value,
-			defaultInstrumentName,
-			instrumentMap,
+			instrument.value,
+			instrumentMap.value,
 			deck.value,
-			lesson.bpm,
+			lesson.value?.bpm as number,
 			tempo,
 		)
-	}
-
-	function updateLesson(lessonNumber: number) {
-		lesson = useLessons().getLesson(
-			lessonNumber,
-			defaultInstrumentName,
-		) as Lesson
-		initDeck(lesson)
 	}
 
 	function getTempo(bpm: number) {
@@ -99,7 +80,6 @@ export const useController = () => {
 	}
 
 	async function startLesson(tempo: number) {
-		title.value = `Lição ${lesson.id} - ${lesson.level} <br> ${lesson.bpm} BPM`
 		showStatistics.value = false
 		showBox.value = false
 
@@ -218,9 +198,10 @@ export const useController = () => {
 			cards.current.value.setStatus('prev')
 			cards.prev.value = cards.current.value
 			cards.current.value = Card.getEmptyCard()
-			title.value = 'Lição finalizada!'
 
-			if (lesson.message) alert(lesson.message)
+			// if (lesson.value?.message) alert(lesson.value.message)
+
+			isCompleted.value = true
 		}
 	}
 
@@ -232,7 +213,6 @@ export const useController = () => {
 	return {
 		deck,
 		cards,
-		title,
 		showCards,
 		showStatistics,
 		showBox,
@@ -242,5 +222,6 @@ export const useController = () => {
 		init,
 		counter,
 		startLesson,
+		isCompleted,
 	}
 }

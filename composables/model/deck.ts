@@ -54,14 +54,14 @@ class Deck {
 				case 'downToUp':
 					card.str = strNumber.toString()
 					strNumber--
-					if (strNumber == 1) str = 'upToDown'
+					if (strNumber === 1) str = 'upToDown'
 					break
 
 				case 'upToDown':
 					card.str = strNumber.toString()
 
 					strNumber++
-					if (strNumber == stringsNumber) str = 'downToUp'
+					if (strNumber === stringsNumber) str = 'downToUp'
 					break
 				default:
 					card.str = str

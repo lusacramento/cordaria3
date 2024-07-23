@@ -2,7 +2,7 @@
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
 <node TEXT="CORDARIA" FOLDED="false" ID="ID_1090958577" CREATED="1606664858024" MODIFIED="1706100172828" VGAP_QUANTITY="3 pt">
 <hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
-<hook NAME="MapStyle" background="#3c3836" zoom="0.9">
+<hook NAME="MapStyle" background="#3c3836">
     <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" associatedTemplateLocation="template:/dark_gruvbox_template.mm" followedTemplateLocation="template:/dark_gruvbox_template.mm" followedMapLastTime="0" fit_to_viewport="false"/>
 
 <map_styles>
@@ -10,7 +10,7 @@
 <font SIZE="24"/>
 <stylenode LOCALIZED_TEXT="styles.predefined" POSITION="bottom_or_right" STYLE="bubble">
 <stylenode LOCALIZED_TEXT="default" ID="ID_602083445" ICON_SIZE="12 pt" FORMAT_AS_HYPERLINK="false" COLOR="#3c3836" BACKGROUND_COLOR="#fbf1c7" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="8 pt" SHAPE_VERTICAL_MARGIN="5 pt" BORDER_WIDTH_LIKE_EDGE="false" BORDER_WIDTH="1.9 px" BORDER_COLOR_LIKE_EDGE="true" BORDER_COLOR="#f0f0f0" BORDER_DASH_LIKE_EDGE="true" BORDER_DASH="SOLID" VGAP_QUANTITY="3 pt">
-<arrowlink SHAPE="CUBIC_CURVE" COLOR="#a89984" WIDTH="2" TRANSPARENCY="255" DASH="" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_602083445" STARTINCLINATION="102.75 pt;-18 pt;" ENDINCLINATION="102.75 pt;3 pt;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#a89984" WIDTH="2" TRANSPARENCY="255" DASH="" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_602083445" STARTINCLINATION="102.75 pt;-17.25 pt;" ENDINCLINATION="102.75 pt;3 pt;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 <font NAME="SansSerif" SIZE="11" BOLD="false" STRIKETHROUGH="false" ITALIC="false"/>
 <edge STYLE="bezier" COLOR="#93a1a1" WIDTH="3" DASH="SOLID"/>
 <richcontent TYPE="DETAILS" CONTENT-TYPE="plain/auto"/>
@@ -106,7 +106,8 @@
 <node TEXT="value: string" ID="ID_1257969989" CREATED="1705358901634" MODIFIED="1705358910522"/>
 </node>
 <node TEXT="progress" POSITION="bottom_or_right" ID="ID_912957859" CREATED="1718648043408" MODIFIED="1718649546890">
-<node TEXT="lessonNumber: number" ID="ID_1168453386" CREATED="1718648072524" MODIFIED="1718648133418"/>
+<node TEXT="userId: ObjectId" ID="ID_1159719000" CREATED="1720648582475" MODIFIED="1720648603665"/>
+<node TEXT="lessonNumber: ObjectId" ID="ID_1168453386" CREATED="1718648072524" MODIFIED="1720648714933"/>
 <node TEXT="isCompleted: boolean" ID="ID_659431486" CREATED="1718648090387" MODIFIED="1718648101151"/>
 <node TEXT="instrument: ENUM" ID="ID_1951243824" CREATED="1718648102023" MODIFIED="1718648159160">
 <node TEXT="ACOUSTIC_GUITAR" POSITION="bottom_or_right" ID="ID_1436868844" CREATED="1704813202913" MODIFIED="1704813318073"/>

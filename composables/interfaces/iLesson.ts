@@ -19,13 +19,20 @@ export const useILesson = () => {
 		return data
 	}
 
-	async function getLessonByNumber(queryLesson: Object) {
+	async function getLesson(queryLesson: Object) {
 		return await $fetch('/api/lessons/lesson/', {
 			method: 'get',
 			query: queryLesson,
 		})
 	}
 
+	async function getLessonById(id: string) {
+		return await $fetch('/api/lessons/' + id, {
+			method: 'get',
+		})
+	}
+
 	async function deleteAll() {}
-	return { postMany, getAll, deleteAll, getLessonByNumber }
+
+	return { postMany, getAll, deleteAll, getLesson, getLessonById }
 }
