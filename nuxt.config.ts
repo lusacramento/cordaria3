@@ -4,6 +4,7 @@ export default defineNuxtConfig({
 	// 	asyncContext: true,
 	// 	renderJsonPayloads: false,
 	// },
+	// ssr: false,
 
 	runtimeConfig: {
 		authSecret: process.env.AUTH_SECRET,
@@ -21,6 +22,12 @@ export default defineNuxtConfig({
 	},
 
 	modules: [
+		[
+			'nuxt-file-storage',
+			{
+				mount: process.env.STORAGE_LOCAL_DIR,
+			},
+		],
 		'@pinia/nuxt',
 		[
 			'nuxt-server-utils',
