@@ -2,7 +2,7 @@
 	<div id="the-pratice" class="cordaria">
 		<LayoutsOffCanvas @showStatistics="payload" />
 
-		<div class="exercise-nav container-fluid">
+		<div class="container-fluid">
 			<LayoutsHeader>
 				<template #left>
 					<div
@@ -61,11 +61,9 @@
 				<template #body><UserDetailsForm /></template>
 			</LayoutsModal>
 
-			<div class="row justify-content-center bg-exercise-screen">
-				<div class="col-lg-10 layer-center">
-					<div
-						class="exercise-screen d-flex align-items-center justify-content-center"
-					>
+			<div class="row exercise justify-content-center bg-exercise-screen">
+				<div class="col-lg-10">
+					<div class="d-flex align-items-center justify-content-center">
 						<div v-if="showBox">
 							<Box
 								:title-text="boxes.callInAction.text"
@@ -99,6 +97,7 @@
 
 	definePageMeta({
 		middleware: 'auth',
+		layout: 'pratice',
 	})
 
 	onBeforeMount(async () => {
@@ -278,6 +277,12 @@
 </script>
 
 <style scoped>
+	.exercise {
+		height: 80vh;
+		display: flex;
+		align-items: center;
+	}
+
 	#start-button:hover {
 		cursor: pointer !important;
 	}
