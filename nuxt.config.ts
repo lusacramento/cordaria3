@@ -4,7 +4,12 @@ export default defineNuxtConfig({
 	// 	asyncContext: true,
 	// 	renderJsonPayloads: false,
 	// },
-	// ssr: false,
+	ssr: false,
+
+	app: {
+		baseURL: '/nuxt-github-pages/',
+		buildAssetsDir: 'assets',
+	},
 
 	runtimeConfig: {
 		authSecret: process.env.AUTH_SECRET,
