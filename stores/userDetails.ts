@@ -10,7 +10,7 @@ export const useMyUserDetailsStore = defineStore({
 		state: '',
 		country: '',
 		instrument: '',
-		imageUrl: '/public/imgs/user/user.jpg',
+		imageUrl: '/imgs/uploads/default-avatar.png',
 	}),
 
 	getters: {
@@ -32,6 +32,10 @@ export const useMyUserDetailsStore = defineStore({
 		getInstrument(state) {
 			return state.instrument
 		},
+
+		getImageUrl(state) {
+			return state.imageUrl
+		},
 	},
 	actions: {
 		setId(id: string) {
@@ -40,6 +44,10 @@ export const useMyUserDetailsStore = defineStore({
 
 		setUserId(id: string) {
 			this.userId = id
+		},
+
+		setImageUrl(imageFileName: string) {
+			this.imageUrl = `/imgs/uploads/${imageFileName}`
 		},
 
 		update(data: any) {

@@ -35,9 +35,14 @@ export const useHelpers = () => {
 		}
 	}
 
+	function getFileExtension(name: string) {
+		return name.split('.')[1]
+	}
+
 	return {
 		translate,
 		getQuantityOfStrings,
 		getInstrumentEnum,
+		getFileExtension,
 	}
 }

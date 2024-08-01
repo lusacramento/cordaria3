@@ -140,19 +140,7 @@
 
 		<div class="mb-3 row d-flex justify-content-center">
 			<label for="image-url-input" class="form-label">Imagem de perfil</label>
-			<div
-				id="image-url-input"
-				class="d-flex justify-content-center align-items-center my-3"
-			>
-				Arraste e Solte aqui
-			</div>
-			<label class="btn btn-primary">
-				<i class="fa fa-image"></i> Imagem...<input
-					type="file"
-					style="display: none"
-					name="image"
-				/>
-			</label>
+			<UploadAvatar />
 		</div>
 	</form>
 </template>

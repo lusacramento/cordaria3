@@ -2,7 +2,7 @@
 	<div id="the-pratice" class="cordaria">
 		<LayoutsOffCanvas @showStatistics="payload" />
 
-		<div class="exercise-nav container-fluid">
+		<div class="container-fluid">
 			<LayoutsHeader>
 				<template #left>
 					<div
@@ -11,12 +11,7 @@
 						<div
 							class="avatar d-flex justify-content-center align-items-center"
 						>
-							<!-- <small>Avatar</small> -->
-							<img
-								src="/users-avatar/lusacramento-avatar.jpg"
-								class="img-fluid"
-								alt=""
-							/>
+							<img :src="avatar" class="img-fluid" alt="avatar do usuário" />
 						</div>
 						<div class="mx-2">@{{ userStore.getUserName }}</div>
 					</div>
@@ -61,11 +56,9 @@
 				<template #body><UserDetailsForm /></template>
 			</LayoutsModal>
 
-			<div class="row justify-content-center bg-exercise-screen">
-				<div class="col-lg-10 layer-center">
-					<div
-						class="exercise-screen d-flex align-items-center justify-content-center"
-					>
+			<div class="row exercise justify-content-center bg-exercise-screen">
+				<div class="col-lg-10">
+					<div class="d-flex align-items-center justify-content-center">
 						<div v-if="showBox">
 							<Box
 								:title-text="boxes.callInAction.text"
@@ -99,6 +92,7 @@
 
 	definePageMeta({
 		middleware: 'auth',
+		layout: 'pratice',
 	})
 
 	onBeforeMount(async () => {
@@ -115,6 +109,8 @@
 	const iProgress = useIProgress()
 	const iLesson = useILesson()
 	const helpers = useHelpers()
+
+	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
 	const { lesson } = storeToRefs(useMyProgressStore())
 
@@ -278,6 +274,12 @@
 </script>
 
 <style scoped>
+	.exercise {
+		height: 80vh;
+		display: flex;
+		align-items: center;
+	}
+
 	#start-button:hover {
 		cursor: pointer !important;
 	}
