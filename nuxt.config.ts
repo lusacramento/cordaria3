@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 	// 	asyncContext: true,
 	// 	renderJsonPayloads: false,
 	// },
-	// ssr: false,
+	ssr: false,
 
 	runtimeConfig: {
 		authSecret: process.env.AUTH_SECRET,
