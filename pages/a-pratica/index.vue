@@ -11,12 +11,7 @@
 						<div
 							class="avatar d-flex justify-content-center align-items-center"
 						>
-							<!-- <small>Avatar</small> -->
-							<img
-								src="/users-avatar/lusacramento-avatar.jpg"
-								class="img-fluid"
-								alt=""
-							/>
+							<img :src="avatar" class="img-fluid" alt="avatar do usuário" />
 						</div>
 						<div class="mx-2">@{{ userStore.getUserName }}</div>
 					</div>
@@ -114,6 +109,8 @@
 	const iProgress = useIProgress()
 	const iLesson = useILesson()
 	const helpers = useHelpers()
+
+	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
 	const { lesson } = storeToRefs(useMyProgressStore())
 
