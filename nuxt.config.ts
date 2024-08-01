@@ -6,6 +6,11 @@ export default defineNuxtConfig({
 	// },
 	ssr: false,
 
+	app: {
+		baseURL: '/nuxt-github-pages/',
+		buildAssetsDir: 'assets',
+	},
+
 	runtimeConfig: {
 		authSecret: process.env.AUTH_SECRET,
 		mongorUrl: process.env.MONGODB_URI,
