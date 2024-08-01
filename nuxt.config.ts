@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 	ssr: false,
 
 	app: {
-		baseURL: '/nuxt-github-pages/',
+		baseURL: '/cordaria3/',
 		buildAssetsDir: 'assets',
 	},
 
