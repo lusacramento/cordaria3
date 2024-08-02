@@ -6,11 +6,6 @@ export default defineNuxtConfig({
 	// },
 	ssr: false,
 
-	app: {
-		baseURL: '/cordaria3/',
-		buildAssetsDir: 'assets',
-	},
-
 	runtimeConfig: {
 		authSecret: process.env.AUTH_SECRET,
 		mongorUrl: process.env.MONGODB_URI,
