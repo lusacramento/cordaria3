@@ -34,41 +34,86 @@
 								theProjectLinkActive: links.theProject.isLight,
 							}"
 							aria-current="page"
-							><span>O Projeto</span></nuxt-link
+							><span>Home</span></nuxt-link
 						>
 					</li>
-					<li class="nav-item">
-						<nuxt-link
-							to="/a-pesquisa"
-							class="nav-link the-research-link"
-							:class="{ theResearchLinkActive: links.theResearch.isLight }"
-							aria-current="page"
-						>
-							<span>A Pesquisa</span></nuxt-link
-						>
-					</li>
-					<li class="nav-item">
-						<nuxt-link
-							to="/a-pratica"
-							class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>A Prática</span></nuxt-link
-						>
-					</li>
-					<li class="nav-item">
+
+					<!-- 
+						MOVER PARA AREA DE USUÁRIO
+						
+						<li class="nav-item">
 						<nuxt-link
 							to="/o-tutorial"
 							class="nav-link the-tutorial-link"
 							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
 							><span>O Tutorial</span></nuxt-link
 						>
+					</li> -->
+					<li class="nav-item">
+						<nuxt-link
+							to="/ranqueamento"
+							class="nav-link clues-link"
+							:class="{ cluesLinkActive: links.clues.isLight }"
+							><span>Ranqueamento</span></nuxt-link
+						>
 					</li>
 					<li class="nav-item">
+						<nuxt-link
+							to="/sobre"
+							class="nav-link the-research-link"
+							:class="{ theResearchLinkActive: links.theResearch.isLight }"
+							aria-current="page"
+						>
+							<span>Sobre</span></nuxt-link
+						>
+					</li>
+					<!-- <li class="nav-item">
+						<nuxt-link
+							to="/a-pratica"
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							><span>Login</span></nuxt-link
+						>
+					</li> -->
+					<!-- <li class="nav-item">
+						<nuxt-link
+							to="/o-tutorial"
+							class="nav-link the-tutorial-link"
+							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
+							><span>O Tutorial</span></nuxt-link
+						>
+					</li> -->
+					<!-- <li class="nav-item">
 						<nuxt-link
 							to="/dicas"
 							class="nav-link clues-link"
 							:class="{ cluesLinkActive: links.clues.isLight }"
 							><span>Dicas</span></nuxt-link
+						>
+					</li> -->
+					<li v-if="!loggedIn" class="nav-item">
+						<nuxt-link
+							to="entrar"
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							><span>Entrar</span></nuxt-link
+						>
+					</li>
+					<li v-else class="nav-item">
+						<nuxt-link
+							to=""
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							@click.prevent="handleLogout()"
+							><span>Sair</span></nuxt-link
+						>
+					</li>
+					<li class="nav-item">
+						<nuxt-link
+							to="/admin"
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							><span>Administrar</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">
@@ -100,122 +145,10 @@
 				</ul>
 			</div>
 		</div>
-		<!-- <div class="container-fluid">
-				<div>
-					<nuxt-link
-						id="link-principal"
-						to="/"
-						class="navbar-brand logo-cordaria"
-						:class="{ active: links.theProject.isLight }"
-						aria-current="page"
-					>
-						<img
-							:src="icons.cordaria.url"
-							:alt="icons.cordaria.altText"
-							class="img img-fluid"
-							@mouseover="icons.cordaria.url = icons.cordaria.toLight()"
-							@mouseleave="icons.cordaria.url = icons.cordaria.toDark()"
-						/>
-					</nuxt-link>
-				</div>
-				<button
-					class="navbar-dark navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-					@click="showMenu()"
-				>
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div
-					id="navbarSupportedContent"
-					class="navbar-collapse"
-					:class="{ collapse: isCollapse }"
-				>
-					<div class="container-fluid">
-						<ul class="navbar-nav" :class="{ collapseColor: !isCollapse }">
-							<li class="nav-item">
-								<nuxt-link
-									to="/"
-									class="nav-link the-project-link"
-									:class="{
-										theProjectLinkActive: links.theProject.isLight,
-									}"
-									aria-current="page"
-									><span>O Projeto</span></nuxt-link
-								>
-							</li>
-							<li class="nav-item">
-								<nuxt-link
-									to="/a-pesquisa"
-									class="nav-link the-research-link"
-									:class="{ theResearchLinkActive: links.theResearch.isLight }"
-									aria-current="page"
-								>
-									<span>A Pesquisa</span></nuxt-link
-								>
-							</li>
-							<li class="nav-item">
-								<nuxt-link
-									to="/a-pratica"
-									class="nav-link the-pratice-link"
-									:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-									><span>A Prática</span></nuxt-link
-								>
-							</li>
-							<li class="nav-item">
-								<nuxt-link
-									to="/o-tutorial"
-									class="nav-link the-tutorial-link"
-									:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
-									><span>O Tutorial</span></nuxt-link
-								>
-							</li>
-							<li class="nav-item">
-								<nuxt-link
-									to="/dicas"
-									class="nav-link clues-link"
-									:class="{ cluesLinkActive: links.clues.isLight }"
-									><span>Dicas</span></nuxt-link
-								>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link email-link" :href="icons.email.href">
-									<img
-										class="img img-fluid"
-										:src="icons.email.url"
-										:alt="icons.email.altText"
-										@mouseover="icons.email.url = icons.email.toLight()"
-										@mouseleave="icons.email.url = icons.email.toDark()"
-									/>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a
-									class="nav-link insta-link"
-									href="https://instagram.com/cordaria.app"
-									target="_blank"
-								>
-									<img
-										class="img img-fluid"
-										:src="icons.insta.url"
-										:alt="icons.insta.altText"
-										@mouseover="icons.insta.url = icons.insta.toLight()"
-										@mouseleave="icons.insta.url = icons.insta.toDark()"
-									/>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div> -->
 	</nav>
 </template>
 
-<script>
+<script setup lang="ts">
 	import cordariaIconDisabled from '@/assets/imgs/logo-cordaria-disabled.png'
 	import cordariaIconEnabled from '@/assets/imgs/logo-cordaria-enabled.png'
 
@@ -224,107 +157,100 @@
 
 	import instaIconDisabled from '@/assets/imgs/logo-insta-disabled.png'
 	import instaIconEnabled from '@/assets/imgs/logo-insta-enabled.png'
-	export default {
-		data() {
-			return {
-				icons: {
-					cordaria: {
-						url: cordariaIconDisabled,
-						altText: 'Logotipo do Cordaria',
-						toLight: () => cordariaIconEnabled,
-						toDark: () => cordariaIconDisabled,
-					},
 
-					email: {
-						href: 'mailto:japraticouhoje@cordaria.com.br',
-						url: emailIconDisabled,
-						altText: 'Ícone contato',
-						toLight: () => emailIconEnabled,
-						toDark: () => emailIconDisabled,
-					},
+	const { loggedIn } = storeToRefs(useMyUserStore())
+	const icons = {
+		cordaria: reactive({
+			url: cordariaIconDisabled,
+			altText: 'Logotipo do Cordaria',
+			toLight: () => cordariaIconEnabled,
+			toDark: () => cordariaIconDisabled,
+		}),
 
-					insta: {
-						url: instaIconDisabled,
-						altText: 'Ícone Instagram',
-						toLight: () => instaIconEnabled,
-						toDark: () => instaIconDisabled,
-					},
-				},
+		email: reactive({
+			href: 'mailto:japraticouhoje@cordaria.com.br',
+			url: emailIconDisabled,
+			altText: 'Ícone contato',
+			toLight: () => emailIconEnabled,
+			toDark: () => emailIconDisabled,
+		}),
 
-				links: {
-					theProject: {
-						isLight: false,
-					},
-					theResearch: {
-						isLight: false,
-					},
-					thePratice: {
-						isLight: false,
-					},
-					theTutorial: {
-						isLight: false,
-					},
-					clues: {
-						isLight: false,
-					},
-				},
+		insta: reactive({
+			url: instaIconDisabled,
+			altText: 'Ícone Instagram',
+			toLight: () => instaIconEnabled,
+			toDark: () => instaIconDisabled,
+		}),
+	}
 
-				isCollapse: true,
-			}
+	const links = reactive({
+		theProject: {
+			isLight: false,
 		},
-		async mounted() {
-			await this.iniciateActive()
+		theResearch: {
+			isLight: false,
 		},
-
-		watch: {
-			$route() {
-				this.iniciateActive()
-			},
+		thePratice: {
+			isLight: false,
 		},
-
-		methods: {
-			getUrl: function async() {
-				return window.location.href
-			},
-
-			showMenu() {
-				this.isCollapse = !this.isCollapse
-			},
-
-			removeAllActive() {
-				this.links.theProject.isLight = false
-				this.links.theResearch.isLight = false
-				this.links.thePratice.isLight = false
-				this.links.theTutorial.isLight = false
-				this.links.clues.isLight = false
-				this.isOverIconMenu = false
-			},
-
-			iniciateActive() {
-				this.removeAllActive()
-				const url = window.location.href
-				const baseUrl = window.location.origin
-
-				switch (url) {
-					case `${baseUrl}/`:
-						this.links.theProject.isLight = true
-						break
-					case `${baseUrl}/a-pesquisa`:
-						this.links.theResearch.isLight = true
-						break
-					case `${baseUrl}/a-pratica`:
-						this.links.thePratice.isLight = true
-						break
-					case `${baseUrl}/o-tutorial`:
-						this.links.theTutorial.isLight = true
-						break
-					case `${baseUrl}/dicas`:
-						this.links.clues.isLight = true
-					default:
-						break
-				}
-			},
+		theTutorial: {
+			isLight: false,
 		},
+		clues: {
+			isLight: false,
+		},
+	})
+
+	const isCollapse = ref(true)
+
+	onMounted(async () => {
+		await iniciateActive()
+	})
+
+	watch(useRoute, () => {
+		iniciateActive()
+	})
+
+	const { signOut, status } = useAuth()
+
+	async function handleLogout() {
+		await signOut()
+		useMyUserStore().$reset()
+		await useRouter().push('index')
+	}
+
+	function removeAllActive() {
+		links.theProject.isLight = false
+		links.theResearch.isLight = false
+		links.thePratice.isLight = false
+		links.theTutorial.isLight = false
+		links.clues.isLight = false
+		// isOverIconMenu = false
+	}
+
+	function iniciateActive() {
+		removeAllActive()
+		const url = window.location.href
+		const baseUrl = window.location.origin
+
+		switch (url) {
+			case `${baseUrl}/`:
+				links.theProject.isLight = true
+				break
+			case `${baseUrl}/a-pesquisa`:
+				links.theResearch.isLight = true
+				break
+			case `${baseUrl}/a-pratica`:
+				links.thePratice.isLight = true
+				break
+			case `${baseUrl}/o-tutorial`:
+				links.theTutorial.isLight = true
+				break
+			case `${baseUrl}/dicas`:
+				links.clues.isLight = true
+			default:
+				break
+		}
 	}
 </script>
 

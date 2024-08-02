@@ -6,11 +6,20 @@
 		<main id="main">
 			<slot />
 		</main>
-		<div id="footer container-fluid">
-			<LayoutsFooter />
-		</div>
+		<div id="footer container-fluid"></div>
 	</div>
 </template>
+
+<script lang="ts" setup>
+	onMounted(() => {
+		inicializeStores()
+	})
+
+	function inicializeStores() {
+		useMyUserStore()
+		useMySettingsStore()
+	}
+</script>
 
 <style>
 	@media (min-width: 991.98px) {

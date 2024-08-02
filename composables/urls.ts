@@ -10,8 +10,8 @@ export const useUrls = () => {
 		},
 
 		{
-			name: 'eletric-guitar',
-			baseUrl: '/audios/eletric-guitar/',
+			name: 'electric-guitar',
+			baseUrl: '/audios/electric-guitar/',
 		},
 		{
 			name: 'bass',

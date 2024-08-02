@@ -4,50 +4,7 @@
 			<LayoutsHeader :title="title" />
 		</div>
 		<div class="container layer-center">
-			<div class="row justify-content-around">
-				<div class="col-md-4 col-12">
-					<Box
-						:title-text="boxes.what.text"
-						:schema="boxes.what.schema"
-						:left-logo="boxes.what.leftLogo"
-						:right-logo="boxes.what.rightLogo"
-					/>
-					<p class="large-line-height">
-						Destinado à pessoas interessadas em iniciar o estudo do violão e
-						guitarra e professores dessa arte, o projeto
-						<strong>Cordaria</strong>
-						é um aplicativo
-						<i>web</i>
-						com intuito de auxiliar a prática ao instrumento.
-					</p>
-					<p class="large-line-height">
-						Desenvolvido pelo músico e programador
-						<strong>Lu Sacramento</strong>, o projeto é fruto de uma pesquisa
-						sobre novas metodologias e abordagens ao ensino à distância de
-						música.
-					</p>
-				</div>
-				<div class="col-md-4 col-12">
-					<Box
-						:title-text="boxes.doing.text"
-						:schema="boxes.doing.schema"
-						:left-logo="boxes.doing.leftLogo"
-						:right-logo="boxes.doing.rightLogo"
-					/>
-					<p>
-						Sua função é gerar exercícios básicos de digitação com foco na
-						técnica. Tais exercícios vem para
-						<strong>auxiliar o educando</strong> a executar as notas dadas
-						através de uma escrita de tablatura, cuja a linguagem é de fácil
-						entendimento comparado a escrita de partitura.
-					</p>
-					<p>
-						Desta forma, o aluno poderá praticar junto ao auxílio de um
-						<strong>“correpetidor” virtual</strong>, em qualquer momento e
-						lugar!
-					</p>
-				</div>
-			</div>
+
 			<aside class="row d-flex justify-content-center mt-4">
 				<div class="col-lg-6 col-md-9 col-12">
 					<Box
@@ -72,18 +29,7 @@
 			return {
 				title: 'O PROJETO',
 				boxes: {
-					what: {
-						text: '<h2>O que é?</h2>',
-						schema: 'the-project',
-						leftLogo: false,
-						rightLogo: false,
-					},
-					doing: {
-						text: '<h2>O que faz?</h2>',
-						schema: 'the-project',
-						leftLogo: false,
-						rightLogo: false,
-					},
+					
 					callInAction: {
 						text: '<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
 						schema: 'the-project',
