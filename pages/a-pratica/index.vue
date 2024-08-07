@@ -253,20 +253,6 @@
 		},
 	}
 
-	function generateProgress(lesson: Lesson) {
-		return {
-			userId: userStore.getId as unknown as ObjectId,
-			lesson: lesson._id as unknown as ObjectId,
-			isCompleted: false,
-			instrument: helpers.getInstrumentEnum('bass') as Instrument,
-			currentLesson: lesson.number,
-		}
-	}
-
-	async function postProgress(progress: Progress) {
-		return await iProgress.postProgress(progress)
-	}
-
 	function start() {
 		controller.payload()
 	}
