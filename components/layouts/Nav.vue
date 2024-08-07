@@ -91,15 +91,15 @@
 							><span>Dicas</span></nuxt-link
 						>
 					</li> -->
-					<li v-if="!loggedIn" class="nav-item">
+					<li class="nav-item">
 						<nuxt-link
 							to="entrar"
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>Entrar</span></nuxt-link
+							><span>Jogar</span></nuxt-link
 						>
 					</li>
-					<li v-else class="nav-item">
+					<li v-if="!loggedIn" else class="nav-item">
 						<nuxt-link
 							to=""
 							class="nav-link the-pratice-link"
