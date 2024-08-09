@@ -163,11 +163,12 @@
 		const response = await useIProgress().getProgress(userStore.getId)
 
 		if (response.error.value?.statusCode === 404) {
-			const lesson = await getLesson(1)
-			if (!lesson) throw Error
+			const lesson = await getLesson(10)
+			if (!lesson) throw new Error('Lição não localizada!')
 
 			const progress: Progress = generateProgress(lesson)
 			const response = await postProgress(progress)
+			progressStore.addProgress(response.data.value as Progress, lesson)
 		}
 
 		if (response.data.value) {
@@ -179,8 +180,6 @@
 
 			const lastLesson = (await iLesson.getLessonById(lastLessonId)) as Lesson
 			progressStore.setLesson(lastLesson)
-			console.log('else')
-			console.log(lastLesson)
 		}
 	}
 
@@ -237,10 +236,29 @@
 	const { showBox, showCards, showStatistics, isCompleted } = controller
 
 	watch(isCompleted, async (newValue) => {
-		if (newValue) {
+		if (newValue === true) {
+			useMyProgressStore().setIsCompleted(isCompleted.value)
+
+			const response = await useIProgress().setProgress(
+				useMyProgressStore().getLastProgress,
+			)
+
+			isCompleted.value = false
+			showCards.value = false
+			showBox.value = true
 			alert(`Lição ${lesson.value?.number} Finalizada!`)
 
-			// useIProgress().postProgress(useMyProgressStore.)
+			const currentLessonNumber = progressStore.getCurrentLesson?.number
+
+			if (currentLessonNumber) {
+				const lesson = await getLesson(currentLessonNumber + 1)
+				if (!lesson) throw new Error('Lição não localizada!')
+
+				const progress = generateProgress(lesson)
+				const response = await postProgress(progress)
+				progressStore.addProgress(response.data.value as Progress, lesson)
+				controller.init()
+			}
 		}
 	})
 
@@ -251,6 +269,22 @@
 			leftLogo: false,
 			rightLogo: false,
 		},
+	}
+
+	function generateProgress(lesson: Lesson) {
+		return {
+			userId: userStore.getId as unknown as ObjectId,
+			lesson: lesson._id as unknown as ObjectId,
+			isCompleted: false,
+			instrument: helpers.getInstrumentEnum(
+				userDetailsStore.getInstrument,
+			) as Instrument,
+			currentLesson: lesson.number,
+		}
+	}
+
+	async function postProgress(progress: Progress) {
+		return await iProgress.postProgress(progress)
 	}
 
 	function start() {
