@@ -29,7 +29,6 @@
 		card: { type: Object, required: true },
 		allCard: { type: Boolean, required: false, default: false },
 	})
-	console.log(props.allCard)
 </script>
 
 <style>

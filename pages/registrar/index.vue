@@ -113,7 +113,7 @@
 		color: rgba(255, 255, 255, 1) !important;
 	}
 	.form-control:focus {
-		color: rgba(0, 0, 0, 0.9) !important;
+		color: rgba(255, 255, 255, 0.9) !important;
 	}
 	.alert-danger {
 		background-color: rgba(255, 0, 0, 0.61);

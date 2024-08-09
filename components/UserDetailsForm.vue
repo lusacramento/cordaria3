@@ -203,6 +203,12 @@
 </script>
 
 <style scoped>
+	.form-control {
+		color: rgba(255, 255, 255, 0.5) !important;
+	}
+	.form-control:focus {
+		color: rgba(255, 255, 255, 0.9) !important;
+	}
 	#image-url-input {
 		border: 2px, solid, blue;
 		height: 200px;
