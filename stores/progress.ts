@@ -5,7 +5,7 @@ import { type Lesson } from '~/types/Lesson'
 export const useMyProgressStore = defineStore({
 	id: 'myProgressStore',
 	state: () => ({
-		progress: [] as Progress[] | [],
+		progress: [] as Progress[],
 		lesson: null as Lesson | null,
 	}),
 
