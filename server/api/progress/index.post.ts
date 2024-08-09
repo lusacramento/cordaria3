@@ -12,5 +12,5 @@ export default defineEventHandler(async (event) => {
 
 	const progress = await Progress.create(body)
 
-	return body.toObject()
+	return progress
 })
