@@ -121,16 +121,20 @@
 		userStore.logIn()
 	}
 </script>
-<style scoped>
+<style>
 	.form-control {
 		color: rgba(255, 255, 255, 10.5) !important;
 	}
 	.form-control:focus {
-		color: rgba(0, 0, 0, 0.9) !important;
+		color: rgba(0255, 255, 255, 0.9) !important;
 	}
 
 	.alert-danger {
 		background-color: rgba(255, 0, 0, 0.61);
+	}
+
+	input {
+		color: rgba(255, 255, 255, 0.9) !important;
 	}
 
 	.messageError {
