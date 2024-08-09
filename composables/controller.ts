@@ -193,15 +193,24 @@ export const useController = () => {
 			return 0
 		}
 
-		function finishPractice() {
+		async function finishPractice() {
 			clearInterval(timer)
+
 			cards.current.value.setStatus('prev')
 			cards.prev.value = cards.current.value
 			cards.current.value = Card.getEmptyCard()
 
-			// if (lesson.value?.message) alert(lesson.value.message)
+			useAudio().Tone.Transport.stop()
+			clearSequence()
 
-			isCompleted.value = true
+			isCompleted.value = await true
+		}
+
+		function clearSequence() {
+			while (useAudio().sequence.events.length != 0) {
+				useAudio().sequence.dispose()
+				useAudio().sequence.events.pop()
+			}
 		}
 	}
 
@@ -210,18 +219,9 @@ export const useController = () => {
 		showBox.value = !showBox.value
 	}
 
-	function generateProgress(lesson: Lesson) {
-		return {
-			userId: userStore.getId as unknown as ObjectId,
-			lesson: lesson._id as unknown as ObjectId,
-			isCompleted: false,
-			instrument: helpers.getInstrumentEnum('bass') as Instrument,
-			currentLesson: lesson.number,
-		}
-	}
-
-	async function postProgress(progress: Progress) {
-		return await iProgress.postProgress(progress)
+	function saveProgress() {
+		const progress = useMyProgressStore().getLastProgress
+		const response = useIProgress().postProgress(progress)
 	}
 
 	return {

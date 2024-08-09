@@ -6,6 +6,9 @@ const playlist: string[] = []
 
 const adjustSync = 1.1 // <-- ajust here the release duration for legattos notes
 
+let sampler: Tone.Sampler
+let sequence: Tone.Sequence
+
 function getInstrumentMapping(instrument: string) {
 	let instrumentMap = {}
 	switch (true) {
@@ -24,7 +27,7 @@ function getInstrumentMapping(instrument: string) {
 	return instrumentMap
 }
 
-function getAudios(
+async function getAudios(
 	counter: number,
 	instrument: string,
 	instrumentMap: {},
@@ -38,20 +41,26 @@ function getAudios(
 	addMetronomeToPlaylist(counter, playlist)
 
 	addInstrumentToPlaylist(deck, playlist, instrumentMap)
+	if (sampler) {
+		await sampler.dispose()
+		await sequence.stop
+		await Tone.Transport.cancel()
+	}
 
-	const sampler = new Tone.Sampler({
+	sampler = await new Tone.Sampler({
 		urls: urls,
 		onload: async () => {
-			const sequence = await generateSequence(sampler, tempo).start(0)
+			sequence = await generateSequence(sampler, tempo).start(0)
 
-			await playAudios(sequence, bpm)
+			await playAudios(bpm)
 			useController().startLesson(tempo)
 		},
 
 		onerror: (error) => {
 			new Error('Error loading sample: ', error)
 		},
-	}).toDestination()
+	})
+	sampler.toDestination()
 }
 
 function getMetronomeUrls(urls: any) {
@@ -111,11 +120,13 @@ function generateSequence(sampler: Tone.Sampler, tempo: number) {
 	}, playlist)
 }
 
-function playAudios(sequence: Tone.Sequence, bpm: number) {
+function playAudios(bpm: number) {
 	sequence.loop = false
+	sequence.now()
 	Tone.Transport.bpm.value = bpm / 2
 	Tone.start()
 	Tone.Transport.start()
+	console.log(Tone.Transport.progress)
 }
 
 function calculateRelease(tempo: number) {
@@ -126,5 +137,8 @@ export const useAudio = () => {
 	return {
 		getInstrumentMapping,
 		getAudios,
+		sampler,
+		sequence,
+		Tone,
 	}
 }
