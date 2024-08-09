@@ -13,6 +13,11 @@ export const useMyProgressStore = defineStore({
 		getCurrentLesson(state) {
 			return state.lesson
 		},
+
+		getLastProgress(state) {
+			const lastIndex = state.progress.length - 1
+			return state.progress[lastIndex]
+		},
 	},
 
 	actions: {
