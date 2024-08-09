@@ -16,5 +16,12 @@ export const useIProgress = () => {
 			body: progress,
 		})
 	}
-	return { getProgress, postProgress }
+
+	async function setProgress(progress: Progress) {
+		return await useFetch(`${url}alter/`, {
+			method: 'put',
+			body: progress,
+		})
+	}
+	return { getProgress, postProgress, setProgress }
 }
