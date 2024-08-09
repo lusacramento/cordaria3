@@ -155,7 +155,7 @@
 		}
 	}
 
-	loadProgress()
+	// loadProgress()
 
 	async function loadProgress() {
 		if (!userStore.getId) throw Error
