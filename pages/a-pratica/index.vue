@@ -64,15 +64,17 @@
 
 			<div class="row exercise justify-content-center bg-exercise-screen">
 				<div class="col-lg-10">
-					<div class="d-flex align-items-center justify-content-center">
+					<div class="play-button d-flex justify-content-center">
 						<div v-if="showBox">
-							<Box
-								:title-text="boxes.callInAction.text"
-								:schema="boxes.callInAction.schema"
-								:left-logo="boxes.callInAction.leftLogo"
-								:right-logo="boxes.callInAction.rightLogo"
-								@click.prevent="start()"
-							/>
+							<button class="btn btn-play" :disabled="!isLoaded">
+								<Box
+									:title-text="boxes.callInAction.text"
+									:schema="boxes.callInAction.schema"
+									:left-logo="boxes.callInAction.leftLogo"
+									:right-logo="boxes.callInAction.rightLogo"
+									@click.prevent="start()"
+								/>
+							</button>
 						</div>
 						<div v-if="showStatistics" class="d-block">
 							<StatisticsTable />
@@ -106,6 +108,9 @@
 		await verifyIfUserDetailsExist()
 		await loadProgress()
 		await useController().init()
+		setTimeout(() => {
+			isLoaded.value = true
+		}, 1000)
 	})
 
 	// Stores
@@ -115,6 +120,8 @@
 	const iProgress = useIProgress()
 	const iLesson = useILesson()
 	const helpers = useHelpers()
+
+	const isLoaded = ref(false)
 
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
@@ -332,5 +339,15 @@
 		width: 59px;
 		height: 59px;
 		border-radius: 50%;
+	}
+
+	.btn-play {
+		background-color: transparent;
+		border-color: transparent;
+	}
+
+	.btn-play:hover {
+		color: transparent !important;
+		background-color: transparent !important;
 	}
 </style>
