@@ -112,7 +112,7 @@
 	const isLoading = ref(true)
 </script>
 
-<style>
+<style scoped>
 	.alert {
 		color: rgba(255, 255, 255, 1);
 	}
@@ -122,5 +122,15 @@
 
 	.alert-success {
 		background-color: green;
+	}
+
+	.form-control {
+		background-color: transparent !important;
+		color: rgba(255, 255, 255, 0.8) !important;
+	}
+
+	.form-control:focus {
+		color: rgba(0, 0, 0, 1) !important;
+		background-color: rgba(255, 255, 255, 1) !important;
 	}
 </style>
