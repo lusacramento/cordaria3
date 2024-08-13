@@ -42,9 +42,7 @@ async function getAudios(
 
 	addInstrumentToPlaylist(deck, playlist, instrumentMap)
 	if (sampler) {
-		await sampler.dispose()
-		await sequence.stop
-		await Tone.Transport.cancel()
+		await stopAudios()
 	}
 
 	sampler = await new Tone.Sampler({
@@ -126,7 +124,12 @@ function playAudios(bpm: number) {
 	Tone.Transport.bpm.value = bpm / 2
 	Tone.start()
 	Tone.Transport.start()
-	console.log(Tone.Transport.progress)
+}
+
+async function stopAudios() {
+	await sampler.dispose()
+	await sequence.stop
+	await Tone.Transport.cancel()
 }
 
 function calculateRelease(tempo: number) {
@@ -140,5 +143,6 @@ export const useAudio = () => {
 		sampler,
 		sequence,
 		Tone,
+		stopAudios,
 	}
 }
