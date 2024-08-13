@@ -28,7 +28,10 @@
 				<template #right>
 					<div class="d-flex align-items-center justify-content-end">
 						<div class="mx-3">
-							<nuxt-link to="/" class="nav-link the-pratice-link"
+							<nuxt-link
+								to="/"
+								class="nav-link the-pratice-link"
+								@click.prevent="useAudio().stopAudios()"
 								><span>Sair</span></nuxt-link
 							>
 							<button
