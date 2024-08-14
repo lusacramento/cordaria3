@@ -13,33 +13,136 @@
 				{{ status.message }}
 			</div>
 		</div>
-		<div v-for="field in user">
-			<div class="mb-3 row align-items-center">
-				<div class="col-5">
-					<label :for="`register-${field.id}-label`" class="form-label">{{
-						field.label
-					}}</label>
+		<div class="mb-3 row align-items-center">
+			<div class="col-3">
+				<label :id="`register-${user.email.id}-label`" class="form-label">{{
+					user.email.label
+				}}</label>
+			</div>
+			<div v class="col-8">
+				<input
+					:type="user.email.type"
+					:name="`register-${user.email.id}-input`"
+					:id="`register-${user.email.id}-input`"
+					v-model="user.email.content"
+					class="form-control"
+					required
+					:placeholder="user.email.placeHolder"
+					@focus="user.email.isShowInfo = true"
+					@focusout="user.email.isShowInfo = false"
+					:class="{
+						'is-valid': user.email.isValidated,
+						'is-invalid': !user.email.isValidated,
+					}"
+				/>
+				<div v-if="user.email.isShowInfo">
+					<small>{{ user.email.info }}</small>
 				</div>
-				<div v class="col-7">
-					<input
-						:type="field.type"
-						:name="`register-${field.id}-input`"
-						:id="`register-${field.id}-input`"
-						v-model="field.content"
-						class="form-control"
-						required
-						:placeholder="field.placeHolder"
-						@focus="field.isShowInfo = true"
-						@focusout="field.isShowInfo = false"
-						:class="{
-							'is-valid': field.isValidated,
-							'is-invalid': !field.isValidated,
-						}"
-					/>
-					<div v-if="field.isShowInfo">
-						<small>{{ field.info }}</small>
-					</div>
+			</div>
+		</div>
+		<div class="mb-3 row align-items-center">
+			<div class="col-3">
+				<label :id="`register-${user.name.id}-label`" class="form-label">{{
+					user.name.label
+				}}</label>
+			</div>
+			<div v class="col-8">
+				<input
+					:type="user.name.type"
+					:name="`register-${user.name.id}-input`"
+					:id="`register-${user.name.id}-input`"
+					v-model="user.name.content"
+					class="form-control"
+					required
+					:placeholder="user.name.placeHolder"
+					@focus="user.name.isShowInfo = true"
+					@focusout="user.name.isShowInfo = false"
+					:class="{
+						'is-valid': user.name.isValidated,
+						'is-invalid': !user.name.isValidated,
+					}"
+				/>
+				<div v-if="user.name.isShowInfo">
+					<small>{{ user.name.info }}</small>
 				</div>
+			</div>
+		</div>
+		<div class="mb-3 row align-items-center">
+			<div class="col-3">
+				<label :id="`register-${user.password.id}-label`" class="form-label">{{
+					user.password.label
+				}}</label>
+			</div>
+			<div v class="col-8">
+				<input
+					:type="user.password.type"
+					:password="`register-${user.password.id}-input`"
+					:id="`register-${user.password.id}-input`"
+					v-model="user.password.content"
+					class="form-control"
+					required
+					:placeholder="user.password.placeHolder"
+					@focus="user.password.isShowInfo = true"
+					@focusout="user.password.isShowInfo = false"
+					:class="{
+						'is-valid': user.password.isValidated,
+						'is-invalid': !user.password.isValidated,
+					}"
+				/>
+				<div v-if="user.password.isShowInfo">
+					<small>{{ user.password.info }}</small>
+				</div>
+			</div>
+			<div class="col-1">
+				<svg
+					width="15"
+					@click.prevent="togglePasswordView()"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 576 512"
+				>
+					<!-- !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+					<path :d="user.password.icon" />
+				</svg>
+			</div>
+		</div>
+		<div class="mb-3 row align-items-center">
+			<div class="col-3">
+				<label
+					:id="`register-${user.confirmPassword.id}-label`"
+					class="form-label"
+					>{{ user.confirmPassword.label }}</label
+				>
+			</div>
+			<div v class="col-8">
+				<input
+					:type="user.confirmPassword.type"
+					:confirmPassword="`register-${user.confirmPassword.id}-input`"
+					:id="`register-${user.confirmPassword.id}-input`"
+					v-model="user.confirmPassword.content"
+					class="form-control"
+					required
+					:placeholder="user.confirmPassword.placeHolder"
+					@focus="user.confirmPassword.isShowInfo = true"
+					@focusout="user.confirmPassword.isShowInfo = false"
+					:class="{
+						'is-valid': user.confirmPassword.isValidated,
+						'is-invalid': !user.confirmPassword.isValidated,
+					}"
+				/>
+				<div v-if="user.confirmPassword.isShowInfo">
+					<small>{{ user.confirmPassword.info }}</small>
+				</div>
+			</div>
+			<div class="col-1">
+				<svg
+					width="15"
+					@click.prevent="togglePasswordView()"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 576 512"
+				>
+					<!-- !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+					<path :d="user.password.icon" />
+				</svg>
 			</div>
 		</div>
 		<div class="mb-3 row">
@@ -89,8 +192,10 @@
 		},
 	})
 
+	const { currentType, currentIcon, toggleVisibility } = usePasswordInput()
+
 	// user data
-	const { email, userName, password } = storeToRefs(useMyUserStore())
+	const { email, userName, password } = storeToRefs(useMyUserStore()) 
 	const user: any = ref({
 		email: {
 			id: 'email',
@@ -119,8 +224,9 @@
 			isValidated: false,
 			isShowInfo: false,
 			info: 'A senha deve conter pelo menos 9 caracteres!',
-			type: 'password',
+			type: currentType,
 			placeHolder: 'Digite uma senha',
+			icon: currentIcon,
 		},
 		confirmPassword: {
 			id: 'confirm-password',
@@ -129,8 +235,9 @@
 			isValidated: false,
 			isShowInfo: false,
 			info: 'As senhas devem ser iguais.',
-			type: 'password',
+			type: currentType,
 			placeHolder: 'Repita a senha acima',
+			icon: currentIcon,
 		},
 	})
 
@@ -187,6 +294,10 @@
 	}
 
 	const isLoading = ref(true)
+
+	function togglePasswordView() {
+		toggleVisibility()
+	}
 </script>
 
 <style scoped>
@@ -209,5 +320,10 @@
 	.form-control:focus {
 		color: rgba(0, 0, 0, 1) !important;
 		background-color: rgba(255, 255, 255, 1) !important;
+	}
+
+	svg {
+		background-color: transparent;
+		fill: white !important;
 	}
 </style>
