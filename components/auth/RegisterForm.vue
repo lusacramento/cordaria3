@@ -163,8 +163,8 @@
 					<NuxtLink
 						to="/"
 						:class="{
-							'alert-success': status.isSuccess,
-							'alert-danger': status.isError,
+							'alert-success': user.acceptTerms.isValidated,
+							'alert-danger': !user.acceptTerms.isValidated,
 						}"
 					>
 						condições de uso
@@ -183,13 +183,6 @@
 
 <script lang="ts" setup>
 	const bootstrap = () => import('bootstrap')
-
-	defineProps({
-		status: {
-			type: Object,
-			required: true,
-		},
-	})
 
 	const emailEl = ref()
 	const userNameEl = ref()

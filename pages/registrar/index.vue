@@ -14,7 +14,7 @@
 					>
 						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
 							<template #body>
-								<AuthRegisterForm :status="status" />
+								<AuthRegisterForm />
 							</template>
 						</LayoutsModal>
 						<button
@@ -65,14 +65,6 @@
 		userDetailsButton.value.click()
 	})
 
-	// status
-	const status = ref({
-		isShow: false,
-		message: 'test',
-		isError: false,
-		isSuccess: false,
-	})
-
 	// handle register
 	async function handleFormSubmit() {
 		if (!userStore.isAllFields()) return
@@ -99,26 +91,6 @@
 			toast.value?.show()
 			return
 		}
-
-		setStatus('success', 'Usuário cadastrado com sucesso!')
-	}
-
-	function setStatus(type: string, message: string) {
-		switch (type) {
-			case 'error':
-				status.value.isSuccess = false
-				status.value.isError = true
-				status.value.message = message
-				break
-			case 'success':
-				status.value.isError = false
-				status.value.isSuccess = true
-				status.value.message = message
-
-			default:
-				break
-		}
-		status.value.isShow = true
 	}
 </script>
 
@@ -128,9 +100,6 @@
 	}
 	.form-control:focus {
 		color: rgba(255, 255, 255, 0.9) !important;
-	}
-	.alert-danger {
-		background-color: rgba(255, 0, 0, 0.61);
 	}
 
 	.messageError {

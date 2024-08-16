@@ -87,13 +87,6 @@
 <script lang="ts" setup>
 	const bootstrap = () => import('bootstrap')
 
-	defineProps({
-		status: {
-			type: Object,
-			required: true,
-		},
-	})
-
 	const emailEl = ref()
 	const passwordEl = ref()
 

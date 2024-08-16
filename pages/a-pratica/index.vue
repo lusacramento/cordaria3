@@ -180,8 +180,6 @@
 		}
 	}
 
-	// loadProgress()
-
 	async function loadProgress() {
 		if (!userStore.getId) throw Error
 		toaster.value.header = 'Sucesso!'
