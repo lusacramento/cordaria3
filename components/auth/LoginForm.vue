@@ -21,6 +21,7 @@
 			</div>
 			<div class="col-9">
 				<input
+					ref="emailEl"
 					:type="user.email.type"
 					:name="`register-${user.email.id}-input`"
 					:id="`register-${user.email.id}-input`"
@@ -28,8 +29,11 @@
 					class="form-control"
 					required
 					:placeholder="user.email.placeHolder"
-					@focus="user.email.isShowInfo = true"
-					@focusout="user.email.isShowInfo = false"
+					data-bs-toggle="tooltip"
+					data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip"
+					data-bs-title="Digite um email válido."
+					@focus="showToolTip(emailEl)"
 					:class="{
 						'is-valid': user.email.isValidated,
 						'is-invalid': !user.email.isValidated,
@@ -48,6 +52,7 @@
 			</div>
 			<div v class="col-9">
 				<input
+					ref="passwordEl"
 					:type="user.password.type"
 					:name="`register-${user.password.id}-input`"
 					:id="`register-${user.password.id}-input`"
@@ -55,8 +60,11 @@
 					class="form-control"
 					required
 					:placeholder="user.password.placeHolder"
-					@focus="user.password.isShowInfo = true"
-					@focusout="user.password.isShowInfo = false"
+					data-bs-toggle="tooltip"
+					data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip"
+					data-bs-title="Confirma senha deve ser igual a senha."
+					@focus="showToolTip(passwordEl)"
 					aria-label="Alterar visualização de senha"
 					aria-describedby="login-password-viewer"
 					:class="{
@@ -90,12 +98,24 @@
 </template>
 
 <script lang="ts" setup>
+	const bootstrap = () => import('bootstrap')
+
 	defineProps({
 		status: {
 			type: Object,
 			required: true,
 		},
 	})
+
+	const emailEl = ref()
+	const passwordEl = ref()
+
+	function showToolTip(el: Element) {
+		bootstrap().then((response) => {
+			const tt = new response.Tooltip(el, { fallbackPlacements: ['right'] })
+			tt.show()
+		})
+	}
 
 	// user data
 	const { email, password } = storeToRefs(useMyUserStore())
