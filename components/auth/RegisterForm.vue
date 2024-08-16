@@ -294,14 +294,16 @@
 
 <style scoped>
 	.alert {
-		color: rgba(255, 255, 255, 1);
+		color: var(--bg-warn);
 	}
-	.alert-danger {
-		background-color: red !important;
+	.alert-danger,
+	.is-invalid {
+		background-color: var(--bg-error) !important;
 	}
 
-	.alert-success {
-		background-color: green;
+	.alert-success,
+	.is-valid {
+		background-color: var(--bg-success) !important;
 	}
 
 	.form-control {
