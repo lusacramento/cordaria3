@@ -7,6 +7,8 @@ export const useMyUserStore = defineStore({
 		userName: '',
 		email: '',
 		password: '',
+		confirmPassword: '',
+		acceptTerms: false,
 		loggedIn: false,
 		theme: 'dark',
 	}),
@@ -46,8 +48,19 @@ export const useMyUserStore = defineStore({
 			this.password = password
 		},
 
+		isAllFields() {
+			return this.email &&
+				this.userName &&
+				this.password &&
+				this.confirmPassword &&
+				this.acceptTerms
+				? true
+				: false
+		},
+
 		clearPassword() {
 			this.password = ''
+			this.confirmPassword = ''
 		},
 
 		logIn() {
