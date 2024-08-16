@@ -2,6 +2,10 @@
 	<div id="the-pratice" class="cordaria">
 		<div class="exercise-nav container-fluid">
 			<LayoutsHeader :title="title"></LayoutsHeader>
+			<LayoutsToast ref="toast" :type="toaster.type">
+				<template #header>{{ toaster.header }} </template>
+				<template #body>{{ toaster.body }}</template>
+			</LayoutsToast>
 
 			<div class="row justify-content-center bg-exercise-screen">
 				<div class="col-lg-10 layer-center">
@@ -35,6 +39,15 @@
 		middleware: 'guest',
 	})
 
+	const userStore = useMyUserStore()
+
+	const toast = ref()
+	const toaster = ref({
+		header: '',
+		body: '',
+		type: '',
+	})
+
 	const title = ref('REGISTRAR')
 
 	// modal
@@ -62,27 +75,28 @@
 
 	// handle register
 	async function handleFormSubmit() {
+		if (!userStore.isAllFields()) return
+
 		const user = {
-			username: useMyUserStore().getUserName,
-			email: useMyUserStore().getEmail,
-			password: useMyUserStore().getPassword,
+			username: userStore.getUserName,
+			email: userStore.getEmail,
+			password: userStore.getPassword,
+			confirmPassword: userStore.getConfirmPassword,
+			acceptTerms: userStore.getAcceptTerms,
 		}
 		useMyUserStore().clearPassword()
 		try {
-			const response = await useIUser().createUser(user)
-			if (response.error.value) {
-				const messageRes: String = response.error.value?.data.message
-				if (messageRes.substring(0, 6) === 'E11000') {
-					setStatus('error', 'Nome do usuário ou Email já cadastrado.')
-				}
-				return
-			}
-			await useRouter().push({
+			await useIUser().createUser(user)
+			userStore.setIsNewRegistered(true)
+
+			useRouter().push({
 				name: 'entrar',
 			})
 		} catch (e: any) {
-			setStatus('error', e)
-
+			toaster.value.header = 'Erro'
+			toaster.value.body = e.data.message
+			toaster.value.type = 'error'
+			toast.value?.show()
 			return
 		}
 

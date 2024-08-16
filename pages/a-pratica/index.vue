@@ -1,6 +1,10 @@
 <template>
 	<div id="the-pratice" class="cordaria">
 		<LayoutsOffCanvas @showStatistics="payload" />
+		<LayoutsToast ref="toast" :type="toaster.type">
+			<template #header>{{ toaster.header }}</template>
+			<template #body><div v-html="toaster.body" /></template>
+		</LayoutsToast>
 
 		<div class="container-fluid">
 			<LayoutsHeader>
@@ -127,6 +131,13 @@
 
 	const { lesson } = storeToRefs(useMyProgressStore())
 
+	const toast = ref()
+	const toaster = ref({
+		header: '',
+		body: '',
+		type: '',
+	})
+
 	const firstString = computed(() => {
 		switch (lesson.value?.stringNumber) {
 			case 'upToDown':
@@ -157,9 +168,13 @@
 	async function verifyIfUserDetailsExist() {
 		try {
 			const userDetailsResponse = await getUserDetails()
-			userDetailsResponse.error.value?.statusCode === 404
-				? toogleUserDetailsForm()
-				: saveUserDetailsOnStore(userDetailsResponse.data.value)
+			if (userDetailsResponse.error.value?.statusCode === 404) {
+				toogleUserDetailsForm()
+				toaster.value.header = 'Quase Lá!'
+				toaster.value.body = 'Complete seu cadastro.'
+				toaster.value.type = 'warn'
+				toast.value.show()
+			} else saveUserDetailsOnStore(userDetailsResponse.data.value)
 		} catch (error) {
 			console.log(error)
 		}
@@ -169,6 +184,11 @@
 
 	async function loadProgress() {
 		if (!userStore.getId) throw Error
+		toaster.value.header = 'Sucesso!'
+		toaster.value.body = `Você está conectado!<br />
+			<strong>Inicie uma partida agora!</strong>`
+		toaster.value.type = 'success'
+		toast.value.show()
 
 		const response = await useIProgress().getProgress(userStore.getId)
 
@@ -256,6 +276,11 @@
 			isCompleted.value = false
 			showCards.value = false
 			showBox.value = true
+
+			toaster.value.header = 'Parabéns!'
+			toaster.value.body = `Lição ${lesson.value?.number} Finalizada!`
+			toast.value.show()
+
 			alert(`Lição ${lesson.value?.number} Finalizada!`)
 
 			const currentLessonNumber = progressStore.getCurrentLesson?.number

@@ -2,6 +2,10 @@
 	<div id="the-pratice" class="cordaria">
 		<div class="exercise-nav container-fluid">
 			<LayoutsHeader :title="title"></LayoutsHeader>
+			<LayoutsToast ref="toast" :type="toaster.type">
+				<template #header>{{ toaster.header }} </template>
+				<template #body>{{ toaster.body }}</template>
+			</LayoutsToast>
 
 			<div class="row justify-content-center bg-exercise-screen">
 				<div class="col-lg-10 layer-center">
@@ -10,7 +14,7 @@
 					>
 						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
 							<template #body>
-								<AuthLoginForm :status="status" />
+								<AuthLoginForm />
 							</template>
 						</LayoutsModal>
 						<button
@@ -44,20 +48,26 @@
 	}
 	const userDetailsButton: any = ref()
 
+	const toast = ref()
+	const toaster = ref({
+		header: '',
+		body: '',
+		type: '',
+	})
+
 	onMounted(() => {
 		userDetailsButton.value.click()
+		if (useMyUserStore().getIsNewRegistered) {
+			toaster.value.header = 'Sucesso!'
+			toaster.value.body = 'Cadastro registrado. Por favor,faça o login.'
+			toaster.value.type = 'success'
+			toast.value.show(toaster.value)
+			useMyUserStore().setIsNewRegistered(false)
+		}
 	})
 
 	onBeforeUnmount(() => {
 		userDetailsButton.value.click()
-	})
-
-	// status
-	const status = ref({
-		isShow: false,
-		message: 'test',
-		isError: false,
-		isSuccess: false,
 	})
 
 	// handle ogin
@@ -76,12 +86,16 @@
 			})
 
 			if (response.error) {
-				if (response.error === 'Unauthorized')
-					setStatus('error', 'Usuário ou senha inválida!')
+				if (response.error === 'Unauthorized') toaster.value.header = 'Erro!'
+				toaster.value.body = 'E-mail ou senha inválidos.'
+				toaster.value.type = 'error'
+				toast.value.show(toaster.value)
 				return
 			}
 
-			setStatus('success', 'Cadastro finalizado com sucesso!')
+			toaster.value.body = 'E-mail ou senha inválidos.'
+			toaster.value.type = 'error'
+			toast.value.show(toaster.value)
 
 			const responseUser: any = { ...data.value?.user }
 
@@ -90,27 +104,7 @@
 			useRouter().push({
 				name: 'a-pratica',
 			})
-		} catch (e: any) {
-			setStatus('error', e)
-		}
-	}
-
-	function setStatus(type: string, message: string) {
-		switch (type) {
-			case 'error':
-				status.value.isSuccess = false
-				status.value.isError = true
-				status.value.message = message
-				break
-			case 'success':
-				status.value.isError = false
-				status.value.isSuccess = true
-				status.value.message = message
-
-			default:
-				break
-		}
-		status.value.isShow = true
+		} catch (e: any) {}
 	}
 
 	const userStore = useMyUserStore()
