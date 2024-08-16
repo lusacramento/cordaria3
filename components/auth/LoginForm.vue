@@ -1,18 +1,5 @@
 <template>
 	<form>
-		<div
-			v-if="status.isShow"
-			class="justify-content-center text-center alert d-flex align-items-center"
-			role="alert"
-			:class="{
-				'alert-success': status.isSuccess,
-				'alert-danger': status.isError,
-			}"
-		>
-			<div class="messageError">
-				{{ status.message }}
-			</div>
-		</div>
 		<div class="mb-3 row align-items-center">
 			<div class="col-2">
 				<label :id="`register-${user.email.id}-label`" class="form-label">{{
