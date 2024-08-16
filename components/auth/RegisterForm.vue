@@ -1,70 +1,170 @@
 <template>
 	<form>
-		<div
-			v-if="status.isShow"
-			class="justify-content-center text-center alert d-flex align-items-center"
-			role="alert"
-			:class="{
-				'alert-success': status.isSuccess,
-				'alert-danger': status.isError,
-			}"
-		>
-			<div class="messageError">
-				{{ status.message }}
+		<div class="mb-3 row align-items-center">
+			<div class="col-3">
+				<label :id="`register-${user.email.id}-label`" class="form-label">{{
+					user.email.label
+				}}</label>
+			</div>
+			<div v class="col-8">
+				<input
+					ref="emailEl"
+					:type="user.email.type"
+					:name="`register-${user.email.id}-input`"
+					:id="`register-${user.email.id}-input`"
+					v-model="user.email.content"
+					class="form-control"
+					required
+					:placeholder="user.email.placeHolder"
+					data-bs-toggle="tooltip"
+					data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip"
+					:data-bs-title="user.email.info"
+					@focus="showToolTip(emailEl)"
+					:class="{
+						'is-valid': user.email.isValidated,
+						'is-invalid': !user.email.isValidated,
+					}"
+				/>
 			</div>
 		</div>
-		<div v-for="field in user">
-			<div class="mb-3 row align-items-center">
-				<div class="col-5">
-					<label :for="`register-${field.id}-label`" class="form-label">{{
-						field.label
-					}}</label>
-				</div>
-				<div v class="col-7">
-					<input
-						:type="field.type"
-						:name="`register-${field.id}-input`"
-						:id="`register-${field.id}-input`"
-						v-model="field.content"
-						class="form-control"
-						required
-						:placeholder="field.placeHolder"
-						@focus="field.isShowInfo = true"
-						@focusout="field.isShowInfo = false"
-						:class="{
-							'is-valid': field.isValidated,
-							'is-invalid': !field.isValidated,
-						}"
-					/>
-					<div v-if="field.isShowInfo">
-						<small>{{ field.info }}</small>
-					</div>
-				</div>
+		<div class="mb-3 row align-items-center">
+			<div class="col-3">
+				<label :id="`register-${user.name.id}-label`" class="form-label">{{
+					user.name.label
+				}}</label>
+			</div>
+			<div v class="col-8">
+				<input
+					ref="userNameEl"
+					:type="user.name.type"
+					:name="`register-${user.name.id}-input`"
+					:id="`register-${user.name.id}-input`"
+					v-model="user.name.content"
+					class="form-control"
+					required
+					:placeholder="user.name.placeHolder"
+					data-bs-toggle="tooltip"
+					data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip"
+					:data-bs-title="user.name.info"
+					@focus="showToolTip(userNameEl)"
+					:class="{
+						'is-valid': user.name.isValidated,
+						'is-invalid': !user.name.isValidated,
+					}"
+				/>
+			</div>
+		</div>
+		<div class="mb-3 row align-items-center">
+			<div class="col-3">
+				<label :id="`register-${user.password.id}-label`" class="form-label">{{
+					user.password.label
+				}}</label>
+			</div>
+			<div v class="col-8">
+				<input
+					ref="passwordEl"
+					:type="user.password.type"
+					:password="`register-${user.password.id}-input`"
+					:id="`register-${user.password.id}-input`"
+					v-model="user.password.content"
+					class="form-control"
+					required
+					:placeholder="user.password.placeHolder"
+					data-bs-toggle="tooltip"
+					data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip"
+					:data-bs-title="user.password.info"
+					@focus="showToolTip(passwordEl)"
+					:class="{
+						'is-valid': user.password.isValidated,
+						'is-invalid': !user.password.isValidated,
+					}"
+				/>
+			</div>
+			<div class="col-1">
+				<svg
+					width="15"
+					@click.prevent="togglePasswordView()"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 576 512"
+				>
+					<!-- !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+					<path :d="user.password.icon" />
+				</svg>
+			</div>
+		</div>
+		<div class="mb-3 row align-items-center">
+			<div class="col-3">
+				<label
+					:id="`register-${user.confirmPassword.id}-label`"
+					class="form-label"
+					>{{ user.confirmPassword.label }}</label
+				>
+			</div>
+			<div v class="col-8">
+				<input
+					ref="confirmPasswordEl"
+					:type="user.confirmPassword.type"
+					:confirmPassword="`register-${user.confirmPassword.id}-input`"
+					:id="`register-${user.confirmPassword.id}-input`"
+					v-model="user.confirmPassword.content"
+					class="form-control"
+					required
+					:placeholder="user.confirmPassword.placeHolder"
+					data-bs-toggle="tooltip"
+					data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip"
+					:data-bs-title="user.confirmPassword.info"
+					@focus="showToolTip(confirmPasswordEl)"
+					:class="{
+						'is-valid': user.confirmPassword.isValidated,
+						'is-invalid': !user.confirmPassword.isValidated,
+					}"
+				/>
+			</div>
+			<div class="col-1">
+				<svg
+					width="15"
+					@click.prevent="togglePasswordView()"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 576 512"
+				>
+					<!-- !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+					<path :d="user.password.icon" />
+				</svg>
 			</div>
 		</div>
 		<div class="mb-3 row">
 			<div class="form-check justify-content-center d-flex">
 				<input
+					ref="acceptTermsEl"
 					class="form-check-input mx-2"
-					:type="acceptTerms.type"
+					:type="user.acceptTerms.type"
 					value=""
-					:id="`login-${acceptTerms}-input`"
-					v-model="acceptTerms.content"
+					:id="`login-${user.acceptTerms}-input`"
+					v-model="user.acceptTerms.content"
+					data-bs-toggle="tooltip"
+					data-bs-placement="left"
+					data-bs-custom-class="custom-tooltip"
+					:data-bs-title="user.acceptTerms.info"
+					@focus="showToolTip(acceptTermsEl)"
 				/>
 				<label
 					class="form-check-label"
 					:class="{
-						'text-danger': !acceptTerms.isValidated,
-						'text-success': acceptTerms.isValidated,
+						'text-danger': !user.acceptTerms.isValidated,
+						'text-success': user.acceptTerms.isValidated,
 					}"
-					:for="`login-${acceptTerms.id}-input`"
+					:for="`login-${user.acceptTerms.id}-input`"
 				>
 					Aceito os termos e
 					<NuxtLink
 						to="/"
 						:class="{
-							'alert-success': status.isSuccess,
-							'alert-danger': status.isError,
+							'alert-success': user.acceptTerms.isValidated,
+							'alert-danger': !user.acceptTerms.isValidated,
 						}"
 					>
 						condições de uso
@@ -82,15 +182,26 @@
 </template>
 
 <script lang="ts" setup>
-	defineProps({
-		status: {
-			type: Object,
-			required: true,
-		},
-	})
+	const bootstrap = () => import('bootstrap')
+
+	const emailEl = ref()
+	const userNameEl = ref()
+	const passwordEl = ref()
+	const confirmPasswordEl = ref()
+	const acceptTermsEl = ref()
+
+	function showToolTip(el: Element) {
+		bootstrap().then((response) => {
+			const tt = new response.Tooltip(el, { fallbackPlacements: ['right'] })
+			tt.show()
+		})
+	}
+
+	const { currentType, currentIcon, toggleVisibility } = usePasswordInput()
 
 	// user data
-	const { email, userName, password } = storeToRefs(useMyUserStore())
+	const { email, userName, password, confirmPassword, acceptTerms } =
+		storeToRefs(useMyUserStore())
 	const user: any = ref({
 		email: {
 			id: 'email',
@@ -108,7 +219,7 @@
 			content: userName,
 			isValidated: false,
 			isShowInfo: false,
-			info: 'O nome deve conter, pelo menos 3 caracteres!',
+			info: 'Mínimo 3 caracteres. Somente letras.',
 			type: 'text',
 			placeHolder: 'Digite um nome de usuário',
 		},
@@ -118,31 +229,32 @@
 			content: password,
 			isValidated: false,
 			isShowInfo: false,
-			info: 'A senha deve conter pelo menos 9 caracteres!',
-			type: 'password',
+			info: 'A senha deve conter pelo menos 9 caracteres.',
+			type: currentType,
 			placeHolder: 'Digite uma senha',
+			icon: currentIcon,
 		},
 		confirmPassword: {
 			id: 'confirm-password',
 			label: 'Confirmar Senha',
-			content: '',
+			content: confirmPassword,
 			isValidated: false,
 			isShowInfo: false,
 			info: 'As senhas devem ser iguais.',
-			type: 'password',
+			type: currentType,
 			placeHolder: 'Repita a senha acima',
+			icon: currentIcon,
 		},
-	})
-
-	const acceptTerms = ref({
-		id: 'accept-terms',
-		label: 'Aceitar Termos',
-		content: false,
-		isValidated: false,
-		isShowInfo: false,
-		info: 'É obrigatório aceitar os termos.',
-		type: 'checkbox',
-		placeHolder: 'Aceite os termos do serviço.',
+		acceptTerms: {
+			id: 'accept-terms',
+			label: 'Aceitar Termos',
+			content: acceptTerms,
+			isValidated: false,
+			isShowInfo: false,
+			info: 'É obrigatório aceitar os termos.',
+			type: 'checkbox',
+			placeHolder: 'Aceite os termos do serviço.',
+		},
 	})
 
 	// validations
@@ -163,42 +275,28 @@
 			user.value.confirmPassword.content,
 		)
 
-		acceptTerms.value.content = acceptTerms.value.content
-	})
-
-	watch(acceptTerms.value, (newValue) => {
-		acceptTerms.value.isValidated = newValue.content
-	})
-
-	function verifyAllValidations() {
-		if (
-			user.value.email.isValidated &&
-			user.value.name.isValidated &&
-			user.value.password.isValidated &&
-			user.value.confirmPassword.isValidated &&
-			acceptTerms.value.isValidated
-		) {
-			isLoading.value = false
-			return true
-		} else {
-			isLoading.value = true
-			return false
+		if (user.value.acceptTerms.content) {
+			user.value.acceptTerms.isValidated = true
 		}
-	}
+	})
 
-	const isLoading = ref(true)
+	function togglePasswordView() {
+		toggleVisibility()
+	}
 </script>
 
 <style scoped>
 	.alert {
-		color: rgba(255, 255, 255, 1);
+		color: var(--bg-warn);
 	}
-	.alert-danger {
-		background-color: red !important;
+	.alert-danger,
+	.is-invalid {
+		background-color: var(--bg-error) !important;
 	}
 
-	.alert-success {
-		background-color: green;
+	.alert-success,
+	.is-valid {
+		background-color: var(--bg-success) !important;
 	}
 
 	.form-control {
@@ -209,5 +307,10 @@
 	.form-control:focus {
 		color: rgba(0, 0, 0, 1) !important;
 		background-color: rgba(255, 255, 255, 1) !important;
+	}
+
+	svg {
+		background-color: transparent;
+		fill: white !important;
 	}
 </style>

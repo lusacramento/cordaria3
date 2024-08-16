@@ -39,8 +39,23 @@
 	--bg-degrade-layer-center: linear-gradient(
 		180deg,
 		rgba(40, 42, 54, 1) 37%,
-		rgba(29, 30, 40, 1) 77%
+		rgba(29, 30, 40, 1) 77%	
 	);
+
+	--bg-error: #b4423f !important;
+	--bg-success: #39c2a1 !important;
+	--bg-warn: #ffd740 !important;
+
+	.alert {
+		color: var(--bg-warn);
+	}
+	.alert-danger, .is-invalid {
+		background-color: var(--bg-error) !important;
+	}
+
+	.alert-success, .is-valid {
+		background-color: var(--bg-success)!important;
+	}
 
 	/* font styles */
 	--font-thin: 100;
