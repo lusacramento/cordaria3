@@ -19,7 +19,7 @@
     "mongoose": "^8.4.0",
     "nuxt": "^3.11.1",
     "nuxt-file-storage": "^0.2.7",
-    "sass": "^1.69.6"
+    "sass": "1.69.6"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
