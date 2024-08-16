@@ -1,10 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	// experimental: {
-	// 	asyncContext: true,
-	// 	renderJsonPayloads: false,
-	// },
-	ssr: false,
+	experimental: {
+		asyncContext: true,
+		renderJsonPayloads: false,
+	},
 
 	runtimeConfig: {
 		authSecret: process.env.AUTH_SECRET,
@@ -66,11 +65,13 @@ export default defineNuxtConfig({
 
 	// sourcemap: true,
 
-	// debug: true,
+	debug: true,
 
 	css: ['~/assets/styles/main.scss'],
 
 	imports: {
 		dirs: ['composables/**'],
 	},
+
+	compatibilityDate: '2024-08-15',
 })

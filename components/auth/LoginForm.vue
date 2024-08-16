@@ -1,18 +1,5 @@
 <template>
 	<form>
-		<div
-			v-if="status.isShow"
-			class="justify-content-center text-center alert d-flex align-items-center"
-			role="alert"
-			:class="{
-				'alert-success': status.isSuccess,
-				'alert-danger': status.isError,
-			}"
-		>
-			<div class="messageError">
-				{{ status.message }}
-			</div>
-		</div>
 		<div class="mb-3 row align-items-center">
 			<div class="col-2">
 				<label :id="`register-${user.email.id}-label`" class="form-label">{{
@@ -21,6 +8,7 @@
 			</div>
 			<div class="col-9">
 				<input
+					ref="emailEl"
 					:type="user.email.type"
 					:name="`register-${user.email.id}-input`"
 					:id="`register-${user.email.id}-input`"
@@ -28,8 +16,11 @@
 					class="form-control"
 					required
 					:placeholder="user.email.placeHolder"
-					@focus="user.email.isShowInfo = true"
-					@focusout="user.email.isShowInfo = false"
+					data-bs-toggle="tooltip"
+					data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip"
+					data-bs-title="Digite um email válido."
+					@focus="showToolTip(emailEl)"
 					:class="{
 						'is-valid': user.email.isValidated,
 						'is-invalid': !user.email.isValidated,
@@ -48,6 +39,7 @@
 			</div>
 			<div v class="col-9">
 				<input
+					ref="passwordEl"
 					:type="user.password.type"
 					:name="`register-${user.password.id}-input`"
 					:id="`register-${user.password.id}-input`"
@@ -55,8 +47,11 @@
 					class="form-control"
 					required
 					:placeholder="user.password.placeHolder"
-					@focus="user.password.isShowInfo = true"
-					@focusout="user.password.isShowInfo = false"
+					data-bs-toggle="tooltip"
+					data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip"
+					data-bs-title="Confirma senha deve ser igual a senha."
+					@focus="showToolTip(passwordEl)"
 					aria-label="Alterar visualização de senha"
 					aria-describedby="login-password-viewer"
 					:class="{
@@ -90,12 +85,17 @@
 </template>
 
 <script lang="ts" setup>
-	defineProps({
-		status: {
-			type: Object,
-			required: true,
-		},
-	})
+	const bootstrap = () => import('bootstrap')
+
+	const emailEl = ref()
+	const passwordEl = ref()
+
+	function showToolTip(el: Element) {
+		bootstrap().then((response) => {
+			const tt = new response.Tooltip(el, { fallbackPlacements: ['right'] })
+			tt.show()
+		})
+	}
 
 	// user data
 	const { email, password } = storeToRefs(useMyUserStore())

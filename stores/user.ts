@@ -7,6 +7,9 @@ export const useMyUserStore = defineStore({
 		userName: '',
 		email: '',
 		password: '',
+		confirmPassword: '',
+		acceptTerms: false,
+		isNewRegistered: false,
 		loggedIn: false,
 		theme: 'dark',
 	}),
@@ -28,6 +31,18 @@ export const useMyUserStore = defineStore({
 			return state.password
 		},
 
+		getConfirmPassword(state) {
+			return state.confirmPassword
+		},
+
+		getAcceptTerms(state) {
+			return state.acceptTerms
+		},
+
+		getIsNewRegistered(state) {
+			return state.isNewRegistered
+		},
+
 		getloggedIn(state) {
 			return state.loggedIn
 		},
@@ -46,8 +61,23 @@ export const useMyUserStore = defineStore({
 			this.password = password
 		},
 
+		setIsNewRegistered(newRegistered: boolean) {
+			this.isNewRegistered = newRegistered
+		},
+
+		isAllFields() {
+			return this.email &&
+				this.userName &&
+				this.password &&
+				this.confirmPassword &&
+				this.acceptTerms
+				? true
+				: false
+		},
+
 		clearPassword() {
 			this.password = ''
+			this.confirmPassword = ''
 		},
 
 		logIn() {

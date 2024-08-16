@@ -3,7 +3,7 @@ export const useIUser = () => {
 	const userDetailsUrl = '/api/userdetails'
 
 	async function createUser(values: any) {
-		return await useFetch(registerUrl, {
+		return await $fetch(registerUrl, {
 			method: 'post',
 			body: values,
 		})
