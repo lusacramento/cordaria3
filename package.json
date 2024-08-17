@@ -16,9 +16,9 @@
     "@sidebase/nuxt-auth": "^0.7.2",
     "@types/bcrypt": "^5.0.2",
     "@types/bootstrap": "^5.2.6",
-    "mongoose": "^8.4.0",
     "nuxt": "^3.12.4",
     "nuxt-file-storage": "^0.2.7",
+    "nuxt-mongoose": "^1.0.6",
     "sass": "1.69.6"
   },
   "dependencies": {
@@ -34,7 +34,6 @@
     "dotenv": "^16.3.1",
     "dropzone": "^6.0.0-beta.2",
     "jsonwebtoken": "^9.0.2",
-    "nuxt-server-utils": "^0.0.7",
     "pinia": "^2.1.7",
     "sweetalert2": "^11.7.28",
     "tone": "^14.7.77",
