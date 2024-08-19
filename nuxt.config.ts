@@ -29,15 +29,6 @@ export default defineNuxtConfig({
 			},
 		],
 		'@pinia/nuxt',
-		[
-			'nuxt-server-utils',
-			{
-				enabled: true, // default
-				enableDevTools: true, // default
-				mongodbUri: process.env.MONGODB_URI,
-			},
-		],
-
 		['@sidebase/nuxt-auth', { auth: { baseURL: process.env.AUTH_ORIGIN } }],
 		[
 			'@vee-validate/nuxt',
@@ -62,6 +53,7 @@ export default defineNuxtConfig({
 				download: true,
 			},
 		],
+		'nuxt-mongoose',
 	],
 
 	// sourcemap: true,
