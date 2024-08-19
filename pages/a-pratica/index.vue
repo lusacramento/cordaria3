@@ -284,8 +284,6 @@
 			toaster.value.body = `Lição ${lesson.value?.number} Finalizada!`
 			toast.value.show()
 
-			alert(`Lição ${lesson.value?.number} Finalizada!`)
-
 			const currentLessonNumber = progressStore.getCurrentLesson?.number
 
 			if (currentLessonNumber) {
