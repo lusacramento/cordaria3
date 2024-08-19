@@ -108,13 +108,7 @@
 	})
 
 	onBeforeMount(async () => {
-		await loadUserStore()
-		await verifyIfUserDetailsExist()
-		await loadProgress()
-		await useController().init()
-		setTimeout(() => {
-			isLoaded.value = true
-		}, 1000)
+		load()
 	})
 
 	// Stores
@@ -153,6 +147,27 @@
 
 	const userDetailsButton: any = ref()
 
+	const userDetails: Ref<any> = ref()
+
+	async function load() {
+		await loadUserStore()
+		const isUserDetailsExists = await verifyIfIsUserDetailsExists()
+		if (!isUserDetailsExists) {
+			toogleUserDetailsForm()
+			toaster.value.header = 'Quase Lá!'
+			toaster.value.body = 'Complete seu cadastro.'
+			toaster.value.type = 'warn'
+			toast.value.show()
+			return
+		}
+		saveUserDetailsOnStore()
+		await loadProgress()
+		await useController().init()
+		setTimeout(() => {
+			isLoaded.value = true
+		}, 1000)
+	}
+
 	async function loadUserStore() {
 		const { getSession } = useAuth()
 		const { user } = await getSession()
@@ -165,19 +180,9 @@
 		userStore.logIn()
 	}
 
-	async function verifyIfUserDetailsExist() {
-		try {
-			const userDetailsResponse = await getUserDetails()
-			if (userDetailsResponse.error.value?.statusCode === 404) {
-				toogleUserDetailsForm()
-				toaster.value.header = 'Quase Lá!'
-				toaster.value.body = 'Complete seu cadastro.'
-				toaster.value.type = 'warn'
-				toast.value.show()
-			} else saveUserDetailsOnStore(userDetailsResponse.data.value)
-		} catch (error) {
-			console.log(error)
-		}
+	async function verifyIfIsUserDetailsExists() {
+		userDetails.value = await getUserDetails()
+		return userDetails.value.error?.statusCode === 404 ? false : true
 	}
 
 	async function loadProgress() {
@@ -249,8 +254,8 @@
 		return await useIUser().getUserDetails(userStore.getId)
 	}
 
-	function saveUserDetailsOnStore(userDetails: any) {
-		useMyUserDetailsStore().update(userDetails)
+	function saveUserDetailsOnStore() {
+		useMyUserDetailsStore().update(userDetails.value.data)
 	}
 
 	const modal = {
@@ -278,8 +283,6 @@
 			toaster.value.header = 'Parabéns!'
 			toaster.value.body = `Lição ${lesson.value?.number} Finalizada!`
 			toast.value.show()
-
-			alert(`Lição ${lesson.value?.number} Finalizada!`)
 
 			const currentLessonNumber = progressStore.getCurrentLesson?.number
 
