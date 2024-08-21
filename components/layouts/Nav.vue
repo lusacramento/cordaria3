@@ -67,30 +67,6 @@
 							<span>Sobre</span></nuxt-link
 						>
 					</li>
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/a-pratica"
-							class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>Login</span></nuxt-link
-						>
-					</li> -->
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/o-tutorial"
-							class="nav-link the-tutorial-link"
-							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
-							><span>O Tutorial</span></nuxt-link
-						>
-					</li> -->
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/dicas"
-							class="nav-link clues-link"
-							:class="{ cluesLinkActive: links.clues.isLight }"
-							><span>Dicas</span></nuxt-link
-						>
-					</li> -->
 					<li class="nav-item">
 						<nuxt-link
 							to="entrar"
