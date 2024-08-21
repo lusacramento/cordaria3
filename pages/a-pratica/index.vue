@@ -33,9 +33,9 @@
 					<div class="d-flex align-items-center justify-content-end">
 						<div class="mx-3">
 							<nuxt-link
-								to="/"
+								to=""
 								class="nav-link the-pratice-link"
-								@click.prevent="useAudio().stopAudios()"
+								@click.prevent="exit"
 								><span>Sair</span></nuxt-link
 							>
 							<button
@@ -329,6 +329,12 @@
 
 	function payload() {
 		console.log('payload')
+	}
+
+	async function exit() {
+		// verificar se o audio esta sendo executado
+		await useAudio().stopAudios()
+		useRouter().push('/')
 	}
 </script>
 
