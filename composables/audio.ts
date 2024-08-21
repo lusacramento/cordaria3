@@ -127,9 +127,11 @@ function playAudios(bpm: number) {
 }
 
 async function stopAudios() {
-	await sampler.dispose()
-	await sequence.stop
-	await Tone.Transport.cancel()
+	if (Tone.getContext().state === 'running') {
+		await sampler.dispose()
+		await sequence.stop
+		await Tone.getTransport().cancel()
+	}
 }
 
 function calculateRelease(tempo: number) {
