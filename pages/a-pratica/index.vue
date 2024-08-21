@@ -120,6 +120,9 @@
 	const helpers = useHelpers()
 
 	const isLoaded = ref(false)
+	const mainButtonLabel = ref(
+		`<div style="font-size:1.5em">CARREGANDO...</div>`,
+	)
 
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
@@ -164,8 +167,9 @@
 		await loadProgress()
 		await useController().init()
 		setTimeout(() => {
+			mainButtonLabel.value = `<div style="font-size:1.5em">JOGAR</div>`
 			isLoaded.value = true
-		}, 1000)
+		}, 2000)
 	}
 
 	async function loadUserStore() {
@@ -298,14 +302,14 @@
 		}
 	})
 
-	const boxes = {
+	const boxes = ref({
 		callInAction: {
-			text: '<div style="font-size:1.5em">JOGAR</div>',
+			text: mainButtonLabel,
 			schema: 'the-project',
 			leftLogo: false,
 			rightLogo: false,
 		},
-	}
+	})
 
 	function generateProgress(lesson: Lesson) {
 		return {
