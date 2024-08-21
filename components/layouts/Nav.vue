@@ -67,30 +67,6 @@
 							<span>Sobre</span></nuxt-link
 						>
 					</li>
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/a-pratica"
-							class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>Login</span></nuxt-link
-						>
-					</li> -->
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/o-tutorial"
-							class="nav-link the-tutorial-link"
-							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
-							><span>O Tutorial</span></nuxt-link
-						>
-					</li> -->
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/dicas"
-							class="nav-link clues-link"
-							:class="{ cluesLinkActive: links.clues.isLight }"
-							><span>Dicas</span></nuxt-link
-						>
-					</li> -->
 					<li class="nav-item">
 						<nuxt-link
 							to="entrar"
@@ -99,13 +75,13 @@
 							><span>Jogar</span></nuxt-link
 						>
 					</li>
-					<li v-if="!loggedIn" else class="nav-item">
+					<li v-if="status === 'authenticated'" class="nav-item">
 						<nuxt-link
 							to=""
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
 							@click.prevent="handleLogout()"
-							><span>Sair</span></nuxt-link
+							><span>Logout</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">
@@ -150,7 +126,6 @@
 	import instaIconDisabled from '@/assets/imgs/logo-insta-disabled.png'
 	import instaIconEnabled from '@/assets/imgs/logo-insta-enabled.png'
 
-	const { loggedIn } = storeToRefs(useMyUserStore())
 	const icons = {
 		cordaria: reactive({
 			url: cordariaIconDisabled,
@@ -206,9 +181,9 @@
 	const { signOut, status } = useAuth()
 
 	async function handleLogout() {
-		await signOut()
 		useMyUserStore().$reset()
-		await useRouter().push('index')
+		await signOut()
+		// await useRouter().push('index')
 	}
 
 	function removeAllActive() {

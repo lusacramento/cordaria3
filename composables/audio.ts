@@ -121,15 +121,17 @@ function generateSequence(sampler: Tone.Sampler, tempo: number) {
 function playAudios(bpm: number) {
 	sequence.loop = false
 	sequence.now()
-	Tone.Transport.bpm.value = bpm / 2
+	Tone.getTransport().bpm.value = bpm / 2
 	Tone.start()
-	Tone.Transport.start()
+	Tone.getTransport().start()
 }
 
 async function stopAudios() {
-	await sampler.dispose()
-	await sequence.stop
-	await Tone.Transport.cancel()
+	if (Tone.getContext().state === 'running') {
+		await sampler.dispose()
+		await sequence.stop
+		await Tone.getTransport().cancel()
+	}
 }
 
 function calculateRelease(tempo: number) {
