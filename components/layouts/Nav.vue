@@ -28,6 +28,23 @@
 				<ul class="navbar-nav" :class="{ collapseColor: !isCollapse }">
 					<li class="nav-item">
 						<nuxt-link
+							to="entrar"
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							><span>Jogar</span></nuxt-link
+						>
+					</li>
+					<li v-if="!loggedIn" else class="nav-item">
+						<nuxt-link
+							to=""
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							@click.prevent="handleLogout()"
+							><span>Sair</span></nuxt-link
+						>
+					</li>
+					<li class="nav-item">
+						<nuxt-link
 							to="/ranqueamento"
 							class="nav-link clues-link"
 							:class="{ cluesLinkActive: links.clues.isLight }"
@@ -42,23 +59,6 @@
 							aria-current="page"
 						>
 							<span>Sobre</span></nuxt-link
-						>
-					</li>
-					<li class="nav-item">
-						<nuxt-link
-							to="entrar"
-							class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>Jogar</span></nuxt-link
-						>
-					</li>
-					<li v-if="!loggedIn" else class="nav-item">
-						<nuxt-link
-							to=""
-							class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							@click.prevent="handleLogout()"
-							><span>Sair</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">
