@@ -28,29 +28,6 @@
 				<ul class="navbar-nav" :class="{ collapseColor: !isCollapse }">
 					<li class="nav-item">
 						<nuxt-link
-							to="/"
-							class="nav-link the-project-link"
-							:class="{
-								theProjectLinkActive: links.theProject.isLight,
-							}"
-							aria-current="page"
-							><span>Home</span></nuxt-link
-						>
-					</li>
-
-					<!-- 
-						MOVER PARA AREA DE USUÁRIO
-						
-						<li class="nav-item">
-						<nuxt-link
-							to="/o-tutorial"
-							class="nav-link the-tutorial-link"
-							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
-							><span>O Tutorial</span></nuxt-link
-						>
-					</li> -->
-					<li class="nav-item">
-						<nuxt-link
 							to="/ranqueamento"
 							class="nav-link clues-link"
 							:class="{ cluesLinkActive: links.clues.isLight }"
@@ -67,30 +44,6 @@
 							<span>Sobre</span></nuxt-link
 						>
 					</li>
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/a-pratica"
-							class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>Login</span></nuxt-link
-						>
-					</li> -->
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/o-tutorial"
-							class="nav-link the-tutorial-link"
-							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
-							><span>O Tutorial</span></nuxt-link
-						>
-					</li> -->
-					<!-- <li class="nav-item">
-						<nuxt-link
-							to="/dicas"
-							class="nav-link clues-link"
-							:class="{ cluesLinkActive: links.clues.isLight }"
-							><span>Dicas</span></nuxt-link
-						>
-					</li> -->
 					<li class="nav-item">
 						<nuxt-link
 							to="entrar"
