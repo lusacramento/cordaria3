@@ -1,38 +1,46 @@
 import { Lesson } from '~/server/models/Lesson'
-import { Lesson as LessonType } from '~/composables/model/lesson'
+import { Lesson as LessonType } from '~/types/Lesson'
 
 export default defineEventHandler(async (event) => {
 	const body: LessonType[] = await readBody(event)
 
-	// body.forEach(element: any => {
-	// 	console.log(element)
+	try {
+		const isExistsLesson: boolean = (await Lesson.findOne({
+			_id: { $exists: true },
+		})) as boolean
 
-	// });
-
-	body.forEach(async (element: LessonType, index: number) => {
-		await console.log(element.number, ' - ', element.quantityOfStrings)
-		if (
-			!element.hasOwnProperty('number') ||
-			!element.hasOwnProperty('level') ||
-			!element.hasOwnProperty('firstFinger') ||
-			!element.hasOwnProperty('stringNumber') ||
-			!element.hasOwnProperty('bpm') ||
-			!element.hasOwnProperty('message') ||
-			!element.hasOwnProperty('quantityOfStrings')
-		)
+		if (isExistsLesson) {
+			new Error('Já existe lições')
 			throw createError({
 				statusCode: 400,
 				statusMessage: 'Bad Request',
-				message: 'Missing required fields',
+				message: 'Já existe lições cadastradas!',
 			})
-	})
+		}
 
-	try {
+		body.forEach(async (element: LessonType, index: number) => {
+			await console.log(element.number, ' - ', element.quantityOfStrings)
+			if (
+				!element.hasOwnProperty('number') ||
+				!element.hasOwnProperty('level') ||
+				!element.hasOwnProperty('firstFinger') ||
+				!element.hasOwnProperty('stringNumber') ||
+				!element.hasOwnProperty('bpm') ||
+				!element.hasOwnProperty('message') ||
+				!element.hasOwnProperty('quantityOfStrings') ||
+				!element.hasOwnProperty('points')
+			)
+				throw createError({
+					statusCode: 400,
+					statusMessage: 'Bad Request',
+					message: 'Campos obrigatórios ausentes.',
+				})
+		})
+
 		const lessons = await Lesson.insertMany(body)
-
-		return { ...lessons }
+		return 'Lições inseridas no Banco de dados com sucesso!'
 	} catch (error) {
-		console.log(error)
+		return error
 	}
 	return
 })

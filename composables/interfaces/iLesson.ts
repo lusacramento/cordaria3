@@ -32,7 +32,11 @@ export const useILesson = () => {
 		})
 	}
 
-	async function deleteAll() {}
+	async function deleteAll() {
+		return await useFetch('/api/lessons/lessons', {
+			method: 'delete',
+		})
+	}
 
 	return { postMany, getAll, deleteAll, getLesson, getLessonById }
 }
