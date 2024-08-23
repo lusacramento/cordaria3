@@ -21,6 +21,10 @@ export default defineNuxtConfig({
 		port: 8000,
 	},
 
+	app: {
+		pageTransition: { name: 'page', mode: 'out-in' },
+	},
+
 	modules: [
 		[
 			'nuxt-file-storage',
