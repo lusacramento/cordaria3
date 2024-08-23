@@ -4,13 +4,19 @@
 			<h1>Gerenciador</h1>
 		</div>
 		<div class="status">
-			<div
-				v-if="status.isShow"
-				class="row alert alert-dark d-flex justify-content-center"
-				role="alert"
-			>
-				{{ status.message }}
-			</div>
+			<transition name="fade">
+				<div
+					v-if="status.isShow"
+					class="row alert alert-dark d-flex justify-content-center"
+					role="alert"
+					:transition="{
+						name: 'bounce',
+						mode: 'out-in',
+					}"
+				>
+					{{ status.message }}
+				</div>
+			</transition>
 		</div>
 		<div class="find-by-number mb-5">
 			<div class="row d-flex text-center">
@@ -75,14 +81,12 @@
 					<button
 						class="btn btn-success mx-1"
 						@click.prevent="addAllLessonsOnDataBase"
-						disabled
 					>
 						Adicionar lições
 					</button>
 					<button
 						class="btn btn-danger mx-1"
 						@click.prevent="deleteAllLessonsOnDataBase"
-						disabled
 					>
 						Apagar Lições
 					</button>
@@ -117,6 +121,9 @@
 <script lang="ts" setup>
 	definePageMeta({
 		middleware: 'admin',
+		pageTransition: {
+			name: 'rotate',
+		},
 	})
 
 	const isLoaded = ref({
@@ -135,8 +142,10 @@
 		quantityOfStrings: '4',
 	}
 
-	onBeforeMount(async () => {
-		// getAllLessons
+	watch(status.value, () => {
+		setTimeout(() => {
+			status.value.isShow = false
+		}, 2000)
 	})
 
 	async function getAllLessons() {
@@ -155,7 +164,7 @@
 
 	async function getLesson() {
 		try {
-			const response = await useILesson().getLessonByNumber(queryLesson)
+			const response = await useILesson().getLesson(queryLesson)
 			if (response) {
 				lesson.value.pop()
 				lesson.value.push(response.lesson)
@@ -165,28 +174,38 @@
 	}
 
 	async function addAllLessonsOnDataBase() {
-		// try {
-		// 	const allStrings = fourStrings.concat(sixStrings)
-		// 	const response = await useILesson().postMany(allStrings)
-		// 	if (response.data.value) {
-		// 		status.value.isShow = await true
-		// 		status.value.message = await 'Lições adicionadas com sucesso!'
-		// 	}
-		// } catch (error: any) {
-		// 	status.value.isShow = true
-		// 	status.value.message = error
-		// }
-		// status.value.isShow = true
-		// status.value.message = response.statusText
+		try {
+			const fourStringsLesson = useFourStrings().getLessons()
+			const sixStringsLesson = useSixStrings().getLessons()
+			const allStrings = fourStringsLesson.concat(sixStringsLesson)
+			const response = await useILesson().postMany(allStrings)
+			if (response.error.value) {
+				status.value.isShow = true
+				status.value.message = response.error.value.data.message
+			}
+			if (response.data.value) {
+				status.value.isShow = await true
+				status.value.message = await response.data.value
+			}
+		} catch (error: any) {
+			status.value.isShow = true
+			status.value.message = error
+		}
 	}
 
 	async function deleteAllLessonsOnDataBase() {
 		const isOk = confirm('Deseja mesmo apagar todas as Lições?')
 		if (isOk) {
 			try {
-				useILesson().deleteAll()
-				status.value.isShow = true
-				status.value.message = 'Todas as lições foram apagadas com sucesso'
+				const response = await useILesson().deleteAll()
+
+				if (response.error.value) {
+					status.value.isShow = true
+					status.value.message = response.error.value?.data.message
+				} else {
+					status.value.isShow = true
+					status.value.message = response.data.value
+				}
 			} catch (error) {
 				status.value.isShow = true
 				status.value.message = error
@@ -195,11 +214,30 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.list-group-item {
 		background-color: transparent;
 		border-color: rgba(255, 255, 255, 0.1);
 		width: 160px;
 		justify-content: center;
+	}
+
+	.alert-dark {
+		background-color: transparent;
+		color: white !important;
+	}
+
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: all 0.4s;
+	}
+	.fade-enter-from,
+	.fade-leave-to {
+		opacity: 0;
+		filter: blur(1rem);
+	}
+
+	.form-control {
+		color: black !important;
 	}
 </style>
