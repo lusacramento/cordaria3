@@ -59,6 +59,15 @@
 			/>
 		</td>
 		<td>
+			<input
+				id="points-lesson-input"
+				type="text"
+				class="form form-control"
+				v-model="lesson.points"
+			/>
+		</td>
+
+		<td>
 			<button
 				type="button"
 				class="btn btn-warning m-1"
@@ -96,11 +105,18 @@
 	#number-lesson-input,
 	#first-finger-lesson-input,
 	#string-number-lesson-input,
-	#bpm-lesson-input {
+	#bpm-lesson-input,
+	#points-lesson-input {
 		width: 60px;
+		color: black !important;
 	}
 
 	#level-lesson-input {
 		width: 140px;
+		color: black !important;
+	}
+
+	#message-lesson-input {
+		color: black !important;
 	}
 </style>

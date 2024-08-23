@@ -8,6 +8,7 @@ export interface LessonDocument extends Document {
 	bpm: number
 	message: string
 	quantityOfStrings: string
+	points: number
 }
 
 const LessonSchema = new Schema({
@@ -41,6 +42,11 @@ const LessonSchema = new Schema({
 	},
 
 	quantityOfStrings: {
+		type: Number,
+		required: true,
+	},
+
+	points: {
 		type: Number,
 		required: true,
 	},

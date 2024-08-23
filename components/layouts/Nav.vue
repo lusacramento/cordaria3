@@ -28,27 +28,21 @@
 				<ul class="navbar-nav" :class="{ collapseColor: !isCollapse }">
 					<li class="nav-item">
 						<nuxt-link
-							to="/"
-							class="nav-link the-project-link"
-							:class="{
-								theProjectLinkActive: links.theProject.isLight,
-							}"
-							aria-current="page"
-							><span>Home</span></nuxt-link
+							to="entrar"
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							><span>Jogar</span></nuxt-link
 						>
 					</li>
-
-					<!-- 
-						MOVER PARA AREA DE USUÁRIO
-						
-						<li class="nav-item">
+					<li v-if="status === 'authenticated'" else class="nav-item">
 						<nuxt-link
-							to="/o-tutorial"
-							class="nav-link the-tutorial-link"
-							:class="{ theTutorialLinkActive: links.theTutorial.isLight }"
-							><span>O Tutorial</span></nuxt-link
+							to=""
+							class="nav-link the-pratice-link"
+							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+							@click.prevent="handleLogout()"
+							><span>Sair</span></nuxt-link
 						>
-					</li> -->
+					</li>
 					<li class="nav-item">
 						<nuxt-link
 							to="/ranqueamento"
@@ -65,23 +59,6 @@
 							aria-current="page"
 						>
 							<span>Sobre</span></nuxt-link
-						>
-					</li>
-					<li class="nav-item">
-						<nuxt-link
-							to="entrar"
-							class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>Jogar</span></nuxt-link
-						>
-					</li>
-					<li v-if="status === 'authenticated'" class="nav-item">
-						<nuxt-link
-							to=""
-							class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							@click.prevent="handleLogout()"
-							><span>Logout</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">

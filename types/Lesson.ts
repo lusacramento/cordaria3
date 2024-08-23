@@ -1,5 +1,5 @@
 export interface Lesson {
-	_id: string
+	_id?: string
 	number: number
 	level: string
 	firstFinger: number
@@ -7,4 +7,5 @@ export interface Lesson {
 	bpm: number
 	message: string
 	quantityOfStrings: number
+	points: number
 }

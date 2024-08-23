@@ -13,6 +13,7 @@
 					<th scope="col">Corda</th>
 					<th scope="col">Batidas<br />Por<br />Minuto</th>
 					<th scope="col">Mensagem</th>
+					<th scope="col">Pontos</th>
 					<th scope="col">Ações</th>
 				</tr>
 			</thead>
