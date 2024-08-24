@@ -34,7 +34,7 @@
 							><span>Jogar</span></nuxt-link
 						>
 					</li>
-					<li v-if="!loggedIn" else class="nav-item">
+					<li v-if="status === 'authenticated'" else class="nav-item">
 						<nuxt-link
 							to=""
 							class="nav-link the-pratice-link"
@@ -103,7 +103,6 @@
 	import instaIconDisabled from '@/assets/imgs/logo-insta-disabled.png'
 	import instaIconEnabled from '@/assets/imgs/logo-insta-enabled.png'
 
-	const { loggedIn } = storeToRefs(useMyUserStore())
 	const icons = {
 		cordaria: reactive({
 			url: cordariaIconDisabled,
@@ -159,9 +158,9 @@
 	const { signOut, status } = useAuth()
 
 	async function handleLogout() {
-		await signOut()
 		useMyUserStore().$reset()
-		await useRouter().push('index')
+		await signOut()
+		// await useRouter().push('index')
 	}
 
 	function removeAllActive() {

@@ -33,9 +33,9 @@
 					<div class="d-flex align-items-center justify-content-end">
 						<div class="mx-3">
 							<nuxt-link
-								to="/"
+								to=""
 								class="nav-link the-pratice-link"
-								@click.prevent="useAudio().stopAudios()"
+								@click.prevent="exit"
 								><span>Sair</span></nuxt-link
 							>
 							<button
@@ -120,6 +120,9 @@
 	const helpers = useHelpers()
 
 	const isLoaded = ref(false)
+	const mainButtonLabel = ref(
+		`<div style="font-size:1.5em">CARREGANDO...</div>`,
+	)
 
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
@@ -164,8 +167,9 @@
 		await loadProgress()
 		await useController().init()
 		setTimeout(() => {
+			mainButtonLabel.value = `<div style="font-size:1.5em">JOGAR</div>`
 			isLoaded.value = true
-		}, 1000)
+		}, 2000)
 	}
 
 	async function loadUserStore() {
@@ -298,14 +302,14 @@
 		}
 	})
 
-	const boxes = {
+	const boxes = ref({
 		callInAction: {
-			text: '<div style="font-size:1.5em">JOGAR</div>',
+			text: mainButtonLabel,
 			schema: 'the-project',
 			leftLogo: false,
 			rightLogo: false,
 		},
-	}
+	})
 
 	function generateProgress(lesson: Lesson) {
 		return {
@@ -329,6 +333,12 @@
 
 	function payload() {
 		console.log('payload')
+	}
+
+	async function exit() {
+		// verificar se o audio esta sendo executado
+		await useAudio().stopAudios()
+		useRouter().push('/')
 	}
 </script>
 

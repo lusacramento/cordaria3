@@ -28,6 +28,7 @@ const ProgressSchema = new Schema({
 
 	instrument: {
 		type: String,
+		enum: Object.values(Instrument),
 		required: true,
 	},
 
