@@ -7,6 +7,7 @@ export const useMyProgressStore = defineStore({
 	state: () => ({
 		progress: [] as Progress[],
 		lesson: null as Lesson | null,
+		score: 0 as number,
 	}),
 
 	getters: {
@@ -17,6 +18,10 @@ export const useMyProgressStore = defineStore({
 		getLastProgress(state) {
 			const lastIndex = state.progress.length - 1
 			return state.progress[lastIndex]
+		},
+
+		getScore(state) {
+			return state.score
 		},
 	},
 
@@ -38,6 +43,14 @@ export const useMyProgressStore = defineStore({
 			const indexProgress = this.progress.length - 1
 			const lastProgress = this.progress[indexProgress]
 			lastProgress.isCompleted = true
+		},
+
+		setScore() {
+			if (!this.lesson) return
+
+			if (this.progress[this.progress.length - 1].isCompleted) {
+				this.score += this.lesson?.points / 2
+			} else this.score += this.lesson?.points
 		},
 	},
 })
