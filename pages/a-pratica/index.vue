@@ -101,6 +101,7 @@
 	import type { Progress } from '~/types/Progress'
 	import { type ObjectId } from 'mongoose'
 	import { Instrument } from '~/types/Instrument'
+	import { useIScore } from '~/composables/interfaces/iScore'
 
 	definePageMeta({
 		middleware: 'auth',
@@ -117,6 +118,7 @@
 	const progressStore = useMyProgressStore()
 	const iProgress = useIProgress()
 	const iLesson = useILesson()
+	const iScore = useIScore()
 	const helpers = useHelpers()
 
 	const isLoaded = ref(false)
@@ -238,6 +240,14 @@
 		}
 		return null
 	}
+
+	async function getScore() {
+		const response = await iScore.getScore(
+			userStore.getId,
+			userDetailsStore.getInstrument,
+		)
+	}
+
 
 	function toogleUserDetailsForm() {
 		userDetailsButton.value.click()
