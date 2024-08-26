@@ -195,7 +195,7 @@
 		if (!userStore.getId) throw Error
 		toaster.value.header = 'Sucesso!'
 		toaster.value.body = `Você está conectado!<br />
-			<strong>Inicie uma partida agora!</strong>`
+				<strong>Inicie uma partida agora!</strong>`
 		toaster.value.type = 'success'
 		toast.value.show()
 
@@ -247,7 +247,6 @@
 			userDetailsStore.getInstrument,
 		)
 	}
-
 
 	function toogleUserDetailsForm() {
 		userDetailsButton.value.click()
