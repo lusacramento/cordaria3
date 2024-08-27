@@ -1,12 +1,13 @@
+import { Instrument } from './../../types/Instrument'
 import type { Progress } from '~/types/Progress'
 
 export const useIProgress = () => {
 	const url = '/api/progress/'
 
-	async function getProgress(userId: string) {
+	async function getProgress(userId: string, instrument: Instrument) {
 		return await useFetch(url, {
 			method: 'get',
-			params: { userId: userId },
+			params: { userId, instrument },
 		})
 	}
 
