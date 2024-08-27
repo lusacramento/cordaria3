@@ -220,11 +220,6 @@ export const useController = () => {
 		showBox.value = !showBox.value
 	}
 
-	// function saveProgress() {
-	// 	const progress = useMyProgressStore().getLastProgress
-	// 	const response = useIProgress().postProgress(progress)
-	// }
-
 	return {
 		deck,
 		cards,
