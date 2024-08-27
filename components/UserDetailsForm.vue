@@ -84,7 +84,7 @@
 					autocomplete="off"
 					checked
 					v-model="instrument"
-					value="acoustic-guitar"
+					:value="Instrument.ACOUSTICGUITAR"
 				/>
 				<label class="btn btn-outline-success" for="acoustic-guitar"
 					>Violão</label
@@ -98,7 +98,7 @@
 					id="electric-guitar"
 					autocomplete="off"
 					v-model="instrument"
-					value="electric-guitar"
+					:value="Instrument.ELECTRICGUITAR"
 				/>
 				<label class="btn btn-outline-danger" for="electric-guitar"
 					>Guitarra</label
@@ -112,7 +112,7 @@
 					id="bass"
 					autocomplete="off"
 					v-model="instrument"
-					value="bass"
+					:value="Instrument.BASS"
 				/>
 				<label class="btn btn-outline-danger" for="bass">Baixo</label>
 			</div>
@@ -124,7 +124,7 @@
 					id="cavaco"
 					autocomplete="off"
 					v-model="instrument"
-					value="cavaco"
+					:value="Instrument.CAVACO"
 				/>
 				<label class="btn btn-outline-danger" for="cavaco">Cavaquinho</label>
 			</div>
@@ -146,6 +146,8 @@
 </template>
 
 <script lang="ts" setup>
+	import { Instrument } from '~/types/Instrument'
+
 	const { fullName, age, state, country, instrument } = storeToRefs(
 		useMyUserDetailsStore(),
 	)

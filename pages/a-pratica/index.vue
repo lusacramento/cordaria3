@@ -325,9 +325,7 @@
 			userId: userStore.getId as unknown as ObjectId,
 			lesson: lesson._id as unknown as ObjectId,
 			isCompleted: false,
-			instrument: helpers.getInstrumentEnum(
-				userDetailsStore.getInstrument,
-			) as Instrument,
+			instrument: userDetailsStore.getInstrument,
 			currentLesson: lesson.number,
 		}
 	}

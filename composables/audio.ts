@@ -1,5 +1,6 @@
 import * as Tone from 'tone'
 import type { Card } from './model/card'
+import { Instrument } from '~/types/Instrument'
 
 let urls: any = {}
 const playlist: string[] = []
@@ -9,16 +10,17 @@ const adjustSync = 1.1 // <-- ajust here the release duration for legattos notes
 let sampler: Tone.Sampler
 let sequence: Tone.Sequence
 
-function getInstrumentMapping(instrument: string) {
+function getInstrumentMapping(instrument: Instrument) {
 	let instrumentMap = {}
 	switch (true) {
-		case instrument === 'acoustic-guitar' || instrument === 'electric-guitar':
+		case instrument === Instrument.ACOUSTICGUITAR ||
+			instrument === Instrument.ELECTRICGUITAR:
 			instrumentMap = useGuitar().getMap()
 			break
-		case instrument === 'cavaco':
+		case instrument === Instrument.CAVACO:
 			instrumentMap = useCavaco().getMap()
 			break
-		case instrument === 'bass':
+		case instrument === Instrument.BASS:
 			instrumentMap = useBass().getMap()
 			break
 		default:
@@ -29,7 +31,7 @@ function getInstrumentMapping(instrument: string) {
 
 async function getAudios(
 	counter: number,
-	instrument: string,
+	instrument: Instrument,
 	instrumentMap: {},
 	deck: Card[],
 	bpm: number,
@@ -70,8 +72,14 @@ function getMetronomeUrls(urls: any) {
 	return urls
 }
 
-function getInstrumentUrls(urls: any, instrument: string, instrumentMap: {}) {
-	const baseUrl = useUrls().getUrl(instrument)
+function getInstrumentUrls(
+	urls: any,
+	instrument: Instrument,
+	instrumentMap: {},
+) {
+	const baseUrl = useUrls().getUrl(
+		useHelpers().convertInstrumentEnumToString(instrument),
+	)
 
 	if (!Array.isArray(instrumentMap)) {
 		new Error('instrumentMap  is not an array')

@@ -1,6 +1,7 @@
 import { useMySettingsStore } from './../stores/settings'
 import { Card } from './model/card'
 import type { Lesson } from '~/types/Lesson'
+import type { Instrument } from '~/types/Instrument'
 
 // Views variables
 const showCards = ref(false)
@@ -17,7 +18,7 @@ const cards = {
 	next: ref(Card.getEmptyCard()),
 }
 
-const instrument = ref('')
+const instrument = ref() as Ref<Instrument>
 const instrumentMap = ref([]) as Ref<any>
 
 const lesson = ref() as Ref<Lesson> | Ref<null>
