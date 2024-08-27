@@ -199,10 +199,13 @@
 		toaster.value.type = 'success'
 		toast.value.show()
 
-		const response = await useIProgress().getProgress(userStore.getId)
+		const response = await useIProgress().getProgress(
+			userStore.getId,
+			userDetailsStore.getInstrument,
+		)
 
 		if (response.error.value?.statusCode === 404) {
-			const lesson = await getLesson(10)
+			const lesson = await getLesson(180)
 			if (!lesson) throw new Error('Lição não localizada!')
 
 			const progress: Progress = generateProgress(lesson)
@@ -325,9 +328,7 @@
 			userId: userStore.getId as unknown as ObjectId,
 			lesson: lesson._id as unknown as ObjectId,
 			isCompleted: false,
-			instrument: helpers.getInstrumentEnum(
-				userDetailsStore.getInstrument,
-			) as Instrument,
+			instrument: userDetailsStore.getInstrument,
 			currentLesson: lesson.number,
 		}
 	}

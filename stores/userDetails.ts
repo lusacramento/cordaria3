@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import type { Instrument } from '~/types/Instrument'
 
 export const useMyUserDetailsStore = defineStore({
 	id: 'myUserDetailsStore',
@@ -9,7 +10,7 @@ export const useMyUserDetailsStore = defineStore({
 		age: 0,
 		state: '',
 		country: '',
-		instrument: '',
+		instrument: '' as Instrument,
 		imageUrl: '/imgs/uploads/default-avatar.png',
 	}),
 
