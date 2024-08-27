@@ -29,19 +29,12 @@ export const useMyProgressStore = defineStore({
 			this.progress = progress
 		},
 
-		async addProgress(progress: Progress, lesson: Lesson) {
-			// this.progress.push(progress)
-			// this.setLesson(lesson)
-		},
-
 		setLesson(lesson: Lesson) {
 			this.lesson = lesson
 		},
 
 		setIsCompleted(status: boolean) {
-			// const indexProgress = this.progress.length - 1
-			// const lastProgress = this.progress[indexProgress]
-			// lastProgress.isCompleted = true
+			this.progress.isCompleted = true
 		},
 
 		setScore() {

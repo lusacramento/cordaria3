@@ -100,7 +100,6 @@
 	import type { Lesson } from '~/types/Lesson'
 	import type { Progress } from '~/types/Progress'
 	import { type ObjectId } from 'mongoose'
-	import { Instrument } from '~/types/Instrument'
 	import { useIScore } from '~/composables/interfaces/iScore'
 
 	definePageMeta({
@@ -119,7 +118,6 @@
 	const iProgress = useIProgress()
 	const iLesson = useILesson()
 	const iScore = useIScore()
-	const helpers = useHelpers()
 
 	const isLoaded = ref(false)
 	const mainButtonLabel = ref(
@@ -210,7 +208,8 @@
 
 			const progress: Progress = generateProgress(lesson)
 			const response = await postProgress(progress)
-			progressStore.addProgress(response.data.value as Progress, lesson)
+			progressStore.setProgress(response.data.value as Progress)
+			progressStore.setLesson(lesson)
 		}
 
 		if (response.data.value) {
@@ -286,27 +285,29 @@
 	const { showBox, showCards, showStatistics, isCompleted } = controller
 
 	watch(isCompleted, async (newValue) => {
-		// if (newValue === true) {
-		// 	useMyProgressStore().setIsCompleted(isCompleted.value)
-		// 	const response = await useIProgress().setProgress(
-		// 		useMyProgressStore().getLastProgress,
-		// 	)
-		// 	isCompleted.value = false
-		// 	showCards.value = false
-		// 	showBox.value = true
-		// 	toaster.value.header = 'Parabéns!'
-		// 	toaster.value.body = `Lição ${lesson.value?.number} Finalizada!`
-		// 	toast.value.show()
-		// 	const currentLessonNumber = progressStore.getCurrentLesson?.number
-		// 	if (currentLessonNumber) {
-		// 		const lesson = await getLesson(currentLessonNumber + 1)
-		// 		if (!lesson) throw new Error('Lição não localizada!')
-		// 		const progress = generateProgress(lesson)
-		// 		const response = await postProgress(progress)
-		// 		progressStore.addProgress(response.data.value as Progress, lesson)
-		// 		controller.init()
-		// 	}
-		// }
+		if (newValue === true) {
+			progressStore.setIsCompleted(isCompleted.value)
+
+			await useIProgress().setProgress(progressStore.getProgress)
+
+			isCompleted.value = false
+			showCards.value = false
+			showBox.value = true
+			toaster.value.header = 'Parabéns!'
+			toaster.value.body = `Lição ${lesson.value?.number} Finalizada!`
+			toast.value.show()
+
+			const currentLessonNumber = progressStore.getCurrentLesson?.number
+			if (currentLessonNumber) {
+				const lesson = await getLesson(currentLessonNumber + 1)
+				if (!lesson) throw new Error('Lição não localizada!')
+				const progress = generateProgress(lesson)
+				const response = await postProgress(progress)
+				progressStore.setProgress(response.data.value as Progress)
+				progressStore.setLesson(lesson)
+				controller.init()
+			}
+		}
 	})
 
 	const boxes = ref({
@@ -341,7 +342,6 @@
 	}
 
 	async function exit() {
-		// verificar se o audio esta sendo executado
 		await useAudio().stopAudios()
 		useRouter().push('/')
 	}
