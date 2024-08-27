@@ -205,7 +205,7 @@
 		)
 
 		if (response.error.value?.statusCode === 404) {
-			const lesson = await getLesson(10)
+			const lesson = await getLesson(180)
 			if (!lesson) throw new Error('Lição não localizada!')
 
 			const progress: Progress = generateProgress(lesson)
