@@ -201,7 +201,7 @@ export const useController = () => {
 			cards.prev.value = cards.current.value
 			cards.current.value = Card.getEmptyCard()
 
-			useAudio().Tone.Transport.stop()
+			useAudio().Tone.getTransport().stop()
 			clearSequence()
 
 			isCompleted.value = await true
