@@ -199,7 +199,10 @@
 		toaster.value.type = 'success'
 		toast.value.show()
 
-		const response = await useIProgress().getProgress(userStore.getId)
+		const response = await useIProgress().getProgress(
+			userStore.getId,
+			userDetailsStore.getInstrument,
+		)
 
 		if (response.error.value?.statusCode === 404) {
 			const lesson = await getLesson(10)
