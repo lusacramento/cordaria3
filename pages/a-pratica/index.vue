@@ -35,7 +35,7 @@
 							<nuxt-link
 								to=""
 								class="nav-link the-pratice-link"
-								@click.prevent="exit"
+								@click.prevent="exit('/')"
 								><span>Sair</span></nuxt-link
 							>
 							<button
@@ -72,10 +72,10 @@
 						<div v-if="showBox">
 							<button class="btn btn-play" :disabled="!isLoaded">
 								<Box
-									:title-text="boxes.callInAction.text"
-									:schema="boxes.callInAction.schema"
-									:left-logo="boxes.callInAction.leftLogo"
-									:right-logo="boxes.callInAction.rightLogo"
+									:title-text="boxes.play.callInAction.text"
+									:schema="boxes.play.callInAction.schema"
+									:left-logo="boxes.play.callInAction.leftLogo"
+									:right-logo="boxes.play.callInAction.rightLogo"
 									@click.prevent="start()"
 								/>
 							</button>
@@ -84,7 +84,24 @@
 							<StatisticsTable />
 						</div>
 						<div v-if="showCards">
-							<CordariaScreen />
+							<div class="row mb-5">
+								<div class="col">
+									<CordariaScreen />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col d-flex justify-content-center">
+									<button type="button" class="btn">
+										<Box
+											:title-text="boxes.stop.callInAction.text"
+											:schema="boxes.stop.callInAction.schema"
+											:left-logo="boxes.stop.callInAction.leftLogo"
+											:right-logo="boxes.stop.callInAction.rightLogo"
+											@click.prevent="exit('/a-pratica')"
+										/>
+									</button>
+								</div>
+							</div>
 						</div>
 						<br />
 					</div>
@@ -142,11 +159,21 @@
 	}
 
 	const boxes = ref({
-		callInAction: {
-			text: mainButtonLabel,
-			schema: 'the-project',
-			leftLogo: false,
-			rightLogo: false,
+		play: {
+			callInAction: {
+				text: mainButtonLabel,
+				schema: 'the-project',
+				leftLogo: false,
+				rightLogo: false,
+			},
+		},
+		stop: {
+			callInAction: {
+				text: `<div style="font-size:1.5em">Cancelar</div>`,
+				schema: 'the-project',
+				leftLogo: false,
+				rightLogo: false,
+			},
 		},
 	})
 
@@ -382,9 +409,9 @@
 		console.log('payload')
 	}
 
-	async function exit() {
+	async function exit(to: '/' | '/a-pratica') {
 		await useAudio().stopAudios()
-		useRouter().push('/')
+		to === '/' ? useRouter().push(to) : useRouter().go(0)
 	}
 
 	function showToast(
