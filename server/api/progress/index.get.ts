@@ -1,27 +1,26 @@
 import { Progress } from '~/server/models/progress'
 
 export default defineEventHandler(async (event) => {
-	const { userId } = getQuery(event)
+	const query = getQuery(event)
 
-	if (!userId)
+	if (!query.userId || !query.instrument)
 		throw createError({
 			statusCode: 400,
 			statusMessage: 'Bad Request',
-			message: 'O campo  do Usuário está vazio.',
+			message: 'O campo  do Usuário e/ou  instrumento está vazio.',
 		})
 
 	try {
-		const response = await Progress.find({ userId: userId })
-		if (response.length === 0)
+		const response = await Progress.findOne(query).sort({ $natural: -1 })
+		if (!response)
 			throw createError({
 				statusCode: 404,
 				statusMessage: 'Not Found',
-				message: `Id do usuário ${{ userId }} não encontrado!`,
+				message: 'Progresso não encontrado.',
 			})
 
 		return response
 	} catch (error) {
-		console.log(error)
 		return error
 	}
 })

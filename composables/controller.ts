@@ -1,6 +1,7 @@
 import { useMySettingsStore } from './../stores/settings'
 import { Card } from './model/card'
 import type { Lesson } from '~/types/Lesson'
+import type { Instrument } from '~/types/Instrument'
 
 // Views variables
 const showCards = ref(false)
@@ -17,7 +18,7 @@ const cards = {
 	next: ref(Card.getEmptyCard()),
 }
 
-const instrument = ref('')
+const instrument = ref() as Ref<Instrument>
 const instrumentMap = ref([]) as Ref<any>
 
 const lesson = ref() as Ref<Lesson> | Ref<null>
@@ -200,7 +201,7 @@ export const useController = () => {
 			cards.prev.value = cards.current.value
 			cards.current.value = Card.getEmptyCard()
 
-			useAudio().Tone.Transport.stop()
+			useAudio().Tone.getTransport().stop()
 			clearSequence()
 
 			isCompleted.value = await true
@@ -217,11 +218,6 @@ export const useController = () => {
 	function toogleShowStatistics() {
 		showStatistics.value = !showStatistics.value
 		showBox.value = !showBox.value
-	}
-
-	function saveProgress() {
-		const progress = useMyProgressStore().getLastProgress
-		const response = useIProgress().postProgress(progress)
 	}
 
 	return {

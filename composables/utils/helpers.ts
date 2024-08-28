@@ -13,25 +13,13 @@ export const useHelpers = () => {
 		}
 	}
 
-	function getQuantityOfStrings(instrument: string) {
+	function getQuantityOfStrings(instrument: Instrument) {
 		switch (true) {
-			case instrument === 'acoustic-guitar' || instrument === 'electric-guitar':
+			case instrument === Instrument.ACOUSTICGUITAR ||
+				instrument === Instrument.ELECTRICGUITAR:
 				return 6
-			case instrument === 'bass' || instrument === 'cavaco':
+			case instrument === Instrument.BASS || instrument === Instrument.CAVACO:
 				return 4
-		}
-	}
-
-	function getInstrumentEnum(instrument: string) {
-		switch (instrument) {
-			case 'acoustic-guitar':
-				return Instrument.ACOUSTICGUITAR
-			case 'electric-guitar':
-				return Instrument.ELECTRICGUITAR
-			case 'bass':
-				return Instrument.BASS
-			case 'cavaco':
-				return Instrument.CAVACO
 		}
 	}
 
@@ -39,10 +27,24 @@ export const useHelpers = () => {
 		return name.split('.')[1]
 	}
 
+	function convertInstrumentEnumToString(instrument: Instrument) {
+		switch (instrument) {
+			case Instrument.ACOUSTICGUITAR:
+				return 'acoustic-guitar'
+			case Instrument.ELECTRICGUITAR:
+				return 'electric-guitar'
+
+			case Instrument.BASS:
+				return 'bass'
+			case Instrument.CAVACO:
+				return 'cavaco'
+		}
+	}
+
 	return {
 		translate,
 		getQuantityOfStrings,
-		getInstrumentEnum,
 		getFileExtension,
+		convertInstrumentEnumToString,
 	}
 }

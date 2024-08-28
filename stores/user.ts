@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useMyUserStore = defineStore({
 	id: 'myUserStore',
 	state: () => ({
-		id: ('' as string) || null,
+		id: '' as string,
 		userName: '',
 		email: '',
 		password: '',
