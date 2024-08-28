@@ -159,8 +159,7 @@
 
 	async function handleLogout() {
 		useMyUserStore().$reset()
-		await signOut()
-		// await useRouter().push('index')
+		await signOut({ callbackUrl: '/entrar' })
 	}
 
 	function removeAllActive() {
