@@ -5,7 +5,7 @@ import { type Lesson } from '~/types/Lesson'
 export const useMyProgressStore = defineStore({
 	id: 'myProgressStore',
 	state: () => ({
-		progress: [] as Progress[],
+		progress: {} as Progress,
 		lesson: null as Lesson | null,
 		score: 0 as number,
 	}),
@@ -15,9 +15,8 @@ export const useMyProgressStore = defineStore({
 			return state.lesson
 		},
 
-		getLastProgress(state) {
-			const lastIndex = state.progress.length - 1
-			return state.progress[lastIndex]
+		getProgress(state) {
+			return state.progress
 		},
 
 		getScore(state) {
@@ -26,13 +25,8 @@ export const useMyProgressStore = defineStore({
 	},
 
 	actions: {
-		async setProgress(progress: Progress[]) {
+		async setProgress(progress: Progress) {
 			this.progress = progress
-		},
-
-		async addProgress(progress: Progress, lesson: Lesson) {
-			this.progress.push(progress)
-			this.setLesson(lesson)
 		},
 
 		setLesson(lesson: Lesson) {
@@ -40,17 +34,11 @@ export const useMyProgressStore = defineStore({
 		},
 
 		setIsCompleted(status: boolean) {
-			const indexProgress = this.progress.length - 1
-			const lastProgress = this.progress[indexProgress]
-			lastProgress.isCompleted = true
+			this.progress.isCompleted = true
 		},
 
-		setScore() {
-			if (!this.lesson) return
-
-			if (this.progress[this.progress.length - 1].isCompleted) {
-				this.score += this.lesson?.points / 2
-			} else this.score += this.lesson?.points
+		setScore(score: number) {
+			this.score += score
 		},
 	},
 })

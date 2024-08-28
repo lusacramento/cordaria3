@@ -1,6 +1,6 @@
 import type { Score } from '~/types/Score'
 
-const url = '/api/score'
+const url = '/api/scores'
 
 async function getScore(userId: string, instrument: string) {
 	return $fetch(url, {

@@ -49,7 +49,7 @@
 								Launch demo modal
 							</button>
 						</div>
-						<div class="mx-3">Pontos: 908</div>
+						<div class="mx-3">Pontos: {{ points }}</div>
 						<button
 							class="btn btn-primary"
 							type="button"
@@ -100,8 +100,8 @@
 	import type { Lesson } from '~/types/Lesson'
 	import type { Progress } from '~/types/Progress'
 	import { type ObjectId } from 'mongoose'
-	import { Instrument } from '~/types/Instrument'
 	import { useIScore } from '~/composables/interfaces/iScore'
+	import type { Score } from '~/types/Score'
 
 	definePageMeta({
 		middleware: 'auth',
@@ -119,7 +119,6 @@
 	const iProgress = useIProgress()
 	const iLesson = useILesson()
 	const iScore = useIScore()
-	const helpers = useHelpers()
 
 	const isLoaded = ref(false)
 	const mainButtonLabel = ref(
@@ -136,6 +135,18 @@
 		body: '',
 		type: '',
 	})
+
+	const { score } = storeToRefs(progressStore)
+
+	watch(score, (newValue) => {
+		function animateCounter() {
+			newValue <= points.value ? clearInterval(counter) : points.value++
+		}
+
+		const counter = setInterval(animateCounter, 10)
+	})
+
+	const points = ref(0)
 
 	const firstString = computed(() => {
 		switch (lesson.value?.stringNumber) {
@@ -199,7 +210,7 @@
 		toaster.value.type = 'success'
 		toast.value.show()
 
-		const response = await useIProgress().getProgress(
+		const response = await iProgress.getProgress(
 			userStore.getId,
 			userDetailsStore.getInstrument,
 		)
@@ -210,18 +221,20 @@
 
 			const progress: Progress = generateProgress(lesson)
 			const response = await postProgress(progress)
-			progressStore.addProgress(response.data.value as Progress, lesson)
+			progressStore.setProgress(response.data.value as Progress)
+			progressStore.setLesson(lesson)
 		}
 
 		if (response.data.value) {
-			const progress = response.data.value as Progress[]
+			const progress = response.data.value as Progress
 			progressStore.setProgress(progress)
 
-			const lastLessonId = progress[progress.length - 1]
-				.lesson as unknown as string
+			const lastLessonId = progress.lesson as unknown as string
 
 			const lastLesson = (await iLesson.getLessonById(lastLessonId)) as Lesson
 			progressStore.setLesson(lastLesson)
+
+			progressStore.setScore(await getScore())
 		}
 	}
 
@@ -245,10 +258,12 @@
 	}
 
 	async function getScore() {
-		const response = await iScore.getScore(
+		const score = (await iScore.getScore(
 			userStore.getId,
 			userDetailsStore.getInstrument,
-		)
+		)) as Score
+
+		return score.score as number
 	}
 
 	function toogleUserDetailsForm() {
@@ -286,29 +301,28 @@
 
 	watch(isCompleted, async (newValue) => {
 		if (newValue === true) {
-			useMyProgressStore().setIsCompleted(isCompleted.value)
+			updateScore()
 
-			const response = await useIProgress().setProgress(
-				useMyProgressStore().getLastProgress,
-			)
+			await postScore()
+			progressStore.setIsCompleted(isCompleted.value)
+
+			await useIProgress().setProgress(progressStore.getProgress)
 
 			isCompleted.value = false
 			showCards.value = false
 			showBox.value = true
-
 			toaster.value.header = 'Parabéns!'
 			toaster.value.body = `Lição ${lesson.value?.number} Finalizada!`
 			toast.value.show()
 
 			const currentLessonNumber = progressStore.getCurrentLesson?.number
-
 			if (currentLessonNumber) {
 				const lesson = await getLesson(currentLessonNumber + 1)
 				if (!lesson) throw new Error('Lição não localizada!')
-
 				const progress = generateProgress(lesson)
 				const response = await postProgress(progress)
-				progressStore.addProgress(response.data.value as Progress, lesson)
+				progressStore.setProgress(response.data.value as Progress)
+				progressStore.setLesson(lesson)
 				controller.init()
 			}
 		}
@@ -333,6 +347,25 @@
 		}
 	}
 
+	async function updateScore() {
+		const lessonPoints = progressStore.getCurrentLesson?.points
+		if (lessonPoints) {
+			const points = !progressStore.getProgress.isCompleted
+				? lessonPoints
+				: lessonPoints / 2
+			progressStore.setScore(points)
+		}
+	}
+
+	async function postScore() {
+		const score = {
+			userId: userStore.getId as unknown as ObjectId,
+			instrument: userDetailsStore.getInstrument,
+			score: progressStore.getScore,
+		} as unknown as Score
+		await iScore.postScore(score)
+	}
+
 	async function postProgress(progress: Progress) {
 		return await iProgress.postProgress(progress)
 	}
@@ -346,7 +379,6 @@
 	}
 
 	async function exit() {
-		// verificar se o audio esta sendo executado
 		await useAudio().stopAudios()
 		useRouter().push('/')
 	}

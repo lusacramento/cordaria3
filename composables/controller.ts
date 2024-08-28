@@ -201,7 +201,7 @@ export const useController = () => {
 			cards.prev.value = cards.current.value
 			cards.current.value = Card.getEmptyCard()
 
-			useAudio().Tone.Transport.stop()
+			useAudio().Tone.getTransport().stop()
 			clearSequence()
 
 			isCompleted.value = await true
@@ -218,11 +218,6 @@ export const useController = () => {
 	function toogleShowStatistics() {
 		showStatistics.value = !showStatistics.value
 		showBox.value = !showBox.value
-	}
-
-	function saveProgress() {
-		const progress = useMyProgressStore().getLastProgress
-		const response = useIProgress().postProgress(progress)
 	}
 
 	return {

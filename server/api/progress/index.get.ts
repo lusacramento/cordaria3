@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 		})
 
 	try {
-		const response = await Progress.findOne({ query })
+		const response = await Progress.findOne(query).sort({ $natural: -1 })
 		if (!response)
 			throw createError({
 				statusCode: 404,
