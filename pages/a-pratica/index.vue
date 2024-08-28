@@ -35,7 +35,7 @@
 							<nuxt-link
 								to=""
 								class="nav-link the-pratice-link"
-								@click.prevent="exit"
+								@click.prevent="exit('/')"
 								><span>Sair</span></nuxt-link
 							>
 							<button
@@ -72,10 +72,10 @@
 						<div v-if="showBox">
 							<button class="btn btn-play" :disabled="!isLoaded">
 								<Box
-									:title-text="boxes.callInAction.text"
-									:schema="boxes.callInAction.schema"
-									:left-logo="boxes.callInAction.leftLogo"
-									:right-logo="boxes.callInAction.rightLogo"
+									:title-text="boxes.play.callInAction.text"
+									:schema="boxes.play.callInAction.schema"
+									:left-logo="boxes.play.callInAction.leftLogo"
+									:right-logo="boxes.play.callInAction.rightLogo"
 									@click.prevent="start()"
 								/>
 							</button>
@@ -84,7 +84,24 @@
 							<StatisticsTable />
 						</div>
 						<div v-if="showCards">
-							<CordariaScreen />
+							<div class="row mb-5">
+								<div class="col">
+									<CordariaScreen />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col d-flex justify-content-center">
+									<button type="button" class="btn">
+										<Box
+											:title-text="boxes.stop.callInAction.text"
+											:schema="boxes.stop.callInAction.schema"
+											:left-logo="boxes.stop.callInAction.leftLogo"
+											:right-logo="boxes.stop.callInAction.rightLogo"
+											@click.prevent="exit('/a-pratica')"
+										/>
+									</button>
+								</div>
+							</div>
 						</div>
 						<br />
 					</div>
@@ -116,18 +133,49 @@
 	const userStore = useMyUserStore()
 	const userDetailsStore = useMyUserDetailsStore()
 	const progressStore = useMyProgressStore()
+
+	// interfaces
 	const iProgress = useIProgress()
 	const iLesson = useILesson()
 	const iScore = useIScore()
+	const iUser = useIUser()
+	const helpers = useHelpers()
+	const controller = useController()
+
+	// views
+	const { imageUrl: avatar } = storeToRefs(userDetailsStore)
+	const { lesson } = storeToRefs(progressStore)
 
 	const isLoaded = ref(false)
 	const mainButtonLabel = ref(
 		`<div style="font-size:1.5em">CARREGANDO...</div>`,
 	)
 
-	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
+	const points = ref(0)
 
-	const { lesson } = storeToRefs(useMyProgressStore())
+	const modal = {
+		title: 'Finalize seu cadastro',
+		id: 'userDetailsModal',
+	}
+
+	const boxes = ref({
+		play: {
+			callInAction: {
+				text: mainButtonLabel,
+				schema: 'the-project',
+				leftLogo: false,
+				rightLogo: false,
+			},
+		},
+		stop: {
+			callInAction: {
+				text: `<div style="font-size:1.5em">Cancelar</div>`,
+				schema: 'the-project',
+				leftLogo: false,
+				rightLogo: false,
+			},
+		},
+	})
 
 	const toast = ref()
 	const toaster = ref({
@@ -135,18 +183,6 @@
 		body: '',
 		type: '',
 	})
-
-	const { score } = storeToRefs(progressStore)
-
-	watch(score, (newValue) => {
-		function animateCounter() {
-			newValue <= points.value ? clearInterval(counter) : points.value++
-		}
-
-		const counter = setInterval(animateCounter, 10)
-	})
-
-	const points = ref(0)
 
 	const firstString = computed(() => {
 		switch (lesson.value?.stringNumber) {
@@ -165,15 +201,57 @@
 
 	const userDetails: Ref<any> = ref()
 
+	const { score } = storeToRefs(progressStore)
+	watch(score, (newValue) => {
+		function animateCounter() {
+			newValue <= points.value ? clearInterval(counter) : points.value++
+		}
+
+		const counter = setInterval(animateCounter, 10)
+	})
+
+	const { showBox, showCards, showStatistics, isCompleted } = controller
+
+	watch(isCompleted, async (newValue) => {
+		if (newValue === true) {
+			updateScore()
+
+			await postScore()
+			progressStore.setIsCompleted(isCompleted.value)
+
+			await iProgress.setProgress(progressStore.getProgress)
+
+			isCompleted.value = false
+			showCards.value = false
+			showBox.value = true
+
+			showToast(
+				'Parabéns!',
+				`Lição ${lesson.value?.number} Finalizada!`,
+				'success',
+			)
+
+			const currentLessonNumber = progressStore.getCurrentLesson?.number
+			if (currentLessonNumber) {
+				const lesson = await getLesson(currentLessonNumber + 1)
+				if (!lesson) throw new Error('Lição não localizada!')
+				const progress = generateProgress(lesson)
+				const response = await postProgress(progress)
+				progressStore.setProgress(response.data.value as Progress)
+				progressStore.setLesson(lesson)
+				controller.init()
+			}
+		}
+	})
+
+	controller.init()
+
 	async function load() {
 		await loadUserStore()
 		const isUserDetailsExists = await verifyIfIsUserDetailsExists()
 		if (!isUserDetailsExists) {
 			toogleUserDetailsForm()
-			toaster.value.header = 'Quase Lá!'
-			toaster.value.body = 'Complete seu cadastro.'
-			toaster.value.type = 'warn'
-			toast.value.show()
+			showToast('Quase Lá!', 'Complete seu cadastro.', 'warn')
 			return
 		}
 		saveUserDetailsOnStore()
@@ -204,11 +282,12 @@
 
 	async function loadProgress() {
 		if (!userStore.getId) throw Error
-		toaster.value.header = 'Sucesso!'
-		toaster.value.body = `Você está conectado!<br />
-				<strong>Inicie uma partida agora!</strong>`
-		toaster.value.type = 'success'
-		toast.value.show()
+		showToast(
+			'Sucesso!',
+			`Você está conectado!<br />
+				<strong>Inicie uma partida agora!</strong>`,
+			'success',
+		)
 
 		const response = await iProgress.getProgress(
 			userStore.getId,
@@ -239,7 +318,7 @@
 	}
 
 	async function getLesson(number: number) {
-		const quantityOfStrings = useHelpers().getQuantityOfStrings(
+		const quantityOfStrings = helpers.getQuantityOfStrings(
 			userDetailsStore.getInstrument,
 		)
 
@@ -247,7 +326,7 @@
 			number: number,
 			quantityOfStrings: quantityOfStrings,
 		}
-		const response = await useILesson().getLesson(lessonQuery)
+		const response = await iLesson.getLesson(lessonQuery)
 
 		if (response?.lesson) {
 			const lesson = response.lesson as Lesson
@@ -275,67 +354,19 @@
 			userId: userStore.getId,
 			...useMyUserDetailsStore().getAll,
 		}
-		const userDetailsResponse = await useIUser().postUserDetails(userDetails)
+		const userDetailsResponse = await iUser.postUserDetails(userDetails)
 		// @ts-ignore
 		await toogleUserDetailsForm()
 		useRouter().go(0)
 	}
 
 	async function getUserDetails() {
-		return await useIUser().getUserDetails(userStore.getId)
+		return await iUser.getUserDetails(userStore.getId)
 	}
 
 	function saveUserDetailsOnStore() {
-		useMyUserDetailsStore().update(userDetails.value.data)
+		userDetailsStore.update(userDetails.value.data)
 	}
-
-	const modal = {
-		title: 'Finalize seu cadastro',
-		id: 'userDetailsModal',
-	}
-
-	const controller = useController()
-	controller.init()
-
-	const { showBox, showCards, showStatistics, isCompleted } = controller
-
-	watch(isCompleted, async (newValue) => {
-		if (newValue === true) {
-			updateScore()
-
-			await postScore()
-			progressStore.setIsCompleted(isCompleted.value)
-
-			await useIProgress().setProgress(progressStore.getProgress)
-
-			isCompleted.value = false
-			showCards.value = false
-			showBox.value = true
-			toaster.value.header = 'Parabéns!'
-			toaster.value.body = `Lição ${lesson.value?.number} Finalizada!`
-			toast.value.show()
-
-			const currentLessonNumber = progressStore.getCurrentLesson?.number
-			if (currentLessonNumber) {
-				const lesson = await getLesson(currentLessonNumber + 1)
-				if (!lesson) throw new Error('Lição não localizada!')
-				const progress = generateProgress(lesson)
-				const response = await postProgress(progress)
-				progressStore.setProgress(response.data.value as Progress)
-				progressStore.setLesson(lesson)
-				controller.init()
-			}
-		}
-	})
-
-	const boxes = ref({
-		callInAction: {
-			text: mainButtonLabel,
-			schema: 'the-project',
-			leftLogo: false,
-			rightLogo: false,
-		},
-	})
 
 	function generateProgress(lesson: Lesson) {
 		return {
@@ -378,9 +409,20 @@
 		console.log('payload')
 	}
 
-	async function exit() {
+	async function exit(to: '/' | '/a-pratica') {
 		await useAudio().stopAudios()
-		useRouter().push('/')
+		to === '/' ? useRouter().push(to) : useRouter().go(0)
+	}
+
+	function showToast(
+		header: string,
+		body: string,
+		type: 'success' | 'warn' | 'error',
+	) {
+		toaster.value.header = header
+		toaster.value.body = body
+		toaster.value.type = type
+		toast.value.show()
 	}
 </script>
 
