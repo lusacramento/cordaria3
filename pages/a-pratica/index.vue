@@ -170,10 +170,7 @@
 		const isUserDetailsExists = await verifyIfIsUserDetailsExists()
 		if (!isUserDetailsExists) {
 			toogleUserDetailsForm()
-			toaster.value.header = 'Quase Lá!'
-			toaster.value.body = 'Complete seu cadastro.'
-			toaster.value.type = 'warn'
-			toast.value.show()
+			showToast('Quase Lá!', 'Complete seu cadastro.', 'warn')
 			return
 		}
 		saveUserDetailsOnStore()
@@ -204,11 +201,12 @@
 
 	async function loadProgress() {
 		if (!userStore.getId) throw Error
-		toaster.value.header = 'Sucesso!'
-		toaster.value.body = `Você está conectado!<br />
-				<strong>Inicie uma partida agora!</strong>`
-		toaster.value.type = 'success'
-		toast.value.show()
+		showToast(
+			'Sucesso!',
+			`Você está conectado!<br />
+				<strong>Inicie uma partida agora!</strong>`,
+			'success',
+		)
 
 		const response = await iProgress.getProgress(
 			userStore.getId,
@@ -311,9 +309,12 @@
 			isCompleted.value = false
 			showCards.value = false
 			showBox.value = true
-			toaster.value.header = 'Parabéns!'
-			toaster.value.body = `Lição ${lesson.value?.number} Finalizada!`
-			toast.value.show()
+
+			showToast(
+				'Parabéns!',
+				`Lição ${lesson.value?.number} Finalizada!`,
+				'success',
+			)
 
 			const currentLessonNumber = progressStore.getCurrentLesson?.number
 			if (currentLessonNumber) {
@@ -381,6 +382,17 @@
 	async function exit() {
 		await useAudio().stopAudios()
 		useRouter().push('/')
+	}
+
+	function showToast(
+		header: string,
+		body: string,
+		type: 'success' | 'warn' | 'error',
+	) {
+		toaster.value.header = header
+		toaster.value.body = body
+		toaster.value.type = type
+		toast.value.show()
 	}
 </script>
 
