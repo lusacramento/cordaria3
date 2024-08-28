@@ -202,9 +202,14 @@
 	const userDetails: Ref<any> = ref()
 
 	const { score } = storeToRefs(progressStore)
-	watch(score, (newValue) => {
+	watch(score, (newValue, oldValue) => {
 		function animateCounter() {
 			newValue <= points.value ? clearInterval(counter) : points.value++
+		}
+
+		if (oldValue === 0) {
+			points.value = newValue
+			return
 		}
 
 		const counter = setInterval(animateCounter, 10)
