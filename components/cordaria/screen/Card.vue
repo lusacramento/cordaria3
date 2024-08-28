@@ -34,37 +34,30 @@
 <style>
 	div.card {
 		flex-direction: row;
-		background-color: #39c2a1;
 		width: 160px;
 		height: 160px;
 	}
 
-	/* color mobile view */
-	#prev-card,
-	.pastCardColor {
+	.pastCardColor,
+	.currentCardColor,
+	.futureCardColor {
 		font-family: 'Encode Sans';
+	}
+	/* color mobile view */
+	.pastCardColor {
 		font-weight: var(--font-bold);
 		color: rgba(27, 20, 4, 0.5);
-		background-color: #b4423f !important;
+		background-color: #b4423f;
 	}
-	#current-card,
 	.currentCardColor {
-		font-family: 'Encode Sans';
 		font-weight: var(--font-black);
-		background-color: #ffd740 !important;
+		background-color: #ffd740;
 		color: rgb(27, 20, 4);
 	}
 
-	#current-card {
-		border: solid 10px rgba(57, 57, 67, 1);
-		box-sizing: content-box;
-	}
-
-	#next-card,
 	.futureCardColor {
-		font-family: 'Encode Sans';
 		font-weight: var(--font-bold);
-		background-color: #39c2a1 !important;
+		background-color: #39c2a1;
 		color: rgba(27, 20, 4, 0.9);
 	}
 
