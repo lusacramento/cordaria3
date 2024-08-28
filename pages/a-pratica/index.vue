@@ -116,18 +116,39 @@
 	const userStore = useMyUserStore()
 	const userDetailsStore = useMyUserDetailsStore()
 	const progressStore = useMyProgressStore()
+
+	// interfaces
 	const iProgress = useIProgress()
 	const iLesson = useILesson()
 	const iScore = useIScore()
+	const iUser = useIUser()
+	const helpers = useHelpers()
+	const controller = useController()
+
+	// views
+	const { imageUrl: avatar } = storeToRefs(userDetailsStore)
+	const { lesson } = storeToRefs(progressStore)
 
 	const isLoaded = ref(false)
 	const mainButtonLabel = ref(
 		`<div style="font-size:1.5em">CARREGANDO...</div>`,
 	)
 
-	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
+	const points = ref(0)
 
-	const { lesson } = storeToRefs(useMyProgressStore())
+	const modal = {
+		title: 'Finalize seu cadastro',
+		id: 'userDetailsModal',
+	}
+
+	const boxes = ref({
+		callInAction: {
+			text: mainButtonLabel,
+			schema: 'the-project',
+			leftLogo: false,
+			rightLogo: false,
+		},
+	})
 
 	const toast = ref()
 	const toaster = ref({
@@ -135,18 +156,6 @@
 		body: '',
 		type: '',
 	})
-
-	const { score } = storeToRefs(progressStore)
-
-	watch(score, (newValue) => {
-		function animateCounter() {
-			newValue <= points.value ? clearInterval(counter) : points.value++
-		}
-
-		const counter = setInterval(animateCounter, 10)
-	})
-
-	const points = ref(0)
 
 	const firstString = computed(() => {
 		switch (lesson.value?.stringNumber) {
@@ -164,6 +173,51 @@
 	const userDetailsButton: any = ref()
 
 	const userDetails: Ref<any> = ref()
+
+	const { score } = storeToRefs(progressStore)
+	watch(score, (newValue) => {
+		function animateCounter() {
+			newValue <= points.value ? clearInterval(counter) : points.value++
+		}
+
+		const counter = setInterval(animateCounter, 10)
+	})
+
+	const { showBox, showCards, showStatistics, isCompleted } = controller
+
+	watch(isCompleted, async (newValue) => {
+		if (newValue === true) {
+			updateScore()
+
+			await postScore()
+			progressStore.setIsCompleted(isCompleted.value)
+
+			await iProgress.setProgress(progressStore.getProgress)
+
+			isCompleted.value = false
+			showCards.value = false
+			showBox.value = true
+
+			showToast(
+				'Parabéns!',
+				`Lição ${lesson.value?.number} Finalizada!`,
+				'success',
+			)
+
+			const currentLessonNumber = progressStore.getCurrentLesson?.number
+			if (currentLessonNumber) {
+				const lesson = await getLesson(currentLessonNumber + 1)
+				if (!lesson) throw new Error('Lição não localizada!')
+				const progress = generateProgress(lesson)
+				const response = await postProgress(progress)
+				progressStore.setProgress(response.data.value as Progress)
+				progressStore.setLesson(lesson)
+				controller.init()
+			}
+		}
+	})
+
+	controller.init()
 
 	async function load() {
 		await loadUserStore()
@@ -237,7 +291,7 @@
 	}
 
 	async function getLesson(number: number) {
-		const quantityOfStrings = useHelpers().getQuantityOfStrings(
+		const quantityOfStrings = helpers.getQuantityOfStrings(
 			userDetailsStore.getInstrument,
 		)
 
@@ -245,7 +299,7 @@
 			number: number,
 			quantityOfStrings: quantityOfStrings,
 		}
-		const response = await useILesson().getLesson(lessonQuery)
+		const response = await iLesson.getLesson(lessonQuery)
 
 		if (response?.lesson) {
 			const lesson = response.lesson as Lesson
@@ -273,70 +327,19 @@
 			userId: userStore.getId,
 			...useMyUserDetailsStore().getAll,
 		}
-		const userDetailsResponse = await useIUser().postUserDetails(userDetails)
+		const userDetailsResponse = await iUser.postUserDetails(userDetails)
 		// @ts-ignore
 		await toogleUserDetailsForm()
 		useRouter().go(0)
 	}
 
 	async function getUserDetails() {
-		return await useIUser().getUserDetails(userStore.getId)
+		return await iUser.getUserDetails(userStore.getId)
 	}
 
 	function saveUserDetailsOnStore() {
-		useMyUserDetailsStore().update(userDetails.value.data)
+		userDetailsStore.update(userDetails.value.data)
 	}
-
-	const modal = {
-		title: 'Finalize seu cadastro',
-		id: 'userDetailsModal',
-	}
-
-	const controller = useController()
-	controller.init()
-
-	const { showBox, showCards, showStatistics, isCompleted } = controller
-
-	watch(isCompleted, async (newValue) => {
-		if (newValue === true) {
-			updateScore()
-
-			await postScore()
-			progressStore.setIsCompleted(isCompleted.value)
-
-			await useIProgress().setProgress(progressStore.getProgress)
-
-			isCompleted.value = false
-			showCards.value = false
-			showBox.value = true
-
-			showToast(
-				'Parabéns!',
-				`Lição ${lesson.value?.number} Finalizada!`,
-				'success',
-			)
-
-			const currentLessonNumber = progressStore.getCurrentLesson?.number
-			if (currentLessonNumber) {
-				const lesson = await getLesson(currentLessonNumber + 1)
-				if (!lesson) throw new Error('Lição não localizada!')
-				const progress = generateProgress(lesson)
-				const response = await postProgress(progress)
-				progressStore.setProgress(response.data.value as Progress)
-				progressStore.setLesson(lesson)
-				controller.init()
-			}
-		}
-	})
-
-	const boxes = ref({
-		callInAction: {
-			text: mainButtonLabel,
-			schema: 'the-project',
-			leftLogo: false,
-			rightLogo: false,
-		},
-	})
 
 	function generateProgress(lesson: Lesson) {
 		return {
