@@ -135,7 +135,7 @@ function playAudios(bpm: number) {
 }
 
 async function stopAudios() {
-	if (Tone.getContext().state === 'running') {
+	if (Tone.getContext().state === 'running' && sampler) {
 		await sampler.dispose()
 		await sequence.stop
 		await Tone.getTransport().cancel()
