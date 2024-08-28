@@ -49,7 +49,7 @@
 								Launch demo modal
 							</button>
 						</div>
-						<div class="mx-3">Pontos: 908</div>
+						<div class="mx-3">Pontos: {{ points }}</div>
 						<button
 							class="btn btn-primary"
 							type="button"
@@ -101,6 +101,7 @@
 	import type { Progress } from '~/types/Progress'
 	import { type ObjectId } from 'mongoose'
 	import { useIScore } from '~/composables/interfaces/iScore'
+	import type { Score } from '~/types/Score'
 
 	definePageMeta({
 		middleware: 'auth',
@@ -134,6 +135,18 @@
 		body: '',
 		type: '',
 	})
+
+	const { score } = storeToRefs(progressStore)
+
+	watch(score, (newValue) => {
+		function animateCounter() {
+			newValue <= points.value ? clearInterval(counter) : points.value++
+		}
+
+		const counter = setInterval(animateCounter, 10)
+	})
+
+	const points = ref(0)
 
 	const firstString = computed(() => {
 		switch (lesson.value?.stringNumber) {
@@ -218,10 +231,10 @@
 
 			const lastLessonId = progress.lesson as unknown as string
 
-			console.log(lastLessonId)
-
 			const lastLesson = (await iLesson.getLessonById(lastLessonId)) as Lesson
 			progressStore.setLesson(lastLesson)
+
+			progressStore.setScore(await getScore())
 		}
 	}
 
@@ -245,10 +258,12 @@
 	}
 
 	async function getScore() {
-		const response = await iScore.getScore(
+		const score = (await iScore.getScore(
 			userStore.getId,
 			userDetailsStore.getInstrument,
-		)
+		)) as Score
+
+		return score.score as number
 	}
 
 	function toogleUserDetailsForm() {
@@ -286,6 +301,9 @@
 
 	watch(isCompleted, async (newValue) => {
 		if (newValue === true) {
+			updateScore()
+
+			await postScore()
 			progressStore.setIsCompleted(isCompleted.value)
 
 			await useIProgress().setProgress(progressStore.getProgress)
@@ -327,6 +345,25 @@
 			instrument: userDetailsStore.getInstrument,
 			currentLesson: lesson.number,
 		}
+	}
+
+	async function updateScore() {
+		const lessonPoints = progressStore.getCurrentLesson?.points
+		if (lessonPoints) {
+			const points = !progressStore.getProgress.isCompleted
+				? lessonPoints
+				: lessonPoints / 2
+			progressStore.setScore(points)
+		}
+	}
+
+	async function postScore() {
+		const score = {
+			userId: userStore.getId as unknown as ObjectId,
+			instrument: userDetailsStore.getInstrument,
+			score: progressStore.getScore,
+		} as unknown as Score
+		await iScore.postScore(score)
 	}
 
 	async function postProgress(progress: Progress) {

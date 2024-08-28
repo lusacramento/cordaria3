@@ -37,11 +37,8 @@ export const useMyProgressStore = defineStore({
 			this.progress.isCompleted = true
 		},
 
-		setScore() {
-			// if (!this.lesson) return
-			// if (this.progress[this.progress.length - 1].isCompleted) {
-			// 	this.score += this.lesson?.points / 2
-			// } else this.score += this.lesson?.points
+		setScore(score: number) {
+			this.score += score
 		},
 	},
 })
