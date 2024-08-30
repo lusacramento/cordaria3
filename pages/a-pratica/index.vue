@@ -69,9 +69,12 @@
 
 			<div class="row exercise justify-content-center bg-exercise-screen">
 				<div class="col-lg-10">
-					<div class="play-button d-flex justify-content-center">
+					<div
+						class="play-button d-flex justify-content-center align-items-center d-flex"
+					>
 						<div v-if="showBox">
 							<button class="btn btn-play" :disabled="!isLoaded">
+								<img class="img-lesson" :src="lessonImg" alt="" />
 								<Box
 									:title-text="boxes.play.callInAction.text"
 									:schema="boxes.play.callInAction.schema"
@@ -120,6 +123,7 @@
 	import { type ObjectId } from 'mongoose'
 	import { useIScore } from '~/composables/interfaces/iScore'
 	import type { Score } from '~/types/Score'
+	import lessonImg from '~/public/imgs/lessons/lesson-002.svg'
 
 	definePageMeta({
 		middleware: 'auth',
@@ -488,5 +492,9 @@
 	.btn-play:hover {
 		color: transparent !important;
 		background-color: transparent !important;
+	}
+
+	.img-lesson {
+		width: 80%;
 	}
 </style>
