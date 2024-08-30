@@ -62,6 +62,7 @@
 					</div>
 				</template>
 			</LayoutsHeader>
+			<InstrumentList v-if="showBox" />
 			<LayoutsModal :modal="modal" @callFunction="postUserDetails">
 				<template #body><UserDetailsForm /></template>
 			</LayoutsModal>
@@ -248,6 +249,19 @@
 			}
 		}
 	})
+
+	watch(
+		() => userDetailsStore.getInstrument,
+		async (newValue, oldValue) => {
+			if (oldValue) {
+				await iUser.setUserDetails({
+					userId: userDetailsStore.userId,
+					instrument: newValue,
+				})
+				useRouter().go(0)
+			}
+		},
+	)
 
 	controller.init()
 

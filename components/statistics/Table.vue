@@ -1,5 +1,6 @@
 <template>
 	<div class="container">
+		<InstrumentList />
 		<table
 			class="table table-striped table-dark table-hover mt-5 align-middle text-center"
 		>
@@ -41,6 +42,8 @@
 	const defaultInstrumentName = useMySettingsStore().getInstrumentDefault
 
 	const lessons = useLessons().getLessons(defaultInstrumentName)
+
+	const progress = useIProgress
 
 	const lessonPerPage = 10
 
