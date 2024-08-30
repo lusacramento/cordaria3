@@ -23,5 +23,12 @@ export const useIUser = () => {
 		})
 	}
 
-	return { createUser, getUserDetails, postUserDetails }
+	async function setUserDetails(body: {}) {
+		return await $fetch(userDetailsUrl, {
+			method: 'put',
+			body: body,
+		})
+	}
+
+	return { createUser, getUserDetails, postUserDetails, setUserDetails }
 }
