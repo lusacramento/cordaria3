@@ -9,56 +9,47 @@
 		<div class="container-fluid">
 			<LayoutsHeader>
 				<template #left>
-					<div
-						class="container d-flex justify-content-start align-items-center"
+					<button
+						class="btn btn-primary"
+						type="button"
+						data-bs-toggle="offcanvas"
+						data-bs-target="#offcanvasWithBothOptions"
+						aria-controls="offcanvasWithBothOptions"
 					>
+						Preferências
+					</button>
+					<button
+						ref="userDetailsButton"
+						type="button"
+						class="btn btn-primary"
+						data-bs-toggle="modal"
+						:data-bs-target="`#${modal.id}`"
+						hidden
+					>
+						Launch demo modal
+					</button>
+					<button type="button" class="btn btn-primary">
+						<nuxt-link
+							to=""
+							class="nav-link the-pratice-link"
+							@click.prevent="exit('/')"
+							><span>Sair</span></nuxt-link
+						>
+					</button>
+				</template>
+				<template #center>
+					<div class="d-flex justify-content-center">
+						<div>Pontos: {{ points }}</div>
+					</div>
+				</template>
+				<template #right>
+					<div class="d-flex align-items-center justify-content-end">
 						<div
 							class="avatar d-flex justify-content-center align-items-center"
 						>
 							<img :src="avatar" class="img-fluid" alt="avatar do usuário" />
 						</div>
 						<div class="mx-2">@{{ userStore.getUserName }}</div>
-					</div>
-				</template>
-				<template #center>
-					<div class="d-flex justify-content-between">
-						<div>Lição: {{ lesson?.number }}</div>
-						<div>BPM {{ lesson?.bpm }}</div>
-						<div>PC {{ lesson?.firstFinger }}</div>
-						<div>{{ lesson?.level }}</div>
-						<div>PC: {{ firstString }}</div>
-					</div>
-				</template>
-				<template #right>
-					<div class="d-flex align-items-center justify-content-end">
-						<div class="mx-3">
-							<nuxt-link
-								to=""
-								class="nav-link the-pratice-link"
-								@click.prevent="exit('/')"
-								><span>Sair</span></nuxt-link
-							>
-							<button
-								ref="userDetailsButton"
-								type="button"
-								class="btn btn-primary"
-								data-bs-toggle="modal"
-								:data-bs-target="`#${modal.id}`"
-								hidden
-							>
-								Launch demo modal
-							</button>
-						</div>
-						<div class="mx-3">Pontos: {{ points }}</div>
-						<button
-							class="btn btn-primary"
-							type="button"
-							data-bs-toggle="offcanvas"
-							data-bs-target="#offcanvasWithBothOptions"
-							aria-controls="offcanvasWithBothOptions"
-						>
-							Preferências
-						</button>
 					</div>
 				</template>
 			</LayoutsHeader>
@@ -74,6 +65,7 @@
 					>
 						<div v-if="showBox">
 							<button class="btn btn-play" :disabled="!isLoaded">
+								<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
 								<img class="img-lesson" :src="lessonImg" alt="" />
 								<Box
 									:title-text="boxes.play.callInAction.text"
