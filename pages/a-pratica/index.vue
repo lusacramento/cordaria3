@@ -149,6 +149,7 @@
 	)
 
 	const firstLessonNumber = 180
+	const lastLessonNumber = 190
 	const points = ref(0)
 
 	const modal = {
@@ -235,7 +236,13 @@
 			)
 
 			const currentLessonNumber = progressStore.getCurrentLesson?.number
+
 			if (currentLessonNumber) {
+				if (currentLessonNumber === lastLessonNumber) {
+					controller.init()
+					return
+				}
+
 				const lesson = await getLesson(currentLessonNumber + 1)
 				if (!lesson) throw new Error('Lição não localizada!')
 				const progress = generateProgress(lesson)
