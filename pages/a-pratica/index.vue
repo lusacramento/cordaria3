@@ -148,6 +148,7 @@
 		`<div style="font-size:1.5em">CARREGANDO...</div>`,
 	)
 
+	const firstLessonNumber = 180
 	const points = ref(0)
 
 	const modal = {
@@ -310,7 +311,7 @@
 		)
 
 		if (response.error.value?.statusCode === 404) {
-			const lesson = await getLesson(180)
+			const lesson = await getLesson(firstLessonNumber)
 			if (!lesson) throw new Error('Lição não localizada!')
 
 			const progress: Progress = generateProgress(lesson)
