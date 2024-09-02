@@ -148,6 +148,8 @@
 		`<div style="font-size:1.5em">CARREGANDO...</div>`,
 	)
 
+	const firstLessonNumber = 180
+	const lastLessonNumber = 190
 	const points = ref(0)
 
 	const modal = {
@@ -234,7 +236,13 @@
 			)
 
 			const currentLessonNumber = progressStore.getCurrentLesson?.number
+
 			if (currentLessonNumber) {
+				if (currentLessonNumber === lastLessonNumber) {
+					controller.init()
+					return
+				}
+
 				const lesson = await getLesson(currentLessonNumber + 1)
 				if (!lesson) throw new Error('Lição não localizada!')
 				const progress = generateProgress(lesson)
@@ -310,7 +318,7 @@
 		)
 
 		if (response.error.value?.statusCode === 404) {
-			const lesson = await getLesson(180)
+			const lesson = await getLesson(firstLessonNumber)
 			if (!lesson) throw new Error('Lição não localizada!')
 
 			const progress: Progress = generateProgress(lesson)
