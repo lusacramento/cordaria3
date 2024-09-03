@@ -3,19 +3,17 @@
 </template>
 
 <script lang="ts" setup>
-	import Swal from 'sweetalert2'
+	import Swal, { type SweetAlertIcon } from 'sweetalert2'
+	import type { SweetAlertData } from '~/types/SweetAlertData'
 
 	let timerEstimed = 5
 	let timerInterval = 0
 
-	const tip = useTips().sortData
-
-	const showAlert = function () {
-		// Use sweetalert2
+	function showAlert(data: SweetAlertData) {
 		Swal.fire({
-			title: `<h1 class="title-tips">Pulo do gato ${tip.id}</h1>`,
-			icon: 'info',
-			html: `<p class="text-tips">${tip.message}</p>
+			title: `<h1 class="title-tips">${data.title}</h1>`,
+			icon: data.icon,
+			html: `<p class="text-tips">${data.message}</p>
 	        <p class="close-tips">Fechando em ${timerEstimed} segundos.</p>`,
 			showCloseButton: true,
 			showConfirmButton: false,
@@ -31,7 +29,7 @@
 					}
 
 					Swal.update({
-						html: `<p class="text-tips">${tip.message}</p><p class="close-tips">Fechando em ${timerEstimed} segundos.</p>`,
+						html: `<p class="text-tips">${data.message}</p><p class="close-tips">Fechando em ${timerEstimed} segundos.</p>`,
 					})
 				}, 100)
 			},
@@ -41,9 +39,7 @@
 		})
 	}
 
-	onMounted(() => {
-		showAlert()
-	})
+	defineExpose({ showAlert })
 </script>
 
 <style>

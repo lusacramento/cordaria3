@@ -5,6 +5,7 @@
 			<template #header>{{ toaster.header }}</template>
 			<template #body><div v-html="toaster.body" /></template>
 		</LayoutsToast>
+		<CordariaTips ref="tips" />
 
 		<div class="container-fluid">
 			<LayoutsHeader>
@@ -117,6 +118,9 @@
 	import type { Score } from '~/types/Score'
 	import lessonImg from '~/public/imgs/lessons/lesson-002.svg'
 
+	import type { SweetAlertData } from '~/types/SweetAlertData'
+	import type { SweetAlertIcon } from 'sweetalert2'
+
 	definePageMeta({
 		middleware: 'auth',
 		layout: 'pratice',
@@ -148,9 +152,16 @@
 		`<div style="font-size:1.5em">CARREGANDO...</div>`,
 	)
 
-	const firstLessonNumber = 180
+	const firstLessonNumber = 189
 	const lastLessonNumber = 190
 	const points = ref(0)
+
+	const tips = await ref()
+	const dataTips: Ref<SweetAlertData> = ref({
+		title: '',
+		message: '',
+		icon: 'info',
+	})
 
 	const modal = {
 		title: 'Finalize seu cadastro',
@@ -234,6 +245,11 @@
 				`Lição ${lesson.value?.number} Finalizada!`,
 				'success',
 			)
+
+			const currentLesson = await progressStore.getCurrentLesson
+			if (currentLesson?.message) {
+				showTips(currentLesson)
+			}
 
 			const currentLessonNumber = progressStore.getCurrentLesson?.number
 
@@ -446,6 +462,13 @@
 		toaster.value.body = body
 		toaster.value.type = type
 		toast.value.show()
+	}
+
+	async function showTips(currentLesson: Lesson) {
+		dataTips.value.title = (await currentLesson?.messageTitle) as string
+		dataTips.value.message = (await currentLesson?.message) as string
+		dataTips.value.icon = (await currentLesson?.messageIcon) as SweetAlertIcon
+		tips.value.showAlert(dataTips.value)
 	}
 </script>
 
