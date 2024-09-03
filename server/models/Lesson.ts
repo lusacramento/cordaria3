@@ -6,6 +6,8 @@ export interface LessonDocument extends Document {
 	firstFinger: number
 	stringNumber: string
 	bpm: number
+	messageIcon: string
+	messageTitle: string
 	message: string
 	quantityOfStrings: string
 	points: number
@@ -35,6 +37,14 @@ const LessonSchema = new Schema({
 	bpm: {
 		type: Number,
 		required: true,
+	},
+
+	messageIcon: {
+		type: String,
+	},
+
+	messageTitle: {
+		type: String,
 	},
 
 	message: {

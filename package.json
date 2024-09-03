@@ -40,6 +40,7 @@
     "tone": "^14.7.77",
     "typescript": "^5.5.4",
     "vue-picture-input": "^3.0.1",
+    "vue-sweetalert2": "^5.0.11",
     "vue-toastification": "^2.0.0-rc.5"
   }
 }

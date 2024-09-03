@@ -119,6 +119,8 @@
 </template>
 
 <script lang="ts" setup>
+	import { useLessonsData } from '~/composables/lessons/lessonsData.js'
+
 	definePageMeta({
 		middleware: 'admin',
 		pageTransition: {
@@ -175,10 +177,8 @@
 
 	async function addAllLessonsOnDataBase() {
 		try {
-			const fourStringsLesson = useFourStrings().getLessons()
-			const sixStringsLesson = useSixStrings().getLessons()
-			const allStrings = fourStringsLesson.concat(sixStringsLesson)
-			const response = await useILesson().postMany(allStrings)
+			const lessons = useLessonsData().getLessons()
+			const response = await useILesson().postMany(lessons)
 			if (response.error.value) {
 				status.value.isShow = true
 				status.value.message = response.error.value.data.message
