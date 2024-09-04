@@ -51,7 +51,7 @@ export const useMyUserDetailsStore = defineStore({
 			this.imageUrl = `/imgs/uploads/${imageFileName}`
 		},
 
-		update(data: any) {
+		updateUserDetails(data: any) {
 			this.id = data._id
 			this.userId = data.userId
 			this.fullName = data.fullName

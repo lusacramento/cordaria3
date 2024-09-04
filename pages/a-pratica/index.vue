@@ -20,7 +20,7 @@
 						Preferências
 					</button>
 					<button
-						ref="userDetailsButton"
+						ref="userDetailsModalButton"
 						type="button"
 						class="btn btn-primary"
 						data-bs-toggle="modal"
@@ -50,12 +50,12 @@
 						>
 							<img :src="avatar" class="img-fluid" alt="avatar do usuário" />
 						</div>
-						<div class="mx-2">@{{ userStore.getUserName }}</div>
+						<div class="mx-2">@{{ getUserName }}</div>
 					</div>
 				</template>
 			</LayoutsHeader>
 			<InstrumentList v-if="showBox" />
-			<LayoutsModal :modal="modal" @callFunction="postUserDetails">
+			<LayoutsModal :modal="modal" @callFunction="submitUserDetails">
 				<template #body><UserDetailsForm /></template>
 			</LayoutsModal>
 
@@ -69,10 +69,10 @@
 								<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
 								<img class="img-lesson" :src="lessonImg" alt="" />
 								<Box
-									:title-text="boxes.play.callInAction.text"
-									:schema="boxes.play.callInAction.schema"
-									:left-logo="boxes.play.callInAction.leftLogo"
-									:right-logo="boxes.play.callInAction.rightLogo"
+									:title-text="boxButtons.play.callInAction.text"
+									:schema="boxButtons.play.callInAction.schema"
+									:left-logo="boxButtons.play.callInAction.leftLogo"
+									:right-logo="boxButtons.play.callInAction.rightLogo"
 									@click.prevent="start()"
 								/>
 							</button>
@@ -90,10 +90,10 @@
 								<div class="col d-flex justify-content-center">
 									<button type="button" class="btn">
 										<Box
-											:title-text="boxes.stop.callInAction.text"
-											:schema="boxes.stop.callInAction.schema"
-											:left-logo="boxes.stop.callInAction.leftLogo"
-											:right-logo="boxes.stop.callInAction.rightLogo"
+											:title-text="boxButtons.stop.callInAction.text"
+											:schema="boxButtons.stop.callInAction.schema"
+											:left-logo="boxButtons.stop.callInAction.leftLogo"
+											:right-logo="boxButtons.stop.callInAction.rightLogo"
 											@click.prevent="exit('/a-pratica')"
 										/>
 									</button>
@@ -109,17 +109,10 @@
 </template>
 
 <script lang="ts" setup>
-	import { useIProgress } from '~/composables/interfaces/iProgress'
 	import { useMyProgressStore } from '~/stores/progress'
 	import type { Lesson } from '~/types/Lesson'
 	import type { Progress } from '~/types/Progress'
-	import { type ObjectId } from 'mongoose'
-	import { useIScore } from '~/composables/interfaces/iScore'
-	import type { Score } from '~/types/Score'
 	import lessonImg from '~/public/imgs/lessons/lesson-002.svg'
-
-	import type { SweetAlertData } from '~/types/SweetAlertData'
-	import type { SweetAlertIcon } from 'sweetalert2'
 
 	definePageMeta({
 		middleware: 'auth',
@@ -131,87 +124,47 @@
 	})
 
 	// Stores
-	const userStore = useMyUserStore()
-	const userDetailsStore = useMyUserDetailsStore()
-	const progressStore = useMyProgressStore()
+	const { getId, getUserName } = storeToRefs(useMyUserStore())
+	const { setId, setUserName, logIn } = useMyUserStore()
 
-	// interfaces
-	const iProgress = useIProgress()
-	const iLesson = useILesson()
-	const iScore = useIScore()
-	const iUser = useIUser()
-	const helpers = useHelpers()
-	const controller = useController()
+	const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
+	const { setLesson, setProgress, setIsCompletedProgress, setScore } =
+		useMyProgressStore()
 
-	// views
-	const { imageUrl: avatar } = storeToRefs(userDetailsStore)
-	const { lesson } = storeToRefs(progressStore)
-
-	const isLoaded = ref(false)
-	const mainButtonLabel = ref(
-		`<div style="font-size:1.5em">CARREGANDO...</div>`,
+	const { imageUrl: avatar, getInstrument } = storeToRefs(
+		useMyUserDetailsStore(),
 	)
+	const { setUserId, updateUserDetails } = useMyUserDetailsStore()
 
-	const firstLessonNumber = 189
-	const lastLessonNumber = 190
-	const points = ref(0)
+	// Controllers
+	const { showBox, showCards, showStatistics, isCompleted, init } =
+		useGameController()
 
-	const tips = await ref()
-	const dataTips: Ref<SweetAlertData> = ref({
-		title: '',
-		message: '',
-		icon: 'info',
-	})
+	const db = useDbController()
 
-	const modal = {
-		title: 'Finalize seu cadastro',
-		id: 'userDetailsModal',
-	}
+	const {
+		isLoaded,
+		userDetailsModalButton,
+		boxButtons,
+		modal,
+		tips,
+		toast,
+		toaster,
+		points,
+		firstLessonNumber,
+		lastLessonNumber,
+		showTips,
+		showToast,
+		refreshPage,
+		toogleUserDetailsForm,
+		enablePlayButton,
+		disablePlayButton,
+		start,
+		payload,
+		exit,
+	} = useViewController()
 
-	const boxes = ref({
-		play: {
-			callInAction: {
-				text: mainButtonLabel,
-				schema: 'the-project',
-				leftLogo: false,
-				rightLogo: false,
-			},
-		},
-		stop: {
-			callInAction: {
-				text: `<div style="font-size:1.5em">Cancelar</div>`,
-				schema: 'the-project',
-				leftLogo: false,
-				rightLogo: false,
-			},
-		},
-	})
-
-	const toast = ref()
-	const toaster = ref({
-		header: '',
-		body: '',
-		type: '',
-	})
-
-	const firstString = computed(() => {
-		switch (lesson.value?.stringNumber) {
-			case 'upToDown':
-				return 'Primeira para Última'
-
-			case 'downToUp':
-				return 'Última para Primeira'
-
-			default:
-				return lesson.value?.firstFinger
-		}
-	})
-
-	const userDetailsButton: any = ref()
-
-	const userDetails: Ref<any> = ref()
-
-	const { score } = storeToRefs(progressStore)
+	// Watchers
 	watch(score, (newValue, oldValue) => {
 		function animateCounter() {
 			newValue <= points.value ? clearInterval(counter) : points.value++
@@ -225,16 +178,15 @@
 		const counter = setInterval(animateCounter, 10)
 	})
 
-	const { showBox, showCards, showStatistics, isCompleted } = controller
-
 	watch(isCompleted, async (newValue) => {
+		disablePlayButton()
 		if (newValue === true) {
-			updateScore()
+			db.updateScore()
 
-			await postScore()
-			progressStore.setIsCompleted(isCompleted.value)
+			await db.postScore()
+			setIsCompletedProgress(isCompleted.value)
 
-			await iProgress.setProgress(progressStore.getProgress)
+			await db.updateProgress()
 
 			isCompleted.value = false
 			showCards.value = false
@@ -246,81 +198,62 @@
 				'success',
 			)
 
-			const currentLesson = await progressStore.getCurrentLesson
+			const currentLesson = await getCurrentLesson.value
 			if (currentLesson?.message) {
 				showTips(currentLesson)
 			}
 
-			const currentLessonNumber = progressStore.getCurrentLesson?.number
+			const currentLessonNumber = currentLesson?.number
 
 			if (currentLessonNumber) {
 				if (currentLessonNumber === lastLessonNumber) {
-					controller.init()
+					init()
 					return
 				}
 
-				const lesson = await getLesson(currentLessonNumber + 1)
+				const lesson = await db.getLesson(currentLessonNumber + 1)
 				if (!lesson) throw new Error('Lição não localizada!')
-				const progress = generateProgress(lesson)
-				const response = await postProgress(progress)
-				progressStore.setProgress(response.data.value as Progress)
-				progressStore.setLesson(lesson)
-				controller.init()
+				const progress = db.generateProgress(lesson)
+				const response = await db.postProgress(progress)
+				setProgress(response.data.value as Progress)
+				setLesson(lesson)
+				init()
+				enablePlayButton()
 			}
 		}
 	})
 
 	watch(
-		() => userDetailsStore.getInstrument,
+		() => getInstrument,
 		async (newValue, oldValue) => {
 			if (oldValue) {
-				await iUser.setUserDetails({
-					userId: userDetailsStore.userId,
-					instrument: newValue,
-				})
-				useRouter().go(0)
+				await db.updateUserDetails(newValue.value)
+				refreshPage()
 			}
 		},
 	)
 
-	controller.init()
+	const userDetails: Ref<any> = ref()
+
+	init()
+
+	// Functions
 
 	async function load() {
 		await loadUserStore()
+
+		const userDetails: Ref<any> = ref()
+
 		const isUserDetailsExists = await verifyIfIsUserDetailsExists()
 		if (!isUserDetailsExists) {
 			toogleUserDetailsForm()
 			showToast('Quase Lá!', 'Complete seu cadastro.', 'warn')
 			return
 		}
+
 		saveUserDetailsOnStore()
-		await loadProgress()
-		await useController().init()
-		setTimeout(() => {
-			mainButtonLabel.value = `<div style="font-size:1.5em">JOGAR</div>`
-			isLoaded.value = true
-		}, 2000)
-	}
 
-	async function loadUserStore() {
-		const { getSession } = useAuth()
-		const { user } = await getSession()
-		// @ts-ignore
-		userStore.setId(user._id)
-		// @ts-ignore
-		userStore.setUserName(user?.username)
-		// @ts-ignore
-		userDetailsStore.setUserId(user._id)
-		userStore.logIn()
-	}
-
-	async function verifyIfIsUserDetailsExists() {
-		userDetails.value = await getUserDetails()
-		return userDetails.value.error?.statusCode === 404 ? false : true
-	}
-
-	async function loadProgress() {
-		if (!userStore.getId) throw Error
+		if (!getId) throw Error
 		showToast(
 			'Sucesso!',
 			`Você está conectado!<br />
@@ -328,147 +261,69 @@
 			'success',
 		)
 
-		const response = await iProgress.getProgress(
-			userStore.getId,
-			userDetailsStore.getInstrument,
-		)
+		await loadProgress()
 
+		await loadScore()
+
+		await useGameController().init()
+		enablePlayButton()
+	}
+
+	async function loadUserStore() {
+		const { getSession } = useAuth()
+		const { user } = await getSession()
+		// @ts-ignore
+		setId(user._id)
+		// @ts-ignore
+		setUserName(user?.username)
+		// @ts-ignore
+		setUserId(user._id)
+		logIn()
+	}
+
+	async function verifyIfIsUserDetailsExists() {
+		userDetails.value = await db.getUserDetails()
+		return userDetails.value.error?.statusCode === 404 ? false : true
+	}
+
+	async function loadProgress() {
+		const response = await db.getProgress()
 		if (response.error.value?.statusCode === 404) {
-			const lesson = await getLesson(firstLessonNumber)
+			const lesson = await db.getLesson(firstLessonNumber)
 			if (!lesson) throw new Error('Lição não localizada!')
 
-			const progress: Progress = generateProgress(lesson)
-			const response = await postProgress(progress)
-			progressStore.setProgress(response.data.value as Progress)
-			progressStore.setLesson(lesson)
+			const progress: Progress = db.generateProgress(lesson)
+			const response = await db.postProgress(progress)
+			setProgress(response.data.value as Progress)
+			setLesson(lesson)
 		}
 
 		if (response.data.value) {
 			const progress = response.data.value as Progress
-			progressStore.setProgress(progress)
+			setProgress(progress)
 
 			const lastLessonId = progress.lesson as unknown as string
-
-			const lastLesson = (await iLesson.getLessonById(lastLessonId)) as Lesson
-			progressStore.setLesson(lastLesson)
-
-			progressStore.setScore(await getScore())
+			const lastLesson = (await db.getLessonById(lastLessonId)) as Lesson
+			setLesson(lastLesson)
+		}
+	}
+	async function loadScore() {
+		try {
+			const score = await db.getScore()
+			setScore(score)
+		} catch (error: any) {
+			if (error.statusCode === 404) setScore(0)
 		}
 	}
 
-	async function getLesson(number: number) {
-		const quantityOfStrings = helpers.getQuantityOfStrings(
-			userDetailsStore.getInstrument,
-		)
-
-		const lessonQuery = {
-			number: number,
-			quantityOfStrings: quantityOfStrings,
-		}
-		const response = await iLesson.getLesson(lessonQuery)
-
-		if (response?.lesson) {
-			const lesson = response.lesson as Lesson
-			progressStore.setLesson(lesson)
-			return lesson
-		}
-		return null
-	}
-
-	async function getScore() {
-		const score = (await iScore.getScore(
-			userStore.getId,
-			userDetailsStore.getInstrument,
-		)) as Score
-
-		return score.score as number
-	}
-
-	function toogleUserDetailsForm() {
-		userDetailsButton.value.click()
-	}
-
-	async function postUserDetails() {
-		const userDetails = {
-			userId: userStore.getId,
-			...useMyUserDetailsStore().getAll,
-		}
-		const userDetailsResponse = await iUser.postUserDetails(userDetails)
-		// @ts-ignore
+	async function submitUserDetails() {
+		db.postUserDetails()
 		await toogleUserDetailsForm()
-		useRouter().go(0)
-	}
-
-	async function getUserDetails() {
-		return await iUser.getUserDetails(userStore.getId)
+		refreshPage()
 	}
 
 	function saveUserDetailsOnStore() {
-		userDetailsStore.update(userDetails.value.data)
-	}
-
-	function generateProgress(lesson: Lesson) {
-		return {
-			userId: userStore.getId as unknown as ObjectId,
-			lesson: lesson._id as unknown as ObjectId,
-			isCompleted: false,
-			instrument: userDetailsStore.getInstrument,
-			currentLesson: lesson.number,
-		}
-	}
-
-	async function updateScore() {
-		const lessonPoints = progressStore.getCurrentLesson?.points
-		if (lessonPoints) {
-			const points = !progressStore.getProgress.isCompleted
-				? lessonPoints
-				: lessonPoints / 2
-			progressStore.setScore(points)
-		}
-	}
-
-	async function postScore() {
-		const score = {
-			userId: userStore.getId as unknown as ObjectId,
-			instrument: userDetailsStore.getInstrument,
-			score: progressStore.getScore,
-		} as unknown as Score
-		await iScore.postScore(score)
-	}
-
-	async function postProgress(progress: Progress) {
-		return await iProgress.postProgress(progress)
-	}
-
-	function start() {
-		controller.payload()
-	}
-
-	function payload() {
-		console.log('payload')
-	}
-
-	async function exit(to: '/' | '/a-pratica') {
-		await useAudio().stopAudios()
-		to === '/' ? useRouter().push(to) : useRouter().go(0)
-	}
-
-	function showToast(
-		header: string,
-		body: string,
-		type: 'success' | 'warn' | 'error',
-	) {
-		toaster.value.header = header
-		toaster.value.body = body
-		toaster.value.type = type
-		toast.value.show()
-	}
-
-	async function showTips(currentLesson: Lesson) {
-		dataTips.value.title = (await currentLesson?.messageTitle) as string
-		dataTips.value.message = (await currentLesson?.message) as string
-		dataTips.value.icon = (await currentLesson?.messageIcon) as SweetAlertIcon
-		tips.value.showAlert(dataTips.value)
+		updateUserDetails(userDetails.value.data)
 	}
 </script>
 

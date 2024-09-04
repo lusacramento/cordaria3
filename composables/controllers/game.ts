@@ -1,5 +1,5 @@
-import { useMySettingsStore } from './../stores/settings'
-import { Card } from './model/card'
+import { useMySettingsStore } from '../../stores/settings'
+import { Card } from '../model/card'
 import type { Lesson } from '~/types/Lesson'
 import type { Instrument } from '~/types/Instrument'
 
@@ -31,7 +31,7 @@ const counter = ref(0)
 
 const isCompleted = ref(false)
 
-export const useController = () => {
+export const useGameController = () => {
 	let deckIndex = 0
 
 	const detailsStore = useMyUserDetailsStore()
