@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { Instrument } from '~/types/Instrument.js'
 import type { Settings } from '~/types/Settings'
 import { ViewMode } from '~/types/ViewMode'
 
@@ -7,6 +8,7 @@ export const useMySettingsStore = defineStore({
 	state: () => ({
 		counter: 4,
 		viewMode: ViewMode.CARDS3,
+		instrument: Instrument.ACOUSTICGUITAR,
 		showStatistics: false,
 	}),
 
@@ -23,12 +25,8 @@ export const useMySettingsStore = defineStore({
 			return state.viewMode
 		},
 
-		getInstrumentDefault(state) {
-			return state.instrumentDefault as keyof typeof Instrument
-		},
-
-		getTheme(state) {
-			return state.themeDark
+		getInstrument(state) {
+			return state.instrument
 		},
 
 		getShowStatistics(state) {
