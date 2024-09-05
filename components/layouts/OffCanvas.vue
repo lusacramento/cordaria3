@@ -8,7 +8,7 @@
 	>
 		<div class="offcanvas-header">
 			<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-				Configurações
+				Preferências
 			</h5>
 			<button
 				type="button"
