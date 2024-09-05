@@ -1,4 +1,5 @@
 import { Score } from '~/server/models/score'
+
 export default defineEventHandler(async (event) => {
 	const query = await getQuery(event)
 
