@@ -3,6 +3,8 @@ import type { Instrument } from '~/types/Instrument'
 import type { Lesson } from '~/types/Lesson'
 import type { Progress } from '~/types/Progress'
 import type { Score } from '~/types/Score'
+import type { Settings } from '~/types/Settings.js'
+import { ViewMode } from '~/types/ViewMode'
 
 export const useDbController = () => {
 	const userStore = useMyUserStore()
@@ -11,6 +13,7 @@ export const useDbController = () => {
 	const iUser = useIUser()
 	const iLesson = useILesson()
 	const iProgress = useIProgress()
+	const iSettings = useISettings()
 
 	const iScore = useIScore()
 	const helpers = useHelpers()
@@ -113,6 +116,31 @@ export const useDbController = () => {
 			progressStore.setScore(points)
 		}
 	}
+
+	function createDefaultSettings(): Settings {
+		return {
+			userId: userStore.getId as unknown as ObjectId,
+			instrument: userDetailsStore.getInstrument,
+			viewMode: ViewMode.CARDS3,
+			counter: 4,
+		}
+	}
+
+	async function getSettings() {
+		const response = await iSettings.getSettings(userStore.getId)
+		if (!response) {
+			return await iSettings.postSettings(createDefaultSettings())
+		}
+		return response
+	}
+
+	async function postSettings(settings: Settings) {
+		return await iSettings.postSettings(settings)
+	}
+
+	async function updateSettings(data: any) {
+		return await iSettings.updateSettings(userStore.getId, data)
+	}
 	return {
 		getUserDetails,
 		postUserDetails,
@@ -126,5 +154,9 @@ export const useDbController = () => {
 		getScore,
 		postScore,
 		updateScore,
+		createDefaultSettings,
+		getSettings,
+		postSettings,
+		updateSettings,
 	}
 }
