@@ -29,13 +29,12 @@
 					>
 						Launch demo modal
 					</button>
-					<button type="button" class="btn btn-primary">
-						<nuxt-link
-							to=""
-							class="nav-link the-pratice-link"
-							@click.prevent="exit('/')"
-							><span>Sair</span></nuxt-link
-						>
+					<button
+						type="button"
+						class="btn btn-primary"
+						@click.prevent="exit('/')"
+					>
+						Sair
 					</button>
 				</template>
 				<template #center>
