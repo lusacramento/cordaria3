@@ -53,7 +53,7 @@
 					:value="instruments.cavaco.value"
 					autocomplete="off"
 				/>
-				<label class="btn btn-outline-secondary" for="danger3-outlined">{{
+				<label class="btn btn-outline-info" for="danger3-outlined">{{
 					instruments.cavaco.label
 				}}</label>
 			</li>
