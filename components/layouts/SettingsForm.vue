@@ -1,20 +1,9 @@
 <template>
-	<div class="container justify-content-center d-flex">
-		<form>
-			<div class="form-group col-6 col-lg-12 col-6 col-lg-12 mb-4">
-				<label for="select-schema" class="form-label">Tema</label>
-				<br />
-				<div class="form-check form-switch">
-					<span>Escuro</span>
-					<input
-						v-model="theme"
-						class="form-check-input mx-3"
-						type="checkbox"
-						role="switch"
-						id="select-schema"
-					/>
-					<span>Claro</span>
-				</div>
+		<div class="row mb-3">
+			<div class="col">
+				<InstrumentList />
+			</div>
+		</div>
 			</div>
 			<div
 				class="form-group col-6 col-lg-12 col-6 col-lg-12 select-screen mb-4"

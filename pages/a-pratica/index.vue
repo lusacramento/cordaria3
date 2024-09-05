@@ -53,7 +53,6 @@
 					</div>
 				</template>
 			</LayoutsHeader>
-			<InstrumentList v-if="showBox" />
 			<LayoutsModal :modal="modal" @callFunction="submitUserDetails">
 				<template #body><UserDetailsForm /></template>
 			</LayoutsModal>
