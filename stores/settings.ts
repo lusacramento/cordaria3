@@ -35,6 +35,12 @@ export const useMySettingsStore = defineStore({
 	},
 
 	actions: {
+		setAllSettings(settings: Settings) {
+			this.counter = settings.counter
+			this.viewMode = settings.viewMode
+			this.instrument = settings.instrument
+		},
+
 		setCounter(value: number) {
 			this.counter = value
 		},
