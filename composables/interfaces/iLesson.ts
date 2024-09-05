@@ -1,6 +1,6 @@
 export const useILesson = () => {
 	async function postMany(values: any) {
-		return await useFetch('/api/lessons/lessons', {
+		return await $fetch('/api/lessons/lessons', {
 			method: 'post',
 			body: values,
 		})
@@ -33,7 +33,7 @@ export const useILesson = () => {
 	}
 
 	async function deleteAll() {
-		return await useFetch('/api/lessons/lessons', {
+		return await $fetch('/api/lessons/lessons', {
 			method: 'delete',
 		})
 	}

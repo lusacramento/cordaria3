@@ -33,7 +33,7 @@ export const useMyProgressStore = defineStore({
 			this.lesson = lesson
 		},
 
-		setIsCompleted(status: boolean) {
+		setIsCompletedProgress(status: boolean) {
 			this.progress.isCompleted = true
 		},
 

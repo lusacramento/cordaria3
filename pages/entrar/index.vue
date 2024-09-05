@@ -18,7 +18,7 @@
 							</template>
 						</LayoutsModal>
 						<button
-							ref="userDetailsButton"
+							ref="userDetailsModalButton"
 							type="button"
 							class="btn btn-primary"
 							data-bs-toggle="modal"

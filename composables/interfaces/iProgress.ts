@@ -5,7 +5,7 @@ export const useIProgress = () => {
 	const url = '/api/progress/'
 
 	async function getProgress(userId: string, instrument: Instrument) {
-		return await useFetch(url, {
+		return await $fetch(url, {
 			method: 'get',
 			params: { userId, instrument },
 		})

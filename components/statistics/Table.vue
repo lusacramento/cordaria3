@@ -7,17 +7,16 @@
 			<thead>
 				<tr>
 					<th scope="col">Lição</th>
-					<th scope="col">Primeiro Dedo</th>
-					<th scope="col">Corda</th>
+					<th scope="col">Nível</th>
 					<th scope="col">Batidas Por Minuto</th>
 					<th scope="col">Repetir Lição?</th>
 				</tr>
 			</thead>
 			<tbody>
-				<Tr :lessons="lessonsTable" />
+				<Tr :statistics="statisticsTable" />
 			</tbody>
 		</table>
-		<nav aria-label="..." class="d-flex">
+		<nav aria-label="..." class="d-flex justify-content-center">
 			<ul
 				v-for="page in pages"
 				:key="page"
@@ -37,38 +36,56 @@
 </template>
 
 <script lang="ts" setup>
+	import type { Statistic } from '~/types/Statistic'
 	import Tr from './Tr.vue'
 
-	const defaultInstrumentName = useMySettingsStore().getInstrumentDefault
+	onBeforeMount(() => {
+		getStatistics()
+	})
 
-	const lessons = useLessons().getLessons(defaultInstrumentName)
+	const statistics: Ref<Array<Statistic>> = ref([])
+	const statisticsTable: Ref<Array<Statistic>> = ref([])
 
-	const progress = useIProgress
+	const pages: Ref<Array<number>> = ref([])
+	const lessonsPerPage = 4
+	const numberOfPages = ref(0)
 
-	const lessonPerPage = 10
+	async function getStatistics() {
+		statistics.value = await useIStatistics().getStatistics(
+			useMyUserStore().getId,
+			useMyUserDetailsStore().getInstrument,
+		)
+	}
 
-	const lessonsTable = ref(lessons.slice(0, lessonPerPage))
+	watch(statistics, (newValue) => {
+		console.log(newValue)
+		statisticsTable.value = statistics.value.slice(0, lessonsPerPage)
+		getPageNumber()
+		createPages()
+	})
 
-	const pagesNumber =
-		lessons.length % lessonPerPage === 0
-			? lessons.length / lessonPerPage
-			: lessons.length / lessonPerPage + 1
-
-	const pages: number[] = []
-
-	createPages()
+	function getPageNumber() {
+		numberOfPages.value =
+			statistics.value.length % lessonsPerPage === 0
+				? statistics.value.length / lessonsPerPage
+				: statistics.value.length / lessonsPerPage + 1
+	}
 
 	function createPages() {
-		for (let i = 1; i <= pagesNumber; i++) {
-			pages.push(i)
+		for (
+			let i = 1;
+			i <= numberOfPages.value && statistics.value.length > lessonsPerPage;
+			i++
+		) {
+			pages.value.push(i)
 		}
 	}
 
 	function updateDataTable(numberPage: number) {
 		const index = numberPage - 1
-		const start = lessonPerPage * index
-		const end = start + lessonPerPage
-		lessonsTable.value = lessons.slice(start, end)
+		const start = lessonsPerPage * index
+		const end = start + lessonsPerPage
+		statisticsTable.value = statistics.value.slice(start, end)
 	}
 </script>
 

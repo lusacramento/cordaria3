@@ -53,7 +53,7 @@ async function getAudios(
 			sequence = await generateSequence(sampler, tempo).start(0)
 
 			await playAudios(bpm)
-			useController().startLesson(tempo)
+			useGameController().startLesson(tempo)
 		},
 
 		onerror: (error) => {

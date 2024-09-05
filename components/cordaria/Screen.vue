@@ -48,7 +48,7 @@
 <script lang="ts" setup>
 	const { viewMode } = useMySettingsStore()
 
-	const { deck, showCards, cards } = useController()
+	const { deck, showCards, cards } = useGameController()
 	const { prev, current, next } = cards
 </script>
 
