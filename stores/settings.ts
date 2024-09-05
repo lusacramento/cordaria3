@@ -17,10 +17,6 @@ export const useMySettingsStore = defineStore({
 			return state.counter
 		},
 
-		getLastLesson(state) {
-			return state.lastLesson
-		},
-
 		getViewMode(state) {
 			return state.viewMode
 		},
