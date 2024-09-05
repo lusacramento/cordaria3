@@ -288,7 +288,7 @@
 
 	async function loadProgress() {
 		const response = await db.getProgress()
-		if (response.error.value?.statusCode === 404) {
+		if (!response) {
 			const lesson = await db.getLesson(firstLessonNumber)
 			if (!lesson) throw new Error('Lição não localizada!')
 
@@ -298,8 +298,8 @@
 			setLesson(lesson)
 		}
 
-		if (response.data.value) {
-			const progress = response.data.value as Progress
+		if (response) {
+			const progress = response as Progress
 			setProgress(progress)
 
 			const lastLessonId = progress.lesson as unknown as string
@@ -323,7 +323,7 @@
 	}
 
 	function saveUserDetailsOnStore() {
-		updateUserDetails(userDetails.value.data)
+		updateUserDetails(userDetails.value)
 	}
 </script>
 

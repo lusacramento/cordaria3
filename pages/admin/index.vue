@@ -179,13 +179,10 @@
 		try {
 			const lessons = useLessonsData().getLessons()
 			const response = await useILesson().postMany(lessons)
-			if (response.error.value) {
-				status.value.isShow = true
-				status.value.message = response.error.value.data.message
-			}
-			if (response.data.value) {
+
+			if (response) {
 				status.value.isShow = await true
-				status.value.message = await response.data.value
+				status.value.message = await response
 			}
 		} catch (error: any) {
 			status.value.isShow = true
@@ -199,13 +196,8 @@
 			try {
 				const response = await useILesson().deleteAll()
 
-				if (response.error.value) {
-					status.value.isShow = true
-					status.value.message = response.error.value?.data.message
-				} else {
-					status.value.isShow = true
-					status.value.message = response.data.value
-				}
+				status.value.isShow = true
+				status.value.message = response
 			} catch (error) {
 				status.value.isShow = true
 				status.value.message = error
