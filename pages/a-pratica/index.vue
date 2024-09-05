@@ -53,7 +53,6 @@
 					</div>
 				</template>
 			</LayoutsHeader>
-			<InstrumentList v-if="showBox" />
 			<LayoutsModal :modal="modal" @callFunction="submitUserDetails">
 				<template #body><UserDetailsForm /></template>
 			</LayoutsModal>
@@ -112,6 +111,7 @@
 	import type { Lesson } from '~/types/Lesson'
 	import type { Progress } from '~/types/Progress'
 	import lessonImg from '~/public/imgs/lessons/lesson-002.svg'
+	import type { Settings } from '~/types/Settings'
 
 	definePageMeta({
 		middleware: 'auth',
@@ -134,6 +134,8 @@
 		useMyUserDetailsStore(),
 	)
 	const { setUserId, updateUserDetails } = useMyUserDetailsStore()
+
+	const { setAllSettings } = useMySettingsStore()
 
 	// Controllers
 	const { showBox, showCards, showStatistics, isCompleted, init } =
@@ -260,6 +262,8 @@
 			'success',
 		)
 
+		await loadSettings()
+
 		await loadProgress()
 
 		await loadScore()
@@ -283,6 +287,11 @@
 	async function verifyIfIsUserDetailsExists() {
 		userDetails.value = await db.getUserDetails()
 		return userDetails.value.error?.statusCode === 404 ? false : true
+	}
+
+	async function loadSettings() {
+		const settings = (await db.getSettings()) as Settings
+		setAllSettings(settings)
 	}
 
 	async function loadProgress() {

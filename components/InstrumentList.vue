@@ -1,70 +1,78 @@
 <template>
-	<div id="instrument-list" class="d-flex justify-content-center">
-		<ul>
-			<li>
-				<input
-					type="radio"
-					class="btn-check"
-					name="options-outlined"
-					id="success-outlined"
-					v-model="instrument"
-					:value="instruments.acousticGuitar.value"
-					autocomplete="off"
-				/>
-				<label class="btn btn-outline-success" for="success-outlined">{{
-					instruments.acousticGuitar.label
-				}}</label>
-			</li>
-			<li>
-				<input
-					type="radio"
-					class="btn-check"
-					name="options-outlined"
-					id="danger-outlined"
-					v-model="instrument"
-					:value="instruments.electricGuitar.value"
-					autocomplete="off"
-				/>
-				<label class="btn btn-outline-danger" for="danger-outlined">{{
-					instruments.electricGuitar.label
-				}}</label>
-			</li>
-			<li>
-				<input
-					type="radio"
-					class="btn-check"
-					name="options-outlined"
-					id="danger2-outlined"
-					v-model="instrument"
-					:value="instruments.bass.value"
-					autocomplete="off"
-				/>
-				<label class="btn btn-outline-warning" for="danger2-outlined">{{
-					instruments.bass.label
-				}}</label>
-			</li>
-			<li>
-				<input
-					type="radio"
-					class="btn-check"
-					name="options-outlined"
-					id="danger3-outlined"
-					v-model="instrument"
-					:value="instruments.cavaco.value"
-					autocomplete="off"
-				/>
-				<label class="btn btn-outline-info" for="danger3-outlined">{{
-					instruments.cavaco.label
-				}}</label>
-			</li>
-		</ul>
-	</div>
+	<ul id="instrument-list" class="justify-content-center d-flex">
+		<div class="row">
+			<div class="col">
+				<li>
+					<input
+						type="radio"
+						class="btn-check"
+						name="options-outlined"
+						id="success-outlined"
+						v-model="instrument"
+						:value="instruments.acousticGuitar.value"
+						autocomplete="off"
+					/>
+					<label class="btn btn-outline-success" for="success-outlined">{{
+						instruments.acousticGuitar.label
+					}}</label>
+				</li>
+			</div>
+			<div class="col">
+				<li>
+					<input
+						type="radio"
+						class="btn-check"
+						name="options-outlined"
+						id="danger-outlined"
+						v-model="instrument"
+						:value="instruments.electricGuitar.value"
+						autocomplete="off"
+					/>
+					<label class="btn btn-outline-danger" for="danger-outlined">{{
+						instruments.electricGuitar.label
+					}}</label>
+				</li>
+			</div>
+			<div class="col">
+				<li>
+					<input
+						type="radio"
+						class="btn-check"
+						name="options-outlined"
+						id="danger2-outlined"
+						v-model="instrument"
+						:value="instruments.bass.value"
+						autocomplete="off"
+					/>
+					<label class="btn btn-outline-warning" for="danger2-outlined">{{
+						instruments.bass.label
+					}}</label>
+				</li>
+			</div>
+			<div class="col">
+				<li>
+					<input
+						type="radio"
+						class="btn-check"
+						name="options-outlined"
+						id="danger3-outlined"
+						v-model="instrument"
+						:value="instruments.cavaco.value"
+						autocomplete="off"
+					/>
+					<label class="btn btn-outline-info" for="danger3-outlined">{{
+						instruments.cavaco.label
+					}}</label>
+				</li>
+			</div>
+		</div>
+	</ul>
 </template>
 
 <script lang="ts" setup>
 	import { Instrument } from '~/types/Instrument'
 
-	const { instrument } = storeToRefs(useMyUserDetailsStore())
+	const { instrument } = storeToRefs(useMySettingsStore())
 	const instruments = ref({
 		default: ref(),
 		acousticGuitar: {
@@ -92,6 +100,6 @@
 	}
 
 	li {
-		padding-inline: 10px;
+		padding: 5px;
 	}
 </style>

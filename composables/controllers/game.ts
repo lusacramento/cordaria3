@@ -27,7 +27,6 @@ const lesson = ref() as Ref<Lesson> | Ref<null>
 let lessonNumber = 0
 
 // counter variable
-const counter = ref(0)
 
 const isCompleted = ref(false)
 
@@ -37,6 +36,7 @@ export const useGameController = () => {
 	const detailsStore = useMyUserDetailsStore()
 	const progressStore = useMyProgressStore()
 	const settingsStore = useMySettingsStore()
+	const { counter } = storeToRefs(useMySettingsStore())
 
 	async function init() {
 		instrument.value = await detailsStore.getInstrument

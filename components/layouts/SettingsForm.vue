@@ -1,66 +1,101 @@
 <template>
-	<div class="container justify-content-center d-flex">
-		<form>
-			<div class="form-group col-6 col-lg-12 col-6 col-lg-12 mb-4">
-				<label for="select-schema" class="form-label">Tema</label>
-				<br />
-				<div class="form-check form-switch">
-					<span>Escuro</span>
+	<div class="container">
+		<div class="row mb-3">
+			<div class="col">
+				<label class="form-label" for="instrument-list">Instrumento</label>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col">
+				<InstrumentList />
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col">
+				<label for="select-view-mode" class="form-label">Visualização</label>
+			</div>
+		</div>
+		<div class="row mb-3 justify-content-center d-flex text-center">
+			<div class="col-4"><label for="">2 cartas</label></div>
+			<div class="col-4"><label for="">3 cartas</label></div>
+			<div class="col-4"><label for="">todas cartas</label></div>
+		</div>
+		<div class="row mb-3 justify-content-center d-flex">
+			<div
+				class="col-4 img-view-mode d-flex"
+				:class="{ 'enabled-view-mode': viewMode == ViewMode.CARDS2 }"
+			>
+				<img
+					:src="img2Cards"
+					alt=""
+					height="40px"
+					@click.prevent="alterViewMode(ViewMode.CARDS2)"
+				/>
+			</div>
+			<div
+				class="col-4 img-view-mode d-flex"
+				:class="{ 'enabled-view-mode': viewMode == ViewMode.CARDS3 }"
+			>
+				<img
+					:src="img3Cards"
+					alt=""
+					height="40px"
+					@click.prevent="alterViewMode(ViewMode.CARDS3)"
+				/>
+			</div>
+			<div
+				class="col-4 img-view-mode justify-content-center d-flex"
+				:class="{ 'enabled-view-mode': viewMode == ViewMode.CARDSALL }"
+			>
+				<img
+					:src="imgAllCards"
+					alt=""
+					height="40px"
+					@click.prevent="alterViewMode(ViewMode.CARDSALL)"
+				/>
+			</div>
+		</div>
+
+		<div class="row mb-3 justify-content-center">
+			<div class="col-8">
+				<label for="range" class="form-label">Contador</label>
+			</div>
+			<div class="row mb-3">
+				<div class="col">
 					<input
-						v-model="theme"
-						class="form-check-input mx-3"
-						type="checkbox"
-						role="switch"
-						id="select-schema"
+						v-model="counter"
+						type="range"
+						class="form-range"
+						min="4"
+						max="10"
+						id="range"
 					/>
-					<span>Claro</span>
+				</div>
+				<div class="col-4">
+					<span class="d-flex justify-content-center">{{ counter }}</span>
 				</div>
 			</div>
-			<div
-				class="form-group col-6 col-lg-12 col-6 col-lg-12 select-screen mb-4"
-			>
-				<label for="select-view-mode" class="form-label">Visualização</label>
-				<br />
-				<select id="select-view-mode" v-model="viewMode" class="controls">
-					<option
-						v-for="viewMode in viewModes"
-						:key="viewMode.value"
-						:value="viewMode.value"
-					>
-						{{ viewMode.label }}
-					</option>
-				</select>
-			</div>
-			<div
-				class="form-group col-6 col-lg-12 col-6 col-lg-12 select-counter mb-4"
-			>
-				<label for="customRange2" class="form-label">Contador</label>
-				<input
-					v-model="counter"
-					type="range"
-					class="form-range"
-					min="2"
-					max="8"
-					id="customRange2"
-				/>
-				<span class="d-flex justify-content-center">{{ counter }}</span>
-			</div>
-			<div class="d-flex justify-content-center">
-				<button
-					type="button"
-					@click.prevent="showStatistics()"
-					data-bs-dismiss="offcanvas"
-					aria-label="Close"
-				>
-					Estatísticas
-				</button>
-			</div>
-		</form>
+		</div>
 	</div>
+	<!-- <div class="form-group col-6 col-lg-12 col-6 col-lg-12 select-counter mb-4">
+		</div> -->
+	<!-- <div class="d-flex justify-content-center">
+			<button
+				type="button"
+				@click.prevent="showStatistics()"
+				data-bs-dismiss="offcanvas"
+				aria-label="Close"
+			>
+				Estatísticas
+			</button>
+		</div> -->
 </template>
 
 <script lang="ts" setup>
-	const settingsStore = useMySettingsStore()
+	import img3Cards from '~/public/imgs/cards/img-3-cards.png'
+	import img2Cards from '~/public/imgs/cards/img-2-cards.png'
+	import imgAllCards from '~/public/imgs/cards/img-all-cards.png'
+	import { ViewMode } from '~/types/ViewMode'
 	const viewModes = [
 		{
 			label: '3 Cartas',
@@ -75,27 +110,36 @@
 			value: 'allCards',
 		},
 	]
-	const viewMode = ref(settingsStore.getViewMode)
+	const { viewMode, counter } = storeToRefs(useMySettingsStore())
+	const { setViewMode } = useMySettingsStore()
+	const { updateSettings } = useDbController()
 
-	watch(viewMode, (newValue) => {
-		settingsStore.setViewMode(newValue)
-	})
+	function alterViewMode(newViewMode: ViewMode) {
+		setViewMode(newViewMode)
+		updateSettings({ viewMode: newViewMode })
+	}
 
-	const counter = ref(settingsStore.getCounter)
+	// watch(viewMode, (newValue) => {
+	// 	settingsStore.setViewMode(newValue)
+	// })
 
-	watch(counter, (newValue) => {
-		settingsStore.setCounter(newValue)
-	})
+	// const counter = ref(settingsStore.getCounter)
 
-	const theme = ref(settingsStore.getTheme)
+	// watch(counter, (newValue) => {
+	// 	settingsStore.setCounter(newValue)
+	// })
 
-	watch(theme, () => {
-		settingsStore.toogleTheme()
-	})
+	// const theme = ref(settingsStore.getTheme)
+
+	// watch(theme, () => {
+	// 	settingsStore.toogleTheme()
+	// })
 
 	function showStatistics() {
-		useController().toogleShowStatistics()
+		useGameController().toogleShowStatistics()
 	}
+
+	function AlterViewMode(viewMode: string) {}
 </script>
 
 <style scoped>
@@ -116,5 +160,14 @@
 		font-family: 'Encode Sans';
 		font-weight: var(--font-regular);
 		font-size: 0.9em;
+	}
+
+	.img-view-mode {
+		opacity: 0.3;
+	}
+
+	.img-view-mode:hover,
+	.enabled-view-mode {
+		opacity: 1;
 	}
 </style>
