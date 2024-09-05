@@ -1,14 +1,12 @@
 import { defineStore } from 'pinia'
-import { Instrument } from 'tone/build/esm/instrument/Instrument'
+import type { Settings } from '~/types/Settings'
+import { ViewMode } from '~/types/ViewMode'
 
 export const useMySettingsStore = defineStore({
 	id: 'mySettingsStore',
 	state: () => ({
 		counter: 4,
-		lastLesson: 1,
-		viewMode: '2Cards',
-		instrumentDefault: 'acoustic-guitar',
-		themeDark: true,
+		viewMode: ViewMode.CARDS3,
 		showStatistics: false,
 	}),
 
@@ -43,12 +41,8 @@ export const useMySettingsStore = defineStore({
 			this.counter = value
 		},
 
-		setViewMode(value: string) {
+		setViewMode(value: ViewMode) {
 			this.viewMode = value
-		},
-
-		toogleTheme() {
-			this.themeDark = !this.themeDark
 		},
 
 		toogleShowStatistics() {
