@@ -17,7 +17,6 @@ const cards = {
 	next: ref(Card.getEmptyCard()),
 }
 
-const instrument = ref() as Ref<Instrument>
 const instrumentMap = ref([]) as Ref<any>
 
 const lesson = ref() as Ref<Lesson> | Ref<null>
@@ -28,10 +27,10 @@ export const useGameController = () => {
 	let deckIndex = 0
 	const progressStore = useMyProgressStore()
 	const settingsStore = useMySettingsStore()
-	const { counter } = storeToRefs(useMySettingsStore())
+	const { counter, instrument } = storeToRefs(useMySettingsStore())
 
 	async function init() {
-		instrument.value = await detailsStore.getInstrument
+		instrument.value = await instrument.value
 		lesson.value = await progressStore.getCurrentLesson
 		counter.value = await settingsStore.getCounter
 		instrumentMap.value = await useAudio().getInstrumentMapping(
