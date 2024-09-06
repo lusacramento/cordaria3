@@ -18,7 +18,7 @@
 							</template>
 						</LayoutsModal>
 						<button
-							ref="userDetailsModalButton"
+							ref="registerModalButton"
 							type="button"
 							class="btn btn-primary"
 							data-bs-toggle="modal"
@@ -55,14 +55,14 @@
 		title: 'Cadastrar',
 		id: 'registerModal',
 	}
-	const userDetailsButton: any = ref()
+	const registerModalButton: any = ref()
 
 	onMounted(() => {
-		userDetailsButton.value.click()
+		registerModalButton.value.click()
 	})
 
 	onBeforeUnmount(() => {
-		userDetailsButton.value.click()
+		registerModalButton.value.click()
 	})
 
 	// handle register
