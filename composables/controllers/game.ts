@@ -1,7 +1,6 @@
 import { useMySettingsStore } from '../../stores/settings'
 import { Card } from '../model/card'
 import type { Lesson } from '~/types/Lesson'
-import type { Instrument } from '~/types/Instrument'
 
 // Views variables
 const showCards = ref(false)
@@ -23,17 +22,10 @@ const instrumentMap = ref([]) as Ref<any>
 
 const lesson = ref() as Ref<Lesson> | Ref<null>
 
-// lesson variables
-let lessonNumber = 0
-
-// counter variable
-
 const isCompleted = ref(false)
 
 export const useGameController = () => {
 	let deckIndex = 0
-
-	const detailsStore = useMyUserDetailsStore()
 	const progressStore = useMyProgressStore()
 	const settingsStore = useMySettingsStore()
 	const { counter } = storeToRefs(useMySettingsStore())
