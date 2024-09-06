@@ -55,7 +55,6 @@
 				/>
 			</div>
 		</div>
-
 		<div class="row mb-4 justify-content-center">
 			<div class="col-8">
 				<label for="range" class="form-label">Contador</label>
@@ -90,11 +89,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="form-group col-6 col-lg-12 col-6 col-lg-12 select-counter mb-4">
-		</div> -->
-	<!-- <div class="d-flex justify-content-center">
-			
-		</div> -->
 </template>
 
 <script lang="ts" setup>
@@ -102,20 +96,7 @@
 	import img2Cards from '~/public/imgs/cards/img-2-cards.png'
 	import imgAllCards from '~/public/imgs/cards/img-all-cards.png'
 	import { ViewMode } from '~/types/ViewMode'
-	const viewModes = [
-		{
-			label: '3 Cartas',
-			value: '3Cards',
-		},
-		{
-			label: '2 Cartas',
-			value: '2Cards',
-		},
-		{
-			label: 'Todas Cartas',
-			value: 'allCards',
-		},
-	]
+
 	const { viewMode, counter } = storeToRefs(useMySettingsStore())
 	const { setViewMode } = useMySettingsStore()
 	const { updateSettings } = useDbController()
@@ -125,27 +106,9 @@
 		updateSettings({ viewMode: newViewMode })
 	}
 
-	// watch(viewMode, (newValue) => {
-	// 	settingsStore.setViewMode(newValue)
-	// })
-
-	// const counter = ref(settingsStore.getCounter)
-
-	// watch(counter, (newValue) => {
-	// 	settingsStore.setCounter(newValue)
-	// })
-
-	// const theme = ref(settingsStore.getTheme)
-
-	// watch(theme, () => {
-	// 	settingsStore.toogleTheme()
-	// })
-
 	function showStatistics() {
 		useGameController().toogleShowStatistics()
 	}
-
-	function AlterViewMode(viewMode: string) {}
 </script>
 
 <style scoped>
