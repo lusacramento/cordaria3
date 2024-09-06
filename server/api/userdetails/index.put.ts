@@ -20,7 +20,6 @@ export default defineEventHandler(async (event) => {
 				...body,
 			},
 		)
-		console.log(userDetails)
 
 		return userDetails
 	} catch (error) {

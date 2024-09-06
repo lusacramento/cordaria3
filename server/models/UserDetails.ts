@@ -6,7 +6,6 @@ export interface UserDetailsDocument extends Document {
 	age: number
 	state: string
 	country: string
-	instrument: string
 	imageUrl: string
 }
 
@@ -34,11 +33,6 @@ const UserDetailsSchema = new Schema({
 	},
 
 	country: {
-		type: String,
-		required: true,
-	},
-
-	instrument: {
 		type: String,
 		required: true,
 	},

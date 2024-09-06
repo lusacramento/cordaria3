@@ -4,7 +4,7 @@
 		<CordariaScreenCounter />
 		<!-- <Transition name="flip" mode="in-out"> -->
 		<div v-if="showCards">
-			<div v-if="viewMode === '3Cards'">
+			<div v-if="viewMode === ViewMode.CARDS3">
 				<div class="row mt-4 d-flex align-items-center justify-content-around">
 					<CordariaScreenCard id="prev-card" :key="prev.id" :card="prev" />
 					<CordariaScreenCard
@@ -16,7 +16,7 @@
 				</div>
 			</div>
 
-			<div v-else-if="viewMode === '2Cards'">
+			<div v-else-if="viewMode === ViewMode.CARDS2">
 				<div class="row mt-4 d-flex align-items-center justify-content-around">
 					<CordariaScreenCard
 						id="current-card"
@@ -46,7 +46,9 @@
 </template>
 
 <script lang="ts" setup>
-	const { viewMode } = useMySettingsStore()
+	import { ViewMode } from '~/types/ViewMode'
+
+	const { viewMode } = storeToRefs(useMySettingsStore())
 
 	const { deck, showCards, cards } = useGameController()
 	const { prev, current, next } = cards

@@ -53,7 +53,7 @@
 	async function getStatistics() {
 		statistics.value = await useIStatistics().getStatistics(
 			useMyUserStore().getId,
-			useMyUserDetailsStore().getInstrument,
+			useMySettingsStore().getInstrument,
 		)
 	}
 
