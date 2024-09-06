@@ -10,6 +10,7 @@ export const useDbController = () => {
 	const userStore = useMyUserStore()
 	const userDetailsStore = useMyUserDetailsStore()
 	const progressStore = useMyProgressStore()
+	const settingsStore = useMySettingsStore()
 	const iUser = useIUser()
 	const iLesson = useILesson()
 	const iProgress = useIProgress()
@@ -43,7 +44,7 @@ export const useDbController = () => {
 	// lesson
 	async function getLesson(number: number) {
 		const quantityOfStrings = helpers.getQuantityOfStrings(
-			userDetailsStore.getInstrument,
+			settingsStore.getInstrument,
 		)
 
 		const lessonQuery = {
@@ -69,7 +70,7 @@ export const useDbController = () => {
 			userId: userStore.getId as unknown as ObjectId,
 			lesson: lesson._id as unknown as ObjectId,
 			isCompleted: false,
-			instrument: userDetailsStore.getInstrument,
+			instrument: settingsStore.getInstrument,
 			currentLesson: lesson.number,
 		}
 	}
@@ -77,7 +78,7 @@ export const useDbController = () => {
 	async function getProgress() {
 		return await iProgress.getProgress(
 			userStore.getId,
-			userDetailsStore.getInstrument,
+			settingsStore.getInstrument,
 		)
 	}
 
@@ -92,7 +93,7 @@ export const useDbController = () => {
 	async function getScore() {
 		const score = (await iScore.getScore(
 			userStore.getId,
-			userDetailsStore.getInstrument,
+			settingsStore.getInstrument,
 		)) as Score
 
 		return score.score as number
@@ -101,7 +102,7 @@ export const useDbController = () => {
 	async function postScore() {
 		const score = {
 			userId: userStore.getId as unknown as ObjectId,
-			instrument: userDetailsStore.getInstrument,
+			instrument: settingsStore.getInstrument,
 			score: progressStore.getScore,
 		} as unknown as Score
 		await iScore.postScore(score)
@@ -120,7 +121,7 @@ export const useDbController = () => {
 	function createDefaultSettings(): Settings {
 		return {
 			userId: userStore.getId as unknown as ObjectId,
-			instrument: userDetailsStore.getInstrument,
+			instrument: settingsStore.getInstrument,
 			viewMode: ViewMode.CARDS3,
 			counter: 4,
 		}
