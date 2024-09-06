@@ -72,6 +72,9 @@
 <script lang="ts" setup>
 	import { Instrument } from '~/types/Instrument'
 
+	const db = useDbController()
+	const { refreshPage } = useViewController()
+
 	const { instrument } = storeToRefs(useMySettingsStore())
 	const instruments = ref({
 		default: ref(),
@@ -91,6 +94,14 @@
 			label: 'cavaco',
 			value: Instrument.CAVACO,
 		},
+	})
+
+	const {} = watch(instrument, async (newValue, oldValue, on) => {
+		if (oldValue !== Instrument.NOT_SELECTED) {
+			alert('Para concluir a alteração, a página será atualizada.')
+			await db.updateSettings({ instrument: newValue })
+			refreshPage()
+		}
 	})
 </script>
 

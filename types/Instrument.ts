@@ -3,4 +3,5 @@ export enum Instrument {
 	ELECTRICGUITAR = 'Electric Guitar',
 	BASS = 'Bass',
 	CAVACO = 'Cavaco',
+	NOT_SELECTED = 'Não Selecionado',
 }

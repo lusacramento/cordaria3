@@ -1,7 +1,6 @@
 import { useMySettingsStore } from '../../stores/settings'
 import { Card } from '../model/card'
 import type { Lesson } from '~/types/Lesson'
-import type { Instrument } from '~/types/Instrument'
 
 // Views variables
 const showCards = ref(false)
@@ -18,28 +17,20 @@ const cards = {
 	next: ref(Card.getEmptyCard()),
 }
 
-const instrument = ref() as Ref<Instrument>
 const instrumentMap = ref([]) as Ref<any>
 
 const lesson = ref() as Ref<Lesson> | Ref<null>
-
-// lesson variables
-let lessonNumber = 0
-
-// counter variable
 
 const isCompleted = ref(false)
 
 export const useGameController = () => {
 	let deckIndex = 0
-
-	const detailsStore = useMyUserDetailsStore()
 	const progressStore = useMyProgressStore()
 	const settingsStore = useMySettingsStore()
-	const { counter } = storeToRefs(useMySettingsStore())
+	const { counter, instrument } = storeToRefs(useMySettingsStore())
 
 	async function init() {
-		instrument.value = await detailsStore.getInstrument
+		instrument.value = await instrument.value
 		lesson.value = await progressStore.getCurrentLesson
 		counter.value = await settingsStore.getCounter
 		instrumentMap.value = await useAudio().getInstrumentMapping(

@@ -130,9 +130,7 @@
 	const { setLesson, setProgress, setIsCompletedProgress, setScore } =
 		useMyProgressStore()
 
-	const { imageUrl: avatar, getInstrument } = storeToRefs(
-		useMyUserDetailsStore(),
-	)
+	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 	const { setUserId, updateUserDetails } = useMyUserDetailsStore()
 
 	const { setAllSettings } = useMySettingsStore()
@@ -223,16 +221,6 @@
 			}
 		}
 	})
-
-	watch(
-		() => getInstrument,
-		async (newValue, oldValue) => {
-			if (oldValue) {
-				await db.updateUserDetails(newValue.value)
-				refreshPage()
-			}
-		},
-	)
 
 	const userDetails: Ref<any> = ref()
 
