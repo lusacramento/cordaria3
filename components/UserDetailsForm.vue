@@ -68,13 +68,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="row d-flex instruments justify-content-center mb-3">
+		<!-- <div class="row d-flex instruments justify-content-center mb-3">
 			<div class="col">
 				<label for="instrument-input" class="form-label"> Instrumento</label>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="row d-flex instruments justify-content-center text-center mb-3">
+		<!-- <div class="row d-flex instruments justify-content-center text-center mb-3">
 			<div class="col-auto">
 				<input
 					type="radio"
@@ -128,15 +128,15 @@
 				/>
 				<label class="btn btn-outline-danger" for="cavaco">Cavaquinho</label>
 			</div>
-		</div>
-		<div class="row">
+		</div> -->
+		<!-- <div class="row">
 			<div class="col-9">
 				<div v-if="!fields.instrument.isValidated">
 					<small class="text-danger">Selecione um instrumento.</small>
 				</div>
 			</div>
 			<div class="col-3"></div>
-		</div>
+		</div> -->
 
 		<div class="mb-3 row d-flex justify-content-center">
 			<label for="image-url-input" class="form-label">Imagem de perfil</label>
@@ -146,11 +146,17 @@
 </template>
 
 <script lang="ts" setup>
-	import { Instrument } from '~/types/Instrument'
+	// import { Instrument } from '~/types/Instrument'
 
-	const { fullName, age, state, country, instrument } = storeToRefs(
-		useMyUserDetailsStore(),
-	)
+	const {
+		fullName,
+		age,
+		state,
+		country,
+		// instrument
+	} = storeToRefs(useMyUserDetailsStore())
+
+	// const instrument = ref()
 
 	const fields: any = ref({
 		fullName: { id: 'fullName', content: fullName, isValidated: false },
@@ -169,11 +175,11 @@
 			content: country,
 			isValidated: false,
 		},
-		instrument: {
-			id: 'instrument',
-			content: instrument,
-			isValidated: false,
-		},
+		// instrument: {
+		// 	id: 'instrument',
+		// 	content: instrument,
+		// 	isValidated: false,
+		// },
 	})
 
 	watch(fields.value, () => {
@@ -186,9 +192,9 @@
 			country.value,
 		)
 
-		fields.value.instrument.isValidated = useValidations().validateInstrument(
-			instrument.value,
-		)
+		// fields.value.instrument.isValidated = useValidations().validateInstrument(
+		// 	instrument.value,
+		// )
 	})
 
 	function verifyAllValidations() {
@@ -196,8 +202,9 @@
 			fields.value.fullName.isValidated &&
 			fields.value.age.isValidated &&
 			fields.value.state.isValidated &&
-			fields.value.country.isValidated &&
-			fields.value.instrument.isValidated
+			fields.value.country.isValidated
+			// &&
+			// fields.value.instrument.isValidated
 		)
 			return true
 		return false
