@@ -68,76 +68,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="row d-flex instruments justify-content-center mb-3">
-			<div class="col">
-				<label for="instrument-input" class="form-label"> Instrumento</label>
-			</div>
-		</div> -->
-
-		<!-- <div class="row d-flex instruments justify-content-center text-center mb-3">
-			<div class="col-auto">
-				<input
-					type="radio"
-					class="btn-check"
-					name="instrument-input"
-					id="acoustic-guitar"
-					autocomplete="off"
-					checked
-					v-model="instrument"
-					:value="Instrument.ACOUSTICGUITAR"
-				/>
-				<label class="btn btn-outline-success" for="acoustic-guitar"
-					>Violão</label
-				>
-			</div>
-			<div class="col-auto">
-				<input
-					type="radio"
-					class="btn-check"
-					name="instrument-input"
-					id="electric-guitar"
-					autocomplete="off"
-					v-model="instrument"
-					:value="Instrument.ELECTRICGUITAR"
-				/>
-				<label class="btn btn-outline-danger" for="electric-guitar"
-					>Guitarra</label
-				>
-			</div>
-			<div class="col-auto">
-				<input
-					type="radio"
-					class="btn-check"
-					name="instrument-input"
-					id="bass"
-					autocomplete="off"
-					v-model="instrument"
-					:value="Instrument.BASS"
-				/>
-				<label class="btn btn-outline-danger" for="bass">Baixo</label>
-			</div>
-			<div class="col-auto">
-				<input
-					type="radio"
-					class="btn-check"
-					name="instrument-input"
-					id="cavaco"
-					autocomplete="off"
-					v-model="instrument"
-					:value="Instrument.CAVACO"
-				/>
-				<label class="btn btn-outline-danger" for="cavaco">Cavaquinho</label>
-			</div>
-		</div> -->
-		<!-- <div class="row">
-			<div class="col-9">
-				<div v-if="!fields.instrument.isValidated">
-					<small class="text-danger">Selecione um instrumento.</small>
-				</div>
-			</div>
-			<div class="col-3"></div>
-		</div> -->
-
 		<div class="mb-3 row d-flex justify-content-center">
 			<label for="image-url-input" class="form-label">Imagem de perfil</label>
 			<UploadAvatar />
@@ -146,17 +76,7 @@
 </template>
 
 <script lang="ts" setup>
-	// import { Instrument } from '~/types/Instrument'
-
-	const {
-		fullName,
-		age,
-		state,
-		country,
-		// instrument
-	} = storeToRefs(useMyUserDetailsStore())
-
-	// const instrument = ref()
+	const { fullName, age, state, country } = storeToRefs(useMyUserDetailsStore())
 
 	const fields: any = ref({
 		fullName: { id: 'fullName', content: fullName, isValidated: false },
@@ -175,11 +95,6 @@
 			content: country,
 			isValidated: false,
 		},
-		// instrument: {
-		// 	id: 'instrument',
-		// 	content: instrument,
-		// 	isValidated: false,
-		// },
 	})
 
 	watch(fields.value, () => {
@@ -191,24 +106,7 @@
 		fields.value.country.isValidated = useValidations().validateCountry(
 			country.value,
 		)
-
-		// fields.value.instrument.isValidated = useValidations().validateInstrument(
-		// 	instrument.value,
-		// )
 	})
-
-	function verifyAllValidations() {
-		if (
-			fields.value.fullName.isValidated &&
-			fields.value.age.isValidated &&
-			fields.value.state.isValidated &&
-			fields.value.country.isValidated
-			// &&
-			// fields.value.instrument.isValidated
-		)
-			return true
-		return false
-	}
 </script>
 
 <style scoped>
