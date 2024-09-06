@@ -10,7 +10,7 @@ export const useIUser = () => {
 	}
 
 	async function getUserDetails(id: string | null) {
-		return await $fetch(userDetailsUrl, {
+		return await useFetch(userDetailsUrl, {
 			method: 'get',
 			params: { id: id },
 		})
