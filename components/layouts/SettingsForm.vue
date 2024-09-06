@@ -1,26 +1,26 @@
 <template>
 	<div class="container">
-		<div class="row mb-3">
+		<div class="row mb-4">
 			<div class="col">
 				<label class="form-label" for="instrument-list">Instrumento</label>
 			</div>
 		</div>
-		<div class="row mb-3">
+		<div class="row mb-4">
 			<div class="col">
 				<InstrumentList />
 			</div>
 		</div>
-		<div class="row mb-3">
+		<div class="row mb-4">
 			<div class="col">
 				<label for="select-view-mode" class="form-label">Visualização</label>
 			</div>
 		</div>
-		<div class="row mb-3 justify-content-center d-flex text-center">
+		<div class="row mb-4 justify-content-center d-flex text-center">
 			<div class="col-4"><label for="">2 cartas</label></div>
 			<div class="col-4"><label for="">3 cartas</label></div>
 			<div class="col-4"><label for="">todas cartas</label></div>
 		</div>
-		<div class="row mb-3 justify-content-center d-flex">
+		<div class="row mb-4 justify-content-center d-flex">
 			<div
 				class="col-4 img-view-mode d-flex"
 				:class="{ 'enabled-view-mode': viewMode == ViewMode.CARDS2 }"
@@ -56,11 +56,11 @@
 			</div>
 		</div>
 
-		<div class="row mb-3 justify-content-center">
+		<div class="row mb-4 justify-content-center">
 			<div class="col-8">
 				<label for="range" class="form-label">Contador</label>
 			</div>
-			<div class="row mb-3">
+			<div class="row mb-4">
 				<div class="col">
 					<input
 						v-model="counter"
