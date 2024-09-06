@@ -18,7 +18,7 @@
 							</template>
 						</LayoutsModal>
 						<button
-							ref="userDetailsModalButton"
+							ref="loginModalButton"
 							type="button"
 							class="btn btn-primary"
 							data-bs-toggle="modal"
@@ -46,7 +46,7 @@
 		title: 'Entrar',
 		id: 'loginModal',
 	}
-	const userDetailsButton: any = ref()
+	const loginModalButton: any = ref()
 
 	const toast = ref()
 	const toaster = ref({
@@ -56,7 +56,7 @@
 	})
 
 	onMounted(() => {
-		userDetailsButton.value.click()
+		loginModalButton.value.click()
 		if (useMyUserStore().getIsNewRegistered) {
 			toaster.value.header = 'Sucesso!'
 			toaster.value.body = 'Cadastro registrado. Por favor,faça o login.'
@@ -67,7 +67,7 @@
 	})
 
 	onBeforeUnmount(() => {
-		userDetailsButton.value.click()
+		loginModalButton.value.click()
 	})
 
 	// handle ogin
