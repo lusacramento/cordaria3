@@ -10,7 +10,6 @@ export const useMyUserDetailsStore = defineStore({
 		age: 0,
 		state: '',
 		country: '',
-		instrument: '' as Instrument,
 		imageUrl: '/imgs/uploads/default-avatar.png',
 	}),
 
@@ -21,17 +20,12 @@ export const useMyUserDetailsStore = defineStore({
 				age: state.age,
 				state: state.state,
 				country: state.country,
-				instrument: state.instrument,
 				imageUrl: state.imageUrl,
 			}
 		},
 
 		getFullName(state) {
 			return state.fullName
-		},
-
-		getInstrument(state) {
-			return state.instrument
 		},
 
 		getImageUrl(state) {
@@ -58,7 +52,6 @@ export const useMyUserDetailsStore = defineStore({
 			this.age = data.age
 			this.state = data.state
 			this.country = data.country
-			this.instrument = data.instrument
 			this.imageUrl = data.imageUrl
 		},
 	},

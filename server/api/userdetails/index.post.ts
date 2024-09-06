@@ -9,7 +9,6 @@ export default defineEventHandler(async (event) => {
 		!body.age ||
 		!body.state ||
 		!body.country ||
-		!body.instrument ||
 		!body.imageUrl
 	) {
 		throw createError({
