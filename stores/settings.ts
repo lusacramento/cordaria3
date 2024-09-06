@@ -8,7 +8,7 @@ export const useMySettingsStore = defineStore({
 	state: () => ({
 		counter: 4,
 		viewMode: ViewMode.CARDS3,
-		instrument: Instrument.ACOUSTICGUITAR,
+		instrument: Instrument.NOT_SELECTED,
 		showStatistics: false,
 	}),
 
