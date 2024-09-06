@@ -76,18 +76,24 @@
 				</div>
 			</div>
 		</div>
+		<div class="row mb-4">
+			<div class="col d-flex justify-content-center">
+				<button
+					type="button"
+					@click.prevent="showStatistics()"
+					data-bs-dismiss="offcanvas"
+					aria-label="Close"
+					class="btn btn-outline-light"
+				>
+					Estatísticas
+				</button>
+			</div>
+		</div>
 	</div>
 	<!-- <div class="form-group col-6 col-lg-12 col-6 col-lg-12 select-counter mb-4">
 		</div> -->
 	<!-- <div class="d-flex justify-content-center">
-			<button
-				type="button"
-				@click.prevent="showStatistics()"
-				data-bs-dismiss="offcanvas"
-				aria-label="Close"
-			>
-				Estatísticas
-			</button>
+			
 		</div> -->
 </template>
 
