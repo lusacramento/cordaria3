@@ -231,8 +231,6 @@
 	async function load() {
 		await loadUserStore()
 
-		const userDetails: Ref<any> = ref()
-
 		const isUserDetailsExists = await verifyIfIsUserDetailsExists()
 		if (!isUserDetailsExists) {
 			toogleUserDetailsForm()
