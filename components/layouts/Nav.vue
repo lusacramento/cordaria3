@@ -159,6 +159,9 @@
 
 	async function handleLogout() {
 		useMyUserStore().$reset()
+		useMyUserDetailsStore().$reset()
+		useMySettingsStore().$reset()
+		useMyProgressStore().$reset()
 		await signOut({ callbackUrl: '/entrar' })
 	}
 
