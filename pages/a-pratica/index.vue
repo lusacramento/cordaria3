@@ -43,7 +43,10 @@
 					</div>
 				</template>
 				<template #right>
-					<div class="d-flex align-items-center justify-content-end">
+					<div
+						class="d-flex align-items-center justify-content-end avatar-link"
+						@click.prevent="toogleUserDetailsForm()"
+					>
 						<div
 							class="avatar d-flex justify-content-center align-items-center"
 						>
@@ -238,7 +241,7 @@
 			return
 		}
 
-		saveUserDetailsOnStore()
+		await saveUserDetailsOnStore()
 
 		if (!getId) throw Error
 		showToast(
@@ -317,7 +320,7 @@
 	}
 
 	function saveUserDetailsOnStore() {
-		updateUserDetails(userDetails.value)
+		updateUserDetails(userDetails.value.data)
 	}
 </script>
 
@@ -368,5 +371,9 @@
 
 	.img-lesson {
 		width: 80%;
+	}
+
+	.avatar-link {
+		cursor: pointer;
 	}
 </style>
