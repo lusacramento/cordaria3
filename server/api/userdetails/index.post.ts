@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 	}
 
 	try {
-		await UserDetails.create(body)
+		await UserDetails.updateOne({ userId: body.userId }, body, { upsert: true })
 		setResponseStatus(event, 201, 'created')
 		return
 	} catch (error) {
