@@ -33,7 +33,7 @@
 	})
 
 	function start(number?: number) {
-		useController().payload(number)
+		useGameController().payload(number)
 	}
 </script>
 

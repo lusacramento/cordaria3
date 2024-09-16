@@ -219,6 +219,7 @@
 				const response = await db.postProgress(progress)
 				setProgress(response.data.value as Progress)
 				setLesson(lesson)
+				await loadSettings()
 				init()
 				enablePlayButton()
 			}
@@ -304,6 +305,7 @@
 			setLesson(lastLesson)
 		}
 	}
+
 	async function loadScore() {
 		try {
 			const score = await db.getScore()
