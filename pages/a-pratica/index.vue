@@ -219,6 +219,7 @@
 				const response = await db.postProgress(progress)
 				setProgress(response.data.value as Progress)
 				setLesson(lesson)
+				await loadSettings()
 				init()
 				enablePlayButton()
 			}
