@@ -254,7 +254,7 @@
 
 		await useMyProgressStore().loadProgress()
 
-		await loadScore()
+		await useMyProgressStore().loadScore()
 
 		await useGameController().init()
 		enablePlayButton()
@@ -280,15 +280,6 @@
 	async function loadSettings() {
 		const settings = (await db.getSettings()) as Settings
 		setAllSettings(settings)
-	}
-
-	async function loadScore() {
-		try {
-			const score = await db.getScore()
-			setScore(score)
-		} catch (error: any) {
-			if (error.statusCode === 404) setScore(0)
-		}
 	}
 
 	async function submitUserDetails() {

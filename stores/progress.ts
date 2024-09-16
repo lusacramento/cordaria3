@@ -3,6 +3,7 @@ import { type ObjectId } from 'mongoose'
 import { defineStore } from 'pinia'
 import { type Progress } from '~/types/Progress'
 import { type Lesson } from '~/types/Lesson'
+import type { Score } from '~/types/Score'
 
 export const useMyProgressStore = defineStore({
 	id: 'myProgressStore',
@@ -83,6 +84,15 @@ export const useMyProgressStore = defineStore({
 			this.lesson = (await useILesson().getLessonById(
 				this.progress.lesson as unknown as string,
 			)) as Lesson
+		},
+
+		async loadScore() {
+			const score = (await useIScore().getScore(
+				useMyUserStore().getId,
+				useMySettingsStore().getInstrument,
+			)) as Score
+
+			if (score) this.score = score.score
 		},
 
 		generateProgress() {
