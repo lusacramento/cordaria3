@@ -102,5 +102,31 @@ export const useMyProgressStore = defineStore({
 			this.progress.instrument = useMySettingsStore().getInstrument
 			this.progress.currentLesson = this.lesson.number
 		},
+
+		async updateProgress() {
+			this.progress.isCompleted = true
+			await useIProgress().setProgress(this.progress)
+		},
+
+		updateScore() {
+			this.score += !this.progress.isCompleted
+				? this.lesson.points
+				: this.lesson.points / 2
+
+			this.postScore()
+		},
+
+		async postScore() {
+			const score = this.generateScore() as unknown as Score
+			await useIScore().postScore(score)
+		},
+
+		generateScore() {
+			return {
+				userId: useMyUserStore().getId as unknown as ObjectId,
+				instrument: useMySettingsStore().getInstrument,
+				score: this.score,
+			}
+		},
 	},
 })

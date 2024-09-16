@@ -183,12 +183,8 @@
 	watch(isCompleted, async (newValue) => {
 		disablePlayButton()
 		if (newValue === true) {
-			db.updateScore()
-
-			await db.postScore()
-			setIsCompletedProgress(isCompleted.value)
-
-			await db.updateProgress()
+			useMyProgressStore().updateScore()
+			useMyProgressStore().updateProgress()
 
 			isCompleted.value = false
 			showCards.value = false
