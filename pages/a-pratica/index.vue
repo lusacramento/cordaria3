@@ -122,7 +122,7 @@
 	})
 
 	onBeforeMount(async () => {
-		load()
+		init()
 	})
 
 	// Stores
@@ -227,8 +227,6 @@
 	})
 
 	const userDetails: Ref<any> = ref()
-
-	init()
 
 	// Functions
 
