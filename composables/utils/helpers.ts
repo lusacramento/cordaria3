@@ -38,6 +38,12 @@ export const useHelpers = () => {
 				return 'bass'
 			case Instrument.CAVACO:
 				return 'cavaco'
+
+			case Instrument.NOT_SELECTED:
+				throw createError('Instrumento não selecionado.')
+
+			default:
+				throw createError('Instrumento não encontrado.')
 		}
 	}
 
