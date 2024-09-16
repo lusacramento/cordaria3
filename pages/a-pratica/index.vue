@@ -122,6 +122,7 @@
 	})
 
 	onBeforeMount(async () => {
+		await load()
 		init()
 	})
 
@@ -153,7 +154,6 @@
 		toast,
 		toaster,
 		points,
-		firstLessonNumber,
 		lastLessonNumber,
 		showTips,
 		showToast,
@@ -252,7 +252,7 @@
 
 		await loadSettings()
 
-		await loadProgress()
+		await useMyProgressStore().loadProgress()
 
 		await loadScore()
 
@@ -280,28 +280,6 @@
 	async function loadSettings() {
 		const settings = (await db.getSettings()) as Settings
 		setAllSettings(settings)
-	}
-
-	async function loadProgress() {
-		const response = await db.getProgress()
-		if (!response) {
-			const lesson = await db.getLesson(firstLessonNumber)
-			if (!lesson) throw new Error('Lição não localizada!')
-
-			const progress: Progress = db.generateProgress(lesson)
-			const response = await db.postProgress(progress)
-			setProgress(response.data.value as Progress)
-			setLesson(lesson)
-		}
-
-		if (response) {
-			const progress = response as Progress
-			setProgress(progress)
-
-			const lastLessonId = progress.lesson as unknown as string
-			const lastLesson = (await db.getLessonById(lastLessonId)) as Lesson
-			setLesson(lastLesson)
-		}
 	}
 
 	async function loadScore() {
