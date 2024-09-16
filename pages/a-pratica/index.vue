@@ -305,6 +305,7 @@
 			setLesson(lastLesson)
 		}
 	}
+
 	async function loadScore() {
 		try {
 			const score = await db.getScore()
