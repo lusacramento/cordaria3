@@ -101,12 +101,12 @@
 	const { setViewMode } = useMySettingsStore()
 
 	watch(counter, () => {
-		useMySettingsStore().updateSettings()
+		useMySettingsStore().update()
 	})
 
 	function alterViewMode(newViewMode: ViewMode) {
 		setViewMode(newViewMode)
-		useMySettingsStore().updateSettings()
+		useMySettingsStore().update()
 	}
 
 	function showStatistics() {

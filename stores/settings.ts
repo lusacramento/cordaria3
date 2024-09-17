@@ -32,7 +32,7 @@ export const useMySettingsStore = defineStore({
 	},
 
 	actions: {
-		setAllSettings(settings: Settings) {
+		setAll(settings: Settings) {
 			this.counter = settings.counter
 			this.viewMode = settings.viewMode
 			this.instrument = settings.instrument
@@ -50,31 +50,31 @@ export const useMySettingsStore = defineStore({
 			this.showStatistics = !this.showStatistics
 		},
 
-		generateSettings() {
+		generate() {
 			this.userId = useMyUserStore().getId
 			this.instrument = Instrument.ACOUSTICGUITAR
 		},
 
-		async loadSettings() {
+		async load() {
 			const settings = (await useISettings().getSettings(
 				useMyUserStore().getId,
 			)) as Settings
 
 			if (settings) {
-				this.setAllSettings(settings)
+				this.setAll(settings)
 				return
 			}
 
-			this.generateSettings()
-			this.postSettings()
+			this.generate()
+			this.post()
 		},
 
-		async postSettings() {
+		async post() {
 			console.log(this.$state)
 			useISettings().postSettings(this.$state as unknown as Settings)
 		},
 
-		async updateSettings() {
+		async update() {
 			return await useISettings().updateSettings(
 				useMyUserStore().getId,
 				this.$state as unknown as Settings,

@@ -201,7 +201,7 @@
 
 				useMyProgressStore().loadNext()
 
-				await useMySettingsStore().loadSettings()
+				await useMySettingsStore().load()
 				init()
 				enablePlayButton()
 			}
@@ -227,7 +227,7 @@
 			'success',
 		)
 
-		await useMySettingsStore().loadSettings()
+		await useMySettingsStore().load()
 
 		await useMyProgressStore().load()
 

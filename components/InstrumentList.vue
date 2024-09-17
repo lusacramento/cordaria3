@@ -102,12 +102,12 @@
 
 		if (props.isReloading === 'true') {
 			alert('Para concluir a alteração, a página será atualizada.')
-			await useMySettingsStore().updateSettings()
+			await useMySettingsStore().update()
 			refreshPage()
 			return
 		}
 
-		await useMySettingsStore().updateSettings()
+		await useMySettingsStore().update()
 	})
 </script>
 
