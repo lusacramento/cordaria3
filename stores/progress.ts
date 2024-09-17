@@ -28,7 +28,7 @@ export const useMyProgressStore = defineStore({
 	},
 
 	actions: {
-		generateProgress() {
+		generate() {
 			return {
 				userId: useMyUserStore().getId as unknown as ObjectId,
 				lesson: this.lesson._id as unknown as ObjectId,
@@ -38,7 +38,7 @@ export const useMyProgressStore = defineStore({
 			} as Progress
 		},
 
-		async loadProgress() {
+		async load() {
 			const progress = (await useIProgress().getProgress(
 				useMyUserStore().getId,
 				useMySettingsStore().getInstrument,
@@ -47,8 +47,8 @@ export const useMyProgressStore = defineStore({
 			if (!progress) {
 				const firstLessonNumber = 1
 				await this.getLesson(firstLessonNumber)
-				const progress = this.generateProgress()
-				this.postProgress(progress)
+				const progress = this.generate()
+				this.post(progress)
 
 				this.progress = progress
 				return
@@ -58,22 +58,22 @@ export const useMyProgressStore = defineStore({
 			this.getLessonById()
 		},
 
-		async loadNextProgress() {
+		async loadNext() {
 			const nextLessonNumber = this.progress.currentLesson + 1
 			await this.getLesson(nextLessonNumber)
 
-			const progress = await this.generateProgress()
+			const progress = await this.generate()
 
-			await this.postProgress(progress)
+			await this.post(progress)
 
 			this.progress = progress
 		},
 
-		async postProgress(progress: Progress) {
+		async post(progress: Progress) {
 			useIProgress().postProgress(progress)
 		},
 
-		async updateProgress() {
+		async update() {
 			this.progress.isCompleted = true
 			await useIProgress().setProgress(this.progress)
 		},

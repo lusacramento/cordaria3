@@ -174,7 +174,7 @@
 		disablePlayButton()
 		if (newValue === true) {
 			await useMyProgressStore().updateScore()
-			await useMyProgressStore().updateProgress()
+			await useMyProgressStore().update()
 
 			isCompleted.value = false
 			showCards.value = false
@@ -199,7 +199,7 @@
 					return
 				}
 
-				useMyProgressStore().loadNextProgress()
+				useMyProgressStore().loadNext()
 
 				await useMySettingsStore().loadSettings()
 				init()
@@ -229,7 +229,7 @@
 
 		await useMySettingsStore().loadSettings()
 
-		await useMyProgressStore().loadProgress()
+		await useMyProgressStore().load()
 
 		await useMyProgressStore().loadScore()
 
