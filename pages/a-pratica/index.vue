@@ -120,7 +120,7 @@
 
 	onBeforeMount(async () => {
 		await load()
-		init()
+		if (useMyUserDetailsStore().getId) init()
 	})
 
 	// Stores
