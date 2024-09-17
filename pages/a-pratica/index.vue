@@ -125,19 +125,16 @@
 	})
 
 	// Stores
-	const { getId, getUserName } = storeToRefs(useMyUserStore())
+	const { getUserName } = storeToRefs(useMyUserStore())
 	const { setId, setUserName, logIn } = useMyUserStore()
 
 	const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
 
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
-	const { setUserId } = useMyUserDetailsStore()
 
 	// Controllers
 	const { showBox, showCards, showStatistics, isCompleted, init } =
 		useGameController()
-
-	const db = useDbController()
 
 	const {
 		isLoaded,
@@ -254,8 +251,10 @@
 	}
 
 	async function submitUserDetails() {
-		db.postUserDetails()
+		await useMyUserDetailsStore().postUserDetails()
+
 		await toogleUserDetailsForm()
+
 		refreshPage()
 	}
 </script>

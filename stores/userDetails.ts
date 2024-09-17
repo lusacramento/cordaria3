@@ -60,11 +60,15 @@ export const useMyUserDetailsStore = defineStore({
 		},
 
 		async loadUserDetails() {
-			const userDetails = await useIUser().getUserDetails(
+			const userDetails = (await useIUser().getUserDetails(
 				useMyUserStore().getId,
-			)
+			)) as unknown as UserDetails
 
-			this.setUserDetails(userDetails.data.value as unknown as UserDetails)
+			if (userDetails) this.setUserDetails(userDetails)
+		},
+
+		async postUserDetails() {
+			await useIUser().postUserDetails(this.$state)
 		},
 	},
 })
