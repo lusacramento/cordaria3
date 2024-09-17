@@ -6,7 +6,6 @@ import { ViewMode } from '~/types/ViewMode'
 export const useDbController = () => {
 	const userStore = useMyUserStore()
 	const userDetailsStore = useMyUserDetailsStore()
-	const settingsStore = useMySettingsStore()
 	const iUser = useIUser()
 	const iSettings = useISettings()
 
@@ -31,23 +30,6 @@ export const useDbController = () => {
 		})
 	}
 
-	function createDefaultSettings(): Settings {
-		return {
-			userId: userStore.getId as unknown as ObjectId,
-			instrument: settingsStore.getInstrument,
-			viewMode: ViewMode.CARDS3,
-			counter: 4,
-		}
-	}
-
-	async function getSettings() {
-		const response = await iSettings.getSettings(userStore.getId)
-		if (!response) {
-			return await iSettings.postSettings(createDefaultSettings())
-		}
-		return response
-	}
-
 	async function postSettings(settings: Settings) {
 		return await iSettings.postSettings(settings)
 	}
@@ -59,8 +41,6 @@ export const useDbController = () => {
 		getUserDetails,
 		postUserDetails,
 		updateUserDetails,
-		createDefaultSettings,
-		getSettings,
 		postSettings,
 		updateSettings,
 	}

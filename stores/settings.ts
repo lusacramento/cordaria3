@@ -48,5 +48,13 @@ export const useMySettingsStore = defineStore({
 		toogleShowStatistics() {
 			this.showStatistics = !this.showStatistics
 		},
+
+		async loadSettings() {
+			const settings = (await useISettings().getSettings(
+				useMyUserStore().getId,
+			)) as Settings
+
+			if (settings) this.setAllSettings(settings)
+		},
 	},
 })

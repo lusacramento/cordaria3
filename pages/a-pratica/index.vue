@@ -207,7 +207,7 @@
 
 				useMyProgressStore().loadNextProgress()
 
-				await loadSettings()
+				await useMySettingsStore().loadSettings()
 				init()
 				enablePlayButton()
 			}
@@ -238,7 +238,7 @@
 			'success',
 		)
 
-		await loadSettings()
+		await useMySettingsStore().loadSettings()
 
 		await useMyProgressStore().loadProgress()
 
@@ -263,11 +263,6 @@
 	async function verifyIfIsUserDetailsExists() {
 		userDetails.value = await db.getUserDetails()
 		return userDetails.value.error?.statusCode === 404 ? false : true
-	}
-
-	async function loadSettings() {
-		const settings = (await db.getSettings()) as Settings
-		setAllSettings(settings)
 	}
 
 	async function submitUserDetails() {
