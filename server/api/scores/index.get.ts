@@ -10,14 +10,11 @@ export default defineEventHandler(async (event) => {
 			message: 'Campos obrigatórios ausentes',
 		})
 
-	const score = await Score.findOne({ ...query })
+	try {
+		const score = await Score.findOne({ ...query })
 
-	if (!score)
-		throw createError({
-			statusCode: 404,
-			statusMessage: 'Not Found',
-			message: 'Dados não encontrados',
-		})
-
-	return score
+		return score
+	} catch (error) {
+		return error
+	}
 })

@@ -92,7 +92,11 @@ export const useMyProgressStore = defineStore({
 				useMySettingsStore().getInstrument,
 			)) as Score
 
-			if (score) this.score = score.score
+			if (score) {
+				this.score = score.score
+				return
+			}
+			await this.postScore()
 		},
 
 		generateProgress() {
