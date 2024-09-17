@@ -50,12 +50,28 @@ export const useMySettingsStore = defineStore({
 			this.showStatistics = !this.showStatistics
 		},
 
+		generateSettings() {
+			this.userId = useMyUserStore().getId
+			this.instrument = Instrument.ACOUSTICGUITAR
+		},
+
 		async loadSettings() {
 			const settings = (await useISettings().getSettings(
 				useMyUserStore().getId,
 			)) as Settings
 
-			if (settings) this.setAllSettings(settings)
+			if (settings) {
+				this.setAllSettings(settings)
+				return
+			}
+
+			this.generateSettings()
+			this.postSettings()
+		},
+
+		async postSettings() {
+			console.log(this.$state)
+			useISettings().postSettings(this.$state as unknown as Settings)
 		},
 
 		async updateSettings() {
