@@ -56,5 +56,13 @@ export const useMySettingsStore = defineStore({
 
 			if (settings) this.setAllSettings(settings)
 		},
+
+		async updateSettings() {
+			return await useISettings().updateSettings(
+				useMyUserStore().getId,
+				this.$state as unknown as Settings,
+			)
+			// }
+		},
 	},
 })

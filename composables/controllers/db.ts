@@ -1,7 +1,4 @@
-import type { ObjectId } from 'mongoose'
 import type { Instrument } from '~/types/Instrument'
-import type { Settings } from '~/types/Settings.js'
-import { ViewMode } from '~/types/ViewMode'
 
 export const useDbController = () => {
 	const userStore = useMyUserStore()
@@ -30,18 +27,9 @@ export const useDbController = () => {
 		})
 	}
 
-	async function postSettings(settings: Settings) {
-		return await iSettings.postSettings(settings)
-	}
-
-	async function updateSettings(data: any) {
-		return await iSettings.updateSettings(userStore.getId, data)
-	}
 	return {
 		getUserDetails,
 		postUserDetails,
 		updateUserDetails,
-		postSettings,
-		updateSettings,
 	}
 }

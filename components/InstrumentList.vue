@@ -72,7 +72,8 @@
 <script lang="ts" setup>
 	import { Instrument } from '~/types/Instrument'
 
-	const db = useDbController()
+	const props = defineProps({ isReloading: { type: Boolean, required: true } })
+
 	const { refreshPage } = useViewController()
 
 	const { instrument } = storeToRefs(useMySettingsStore())
@@ -96,12 +97,17 @@
 		},
 	})
 
-	const {} = watch(instrument, async (newValue, oldValue, on) => {
-		if (oldValue !== Instrument.NOT_SELECTED) {
+	watch(instrument, async (newValue, oldValue, on) => {
+		if (oldValue === Instrument.NOT_SELECTED) return
+
+		if (props.isReloading) {
 			alert('Para concluir a alteração, a página será atualizada.')
-			await db.updateSettings({ instrument: newValue })
+			await useMySettingsStore().updateSettings()
 			refreshPage()
+			return
 		}
+
+		await useMySettingsStore().updateSettings()
 	})
 </script>
 
