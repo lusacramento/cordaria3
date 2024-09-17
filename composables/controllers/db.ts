@@ -8,10 +8,6 @@ export const useDbController = () => {
 
 	// functions
 	// user
-	async function getUserDetails() {
-		return await iUser.getUserDetails(userStore.getId)
-	}
-
 	async function postUserDetails() {
 		const userDetails = {
 			userId: userStore.getId,
@@ -28,7 +24,6 @@ export const useDbController = () => {
 	}
 
 	return {
-		getUserDetails,
 		postUserDetails,
 		updateUserDetails,
 	}

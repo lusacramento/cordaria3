@@ -131,7 +131,7 @@
 	const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
 
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
-	const { setUserId, updateUserDetails } = useMyUserDetailsStore()
+	const { setUserId} = useMyUserDetailsStore()
 
 	const { setAllSettings } = useMySettingsStore()
 
@@ -214,23 +214,18 @@
 		}
 	})
 
-	const userDetails: Ref<any> = ref()
-
 	// Functions
-
 	async function load() {
 		await loadUserStore()
 
-		const isUserDetailsExists = await verifyIfIsUserDetailsExists()
-		if (!isUserDetailsExists) {
+		await useMyUserDetailsStore().loadUserDetails()
+
+		if (!useMyUserDetailsStore().getId) {
 			toogleUserDetailsForm()
 			showToast('Quase Lá!', 'Complete seu cadastro.', 'warn')
 			return
 		}
 
-		await saveUserDetailsOnStore()
-
-		if (!getId) throw Error
 		showToast(
 			'Sucesso!',
 			`Você está conectado!<br />
@@ -260,19 +255,10 @@
 		logIn()
 	}
 
-	async function verifyIfIsUserDetailsExists() {
-		userDetails.value = await db.getUserDetails()
-		return userDetails.value.error?.statusCode === 404 ? false : true
-	}
-
 	async function submitUserDetails() {
 		db.postUserDetails()
 		await toogleUserDetailsForm()
 		refreshPage()
-	}
-
-	function saveUserDetailsOnStore() {
-		updateUserDetails(userDetails.value.data)
 	}
 </script>
 
