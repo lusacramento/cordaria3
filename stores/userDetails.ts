@@ -15,7 +15,7 @@ export const useMyUserDetailsStore = defineStore({
 
 	getters: {
 		getId(state) {
-			return state.userId
+			return state.id
 		},
 
 		getAll(state) {
