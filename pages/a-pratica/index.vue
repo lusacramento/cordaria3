@@ -183,8 +183,8 @@
 	watch(isCompleted, async (newValue) => {
 		disablePlayButton()
 		if (newValue === true) {
-			useMyProgressStore().updateScore()
-			useMyProgressStore().updateProgress()
+			await useMyProgressStore().updateScore()
+			await useMyProgressStore().updateProgress()
 
 			isCompleted.value = false
 			showCards.value = false
@@ -209,12 +209,8 @@
 					return
 				}
 
-				const lesson = await db.getLesson(currentLessonNumber + 1)
-				if (!lesson) throw new Error('Lição não localizada!')
-				const progress = db.generateProgress(lesson)
-				const response = await db.postProgress(progress)
-				setProgress(response.data.value as Progress)
-				setLesson(lesson)
+				useMyProgressStore().loadNextProgress()
+
 				await loadSettings()
 				init()
 				enablePlayButton()
