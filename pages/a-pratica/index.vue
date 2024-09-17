@@ -112,7 +112,6 @@
 <script lang="ts" setup>
 	import { useMyProgressStore } from '~/stores/progress'
 	import lessonImg from '~/public/imgs/lessons/lesson-002.svg'
-	import type { Settings } from '~/types/Settings'
 
 	definePageMeta({
 		middleware: 'auth',

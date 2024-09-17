@@ -79,7 +79,6 @@ export const useMySettingsStore = defineStore({
 				useMyUserStore().getId,
 				this.$state as unknown as Settings,
 			)
-			// }
 		},
 	},
 })
