@@ -14,12 +14,12 @@ export const useMyProgressStore = defineStore({
 	}),
 
 	getters: {
-		getCurrentLesson(state) {
-			return state.lesson
-		},
-
 		getProgress(state) {
 			return state.progress
+		},
+
+		getCurrentLesson(state) {
+			return state.lesson
 		},
 
 		getScore(state) {
@@ -28,24 +28,14 @@ export const useMyProgressStore = defineStore({
 	},
 
 	actions: {
-		async setProgress(progress: Progress) {
-			this.progress = progress
-		},
-
-		setLesson(lesson: Lesson) {
-			this.lesson = lesson
-		},
-
-		setIsCompletedProgress(status: boolean) {
-			this.progress.isCompleted = true
-		},
-
-		setScore(score: number) {
-			this.score += score
-		},
-
-		async postProgress(progress: Progress) {
-			useIProgress().postProgress(progress)
+		generateProgress() {
+			return {
+				userId: useMyUserStore().getId as unknown as ObjectId,
+				lesson: this.lesson._id as unknown as ObjectId,
+				isCompleted: false,
+				instrument: useMySettingsStore().getInstrument,
+				currentLesson: this.lesson.number,
+			} as Progress
 		},
 
 		async loadProgress() {
@@ -68,6 +58,26 @@ export const useMyProgressStore = defineStore({
 			this.getLessonById()
 		},
 
+		async loadNextProgress() {
+			const nextLessonNumber = this.progress.currentLesson + 1
+			await this.getLesson(nextLessonNumber)
+
+			const progress = await this.generateProgress()
+
+			await this.postProgress(progress)
+
+			this.progress = progress
+		},
+
+		async postProgress(progress: Progress) {
+			useIProgress().postProgress(progress)
+		},
+
+		async updateProgress() {
+			this.progress.isCompleted = true
+			await useIProgress().setProgress(this.progress)
+		},
+
 		async getLesson(number: number) {
 			const quantityOfStrings = useHelpers().getQuantityOfStrings(
 				useMySettingsStore().getInstrument,
@@ -88,6 +98,14 @@ export const useMyProgressStore = defineStore({
 			)) as Lesson
 		},
 
+		generateScore() {
+			return {
+				userId: useMyUserStore().getId as unknown as ObjectId,
+				instrument: useMySettingsStore().getInstrument,
+				score: this.score,
+			} as unknown as Score
+		},
+
 		async loadScore() {
 			const score = (await useIScore().getScore(
 				useMyUserStore().getId,
@@ -101,19 +119,9 @@ export const useMyProgressStore = defineStore({
 			await this.postScore()
 		},
 
-		generateProgress() {
-			return {
-				userId: useMyUserStore().getId as unknown as ObjectId,
-				lesson: this.lesson._id as unknown as ObjectId,
-				isCompleted: false,
-				instrument: useMySettingsStore().getInstrument,
-				currentLesson: this.lesson.number,
-			} as Progress
-		},
-
-		async updateProgress() {
-			this.progress.isCompleted = true
-			await useIProgress().setProgress(this.progress)
+		async postScore() {
+			const score = this.generateScore() as unknown as Score
+			await useIScore().postScore(score)
 		},
 
 		updateScore() {
@@ -122,30 +130,6 @@ export const useMyProgressStore = defineStore({
 				: this.lesson.points / 2
 
 			this.postScore()
-		},
-
-		async postScore() {
-			const score = this.generateScore() as unknown as Score
-			await useIScore().postScore(score)
-		},
-
-		generateScore() {
-			return {
-				userId: useMyUserStore().getId as unknown as ObjectId,
-				instrument: useMySettingsStore().getInstrument,
-				score: this.score,
-			} as unknown as Score
-		},
-
-		async loadNextProgress() {
-			const nextLessonNumber = this.progress.currentLesson + 1
-			await this.getLesson(nextLessonNumber)
-
-			const progress = await this.generateProgress()
-
-			await this.postProgress(progress)
-
-			this.progress = progress
 		},
 	},
 })
