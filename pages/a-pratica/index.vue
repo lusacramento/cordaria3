@@ -131,9 +131,7 @@
 	const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
 
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
-	const { setUserId} = useMyUserDetailsStore()
-
-	const { setAllSettings } = useMySettingsStore()
+	const { setUserId } = useMyUserDetailsStore()
 
 	// Controllers
 	const { showBox, showCards, showStatistics, isCompleted, init } =

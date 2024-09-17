@@ -4,7 +4,6 @@ export const useDbController = () => {
 	const userStore = useMyUserStore()
 	const userDetailsStore = useMyUserDetailsStore()
 	const iUser = useIUser()
-	const iSettings = useISettings()
 
 	// functions
 	// user

@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import type { Instrument } from '~/types/Instrument'
 import type { UserDetails } from '~/types/UserDetails'
 
 export const useMyUserDetailsStore = defineStore({
