@@ -49,7 +49,7 @@ export const useMyUserDetailsStore = defineStore({
 			this.imageUrl = `/imgs/uploads/${imageFileName}`
 		},
 
-		async setUserDetails(userDetails: UserDetails) {
+		async set(userDetails: UserDetails) {
 			this.id = (await userDetails._id) as unknown as string
 			this.userId = (await userDetails.userId) as unknown as string
 			this.fullName = userDetails.fullName
@@ -59,15 +59,15 @@ export const useMyUserDetailsStore = defineStore({
 			this.imageUrl = userDetails.imageUrl
 		},
 
-		async loadUserDetails() {
+		async load() {
 			const userDetails = (await useIUser().getUserDetails(
 				useMyUserStore().getId,
 			)) as unknown as UserDetails
 
-			if (userDetails) this.setUserDetails(userDetails)
+			if (userDetails) this.set(userDetails)
 		},
 
-		async postUserDetails() {
+		async post() {
 			await useIUser().postUserDetails(this.$state)
 		},
 	},

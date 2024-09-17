@@ -212,7 +212,7 @@
 	async function load() {
 		await loadUserStore()
 
-		await useMyUserDetailsStore().loadUserDetails()
+		await useMyUserDetailsStore().load()
 
 		if (!useMyUserDetailsStore().getId) {
 			toogleUserDetailsForm()
@@ -250,7 +250,7 @@
 	}
 
 	async function submitUserDetails() {
-		await useMyUserDetailsStore().postUserDetails()
+		await useMyUserDetailsStore().post()
 
 		await toogleUserDetailsForm()
 
