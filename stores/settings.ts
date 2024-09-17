@@ -6,6 +6,7 @@ import { ViewMode } from '~/types/ViewMode'
 export const useMySettingsStore = defineStore({
 	id: 'mySettingsStore',
 	state: () => ({
+		userId: '',
 		counter: 4,
 		viewMode: ViewMode.CARDS3,
 		instrument: Instrument.NOT_SELECTED,
