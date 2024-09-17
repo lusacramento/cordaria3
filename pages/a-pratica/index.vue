@@ -111,8 +111,6 @@
 
 <script lang="ts" setup>
 	import { useMyProgressStore } from '~/stores/progress'
-	import type { Lesson } from '~/types/Lesson'
-	import type { Progress } from '~/types/Progress'
 	import lessonImg from '~/public/imgs/lessons/lesson-002.svg'
 	import type { Settings } from '~/types/Settings'
 
@@ -131,8 +129,6 @@
 	const { setId, setUserName, logIn } = useMyUserStore()
 
 	const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
-	const { setLesson, setProgress, setIsCompletedProgress, setScore } =
-		useMyProgressStore()
 
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 	const { setUserId, updateUserDetails } = useMyUserDetailsStore()
