@@ -1,7 +1,13 @@
 <template>
 	<div id="the-project" class="the-project">
 		<div class="container-fluid">
-			<LayoutsHeader :title="title" />
+			<LayoutsHeader>
+				<template #center>
+					<div class="d-flex justify-content-center">
+						<h1>{{ title }}</h1>
+					</div>
+				</template>
+			</LayoutsHeader>
 		</div>
 		<div class="container layer-center">
 
@@ -47,14 +53,8 @@
 			},
 		],
 	})
-	const title = 'O PROJETO'
-	const boxes = {
-		callInAction: {
-			text: '<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
-			schema: 'the-project',
-			leftLogo: true,
-			rightLogo: false,
-		},
+	const title = 'Selecione o seu instrumento e comece a jogar!'
+
 	}
 </script>
 
