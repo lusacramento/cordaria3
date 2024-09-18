@@ -6,6 +6,7 @@ import { ViewMode } from '~/types/ViewMode'
 export const useMySettingsStore = defineStore({
 	id: 'mySettingsStore',
 	state: () => ({
+		userId: '',
 		counter: 4,
 		viewMode: ViewMode.CARDS3,
 		instrument: Instrument.NOT_SELECTED,
@@ -31,7 +32,7 @@ export const useMySettingsStore = defineStore({
 	},
 
 	actions: {
-		setAllSettings(settings: Settings) {
+		setAll(settings: Settings) {
 			this.counter = settings.counter
 			this.viewMode = settings.viewMode
 			this.instrument = settings.instrument
@@ -45,8 +46,43 @@ export const useMySettingsStore = defineStore({
 			this.viewMode = value
 		},
 
+		setInstrument(instrument: Instrument) {
+			this.instrument = instrument
+		},
+
 		toogleShowStatistics() {
 			this.showStatistics = !this.showStatistics
+		},
+
+		generate() {
+			this.userId = useMyUserStore().getId
+		},
+
+		async load() {
+			const settings = (await useISettings().getSettings(
+				useMyUserStore().getId,
+			)) as Settings
+
+			if (settings) {
+				this.setAll(settings)
+				return
+			}
+
+			this.generate()
+			this.post()
+		},
+
+		async post() {
+			console.log(this.$state)
+			useISettings().postSettings(this.$state as unknown as Settings)
+		},
+
+		async update() {
+			this.userId = useMyUserStore().getId
+			return await useISettings().updateSettings(
+				this.userId,
+				this.$state as unknown as Settings,
+			)
 		},
 	},
 })

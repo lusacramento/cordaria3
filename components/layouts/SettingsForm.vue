@@ -7,7 +7,7 @@
 		</div>
 		<div class="row mb-4">
 			<div class="col">
-				<InstrumentList />
+				<InstrumentList is-reloading="true" />
 			</div>
 		</div>
 		<div class="row mb-4">
@@ -99,11 +99,14 @@
 
 	const { viewMode, counter } = storeToRefs(useMySettingsStore())
 	const { setViewMode } = useMySettingsStore()
-	const { updateSettings } = useDbController()
+
+	watch(counter, () => {
+		useMySettingsStore().update()
+	})
 
 	function alterViewMode(newViewMode: ViewMode) {
 		setViewMode(newViewMode)
-		updateSettings({ viewMode: newViewMode })
+		useMySettingsStore().update()
 	}
 
 	function showStatistics() {

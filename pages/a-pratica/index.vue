@@ -111,10 +111,7 @@
 
 <script lang="ts" setup>
 	import { useMyProgressStore } from '~/stores/progress'
-	import type { Lesson } from '~/types/Lesson'
-	import type { Progress } from '~/types/Progress'
 	import lessonImg from '~/public/imgs/lessons/lesson-002.svg'
-	import type { Settings } from '~/types/Settings'
 
 	definePageMeta({
 		middleware: 'auth',
@@ -122,27 +119,21 @@
 	})
 
 	onBeforeMount(async () => {
-		load()
+		await load()
+		if (useMyUserDetailsStore().getId) init()
 	})
 
 	// Stores
-	const { getId, getUserName } = storeToRefs(useMyUserStore())
+	const { getUserName } = storeToRefs(useMyUserStore())
 	const { setId, setUserName, logIn } = useMyUserStore()
 
 	const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
-	const { setLesson, setProgress, setIsCompletedProgress, setScore } =
-		useMyProgressStore()
 
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
-	const { setUserId, updateUserDetails } = useMyUserDetailsStore()
-
-	const { setAllSettings } = useMySettingsStore()
 
 	// Controllers
 	const { showBox, showCards, showStatistics, isCompleted, init } =
 		useGameController()
-
-	const db = useDbController()
 
 	const {
 		isLoaded,
@@ -153,7 +144,6 @@
 		toast,
 		toaster,
 		points,
-		firstLessonNumber,
 		lastLessonNumber,
 		showTips,
 		showToast,
@@ -183,12 +173,8 @@
 	watch(isCompleted, async (newValue) => {
 		disablePlayButton()
 		if (newValue === true) {
-			db.updateScore()
-
-			await db.postScore()
-			setIsCompletedProgress(isCompleted.value)
-
-			await db.updateProgress()
+			await useMyProgressStore().updateScore()
+			await useMyProgressStore().update()
 
 			isCompleted.value = false
 			showCards.value = false
@@ -213,38 +199,27 @@
 					return
 				}
 
-				const lesson = await db.getLesson(currentLessonNumber + 1)
-				if (!lesson) throw new Error('Lição não localizada!')
-				const progress = db.generateProgress(lesson)
-				const response = await db.postProgress(progress)
-				setProgress(response.data.value as Progress)
-				setLesson(lesson)
-				await loadSettings()
+				useMyProgressStore().loadNext()
+
+				await useMySettingsStore().load()
 				init()
 				enablePlayButton()
 			}
 		}
 	})
 
-	const userDetails: Ref<any> = ref()
-
-	init()
-
 	// Functions
-
 	async function load() {
 		await loadUserStore()
 
-		const isUserDetailsExists = await verifyIfIsUserDetailsExists()
-		if (!isUserDetailsExists) {
+		await useMyUserDetailsStore().load()
+
+		if (!useMyUserDetailsStore().getId) {
 			toogleUserDetailsForm()
 			showToast('Quase Lá!', 'Complete seu cadastro.', 'warn')
 			return
 		}
 
-		await saveUserDetailsOnStore()
-
-		if (!getId) throw Error
 		showToast(
 			'Sucesso!',
 			`Você está conectado!<br />
@@ -252,11 +227,11 @@
 			'success',
 		)
 
-		await loadSettings()
+		await useMySettingsStore().load()
 
-		await loadProgress()
+		await useMyProgressStore().load()
 
-		await loadScore()
+		await useMyProgressStore().loadScore()
 
 		await useGameController().init()
 		enablePlayButton()
@@ -270,59 +245,16 @@
 		// @ts-ignore
 		setUserName(user?.username)
 		// @ts-ignore
-		setUserId(user._id)
+		setId(user._id)
 		logIn()
 	}
 
-	async function verifyIfIsUserDetailsExists() {
-		userDetails.value = await db.getUserDetails()
-		return userDetails.value.error?.statusCode === 404 ? false : true
-	}
-
-	async function loadSettings() {
-		const settings = (await db.getSettings()) as Settings
-		setAllSettings(settings)
-	}
-
-	async function loadProgress() {
-		const response = await db.getProgress()
-		if (!response) {
-			const lesson = await db.getLesson(firstLessonNumber)
-			if (!lesson) throw new Error('Lição não localizada!')
-
-			const progress: Progress = db.generateProgress(lesson)
-			const response = await db.postProgress(progress)
-			setProgress(response.data.value as Progress)
-			setLesson(lesson)
-		}
-
-		if (response) {
-			const progress = response as Progress
-			setProgress(progress)
-
-			const lastLessonId = progress.lesson as unknown as string
-			const lastLesson = (await db.getLessonById(lastLessonId)) as Lesson
-			setLesson(lastLesson)
-		}
-	}
-
-	async function loadScore() {
-		try {
-			const score = await db.getScore()
-			setScore(score)
-		} catch (error: any) {
-			if (error.statusCode === 404) setScore(0)
-		}
-	}
-
 	async function submitUserDetails() {
-		db.postUserDetails()
-		await toogleUserDetailsForm()
-		refreshPage()
-	}
+		await useMyUserDetailsStore().post()
 
-	function saveUserDetailsOnStore() {
-		updateUserDetails(userDetails.value.data)
+		await toogleUserDetailsForm()
+
+		refreshPage()
 	}
 </script>
 
