@@ -46,13 +46,16 @@ export const useMySettingsStore = defineStore({
 			this.viewMode = value
 		},
 
+		setInstrument(instrument: Instrument) {
+			this.instrument = instrument
+		},
+
 		toogleShowStatistics() {
 			this.showStatistics = !this.showStatistics
 		},
 
 		generate() {
 			this.userId = useMyUserStore().getId
-			this.instrument = Instrument.ACOUSTICGUITAR
 		},
 
 		async load() {
