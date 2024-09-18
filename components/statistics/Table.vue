@@ -58,7 +58,6 @@
 	}
 
 	watch(statistics, (newValue) => {
-		console.log(newValue)
 		statisticsTable.value = statistics.value.slice(0, lessonsPerPage)
 		getPageNumber()
 		createPages()

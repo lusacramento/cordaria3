@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 	const body = (await readBody(event)) as ScoreType
 
 	try {
-		if (!body.userId || !body.instrument || !body.score) {
+		if (!body.userId || !body.instrument) {
 			throw createError({
 				statusCode: 400,
 				statusMessage: 'Bad Request',

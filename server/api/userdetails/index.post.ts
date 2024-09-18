@@ -19,9 +19,14 @@ export default defineEventHandler(async (event) => {
 	}
 
 	try {
-		await UserDetails.create(body)
-		setResponseStatus(event, 201, 'created')
-		return
+		const userDetails = await UserDetails.updateOne(
+			{ userId: body.userId },
+			body,
+			{ upsert: true },
+		)
+		userDetails.matchedCount === 0
+			? setResponseStatus(event, 201, 'created')
+			: setResponseStatus(event, 200, 'ok')
 	} catch (error) {
 		return error
 	}

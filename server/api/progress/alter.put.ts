@@ -1,4 +1,3 @@
-import { is } from '@vee-validate/rules'
 import { Progress } from '~/server/models/progress'
 
 export default defineEventHandler(async (event) => {

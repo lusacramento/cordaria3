@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { Instrument } from '~/types/Instrument'
+import type { UserDetails } from '~/types/UserDetails'
 
 export const useMyUserDetailsStore = defineStore({
 	id: 'myUserDetailsStore',
@@ -14,6 +14,10 @@ export const useMyUserDetailsStore = defineStore({
 	}),
 
 	getters: {
+		getId(state) {
+			return state.id
+		},
+
 		getAll(state) {
 			return {
 				fullName: state.fullName,
@@ -45,14 +49,26 @@ export const useMyUserDetailsStore = defineStore({
 			this.imageUrl = `/imgs/uploads/${imageFileName}`
 		},
 
-		updateUserDetails(data: any) {
-			this.id = data._id
-			this.userId = data.userId
-			this.fullName = data.fullName
-			this.age = data.age
-			this.state = data.state
-			this.country = data.country
-			this.imageUrl = data.imageUrl
+		async set(userDetails: UserDetails) {
+			this.id = (await userDetails._id) as unknown as string
+			this.userId = (await userDetails.userId) as unknown as string
+			this.fullName = userDetails.fullName
+			this.age = userDetails.age
+			this.state = userDetails.state
+			this.country = userDetails.country
+			this.imageUrl = userDetails.imageUrl
+		},
+
+		async load() {
+			const userDetails = (await useIUser().getUserDetails(
+				useMyUserStore().getId,
+			)) as unknown as UserDetails
+
+			if (userDetails) this.set(userDetails)
+		},
+
+		async post() {
+			await useIUser().postUserDetails(this.$state)
 		},
 	},
 })
