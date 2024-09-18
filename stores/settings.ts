@@ -75,8 +75,9 @@ export const useMySettingsStore = defineStore({
 		},
 
 		async update() {
+			this.userId = useMyUserStore().getId
 			return await useISettings().updateSettings(
-				useMyUserStore().getId,
+				this.userId,
 				this.$state as unknown as Settings,
 			)
 		},
