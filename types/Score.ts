@@ -3,4 +3,5 @@ export interface Score {
 	userId: string
 	instrument: string
 	score: number
+	awards: boolean
 }
