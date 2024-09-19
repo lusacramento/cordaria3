@@ -188,7 +188,7 @@
 
 			const currentLesson = await getCurrentLesson.value
 			if (currentLesson?.message) {
-				showTips(currentLesson)
+				showTips(currentLesson.message)
 			}
 
 			const currentLessonNumber = currentLesson?.number
