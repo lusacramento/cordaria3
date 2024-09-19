@@ -1,3 +1,4 @@
+import { LessonMessage } from '~/types/LessonMessage'
 import { model, Schema } from 'mongoose'
 
 export interface LessonDocument extends Document {
@@ -6,9 +7,7 @@ export interface LessonDocument extends Document {
 	firstFinger: number
 	stringNumber: string
 	bpm: number
-	messageIcon: string
-	messageTitle: string
-	message: string
+	message: LessonMessage
 	quantityOfStrings: string
 	points: number
 }
@@ -39,16 +38,9 @@ const LessonSchema = new Schema({
 		required: true,
 	},
 
-	messageIcon: {
-		type: String,
-	},
-
-	messageTitle: {
-		type: String,
-	},
-
 	message: {
-		type: String,
+		type: Object as unknown as LessonMessage,
+		required: true,
 	},
 
 	quantityOfStrings: {

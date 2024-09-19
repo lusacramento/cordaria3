@@ -1,4 +1,4 @@
-import type { SweetAlertIcon } from 'sweetalert2'
+import type { LessonMessage } from './LessonMessage'
 
 export interface Lesson {
 	_id?: string
@@ -8,8 +8,6 @@ export interface Lesson {
 	firstFinger: number
 	stringNumber: string
 	bpm: number
-	messageIcon: SweetAlertIcon
-	messageTitle: string
-	message: string
+	message: LessonMessage
 	points: number
 }
