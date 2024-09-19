@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<InstrumentList />
+		<!-- <InstrumentList /> -->
 		<table
 			class="table table-striped table-dark table-hover mt-5 align-middle text-center"
 		>
