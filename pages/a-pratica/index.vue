@@ -70,7 +70,7 @@
 								<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
 								<img class="img-lesson" :src="lessonImg" alt="" />
 								<Box
-									:title-text="boxButtons.play.callInAction.text"
+									:title-text="boxButtons.play.callInAction.text as string"
 									:schema="boxButtons.play.callInAction.schema"
 									:left-logo="boxButtons.play.callInAction.leftLogo"
 									:right-logo="boxButtons.play.callInAction.rightLogo"
@@ -188,7 +188,7 @@
 
 			const currentLesson = await getCurrentLesson.value
 			if (currentLesson?.message) {
-				showTips(currentLesson)
+				showTips(currentLesson.message)
 			}
 
 			const currentLessonNumber = currentLesson?.number

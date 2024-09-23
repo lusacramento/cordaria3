@@ -5,6 +5,7 @@ export interface ScoreDocument extends Document {
 	userId: ObjectId
 	instrument: Instrument
 	score: number
+	awards: number
 }
 
 const ScoreSchema = new Schema({
@@ -23,6 +24,12 @@ const ScoreSchema = new Schema({
 
 	score: {
 		type: Number,
+		required: true,
+	},
+
+	awards: {
+		type: Number,
+		default: 0,
 		required: true,
 	},
 })

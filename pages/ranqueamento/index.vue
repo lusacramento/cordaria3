@@ -79,7 +79,7 @@
 				position: i + 1,
 				userName: element.username,
 				points: element.score,
-				awards: 0,
+				awards: element.awards,
 			} as unknown as Ranking
 
 			ranking.value.push(position)

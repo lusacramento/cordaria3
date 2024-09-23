@@ -11,6 +11,7 @@ export const useMyProgressStore = defineStore({
 		progress: {} as Progress,
 		lesson: {} as Lesson,
 		score: 0 as number,
+		awards: 0 as number,
 	}),
 
 	getters: {
@@ -103,6 +104,7 @@ export const useMyProgressStore = defineStore({
 				userId: useMyUserStore().getId as unknown as ObjectId,
 				instrument: useMySettingsStore().getInstrument,
 				score: this.score,
+				awards: this.awards,
 			} as unknown as Score
 		},
 
@@ -125,11 +127,21 @@ export const useMyProgressStore = defineStore({
 		},
 
 		updateScore() {
+			this.calculateScore()
+
+			this.verifyIfAwarded()
+
+			this.postScore()
+		},
+
+		calculateScore() {
 			this.score += !this.progress.isCompleted
 				? this.lesson.points
 				: this.lesson.points / 2
+		},
 
-			this.postScore()
+		verifyIfAwarded() {
+			if (this.lesson.message.isAwarded) this.awards++
 		},
 	},
 })

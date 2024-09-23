@@ -85,7 +85,7 @@
 			},
 		],
 	})
-	const title = 'Selecione o seu instrumento e comece a jogar!'
+	const title = 'Já praticou hoje?'
 
 	async function loadSettings() {
 		const { getSession } = useAuth()

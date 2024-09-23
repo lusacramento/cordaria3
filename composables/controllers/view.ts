@@ -1,7 +1,7 @@
 import { useGameController } from './game'
 import { type SweetAlertData } from '~/types/SweetAlertData'
-import { type Lesson } from '~/types/Lesson'
 import { type SweetAlertIcon } from 'sweetalert2'
+import type { LessonMessage } from '~/types/LessonMessage'
 
 export const useViewController = () => {
 	// composables
@@ -62,10 +62,10 @@ export const useViewController = () => {
 
 	// functions
 	// view
-	async function showTips(currentLesson: Lesson) {
-		dataTips.value.title = (await currentLesson?.messageTitle) as string
-		dataTips.value.message = (await currentLesson?.message) as string
-		dataTips.value.icon = (await currentLesson?.messageIcon) as SweetAlertIcon
+	async function showTips(message: LessonMessage) {
+		dataTips.value.title = (await message.title) as string
+		dataTips.value.message = (await message.description) as string
+		dataTips.value.icon = (await message.icon) as SweetAlertIcon
 		tips.value.showAlert(dataTips.value)
 	}
 

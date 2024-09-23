@@ -30,6 +30,7 @@ export default defineEventHandler(async (event) => {
 			$project: {
 				_id: 0,
 				score: 1,
+				awards: 1,
 				username: { $arrayElemAt: ['$user.username', 0] }, // Extract the username
 			},
 		},

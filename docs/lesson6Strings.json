@@ -6,9 +6,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "30",
-        "messageicon": "info",
-        "messagetitle": "Dica",
-        "message": "Escolha bem a altura de seu acento. Nada de cadeira muito alta ou muito baixa para seu tamanho!",
+        "icon": "info",
+        "title": "Dica",
+        "description": "Escolha bem a altura de seu acento. Nada de cadeira muito alta ou muito baixa para seu tamanho!",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -18,9 +19,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "30",
-        "messageicon": "info",
-        "messagetitle": "Dica",
-        "message": "Avance a lição somente se você se sentir seguro!",
+        "icon": "info",
+        "title": "Dica",
+        "description": "Avance a lição somente se você se sentir seguro!",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -30,9 +32,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "32",
-        "messageicon": "info",
-        "messagetitle": "Dica",
-        "message": "Relaxe! Lembre-se  de relaxar os músculos desnecessários!",
+        "icon": "info",
+        "title": "Dica",
+        "description": "Relaxe! Lembre-se  de relaxar os músculos desnecessários!",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -42,9 +45,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "32",
-        "messageicon": "info",
-        "messagetitle": "Dica",
-        "message": "Preste atenção na sua postura. Além de prevenir lesões, seu rendimento será melhor e sua saúde agradece!",
+        "icon": "info",
+        "title": "Dica",
+        "description": "Preste atenção na sua postura. Além de prevenir lesões, seu rendimento será melhor e sua saúde agradece!",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -54,9 +58,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "34",
-        "messageicon": "info",
-        "messagetitle": "Dica",
-        "message": "Cuide bem de seu instrumento. Ele com certeza vai retribuir!",
+        "icon": "info",
+        "title": "Dica",
+        "description": "Cuide bem de seu instrumento. Ele com certeza vai retribuir!",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -66,9 +71,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "34",
-        "messageicon": "info",
-        "messagetitle": "Dica",
-        "message": "Deixe de timidez! Exercite também em um volume mais alto.",
+        "icon": "info",
+        "title": "Dica",
+        "description": "Deixe de timidez! Exercite também em um volume mais alto.",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -78,9 +84,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "36",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -90,9 +97,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "36",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -102,9 +110,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "38",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "5"
     },
     {
@@ -114,9 +123,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "38",
-        "messageicon": "success",
-        "messagetitle": "Parabéns!",
-        "message": "Você concluiu o tutorial! Ganhou o 1º troféu!",
+        "icon": "success",
+        "title": "Parabéns!",
+        "description": "Você concluiu o tutorial! Ganhou o 1º troféu!",
+        "isawarded": "true",
         "points": "10"
     },
     {
@@ -126,9 +136,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -138,9 +149,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -150,9 +162,10 @@
         "firstfinger": "1",
         "stringnumber": "1",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -162,9 +175,10 @@
         "firstfinger": "1",
         "stringnumber": "1",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -174,9 +188,10 @@
         "firstfinger": "2",
         "stringnumber": "1",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -186,9 +201,10 @@
         "firstfinger": "2",
         "stringnumber": "1",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -198,9 +214,10 @@
         "firstfinger": "3",
         "stringnumber": "1",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -210,9 +227,10 @@
         "firstfinger": "3",
         "stringnumber": "1",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -222,9 +240,10 @@
         "firstfinger": "4",
         "stringnumber": "1",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "15"
     },
     {
@@ -234,9 +253,10 @@
         "firstfinger": "4",
         "stringnumber": "1",
         "bpm": "48",
-        "messageicon": "success",
-        "messagetitle": "Parabéns!",
-        "message": "Você exercitou todos os dedos. Agora vamos tentar o mesmo com outras cordas! Ganhou o 2º troféu!",
+        "icon": "success",
+        "title": "Parabéns!",
+        "description": "Você exercitou todos os dedos. Agora vamos tentar o mesmo com outras cordas! Ganhou o 2º troféu!",
+        "isawarded": "true",
         "points": "30"
     },
     {
@@ -246,9 +266,10 @@
         "firstfinger": "0",
         "stringnumber": "2",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -258,9 +279,10 @@
         "firstfinger": "0",
         "stringnumber": "2",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -270,9 +292,10 @@
         "firstfinger": "1",
         "stringnumber": "2",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -282,9 +305,10 @@
         "firstfinger": "1",
         "stringnumber": "2",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -294,9 +318,10 @@
         "firstfinger": "2",
         "stringnumber": "2",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -306,9 +331,10 @@
         "firstfinger": "2",
         "stringnumber": "2",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -318,9 +344,10 @@
         "firstfinger": "3",
         "stringnumber": "2",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -330,9 +357,10 @@
         "firstfinger": "3",
         "stringnumber": "2",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -342,9 +370,10 @@
         "firstfinger": "4",
         "stringnumber": "2",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -354,9 +383,10 @@
         "firstfinger": "4",
         "stringnumber": "2",
         "bpm": "48",
-        "messageicon": "info",
-        "messagetitle": "Informação",
-        "message": "Você exercitou a segunda corda!",
+        "icon": "info",
+        "title": "Informação",
+        "description": "Você exercitou a segunda corda!",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -366,9 +396,10 @@
         "firstfinger": "0",
         "stringnumber": "3",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -378,9 +409,10 @@
         "firstfinger": "0",
         "stringnumber": "3",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -390,9 +422,10 @@
         "firstfinger": "1",
         "stringnumber": "3",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -402,9 +435,10 @@
         "firstfinger": "1",
         "stringnumber": "3",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -414,9 +448,10 @@
         "firstfinger": "2",
         "stringnumber": "3",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -426,9 +461,10 @@
         "firstfinger": "2",
         "stringnumber": "3",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -438,9 +474,10 @@
         "firstfinger": "3",
         "stringnumber": "3",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -450,9 +487,10 @@
         "firstfinger": "3",
         "stringnumber": "3",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -462,9 +500,10 @@
         "firstfinger": "4",
         "stringnumber": "3",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "30"
     },
     {
@@ -474,9 +513,10 @@
         "firstfinger": "4",
         "stringnumber": "3",
         "bpm": "48",
-        "messageicon": "success",
-        "messagetitle": "Parabéns!",
-        "message": "Você exercitou a terceira corda! Ganhou o terceiro troféu!",
+        "icon": "success",
+        "title": "Parabéns!",
+        "description": "Você exercitou a terceira corda! Ganhou o terceiro troféu!",
+        "isawarded": "true",
         "points": "60"
     },
     {
@@ -486,9 +526,10 @@
         "firstfinger": "0",
         "stringnumber": "4",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -498,9 +539,10 @@
         "firstfinger": "0",
         "stringnumber": "4",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -510,9 +552,10 @@
         "firstfinger": "1",
         "stringnumber": "4",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -522,9 +565,10 @@
         "firstfinger": "1",
         "stringnumber": "4",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -534,9 +578,10 @@
         "firstfinger": "2",
         "stringnumber": "4",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -546,9 +591,10 @@
         "firstfinger": "2",
         "stringnumber": "4",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -558,9 +604,10 @@
         "firstfinger": "3",
         "stringnumber": "4",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -570,9 +617,10 @@
         "firstfinger": "3",
         "stringnumber": "4",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -582,9 +630,10 @@
         "firstfinger": "4",
         "stringnumber": "4",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -594,9 +643,10 @@
         "firstfinger": "4",
         "stringnumber": "4",
         "bpm": "48",
-        "messageicon": "info",
-        "messagetitle": "Informação",
-        "message": "Você exercitou a quarta corda!",
+        "icon": "info",
+        "title": "Informação",
+        "description": "Você exercitou a quarta corda!",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -606,9 +656,10 @@
         "firstfinger": "0",
         "stringnumber": "5",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -618,9 +669,10 @@
         "firstfinger": "0",
         "stringnumber": "5",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -630,9 +682,10 @@
         "firstfinger": "1",
         "stringnumber": "5",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -642,9 +695,10 @@
         "firstfinger": "1",
         "stringnumber": "5",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -654,9 +708,10 @@
         "firstfinger": "2",
         "stringnumber": "5",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -666,9 +721,10 @@
         "firstfinger": "2",
         "stringnumber": "5",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -678,9 +734,10 @@
         "firstfinger": "3",
         "stringnumber": "5",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -690,9 +747,10 @@
         "firstfinger": "3",
         "stringnumber": "5",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -702,9 +760,10 @@
         "firstfinger": "4",
         "stringnumber": "5",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -714,9 +773,10 @@
         "firstfinger": "4",
         "stringnumber": "5",
         "bpm": "48",
-        "messageicon": "info",
-        "messagetitle": "Informação",
-        "message": "Você exercitou a quinta corda!",
+        "icon": "info",
+        "title": "Informação",
+        "description": "Você exercitou a quinta corda!",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -726,9 +786,10 @@
         "firstfinger": "0",
         "stringnumber": "6",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -738,9 +799,10 @@
         "firstfinger": "0",
         "stringnumber": "6",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -750,9 +812,10 @@
         "firstfinger": "1",
         "stringnumber": "6",
         "bpm": "40",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -762,9 +825,10 @@
         "firstfinger": "1",
         "stringnumber": "6",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -774,9 +838,10 @@
         "firstfinger": "2",
         "stringnumber": "6",
         "bpm": "42",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -786,9 +851,10 @@
         "firstfinger": "2",
         "stringnumber": "6",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -798,9 +864,10 @@
         "firstfinger": "3",
         "stringnumber": "6",
         "bpm": "44",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -810,9 +877,10 @@
         "firstfinger": "3",
         "stringnumber": "6",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -822,9 +890,10 @@
         "firstfinger": "4",
         "stringnumber": "6",
         "bpm": "46",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "40"
     },
     {
@@ -834,9 +903,10 @@
         "firstfinger": "4",
         "stringnumber": "6",
         "bpm": "48",
-        "messageicon": "success",
-        "messagetitle": "Parabéns!",
-        "message": "Você exercitou todas as cordas! Que tal dar uma acelerada? Ganhou o quarto troféu!",
+        "icon": "success",
+        "title": "Parabéns!",
+        "description": "Você exercitou todas as cordas! Que tal dar uma acelerada? Ganhou o quarto troféu!",
+        "isawarded": "true",
         "points": "80"
     },
     {
@@ -846,9 +916,10 @@
         "firstfinger": "0",
         "stringnumber": "1",
         "bpm": "50",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -858,9 +929,10 @@
         "firstfinger": "1",
         "stringnumber": "1",
         "bpm": "50",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -870,9 +942,10 @@
         "firstfinger": "2",
         "stringnumber": "1",
         "bpm": "52",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -882,9 +955,10 @@
         "firstfinger": "3",
         "stringnumber": "1",
         "bpm": "54",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -894,9 +968,10 @@
         "firstfinger": "4",
         "stringnumber": "1",
         "bpm": "56",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -906,9 +981,10 @@
         "firstfinger": "0",
         "stringnumber": "2",
         "bpm": "58",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -918,9 +994,10 @@
         "firstfinger": "1",
         "stringnumber": "2",
         "bpm": "58",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -930,9 +1007,10 @@
         "firstfinger": "2",
         "stringnumber": "2",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -942,9 +1020,10 @@
         "firstfinger": "3",
         "stringnumber": "2",
         "bpm": "62",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -954,9 +1033,10 @@
         "firstfinger": "4",
         "stringnumber": "2",
         "bpm": "64",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -966,9 +1046,10 @@
         "firstfinger": "0",
         "stringnumber": "3",
         "bpm": "66",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -978,9 +1059,10 @@
         "firstfinger": "1",
         "stringnumber": "3",
         "bpm": "66",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -990,9 +1072,10 @@
         "firstfinger": "2",
         "stringnumber": "3",
         "bpm": "68",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1002,9 +1085,10 @@
         "firstfinger": "3",
         "stringnumber": "3",
         "bpm": "70",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1014,9 +1098,10 @@
         "firstfinger": "4",
         "stringnumber": "3",
         "bpm": "72",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1026,9 +1111,10 @@
         "firstfinger": "0",
         "stringnumber": "4",
         "bpm": "74",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1038,9 +1124,10 @@
         "firstfinger": "1",
         "stringnumber": "4",
         "bpm": "74",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1050,9 +1137,10 @@
         "firstfinger": "2",
         "stringnumber": "4",
         "bpm": "76",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1062,9 +1150,10 @@
         "firstfinger": "3",
         "stringnumber": "4",
         "bpm": "78",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1074,9 +1163,10 @@
         "firstfinger": "4",
         "stringnumber": "4",
         "bpm": "80",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1086,9 +1176,10 @@
         "firstfinger": "0",
         "stringnumber": "5",
         "bpm": "82",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1098,9 +1189,10 @@
         "firstfinger": "1",
         "stringnumber": "5",
         "bpm": "82",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1110,9 +1202,10 @@
         "firstfinger": "2",
         "stringnumber": "5",
         "bpm": "84",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1122,9 +1215,10 @@
         "firstfinger": "3",
         "stringnumber": "5",
         "bpm": "88",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1134,9 +1228,10 @@
         "firstfinger": "4",
         "stringnumber": "5",
         "bpm": "90",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1146,9 +1241,10 @@
         "firstfinger": "0",
         "stringnumber": "6",
         "bpm": "92",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1158,9 +1254,10 @@
         "firstfinger": "1",
         "stringnumber": "6",
         "bpm": "94",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1170,9 +1267,10 @@
         "firstfinger": "2",
         "stringnumber": "6",
         "bpm": "96",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1182,9 +1280,10 @@
         "firstfinger": "3",
         "stringnumber": "6",
         "bpm": "98",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "50"
     },
     {
@@ -1194,9 +1293,10 @@
         "firstfinger": "4",
         "stringnumber": "6",
         "bpm": "100",
-        "messageicon": "success",
-        "messagetitle": "Parabéns!",
-        "message": "Você pegou o jeito! Vamos tentar com várias cordas? Ganhou o quinto troféu",
+        "icon": "success",
+        "title": "Parabéns!",
+        "description": "Você pegou o jeito! Vamos tentar com várias cordas? Ganhou o quinto troféu",
+        "isawarded": "true",
         "points": "100"
     },
     {
@@ -1206,9 +1306,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1218,9 +1319,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1230,9 +1332,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1242,9 +1345,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1254,9 +1358,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1266,9 +1371,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1278,9 +1384,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1290,9 +1397,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1302,9 +1410,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1314,9 +1423,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1326,9 +1436,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1338,9 +1449,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1350,9 +1462,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1362,9 +1475,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1374,9 +1488,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1386,9 +1501,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1398,9 +1514,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1410,9 +1527,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1422,9 +1540,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1434,9 +1553,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "60",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1446,9 +1566,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "62",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1458,9 +1579,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "64",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1470,9 +1592,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "66",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1482,9 +1605,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "68",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1494,9 +1618,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "70",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1506,9 +1631,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "72",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1518,9 +1644,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "74",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1530,9 +1657,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "76",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1542,9 +1670,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "78",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1554,9 +1683,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "80",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1566,9 +1696,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "82",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1578,9 +1709,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "84",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1590,9 +1722,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "86",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1602,9 +1735,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "88",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1614,9 +1748,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "90",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1626,9 +1761,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "92",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1638,9 +1774,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "94",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1650,9 +1787,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "96",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1662,9 +1800,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "98",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "60"
     },
     {
@@ -1674,9 +1813,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "100",
-        "messageicon": "success",
-        "messagetitle": "Parabéns!",
-        "message": "Você está ficando fera! Ganhou o sexto troféu!",
+        "icon": "success",
+        "title": "Parabéns!",
+        "description": "Você está ficando fera! Ganhou o sexto troféu!",
+        "isawarded": "true",
         "points": "120"
     },
     {
@@ -1686,9 +1826,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "102",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1698,9 +1839,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "104",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1710,9 +1852,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "106",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1722,9 +1865,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "108",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1734,9 +1878,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "110",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1746,9 +1891,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "112",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1758,9 +1904,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "114",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1770,9 +1917,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "116",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1782,9 +1930,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "118",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1794,9 +1943,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "120",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1806,9 +1956,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "122",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1818,9 +1969,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "124",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1830,9 +1982,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "126",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1842,9 +1995,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "128",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1854,9 +2008,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "130",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1866,9 +2021,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "132",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1878,9 +2034,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "134",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1890,9 +2047,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "136",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1902,9 +2060,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "138",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1914,9 +2073,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "140",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1926,9 +2086,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "142",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1938,9 +2099,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "144",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1950,9 +2112,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "146",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1962,9 +2125,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "148",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "70"
     },
     {
@@ -1974,9 +2138,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "150",
-        "messageicon": "success",
-        "messagetitle": "Parabéns!",
-        "message": "Ganhou o sétimo troféu!",
+        "icon": "success",
+        "title": "Parabéns!",
+        "description": "Ganhou o sétimo troféu!",
+        "isawarded": "true",
         "points": "140"
     },
     {
@@ -1986,9 +2151,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "152",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -1998,9 +2164,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "154",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2010,9 +2177,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "156",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2022,9 +2190,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "158",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2034,9 +2203,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "160",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2046,9 +2216,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "162",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2058,9 +2229,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "164",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2070,9 +2242,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "166",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2082,9 +2255,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "168",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2094,9 +2268,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "170",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2106,9 +2281,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "172",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2118,9 +2294,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "174",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2130,9 +2307,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "176",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2142,9 +2320,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "178",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2154,9 +2333,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "180",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2166,9 +2346,10 @@
         "firstfinger": "0",
         "stringnumber": "downToUp",
         "bpm": "182",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2178,9 +2359,10 @@
         "firstfinger": "1",
         "stringnumber": "upToDown",
         "bpm": "184",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2190,9 +2372,10 @@
         "firstfinger": "2",
         "stringnumber": "downToUp",
         "bpm": "186",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2202,9 +2385,10 @@
         "firstfinger": "3",
         "stringnumber": "upToDown",
         "bpm": "188",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2214,9 +2398,10 @@
         "firstfinger": "4",
         "stringnumber": "downToUp",
         "bpm": "190",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2226,9 +2411,10 @@
         "firstfinger": "0",
         "stringnumber": "upToDown",
         "bpm": "192",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2238,9 +2424,10 @@
         "firstfinger": "1",
         "stringnumber": "downToUp",
         "bpm": "194",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2250,9 +2437,10 @@
         "firstfinger": "2",
         "stringnumber": "upToDown",
         "bpm": "196",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2262,9 +2450,10 @@
         "firstfinger": "3",
         "stringnumber": "downToUp",
         "bpm": "198",
-        "messageicon": "",
-        "messagetitle": "",
-        "message": "",
+        "icon": "",
+        "title": "",
+        "description": "",
+        "isawarded": "false",
         "points": "80"
     },
     {
@@ -2274,9 +2463,10 @@
         "firstfinger": "4",
         "stringnumber": "upToDown",
         "bpm": "200",
-        "messageicon": "success",
-        "messagetitle": "Parabéns!",
-        "message": "Você zerou o jogo! Parabéns! Ganhou o mega troféu e seu nome no hall de usuário mestre!",
+        "icon": "success",
+        "title": "Parabéns!",
+        "description": "Você zerou o jogo! Parabéns! Ganhou o mega troféu e seu nome no hall de usuário mestre!",
+        "isawarded": "true",
         "points": "160"
     }
 ]
