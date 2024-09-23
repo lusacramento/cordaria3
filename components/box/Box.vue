@@ -10,15 +10,15 @@
 				@mouseleave="icon.url = imageMouseLeave(icon)"
 			>
 				<div class="boxes inbox d-flex align-items-center" :class="inboxColor">
-					<div v-if="leftLogo" class="px-1">
+					<div v-if="props.leftLogo" class="px-1">
 						<img
 							class="img img-fluid icon"
 							:src="icon.url"
 							:alt="icon.altText"
 						/>
 					</div>
-					<div v-html="titleText" />
-					<div v-if="rightLogo" class="px-1">
+					<div v-html="props.titleText" />
+					<div v-if="props.rightLogo" class="px-1">
 						<img
 							class="img img-fluid icon"
 							:src="icon.url"
@@ -31,73 +31,68 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts" setup>
 	import iconCordariaEnabled from '@/assets/imgs/icone-cordaria-enabled.png'
 	import iconCordariaDisabled from '@/assets/imgs/icone-cordaria-disabled.png'
-	export default {
-		props: {
-			titleText: {
-				type: String,
-				default() {
-					return ''
-				},
-			},
-			schema: {
-				type: String,
-				default() {
-					return ''
-				},
-			},
-			leftLogo: Boolean,
-			rightLogo: Boolean,
-		},
 
-		data() {
-			return {
-				inboxColor: '',
-				outboxColor: '',
-				icon: {
-					url: iconCordariaDisabled,
-					altText: 'Inicie agora',
-					enabled: iconCordariaEnabled,
-					disabled: iconCordariaDisabled,
-				},
-			}
+	const props = defineProps({
+		titleText: {
+			type: String,
+			required: true,
 		},
+		schema: {
+			type: String,
+			required: true,
+		},
+		leftLogo: {
+			type: Boolean,
+			required: true,
+		},
+		rightLogo: {
+			type: Boolean,
+			required: true,
+		},
+	})
 
-		mounted() {
-			this.applySchema()
-		},
+	const inboxColor = ref('')
+	const outboxColor = ref('')
+	const icon = {
+		url: iconCordariaDisabled,
+		altText: 'Inicie agora',
+		enabled: iconCordariaEnabled,
+		disabled: iconCordariaDisabled,
+	}
 
-		methods: {
-			applySchema() {
-				switch (this.schema) {
-					case 'the-project':
-						this.inboxColor = 'inbox-project'
-						this.outboxColor = 'outbox-project'
-						break
-					case 'the-tutorial':
-						this.inboxColor = 'inbox-tutorial'
-						this.outboxColor = 'outbox-tutorial'
-						break
-					case 'the-pratice':
-						this.inboxColor = 'inbox-pratice'
-						this.outboxColor = 'outbox-pratice'
-						break
-					case 'the-research':
-						this.inboxColor = 'inbox-research'
-						this.outboxColor = 'outbox-research'
-						break
-					default:
-				}
-			},
-			imageMouseOver(img) {
-				return img.enabled
-			},
-			imageMouseLeave(img) {
-				return img.disabled
-			},
-		},
+	onMounted(() => {
+		applySchema()
+	})
+
+	function applySchema() {
+		switch (props.schema) {
+			case 'the-project':
+				inboxColor.value = 'inbox-project'
+				outboxColor.value = 'outbox-project'
+				break
+			case 'the-tutorial':
+				inboxColor.value = 'inbox-tutorial'
+				outboxColor.value = 'outbox-tutorial'
+				break
+			case 'the-pratice':
+				inboxColor.value = 'inbox-pratice'
+				outboxColor.value = 'outbox-pratice'
+				break
+			case 'the-research':
+				inboxColor.value = 'inbox-research'
+				outboxColor.value = 'outbox-research'
+				break
+			default:
+		}
+	}
+	function imageMouseOver(img: any) {
+		return img.enabled
+	}
+	function imageMouseLeave(img: any) {
+		return img.disabled
 	}
 </script>
 
