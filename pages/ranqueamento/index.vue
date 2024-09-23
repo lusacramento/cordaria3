@@ -75,7 +75,6 @@
 
 	function toRanking(response: any[]) {
 		return response.forEach((element, i) => {
-			console.log(element)
 			const position = {
 				position: i + 1,
 				userName: element.username,
