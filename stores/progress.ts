@@ -40,7 +40,7 @@ export const useMyProgressStore = defineStore({
 		},
 
 		async load() {
-			const progress = (await useIProgress().getProgress(
+			const progress = (await useIProgress().getLastProgress(
 				useMyUserStore().getId,
 				useMySettingsStore().getInstrument,
 			)) as Progress

@@ -3,9 +3,10 @@ import type { Progress } from '~/types/Progress'
 
 export const useIProgress = () => {
 	const url = '/api/progress/'
+	const urlLastProgress = '/api/progress/'
 
-	async function getProgress(userId: string, instrument: Instrument) {
-		return await $fetch(url, {
+	async function getLastProgress(userId: string, instrument: Instrument) {
+		return await $fetch(urlLastProgress, {
 			method: 'get',
 			params: { userId, instrument },
 		})
@@ -24,5 +25,5 @@ export const useIProgress = () => {
 			body: progress,
 		})
 	}
-	return { getProgress, postProgress, setProgress }
+	return { getLastProgress, postProgress, setProgress }
 }
