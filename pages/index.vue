@@ -10,43 +10,7 @@
 			</LayoutsHeader>
 		</div>
 		<div class="container layer-center">
-			<!-- <aside class="row d-flex justify-content-center mt-4">
-				<div class="col-lg-12 col-md-9 col-12">
-					<button
-						type="button"
-						class="btn btn-outline-success"
-						@click.prevent="loadInstrument(Instrument.ACOUSTICGUITAR)"
-						:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
-					>
-						Violão
-					</button>
-					<button
-						type="button"
-						class="btn btn-outline-danger"
-						:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
-						@click.prevent="loadInstrument(Instrument.ELECTRICGUITAR)"
-					>
-						Guitarra
-					</button>
-					<button
-						type="button"
-						class="btn btn-outline-warning"
-						@click.prevent="loadInstrument(Instrument.BASS)"
-						:class="{ active: instrument === Instrument.BASS }"
-					>
-						Baixo
-					</button>
-					<button
-						type="button"
-						class="btn btn-outline-info"
-						@click.prevent="loadInstrument(Instrument.CAVACO)"
-						:class="{ active: instrument === Instrument.CAVACO }"
-					>
-						Cavaquinho
-					</button>
-				</div>
-			</aside> -->
-			<aside class="row d-flex justify-content-center mt-4">
+			<aside class="row d-flex justify-content-center">
 				<div class="col-lg-12 col-md-9 col-12">
 					<button
 						type="button"
@@ -233,9 +197,7 @@
 	}
 
 	.btn {
-		width: 300px;
-		/* height: 450px; */
-		margin: 10px;
+		width: 260px;
 		border: transparent;
 	}
 </style>
