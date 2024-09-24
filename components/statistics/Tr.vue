@@ -32,8 +32,10 @@
 		},
 	})
 
-	function start(number?: number) {
-		useGameController().payload(number)
+	async function start(number?: number) {
+		await useMyProgressStore().load(number)
+		await useGameController().init()
+		await useGameController().payload()
 	}
 </script>
 
