@@ -39,13 +39,20 @@ export const useMyProgressStore = defineStore({
 			} as Progress
 		},
 
-		async load() {
-			const progress = (await useIProgress().getProgress(
-				useMyUserStore().getId,
-				useMySettingsStore().getInstrument,
-			)) as Progress
+		async load(currentLesson?: number) {
+			const progress: Ref<any> = ref()
+			progress.value = !currentLesson
+				? ((await useIProgress().getLastProgress(
+						useMyUserStore().getId,
+						useMySettingsStore().getInstrument,
+				  )) as Progress)
+				: ((await useIProgress().getProgress(
+						useMyUserStore().getId,
+						useMySettingsStore().getInstrument,
+						currentLesson,
+				  )) as Progress)
 
-			if (!progress) {
+			if (!progress.value) {
 				const firstLessonNumber = 1
 				await this.getLesson(firstLessonNumber)
 				const progress = this.generate()
@@ -55,8 +62,9 @@ export const useMyProgressStore = defineStore({
 				return
 			}
 
-			this.progress = progress
-			this.getLessonById()
+			this.progress = progress as unknown as Progress
+
+			await this.getLessonById()
 		},
 
 		async loadNext() {

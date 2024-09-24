@@ -3,7 +3,7 @@ import { Progress } from '~/server/models/progress'
 export default defineEventHandler(async (event) => {
 	const query = getQuery(event)
 
-	if (!query.userId || !query.instrument || !query.currentLesson)
+	if (!query.userId || !query.instrument)
 		throw createError({
 			statusCode: 400,
 			statusMessage: 'Bad Request',
@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 		})
 
 	try {
-		const response = await Progress.findOne(query)
+		const response = await Progress.findOne(query).sort({ $natural: -1 })
 
 		return response
 	} catch (error) {
