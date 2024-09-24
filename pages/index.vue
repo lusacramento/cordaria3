@@ -10,7 +10,7 @@
 			</LayoutsHeader>
 		</div>
 		<div class="container layer-center">
-			<aside class="row d-flex justify-content-center mt-4">
+			<!-- <aside class="row d-flex justify-content-center mt-4">
 				<div class="col-lg-12 col-md-9 col-12">
 					<button
 						type="button"
@@ -45,17 +45,69 @@
 						Cavaquinho
 					</button>
 				</div>
+			</aside> -->
+			<aside class="row d-flex justify-content-center mt-4">
+				<div class="col-lg-12 col-md-9 col-12">
+					<button
+						type="button"
+						class="btn"
+						@click.prevent="loadInstrument(Instrument.CAVACO)"
+						@mouseover="enableInstrumentImage(Instrument.CAVACO)"
+						@mouseleave="disableInstrumentImage"
+					>
+						<img :src="instrumentImage.cavaco" alt="" class="img-fluid" />
+					</button>
+					<button
+						type="button"
+						class="btn"
+						@click.prevent="loadInstrument(Instrument.ACOUSTICGUITAR)"
+						@mouseover="enableInstrumentImage(Instrument.ACOUSTICGUITAR)"
+						@mouseleave="disableInstrumentImage"
+					>
+						<img
+							:src="instrumentImage.acousticGuitar"
+							alt=""
+							class="img-fluid"
+						/>
+					</button>
+					<button
+						type="button"
+						class="btn"
+						@click.prevent="loadInstrument(Instrument.ELECTRICGUITAR)"
+						@mouseover="enableInstrumentImage(Instrument.ELECTRICGUITAR)"
+						@mouseleave="disableInstrumentImage"
+					>
+						<img
+							:src="instrumentImage.electricGuitar"
+							alt=""
+							class="img-fluid"
+						/>
+					</button>
+					<button
+						type="button"
+						class="btn"
+						@click.prevent="loadInstrument(Instrument.BASS)"
+						@mouseover="enableInstrumentImage(Instrument.BASS)"
+						@mouseleave="disableInstrumentImage"
+					>
+						<img :src="instrumentImage.bass" alt="" class="img-fluid" />
+					</button>
+				</div>
 			</aside>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	onBeforeMount(async () => {
-		await loadSettings()
-	})
+	import acousticGuitarDisabled from '~/public/imgs/instruments/index/acoustic-guitar-disabled.png'
+	import acousticGuitarEnabled from '~/public/imgs/instruments/index/acoustic-guitar-enabled.png'
+	import electricGuitarDisabled from '~/public/imgs/instruments/index/electric-guitar-disabled.png'
+	import electricGuitarEnabled from '~/public/imgs/instruments/index/electric-guitar-enabled.png'
+	import bassDisabled from '~/public/imgs/instruments/index/bass-disabled.png'
+	import bassEnabled from '~/public/imgs/instruments/index/bass-enabled.png'
+	import cavacoDisabled from '~/public/imgs/instruments/index/cavaco-disabled.png'
+	import cavacoEnabled from '~/public/imgs/instruments/index/cavaco-enabled.png'
 
-	const instrument = ref(Instrument.NOT_SELECTED)
 	import { Instrument } from '~/types/Instrument'
 
 	useHead({
@@ -85,7 +137,52 @@
 			},
 		],
 	})
+
+	onBeforeMount(async () => {
+		await loadSettings()
+	})
+
 	const title = 'Já praticou hoje?'
+
+	const instrument = ref(Instrument.NOT_SELECTED)
+
+	const instrumentImage = ref({
+		acousticGuitar: acousticGuitarDisabled,
+		electricGuitar: electricGuitarDisabled,
+		bass: bassDisabled,
+		cavaco: cavacoDisabled,
+	})
+
+	function enableInstrumentImage(instrument: Instrument) {
+		switch (instrument) {
+			case Instrument.CAVACO:
+				instrumentImage.value.cavaco = cavacoEnabled
+				break
+			case Instrument.ACOUSTICGUITAR:
+				instrumentImage.value.acousticGuitar = acousticGuitarEnabled
+				break
+			case Instrument.ELECTRICGUITAR:
+				instrumentImage.value.electricGuitar = electricGuitarEnabled
+				break
+			case Instrument.BASS:
+				instrumentImage.value.bass = bassEnabled
+				break
+		}
+	}
+
+	function disableInstrumentImage() {
+		if (instrument.value !== Instrument.CAVACO)
+			instrumentImage.value.cavaco = cavacoDisabled
+
+		if (instrument.value !== Instrument.ACOUSTICGUITAR)
+			instrumentImage.value.acousticGuitar = acousticGuitarDisabled
+
+		if (instrument.value !== Instrument.ELECTRICGUITAR)
+			instrumentImage.value.electricGuitar = electricGuitarDisabled
+
+		if (instrument.value !== Instrument.BASS)
+			instrumentImage.value.bass = bassDisabled
+	}
 
 	async function loadSettings() {
 		const { getSession } = useAuth()
@@ -102,7 +199,8 @@
 			logIn()
 
 			await useMySettingsStore().load()
-			instrument.value = useMySettingsStore().getInstrument
+			instrument.value = await useMySettingsStore().getInstrument
+			enableInstrumentImage(instrument.value)
 		}
 	}
 
@@ -135,8 +233,9 @@
 	}
 
 	.btn {
-		width: 170px;
-		height: 400px;
+		width: 300px;
+		/* height: 450px; */
 		margin: 10px;
+		border: transparent;
 	}
 </style>
