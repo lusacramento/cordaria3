@@ -187,7 +187,7 @@
 			)
 
 			const currentLesson = await getCurrentLesson.value
-			if (currentLesson?.message) {
+			if (currentLesson?.message.title) {
 				showTips(currentLesson.message)
 			}
 
