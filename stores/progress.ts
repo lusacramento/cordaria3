@@ -147,7 +147,7 @@ export const useMyProgressStore = defineStore({
 		calculateScore() {
 			this.score += !this.progress.isCompleted
 				? this.lesson.points
-				: this.lesson.points / 2
+				: Math.round(this.lesson.points / 2)
 		},
 
 		verifyIfAwarded() {
