@@ -61,8 +61,6 @@ export const useMyProgressStore = defineStore({
 				await this.getLesson(firstLessonNumber)
 				const progress = this.generate()
 				this.post(progress)
-
-				this.progress = progress
 				return
 			}
 
@@ -78,17 +76,17 @@ export const useMyProgressStore = defineStore({
 			const progress = await this.generate()
 
 			await this.post(progress)
-
-			this.progress = progress
 		},
 
 		async post(progress: Progress) {
-			useIProgress().postProgress(progress)
+			this.progress = (await useIProgress().postProgress(progress)) as Progress
 		},
 
 		async update() {
 			this.progress.isCompleted = true
-			await useIProgress().setProgress(this.progress)
+			this.progress = (await useIProgress().setProgress(
+				this.progress,
+			)) as Progress
 		},
 
 		async getLesson(number: number) {

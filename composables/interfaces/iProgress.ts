@@ -2,7 +2,7 @@ import { Instrument } from './../../types/Instrument'
 import type { Progress } from '~/types/Progress'
 
 export const useIProgress = () => {
-	const url = '/api/progress/'
+	const url = '/api/progress'
 	const urlLastProgress = '/api/progress/last'
 
 	async function getProgress(
@@ -28,14 +28,14 @@ export const useIProgress = () => {
 	}
 
 	async function postProgress(progress: Progress) {
-		return await useFetch(url, {
+		return await $fetch(url, {
 			method: 'post',
 			body: progress,
 		})
 	}
 
 	async function setProgress(progress: Progress) {
-		return await useFetch(`${url}alter/`, {
+		return await $fetch(url, {
 			method: 'put',
 			body: progress,
 		})
