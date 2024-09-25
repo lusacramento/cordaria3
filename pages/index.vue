@@ -158,8 +158,6 @@
 			setId(user._id)
 			// @ts-ignore
 			setUserName(user?.username)
-			// @ts-ignore
-			setId(user._id)
 			logIn()
 
 			await useMySettingsStore().load()
