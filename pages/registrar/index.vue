@@ -69,17 +69,8 @@
 	async function handleFormSubmit() {
 		if (!userStore.isAllFields()) return
 
-		const user = {
-			username: userStore.getUserName,
-			email: userStore.getEmail,
-			password: userStore.getPassword,
-			confirmPassword: userStore.getConfirmPassword,
-			acceptTerms: userStore.getAcceptTerms,
-		}
-		useMyUserStore().clearPassword()
 		try {
-			await useIUser().createUser(user)
-			userStore.setIsNewRegistered(true)
+			await userStore.register()
 
 			useRouter().push({
 				name: 'entrar',

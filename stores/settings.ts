@@ -32,6 +32,10 @@ export const useMySettingsStore = defineStore({
 	},
 
 	actions: {
+		setUserId(id: string) {
+			this.userId = id
+		},
+
 		setAll(settings: Settings) {
 			this.counter = settings.counter
 			this.viewMode = settings.viewMode

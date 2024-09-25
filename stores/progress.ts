@@ -41,16 +41,20 @@ export const useMyProgressStore = defineStore({
 
 		async load(currentLesson?: number) {
 			const progress: Ref<any> = ref()
-			progress.value = !currentLesson
-				? ((await useIProgress().getLastProgress(
-						useMyUserStore().getId,
-						useMySettingsStore().getInstrument,
-				  )) as Progress)
-				: ((await useIProgress().getProgress(
-						useMyUserStore().getId,
-						useMySettingsStore().getInstrument,
-						currentLesson,
-				  )) as Progress)
+			try {
+				progress.value = !currentLesson
+					? ((await useIProgress().getLastProgress(
+							useMyUserStore().getId,
+							useMySettingsStore().getInstrument,
+					  )) as Progress)
+					: ((await useIProgress().getProgress(
+							useMyUserStore().getId,
+							useMySettingsStore().getInstrument,
+							currentLesson,
+					  )) as Progress)
+			} catch (error) {
+				console.error(error)
+			}
 
 			if (!progress.value) {
 				const firstLessonNumber = 1
