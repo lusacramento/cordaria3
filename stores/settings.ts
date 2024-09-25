@@ -77,7 +77,6 @@ export const useMySettingsStore = defineStore({
 		},
 
 		async post() {
-			console.log(this.$state)
 			useISettings().postSettings(this.$state as unknown as Settings)
 		},
 
