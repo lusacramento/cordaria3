@@ -1,4 +1,5 @@
 import { type User } from '~/types/User.js'
+import { useMySettingsStore } from './settings'
 import { defineStore } from 'pinia'
 
 export const useMyUserStore = defineStore({
@@ -105,6 +106,12 @@ export const useMyUserStore = defineStore({
 			this.id = response._id
 
 			this.setIsNewRegistered(true)
+
+			this.saveSettings()
+		},
+		async saveSettings() {
+			useMySettingsStore().setUserId(this.id)
+			await useMySettingsStore().post()
 		},
 	},
 })
