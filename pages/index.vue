@@ -167,7 +167,10 @@
 	}
 
 	async function loadInstrument(instrument: Instrument) {
-		if (useMySettingsStore().getInstrument !== instrument) {
+		if (
+			useMySettingsStore().getInstrument !== instrument &&
+			useMyUserStore().getId
+		) {
 			await useMySettingsStore().setInstrument(instrument)
 			await useMySettingsStore().update()
 		} else {
