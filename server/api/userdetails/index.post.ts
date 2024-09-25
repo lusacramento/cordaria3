@@ -6,7 +6,6 @@ export default defineEventHandler(async (event) => {
 	if (
 		!body.userId ||
 		!body.fullName ||
-		!body.age ||
 		!body.state ||
 		!body.country ||
 		!body.imageUrl

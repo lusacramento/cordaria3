@@ -1,3 +1,4 @@
+import { useMyUserStore } from './user'
 import { defineStore } from 'pinia'
 import type { UserDetails } from '~/types/UserDetails'
 
@@ -68,6 +69,9 @@ export const useMyUserDetailsStore = defineStore({
 		},
 
 		async post() {
+			this.userId = useMyUserStore().getId
+			console.log(this.userId)
+
 			await useIUser().postUserDetails(this.$state)
 		},
 	},
