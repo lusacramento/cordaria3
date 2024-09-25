@@ -3,8 +3,6 @@ import { Progress } from '~/server/models/progress'
 export default defineEventHandler(async (event) => {
 	const body = await readBody(event)
 
-	console.log(body)
-
 	if (!body._id) {
 		throw createError({
 			statusCode: 400,
