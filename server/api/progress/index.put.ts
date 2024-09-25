@@ -1,9 +1,11 @@
 import { Progress } from '~/server/models/progress'
 
 export default defineEventHandler(async (event) => {
-	const { _id, isCompleted } = await readBody(event)
+	const body = await readBody(event)
 
-	if (!_id) {
+	console.log(body)
+
+	if (!body._id) {
 		throw createError({
 			statusCode: 400,
 			statusMessage: 'Bad Request',
@@ -11,11 +13,12 @@ export default defineEventHandler(async (event) => {
 		})
 	} else {
 		const progress = await Progress.findByIdAndUpdate(
-			_id,
-			{ isCompleted: isCompleted },
+			body._id,
+			{ isCompleted: body.isCompleted },
 			{
 				upsert: false,
 				new: false,
+				returnDocument: 'after',
 			},
 		)
 
