@@ -1,3 +1,4 @@
+import { type User } from '~/types/User.js'
 import { defineStore } from 'pinia'
 
 export const useMyUserStore = defineStore({
@@ -87,6 +88,23 @@ export const useMyUserStore = defineStore({
 
 		logOut() {
 			this.loggedIn = false
+		},
+
+		async register() {
+			const user = {
+				username: this.userName,
+				email: this.email,
+				password: this.password,
+				confirmPassword: this.confirmPassword,
+				acceptTerms: this.acceptTerms,
+			}
+
+			this.clearPassword()
+			const response = (await useIUser().createUser(user)) as unknown as User
+
+			this.id = response._id
+
+			this.setIsNewRegistered(true)
 		},
 	},
 })
