@@ -62,7 +62,10 @@
 			<div v-if="showStatistics" class="d-block">
 				<StatisticsTable />
 			</div>
-			<div class="row exercise justify-content-center bg-exercise-screen">
+			<div
+				v-else
+				class="row exercise justify-content-center bg-exercise-screen"
+			>
 				<div class="col-lg-10">
 					<div
 						class="play-button d-flex justify-content-center align-items-center d-flex"
@@ -80,7 +83,7 @@
 								/>
 							</button>
 						</div>
-						<div v-if="isShowGameScreen">
+						<div v-else>
 							<div class="row mb-5">
 								<div class="col">
 									<CordariaScreen />
@@ -102,6 +105,17 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="">
+				<button
+					type="button"
+					@click.prevent="useGameController().toogleShowStatistics()"
+					data-bs-dismiss="offcanvas"
+					aria-label="Close"
+					class="btn btn-outline-light"
+				>
+					Estatísticas
+				</button>
 			</div>
 		</div>
 	</div>

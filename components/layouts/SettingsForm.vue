@@ -75,19 +75,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="row mb-4">
-			<div class="col d-flex justify-content-center">
-				<button
-					type="button"
-					@click.prevent="showStatistics()"
-					data-bs-dismiss="offcanvas"
-					aria-label="Close"
-					class="btn btn-outline-light"
-				>
-					Estatísticas
-				</button>
-			</div>
-		</div>
 	</div>
 </template>
 
@@ -107,10 +94,6 @@
 	function alterViewMode(newViewMode: ViewMode) {
 		setViewMode(newViewMode)
 		useMySettingsStore().update()
-	}
-
-	function showStatistics() {
-		useGameController().toogleShowStatistics()
 	}
 </script>
 
