@@ -5,6 +5,9 @@
 			<template #header>{{ toaster.header }}</template>
 			<template #body><div v-html="toaster.body" /></template>
 		</LayoutsToast>
+		<LayoutsModal :modal="modal" @callFunction="submitUserDetails">
+			<template #body><UserDetailsForm /></template>
+		</LayoutsModal>
 		<CordariaTips ref="tips" />
 
 		<div class="container-fluid">
@@ -56,10 +59,9 @@
 					</div>
 				</template>
 			</LayoutsHeader>
-			<LayoutsModal :modal="modal" @callFunction="submitUserDetails">
-				<template #body><UserDetailsForm /></template>
-			</LayoutsModal>
-
+			<div v-if="showStatistics" class="d-block">
+				<StatisticsTable />
+			</div>
 			<div class="row exercise justify-content-center bg-exercise-screen">
 				<div class="col-lg-10">
 					<div
@@ -77,9 +79,6 @@
 									@click.prevent="start()"
 								/>
 							</button>
-						</div>
-						<div v-if="showStatistics" class="d-block">
-							<StatisticsTable />
 						</div>
 						<div v-if="showCards">
 							<div class="row mb-5">
@@ -101,7 +100,6 @@
 								</div>
 							</div>
 						</div>
-						<br />
 					</div>
 				</div>
 			</div>
