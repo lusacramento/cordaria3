@@ -59,7 +59,7 @@
 					</div>
 				</template>
 			</LayoutsHeader>
-			<div v-if="showStatistics" class="d-block">
+			<div v-if="isShowStatistics" class="d-block">
 				<StatisticsTable />
 			</div>
 			<div
@@ -109,7 +109,7 @@
 			<div class="">
 				<button
 					type="button"
-					@click.prevent="useGameController().toogleShowStatistics()"
+					@click.prevent="toggleShowStatistics()"
 					data-bs-dismiss="offcanvas"
 					aria-label="Close"
 					class="btn btn-outline-light"
@@ -144,11 +144,12 @@
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
 	// Controllers
-	const { showStatistics, isCompleted, init } = useGameController()
+	const { isCompleted, init } = useGameController()
 
 	const {
 		isLoaded,
 		isShowGameScreen,
+		isShowStatistics,
 		userDetailsModalButton,
 		boxButtons,
 		modal,
@@ -158,6 +159,7 @@
 		points,
 		lastLessonNumber,
 		toggleShowGameScreen,
+		toggleShowStatistics,
 		showTips,
 		showToast,
 		refreshPage,

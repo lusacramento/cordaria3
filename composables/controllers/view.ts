@@ -13,6 +13,8 @@ export const useViewController = () => {
 
 	const isShowGameScreen = ref(false)
 
+	const isShowStatistics = ref(false)
+
 	const mainButtonLabel = ref(
 		`<div style="font-size:1.5em">CARREGANDO...</div>`,
 	)
@@ -67,6 +69,10 @@ export const useViewController = () => {
 	// view
 	function toggleShowGameScreen() {
 		isShowGameScreen.value = !isShowGameScreen.value
+	}
+
+	function toggleShowStatistics() {
+		isShowStatistics.value = !isShowStatistics.value
 	}
 
 	async function showTips(message: LessonMessage) {
@@ -129,6 +135,7 @@ export const useViewController = () => {
 	return {
 		isLoaded,
 		isShowGameScreen,
+		isShowStatistics,
 		userDetailsModalButton,
 		boxButtons,
 		modal,
@@ -140,6 +147,7 @@ export const useViewController = () => {
 		firstLessonNumber,
 		lastLessonNumber,
 		toggleShowGameScreen,
+		toggleShowStatistics,
 		showTips,
 		showToast,
 		refreshPage,
