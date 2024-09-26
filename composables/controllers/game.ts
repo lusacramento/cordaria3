@@ -3,9 +3,7 @@ import { Card } from '../model/card'
 import type { Lesson } from '~/types/Lesson'
 
 // Views variables
-const showCards = ref(false)
 const showStatistics = ref(false)
-const showBox = ref(true)
 
 const isShowCounter = ref(false)
 const counter = ref(3)
@@ -77,9 +75,6 @@ export const useGameController = () => {
 
 	async function startLesson(tempo: number) {
 		showStatistics.value = false
-		showBox.value = false
-
-		showCards.value = true
 
 		const fragment = {
 			prev: ref(),
@@ -212,15 +207,12 @@ export const useGameController = () => {
 
 	function toogleShowStatistics() {
 		showStatistics.value = !showStatistics.value
-		showBox.value = !showBox.value
 	}
 
 	return {
 		deck,
 		cards,
-		showCards,
 		showStatistics,
-		showBox,
 		isShowCounter,
 		toogleShowStatistics,
 		payload,

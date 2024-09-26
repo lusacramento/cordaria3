@@ -67,7 +67,7 @@
 					<div
 						class="play-button d-flex justify-content-center align-items-center d-flex"
 					>
-						<div v-if="showBox">
+						<div v-if="!isShowGameScreen">
 							<button class="btn btn-play" :disabled="!isLoaded">
 								<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
 								<img class="img-lesson" :src="lessonImg" alt="" />
@@ -80,7 +80,7 @@
 								/>
 							</button>
 						</div>
-						<div v-if="showCards">
+						<div v-if="isShowGameScreen">
 							<div class="row mb-5">
 								<div class="col">
 									<CordariaScreen />
@@ -130,11 +130,11 @@
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
 	// Controllers
-	const { showBox, showCards, showStatistics, isCompleted, init } =
-		useGameController()
+	const { showStatistics, isCompleted, init } = useGameController()
 
 	const {
 		isLoaded,
+		isShowGameScreen,
 		userDetailsModalButton,
 		boxButtons,
 		modal,
@@ -143,6 +143,7 @@
 		toaster,
 		points,
 		lastLessonNumber,
+		toggleShowGameScreen,
 		showTips,
 		showToast,
 		refreshPage,
@@ -175,8 +176,7 @@
 			await useMyProgressStore().update()
 
 			isCompleted.value = false
-			showCards.value = false
-			showBox.value = true
+			toggleShowGameScreen()
 
 			showToast(
 				'Parabéns!',
