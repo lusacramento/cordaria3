@@ -72,12 +72,6 @@
 <script lang="ts" setup>
 	import { Instrument } from '~/types/Instrument'
 
-	const props = defineProps({
-		isReloading: { type: Boolean, default: () => false },
-	})
-
-	const { refreshPage } = useViewController()
-
 	const { instrument } = storeToRefs(useMySettingsStore())
 	const instruments = ref({
 		default: ref(),
