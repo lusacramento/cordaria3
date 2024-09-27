@@ -1,59 +1,89 @@
 <template>
 	<div id="ranking" class="ranking">
 		<div class="container-fluid">
-			<LayoutsHeader :title="title" />
+			<LayoutsHeader>
+				<template #center>
+					<button
+						type="button"
+						class="btn btn-outline-success"
+						@click.prevent="update(Instrument.ACOUSTICGUITAR)"
+						:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
+					>
+						Violão
+					</button>
+					<button
+						type="button"
+						class="btn btn-outline-danger"
+						:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
+						@click.prevent="update(Instrument.ELECTRICGUITAR)"
+					>
+						Guitarra
+					</button>
+					<button
+						type="button"
+						class="btn btn-outline-warning"
+						@click.prevent="update(Instrument.BASS)"
+						:class="{ active: instrument === Instrument.BASS }"
+					>
+						Baixo
+					</button>
+					<button
+						type="button"
+						class="btn btn-outline-info"
+						@click.prevent="update(Instrument.CAVACO)"
+						:class="{ active: instrument === Instrument.CAVACO }"
+					>
+						Cavaquinho
+					</button>
+				</template>
+			</LayoutsHeader>
 		</div>
 		<div class="container layer-center">
-            <table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Usuário</th>
-      <th scope="col">Troféus</th>
-      <th scope="col">Pontos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>576</td>
-      <td>328</td>
-      <td>@102</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+			<RankingTable :ranking="ranking" />
 		</div>
 	</div>
 </template>
 
-<script>
-	import Box from '@/components/box/Box.vue'
+<script lang="ts" setup>
+	import { Instrument } from '~/types/Instrument'
+	import type { Ranking } from '~/types/Ranking'
 
-	export default {
-		components: { Box },
+	const { getInstrument } = useMySettingsStore()
 
-		data() {
-			return {
-				title: 'RANQUEAMENTO',
-			}
-		},
-		head() {
-			return {
-				title: 'Cordaria - Ranqueamento',
-							
-            }
-		},
+	const instrument = ref(Instrument.ACOUSTICGUITAR)
+	const ranking: Ref<Array<Ranking>> = ref([])
+
+	onBeforeMount(async () => {
+		if (getInstrument !== Instrument.NOT_SELECTED)
+			instrument.value = await getInstrument
+
+		await getRanking()
+	})
+
+	function update(newInstrument: Instrument) {
+		instrument.value = newInstrument
+
+		ranking.value = []
+
+		getRanking()
+	}
+
+	async function getRanking() {
+		const response = await useIRanking().getRanking(instrument.value)
+		toRanking(response)
+	}
+
+	function toRanking(response: any[]) {
+		return response.forEach((element, i) => {
+			const position = {
+				position: i + 1,
+				userName: element.username,
+				points: element.score,
+				awards: element.awards,
+			} as unknown as Ranking
+
+			ranking.value.push(position)
+		})
 	}
 </script>
 
@@ -67,5 +97,10 @@
 
 	.large-line-height {
 		line-height: 1.7;
+	}
+
+	.btn {
+		margin: 5px;
+		width: 150px;
 	}
 </style>

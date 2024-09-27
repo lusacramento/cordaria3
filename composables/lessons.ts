@@ -1,5 +1,3 @@
-import type { Lesson } from './model/lesson'
-
 export const useLessons = () => {
 	const lessons = {
 		fourStrings: [
@@ -1526,7 +1524,7 @@ export const useLessons = () => {
 				message:
 					'Você zerou o jogo! Parabéns! Ganhou o mega troféu e seu nome no hall de usuário mestre!',
 			},
-		] as Lesson[],
+		],
 		sixStrings: [
 			{
 				id: 1,
@@ -3052,7 +3050,7 @@ export const useLessons = () => {
 				message:
 					'Você zerou o jogo! Parabéns! Ganhou o mega troféu e seu nome no hall de usuário mestre!',
 			},
-		] as Lesson[],
+		],
 	}
 
 	function getLessons(instrument: string) {

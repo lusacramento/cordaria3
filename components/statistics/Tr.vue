@@ -1,5 +1,5 @@
 <template>
-	<tr v-for="statistic in statistics" :key="statistic.number">
+	<tr v-for="statistic in props.statistics" :key="statistic.number">
 		<th scope="row">{{ statistic.number }}</th>
 		<td>{{ statistic.level }}</td>
 		<td>{{ statistic.bpm }}</td>
@@ -25,15 +25,18 @@
 
 	const iconPlay = 'play'
 
-	defineProps({
+	const props = defineProps({
 		statistics: {
 			type: Array<Statistic>,
 			required: true,
 		},
+		toggleShowStatistics: { type: Function, required: true },
 	})
 
-	function start(number?: number) {
-		useGameController().payload(number)
+	async function start(number?: number) {
+		await useMyProgressStore().load(number)
+		await useGameController().init()
+		props.toggleShowStatistics()
 	}
 </script>
 

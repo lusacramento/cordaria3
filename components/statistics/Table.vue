@@ -13,7 +13,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<Tr :statistics="statisticsTable" />
+				<Tr
+					:statistics="statisticsTable"
+					:toggle-show-statistics="props.toggleShowStatistics"
+				/>
 			</tbody>
 		</table>
 		<nav aria-label="..." class="d-flex justify-content-center">
@@ -39,6 +42,10 @@
 	import type { Statistic } from '~/types/Statistic'
 	import Tr from './Tr.vue'
 
+	const props = defineProps({
+		toggleShowStatistics: { type: Function, required: true },
+	})
+
 	onBeforeMount(() => {
 		getStatistics()
 	})
@@ -50,10 +57,12 @@
 	const lessonsPerPage = 4
 	const numberOfPages = ref(0)
 
+	const { instrument } = storeToRefs(useMySettingsStore())
+
 	async function getStatistics() {
 		statistics.value = await useIStatistics().getStatistics(
 			useMyUserStore().getId,
-			useMySettingsStore().getInstrument,
+			instrument.value,
 		)
 	}
 
@@ -61,6 +70,12 @@
 		statisticsTable.value = statistics.value.slice(0, lessonsPerPage)
 		getPageNumber()
 		createPages()
+	})
+
+	watch(instrument, () => {
+		clearData()
+		getStatistics()
+		updateDataTable(1)
 	})
 
 	function getPageNumber() {
@@ -85,6 +100,13 @@
 		const start = lessonsPerPage * index
 		const end = start + lessonsPerPage
 		statisticsTable.value = statistics.value.slice(start, end)
+	}
+
+	function clearData() {
+		statistics.value = []
+		statisticsTable.value = []
+		pages.value = []
+		numberOfPages.value = 0
 	}
 </script>
 

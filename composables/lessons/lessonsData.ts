@@ -1,6 +1,7 @@
 import type { Lesson } from '~/types/Lesson'
 import lesson4 from '~/docs/lesson4Strings.json'
 import lesson6 from '~/docs/lesson6Strings.json'
+import type { LessonMessage } from '~/types/LessonMessage'
 
 function convertJSONtoLessons(originalLessons: any[]) {
 	const lessons: Lesson[] = []
@@ -11,9 +12,15 @@ function convertJSONtoLessons(originalLessons: any[]) {
 		lesson.firstFinger = parseInt(element.firstfinger)
 		lesson.stringNumber = element.stringnumber
 		lesson.bpm = parseInt(element.bpm)
-		lesson.messageIcon = element.messageicon
-		lesson.messageTitle = element.messagetitle
-		lesson.message = element.message
+
+		const message: LessonMessage = {
+			title: element.title,
+			description: element.description,
+			icon: element.icon,
+			isAwarded: element.isawarded === 'true',
+		}
+
+		lesson.message = message
 		lesson.points = parseInt(element.points)
 		lesson.quantityOfStrings = parseInt(element.quantityofstrings)
 		lessons.push(lesson)

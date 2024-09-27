@@ -1,7 +1,7 @@
 import { useGameController } from './game'
 import { type SweetAlertData } from '~/types/SweetAlertData'
-import { type Lesson } from '~/types/Lesson'
 import { type SweetAlertIcon } from 'sweetalert2'
+import type { LessonMessage } from '~/types/LessonMessage'
 
 export const useViewController = () => {
 	// composables
@@ -10,6 +10,11 @@ export const useViewController = () => {
 
 	// views
 	const isLoaded = ref(false)
+
+	const isShowGameScreen = ref(false)
+
+	const isShowStatistics = ref(false)
+
 	const mainButtonLabel = ref(
 		`<div style="font-size:1.5em">CARREGANDO...</div>`,
 	)
@@ -62,10 +67,18 @@ export const useViewController = () => {
 
 	// functions
 	// view
-	async function showTips(currentLesson: Lesson) {
-		dataTips.value.title = (await currentLesson?.messageTitle) as string
-		dataTips.value.message = (await currentLesson?.message) as string
-		dataTips.value.icon = (await currentLesson?.messageIcon) as SweetAlertIcon
+	function toggleShowGameScreen() {
+		isShowGameScreen.value = !isShowGameScreen.value
+	}
+
+	function toggleShowStatistics() {
+		isShowStatistics.value = !isShowStatistics.value
+	}
+
+	async function showTips(message: LessonMessage) {
+		dataTips.value.title = (await message.title) as string
+		dataTips.value.message = (await message.description) as string
+		dataTips.value.icon = (await message.icon) as SweetAlertIcon
 		tips.value.showAlert(dataTips.value)
 	}
 
@@ -102,6 +115,7 @@ export const useViewController = () => {
 
 	// game mechanics
 	function start() {
+		toggleShowGameScreen()
 		game.payload()
 		// const isCompleted = toRef(useGameController().isCompleted)
 		// isCompleted.value = true
@@ -120,6 +134,8 @@ export const useViewController = () => {
 
 	return {
 		isLoaded,
+		isShowGameScreen,
+		isShowStatistics,
 		userDetailsModalButton,
 		boxButtons,
 		modal,
@@ -130,6 +146,8 @@ export const useViewController = () => {
 		points,
 		firstLessonNumber,
 		lastLessonNumber,
+		toggleShowGameScreen,
+		toggleShowStatistics,
 		showTips,
 		showToast,
 		refreshPage,

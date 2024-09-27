@@ -3,11 +3,8 @@ import { Card } from '../model/card'
 import type { Lesson } from '~/types/Lesson'
 
 // Views variables
-const showCards = ref(false)
-const showStatistics = ref(false)
-const showBox = ref(true)
-
 const isShowCounter = ref(false)
+const counter = ref(3)
 
 //  Model variable
 const deck: Ref<Card[]> = ref([])
@@ -27,7 +24,8 @@ export const useGameController = () => {
 	let deckIndex = 0
 	const progressStore = useMyProgressStore()
 	const settingsStore = useMySettingsStore()
-	const { counter, instrument } = storeToRefs(useMySettingsStore())
+	const { instrument } = storeToRefs(useMySettingsStore())
+	counter.value = useMySettingsStore().counter
 
 	async function init() {
 		instrument.value = await instrument.value
@@ -72,11 +70,6 @@ export const useGameController = () => {
 	}
 
 	async function startLesson(tempo: number) {
-		showStatistics.value = false
-		showBox.value = false
-
-		showCards.value = true
-
 		const fragment = {
 			prev: ref(),
 			current: ref(),
@@ -206,19 +199,10 @@ export const useGameController = () => {
 		}
 	}
 
-	function toogleShowStatistics() {
-		showStatistics.value = !showStatistics.value
-		showBox.value = !showBox.value
-	}
-
 	return {
 		deck,
 		cards,
-		showCards,
-		showStatistics,
-		showBox,
 		isShowCounter,
-		toogleShowStatistics,
 		payload,
 		init,
 		counter,

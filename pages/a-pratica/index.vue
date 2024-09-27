@@ -5,6 +5,9 @@
 			<template #header>{{ toaster.header }}</template>
 			<template #body><div v-html="toaster.body" /></template>
 		</LayoutsToast>
+		<LayoutsModal :modal="modal" @callFunction="submitUserDetails">
+			<template #body><UserDetailsForm /></template>
+		</LayoutsModal>
 		<CordariaTips ref="tips" />
 
 		<div class="container-fluid">
@@ -56,21 +59,23 @@
 					</div>
 				</template>
 			</LayoutsHeader>
-			<LayoutsModal :modal="modal" @callFunction="submitUserDetails">
-				<template #body><UserDetailsForm /></template>
-			</LayoutsModal>
-
-			<div class="row exercise justify-content-center bg-exercise-screen">
+			<div v-if="isShowStatistics" class="d-block">
+				<StatisticsTable :toggle-show-statistics="toggleShowStatistics" />
+			</div>
+			<div
+				v-else
+				class="row exercise justify-content-center bg-exercise-screen"
+			>
 				<div class="col-lg-10">
 					<div
 						class="play-button d-flex justify-content-center align-items-center d-flex"
 					>
-						<div v-if="showBox">
+						<div v-if="!isShowGameScreen">
 							<button class="btn btn-play" :disabled="!isLoaded">
 								<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
 								<img class="img-lesson" :src="lessonImg" alt="" />
 								<Box
-									:title-text="boxButtons.play.callInAction.text"
+									:title-text="boxButtons.play.callInAction.text as string"
 									:schema="boxButtons.play.callInAction.schema"
 									:left-logo="boxButtons.play.callInAction.leftLogo"
 									:right-logo="boxButtons.play.callInAction.rightLogo"
@@ -78,10 +83,7 @@
 								/>
 							</button>
 						</div>
-						<div v-if="showStatistics" class="d-block">
-							<StatisticsTable />
-						</div>
-						<div v-if="showCards">
+						<div v-else>
 							<div class="row mb-5">
 								<div class="col">
 									<CordariaScreen />
@@ -101,9 +103,17 @@
 								</div>
 							</div>
 						</div>
-						<br />
 					</div>
 				</div>
+			</div>
+			<div class="">
+				<button
+					type="button"
+					@click.prevent="toggleShowStatistics()"
+					class="btn btn-outline-light"
+				>
+					Estatísticas
+				</button>
 			</div>
 		</div>
 	</div>
@@ -132,11 +142,12 @@
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
 	// Controllers
-	const { showBox, showCards, showStatistics, isCompleted, init } =
-		useGameController()
+	const { isCompleted, init } = useGameController()
 
 	const {
 		isLoaded,
+		isShowGameScreen,
+		isShowStatistics,
 		userDetailsModalButton,
 		boxButtons,
 		modal,
@@ -145,6 +156,8 @@
 		toaster,
 		points,
 		lastLessonNumber,
+		toggleShowGameScreen,
+		toggleShowStatistics,
 		showTips,
 		showToast,
 		refreshPage,
@@ -177,8 +190,7 @@
 			await useMyProgressStore().update()
 
 			isCompleted.value = false
-			showCards.value = false
-			showBox.value = true
+			toggleShowGameScreen()
 
 			showToast(
 				'Parabéns!',
@@ -187,8 +199,8 @@
 			)
 
 			const currentLesson = await getCurrentLesson.value
-			if (currentLesson?.message) {
-				showTips(currentLesson)
+			if (currentLesson?.message.title) {
+				showTips(currentLesson.message)
 			}
 
 			const currentLessonNumber = currentLesson?.number

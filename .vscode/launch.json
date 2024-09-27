@@ -17,12 +17,49 @@
 			"outputCapture": "std",
 			"program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
 			"args": ["dev"]
+		},
+		{
+			"type": "firefox",
+			"request": "launch",
+			"name": "client: firefox",
+			"url": "http://localhost:8000",
+			"webRoot": "${workspaceFolder}",
+			"pathMappings": [
+				{
+					"url": "http://localhost:8000/_nuxt/components/ranking",
+					"path": "${workspaceFolder}/components/statistics"
+				},
+				{
+					"url": "http://localhost:8000/_nuxt/pages/a-pratica",
+					"path": "${workspaceFolder}/pages/registrar"
+				},
+				{
+					"url": "http://localhost:8000/_nuxt/stores",
+					"path": "${workspaceFolder}/stores"
+				},
+				{
+					"url": "http://localhost:8000/_nuxt/composables",
+					"path": "${workspaceFolder}/composables"
+				},
+				{
+					"url": "http://localhost:8000/*",
+					"path": "${workspaceFolder}/*"
+				},
+				{
+					"url": "file:///home/lusacramento/PROJETOS-WEB/cordaria3/*",
+					"path": "${workspaceFolder}/*"
+				}
+			]
 		}
 	],
 	"compounds": [
 		{
-			"name": "fullstack: nuxt",
+			"name": "fullstack: nuxt + chrome",
 			"configurations": ["server: nuxt", "client: chrome"]
+		},
+		{
+			"name": "fullstack: nuxt + firerox",
+			"configurations": ["server: nuxt", "client: firefox"]
 		}
 	]
 }

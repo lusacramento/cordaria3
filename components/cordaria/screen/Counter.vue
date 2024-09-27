@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-	// const counter = ref(useMySettingsStore().getCounter)
 	const { isShowCounter, counter } = useGameController()
 </script>
 <style>
