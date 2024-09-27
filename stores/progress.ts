@@ -119,6 +119,7 @@ export const useMyProgressStore = defineStore({
 		},
 
 		async loadScore() {
+			this.clearStore()
 			const score = (await useIScore().getScore(
 				useMyUserStore().getId,
 				useMySettingsStore().getInstrument,
@@ -148,6 +149,10 @@ export const useMyProgressStore = defineStore({
 			this.score += !this.progress.isCompleted
 				? this.lesson.points
 				: Math.round(this.lesson.points / 2)
+		},
+
+		clearStore() {
+			this.score = 0
 		},
 
 		verifyIfAwarded() {
