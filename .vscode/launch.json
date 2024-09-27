@@ -26,6 +26,10 @@
 			"webRoot": "${workspaceFolder}",
 			"pathMappings": [
 				{
+					"url": "http://localhost:8000/_nuxt/components/ranking",
+					"path": "${workspaceFolder}/components/statistics"
+				},
+				{
 					"url": "http://localhost:8000/_nuxt/pages/a-pratica",
 					"path": "${workspaceFolder}/pages/registrar"
 				},
