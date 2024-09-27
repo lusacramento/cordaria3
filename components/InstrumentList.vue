@@ -72,7 +72,9 @@
 <script lang="ts" setup>
 	import { Instrument } from '~/types/Instrument'
 
-	const props = defineProps({ isReloading: { type: String, required: true } })
+	const props = defineProps({
+		isReloading: { type: Boolean, default: () => false },
+	})
 
 	const { refreshPage } = useViewController()
 
@@ -100,14 +102,10 @@
 	watch(instrument, async (newValue, oldValue, on) => {
 		if (oldValue === Instrument.NOT_SELECTED) return
 
-		if (props.isReloading === 'true') {
-			alert('Para concluir a alteração, a página será atualizada.')
-			await useMySettingsStore().update()
-			refreshPage()
-			return
-		}
-
 		await useMySettingsStore().update()
+		await useMyProgressStore().load()
+		await useMyProgressStore().loadScore()
+		await useGameController().init()
 	})
 </script>
 

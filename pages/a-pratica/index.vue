@@ -60,7 +60,7 @@
 				</template>
 			</LayoutsHeader>
 			<div v-if="isShowStatistics" class="d-block">
-				<StatisticsTable />
+				<StatisticsTable :toggle-show-statistics="toggleShowStatistics" />
 			</div>
 			<div
 				v-else

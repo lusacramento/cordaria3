@@ -7,7 +7,7 @@
 		</div>
 		<div class="row mb-4">
 			<div class="col">
-				<InstrumentList is-reloading="true" />
+				<InstrumentList />
 			</div>
 		</div>
 		<div class="row mb-4">
