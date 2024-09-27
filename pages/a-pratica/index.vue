@@ -110,8 +110,6 @@
 				<button
 					type="button"
 					@click.prevent="toggleShowStatistics()"
-					data-bs-dismiss="offcanvas"
-					aria-label="Close"
 					class="btn btn-outline-light"
 				>
 					Estatísticas
