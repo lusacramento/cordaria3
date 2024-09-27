@@ -3,46 +3,42 @@
 	<div class="container-fluid mt-3">
 		<CordariaScreenCounter />
 		<!-- <Transition name="flip" mode="in-out"> -->
-		<div v-if="showCards">
-			<div v-if="viewMode === ViewMode.CARDS3">
-				<div class="row mt-4 d-flex align-items-center justify-content-around">
-					<CordariaScreenCard id="prev-card" :key="prev.id" :card="prev" />
-					<CordariaScreenCard
-						id="current-card"
-						:key="current.id"
-						:card="current"
-					/>
-					<CordariaScreenCard id="next-card" :key="next.id" :card="next" />
-				</div>
-			</div>
-
-			<div v-else-if="viewMode === ViewMode.CARDS2">
-				<div class="row mt-4 d-flex align-items-center justify-content-around">
-					<CordariaScreenCard
-						id="current-card"
-						:key="current.id"
-						:card="current"
-					/>
-					<CordariaScreenCard id="next-card" :key="next.id" :card="next" />
-				</div>
-			</div>
-			<div v-else>
-				<div class="row justify-content-center align-items-center">
-					<CordariaScreenCard
-						v-for="card in deck"
-						:id="card.id"
-						:key="card.id"
-						:card="card"
-						:allCard="true"
-						class="card cardView"
-					/>
-				</div>
+		<div v-if="viewMode === ViewMode.CARDS3">
+			<div class="row mt-4 d-flex align-items-center justify-content-around">
+				<CordariaScreenCard id="prev-card" :key="prev.id" :card="prev" />
+				<CordariaScreenCard
+					id="current-card"
+					:key="current.id"
+					:card="current"
+				/>
+				<CordariaScreenCard id="next-card" :key="next.id" :card="next" />
 			</div>
 		</div>
-		<!-- </Transition> -->
-		<CordariaScreenCounter />
+
+		<div v-else-if="viewMode === ViewMode.CARDS2">
+			<div class="row mt-4 d-flex align-items-center justify-content-around">
+				<CordariaScreenCard
+					id="current-card"
+					:key="current.id"
+					:card="current"
+				/>
+				<CordariaScreenCard id="next-card" :key="next.id" :card="next" />
+			</div>
+		</div>
+		<div v-else>
+			<div class="row justify-content-center align-items-center">
+				<CordariaScreenCard
+					v-for="card in deck"
+					:id="card.id"
+					:key="card.id"
+					:card="card"
+					:allCard="true"
+					class="card cardView"
+				/>
+			</div>
+		</div>
 	</div>
-	<!-- </div> -->
+	<CordariaScreenCounter />
 </template>
 
 <script lang="ts" setup>
@@ -50,7 +46,10 @@
 
 	const { viewMode } = storeToRefs(useMySettingsStore())
 
-	const { deck, showCards, cards } = useGameController()
+	const { deck, cards } = useGameController()
+
+	const { isShowGameScreen } = useViewController()
+
 	const { prev, current, next } = cards
 </script>
 
