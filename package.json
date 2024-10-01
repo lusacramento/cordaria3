@@ -25,6 +25,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@nuxtjs/color-mode": "^3.5.1",
     "@popperjs/core": "^2.11.8",
     "@splidejs/vue-splide": "^0.6.12",
     "@vee-validate/nuxt": "^4.12.5",
