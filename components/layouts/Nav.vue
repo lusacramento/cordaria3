@@ -13,7 +13,7 @@
 				<img
 					:src="icons.cordaria.url"
 					:alt="icons.cordaria.altText"
-					class="img img-fluid"
+					class="img"
 					@mouseover="icons.cordaria.url = icons.cordaria.toLight()"
 					@mouseleave="icons.cordaria.url = icons.cordaria.toDark()"
 				/>
@@ -220,6 +220,9 @@
 	.nav-link {
 		color: var(--font-color-nav) !important;
 		margin: 0 10px;
+	}
+
+	.img-brand {
 	}
 
 	.theProjectLinkActive {
