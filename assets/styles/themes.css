@@ -1,0 +1,32 @@
+:root {
+	/***************** COLORS *****************/
+	/* COLORS IN BOTH THEMES */
+	/* CARDS */
+	--bg-error: rgba(180, 66, 63, 1) !important;
+	--bg-success: rgba(57, 194, 161, 1) !important;
+	--bg-warn: rgba(255, 215, 64, 1) !important;
+
+	/* LIGHT COLORS */
+
+	--bg-app-light: rgba(240, 248, 255, 1);
+	--bg-nav-light: rgba(240, 248, 255, 1);
+	/* DARK COLORS */
+	--bg-app-dark: rgba(28, 31, 38, 1);
+	--bg-nav-dark: rgba(29, 30, 40, 1);
+}
+
+/************ LIGHT THEME ***********************/
+.light-mode {
+	--bg-app: var(--bg-app-light);
+	--bg-nav: var(--bg-nav-light);
+}
+
+/*************** DARK THEME *********************/
+.dark-mode {
+	--bg-app: var(--bg-app-dark);
+	--bg-nav: var(--bg-nav-dark);
+}
+
+html {
+	background-color: var(--bg-app);
+}

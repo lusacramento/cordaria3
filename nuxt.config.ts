@@ -78,7 +78,7 @@ export default defineNuxtConfig({
 
 	debug: true,
 
-	css: ['~/assets/styles/main.scss'],
+	css: ['~/assets/styles/main.scss', '~/assets/styles/themes.css'],
 
 	imports: {
 		dirs: ['composables/**'],
