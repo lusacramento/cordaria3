@@ -58,13 +58,27 @@ export default defineNuxtConfig({
 			},
 		],
 		'nuxt-mongoose',
+		[
+			'@nuxtjs/color-mode',
+			{
+				preference: 'dark', // default value of $colorMode.preference
+				fallback: 'dark', // fallback value if not system preference found
+				hid: 'nuxt-color-mode-script',
+				globalName: '__NUXT_COLOR_MODE__',
+				componentName: 'ColorScheme',
+				classPrefix: '',
+				classSuffix: '-mode',
+				storage: 'localStorage', // or 'sessionStorage' or 'cookie'
+				storageKey: 'nuxt-color-mode',
+			},
+		],
 	],
 
 	// sourcemap: true,
 
 	debug: true,
 
-	css: ['~/assets/styles/main.scss'],
+	css: ['~/assets/styles/main.scss', '~/assets/styles/themes.css'],
 
 	imports: {
 		dirs: ['composables/**'],
