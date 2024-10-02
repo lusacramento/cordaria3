@@ -1,3 +1,5 @@
+import { enabled } from 'virtual:nuxt-pwa-configuration'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	experimental: {
@@ -70,6 +72,64 @@ export default defineNuxtConfig({
 				classSuffix: '-mode',
 				storage: 'localStorage', // or 'sessionStorage' or 'cookie'
 				storageKey: 'nuxt-color-mode',
+			},
+		],
+		[
+			'@vite-pwa/nuxt',
+			{
+				devOptions: {
+					enabled: true,
+					suppressWarnings: true,
+					navigateFallback: '/',
+					navigateFallbackAllowlist: [/^\/$/],
+					type: 'module',
+				},
+				registerWebManifestInRouteRules: true,
+				registerType: 'autoUpdate',
+				manifest: {
+					name: 'Cordaria App',
+					short_name: 'CordariaApp',
+					description:
+						'Cordaria é um método de treinamento para a prática de instrumentos de cordas',
+					lang: 'pt',
+					display: 'fullscreen',
+					orientation: 'landscape',
+					theme_color: '#1c1f26',
+					icons: [
+						{
+							src: '/imgs/icons/icon-192x192.png',
+							sizes: '192x192',
+							type: 'image/png',
+						},
+					],
+					screenshots: [
+						{
+							src: 'imgs/screenshots/desktop.png',
+							sizes: '1914x1004',
+							type: 'image/png',
+							form_factor: 'wide',
+							label: 'Cordaria App Desktop',
+							platform: 'desktop',
+						},
+						{
+							src: 'imgs/screenshots/mobile.png',
+							sizes: '939x431',
+							type: 'image/png',
+							form_factor: 'narrow',
+							label: 'Cordaria App Mobile',
+						},
+					],
+				},
+
+				client: {
+					installPrompt: true,
+				},
+				workbox: {
+					globPatterns: ['**/*.{js,css,html,png,svg,ico,jpg}'],
+				},
+				injectManifest: {
+					globPatterns: ['**/*.{js,css,html,png,svg,ico,jpg}'],
+				},
 			},
 		],
 	],

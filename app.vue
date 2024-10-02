@@ -1,4 +1,5 @@
 <template>
+	<NuxtPwaManifest />
 	<div class="">
 		<div class="color-mode-picker">
 			<LayoutsColorModePicker />
