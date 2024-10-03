@@ -9,7 +9,7 @@
 		aria-hidden="true"
 	>
 		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content bg-dark">
+			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">
 						{{ $props.modal.title }}
@@ -48,4 +48,8 @@
 	})
 </script>
 
-<style></style>
+<style scoped>
+	.modal-content {
+		background-color: rgba(0, 0, 0, 0.722);
+	}
+</style>
