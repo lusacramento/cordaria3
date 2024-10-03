@@ -6,7 +6,7 @@
 		<div class="container layer-center">
 			<div class="row justify-content-around">
 				<div class="col-md-4 col-12">
-					<Box
+					<LayoutsBox
 						:title-text="boxes.what.text"
 						:schema="boxes.what.schema"
 						:left-logo="boxes.what.leftLogo"
@@ -28,7 +28,7 @@
 					</p>
 				</div>
 				<div class="col-md-4 col-12">
-					<Box
+					<LayoutsBox
 						:title-text="boxes.doing.text"
 						:schema="boxes.doing.schema"
 						:left-logo="boxes.doing.leftLogo"
@@ -50,7 +50,7 @@
 			</div>
 			<aside class="row d-flex justify-content-center mt-5 mb-5">
 				<div class="col-lg-6 col-md-9 col-12">
-					<Box
+					<LayoutsBox
 						:title-text="boxes.callInAction.text"
 						:schema="boxes.callInAction.schema"
 						:left-logo="boxes.callInAction.leftLogo"
@@ -62,7 +62,7 @@
 		<div class="container mt-5">
 			<div class="row justify-content-around">
 				<section class="col-md-5">
-					<Box
+					<LayoutsBox
 						:title-text="boxes.aboutResearch.text"
 						:schema="boxes.aboutResearch.schema"
 						:is-logo="boxes.aboutResearch.isLogo"
@@ -89,7 +89,7 @@
 				<div class="col-md-5">
 					<aside class="row justify-content-center">
 						<a :href="pdf" target="_blank">
-							<Box
+							<LayoutsBox
 								:title-text="boxes.downloadResearch.text"
 								:schema="boxes.downloadResearch.schema"
 								:left-logo="boxes.downloadResearch.leftLogo"
@@ -135,7 +135,7 @@
 </template>
 
 <script>
-	import Box from '@/components/box/Box.vue'
+	import Box from '@/components/layouts/Box.vue'
 	import Pdf from '@/assets/pdfs/SACRAMENTO-Luciano-Cordaria-desenvolvimento-de-aplicacao-web-para-violao-e-guitarra.pdf'
 
 	export default {
