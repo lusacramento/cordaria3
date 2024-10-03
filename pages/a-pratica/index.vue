@@ -92,7 +92,7 @@
 							<div class="row">
 								<div class="col d-flex justify-content-center">
 									<button type="button" class="btn">
-										<Box
+										<LayoutsBox
 											:title-text="boxButtons.stop.callInAction.text"
 											:schema="boxButtons.stop.callInAction.schema"
 											:left-logo="boxButtons.stop.callInAction.leftLogo"

@@ -62,35 +62,26 @@
 	</div>
 </template>
 
-<script>
-	//import CarouselClues from '@/components/carousel/CarouselClues.vue'
-	export default {
-		//	components: { CarouselClues },
-		// eslint-disable-next-line require-await
-		data() {
-			return {
-				title: 'O TUTORIAL',
-				boxes: {
-					how: {
-						text: '<h2>Como Funciona o app?</h2>',
-						schema: 'the-tutorial',
-						leftLogo: false,
-						rightLogo: false,
-					},
-					steps: {
-						text: '<h2>Passo-a-passo</h2>',
-						schema: 'the-tutorial',
-						leftLogo: false,
-						rightLogo: false,
-					},
-					callInAction: {
-						text: '<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
-						schema: 'the-tutorial',
-						leftLogo: true,
-						rightLogo: false,
-					},
-				},
-			}
+<script lang="ts" setup>
+	const title = 'O TUTORIAL'
+	const boxes = {
+		how: {
+			text: '<h2>Como Funciona o app?</h2>',
+			schema: 'the-tutorial',
+			leftLogo: false,
+			rightLogo: false,
+		},
+		steps: {
+			text: '<h2>Passo-a-passo</h2>',
+			schema: 'the-tutorial',
+			leftLogo: false,
+			rightLogo: false,
+		},
+		callInAction: {
+			text: '<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
+			schema: 'the-tutorial',
+			leftLogo: true,
+			rightLogo: false,
 		},
 	}
 </script>

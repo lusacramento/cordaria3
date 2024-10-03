@@ -6,11 +6,9 @@
 		<div class="container layer-center">
 			<div class="row justify-content-around">
 				<div class="col-md-4 col-12">
-					<Box
+					<LayoutsBox
 						:title-text="boxes.what.text"
 						:schema="boxes.what.schema"
-						:left-logo="boxes.what.leftLogo"
-						:right-logo="boxes.what.rightLogo"
 					/>
 					<p class="large-line-height">
 						Destinado à pessoas interessadas em iniciar o estudo do violão e
@@ -28,11 +26,9 @@
 					</p>
 				</div>
 				<div class="col-md-4 col-12">
-					<Box
+					<LayoutsBox
 						:title-text="boxes.doing.text"
 						:schema="boxes.doing.schema"
-						:left-logo="boxes.doing.leftLogo"
-						:right-logo="boxes.doing.rightLogo"
 					/>
 					<p>
 						Sua função é gerar exercícios básicos de digitação com foco na
@@ -50,11 +46,10 @@
 			</div>
 			<aside class="row d-flex justify-content-center mt-5 mb-5">
 				<div class="col-lg-6 col-md-9 col-12">
-					<Box
+					<LayoutsBox
 						:title-text="boxes.callInAction.text"
 						:schema="boxes.callInAction.schema"
 						:left-logo="boxes.callInAction.leftLogo"
-						:right-logo="boxes.callInAction.rightLogo"
 					/>
 				</div>
 			</aside>
@@ -62,10 +57,9 @@
 		<div class="container mt-5">
 			<div class="row justify-content-around">
 				<section class="col-md-5">
-					<Box
+					<LayoutsBox
 						:title-text="boxes.aboutResearch.text"
 						:schema="boxes.aboutResearch.schema"
-						:is-logo="boxes.aboutResearch.isLogo"
 					/>
 
 					<p class="justify">
@@ -89,10 +83,9 @@
 				<div class="col-md-5">
 					<aside class="row justify-content-center">
 						<a :href="pdf" target="_blank">
-							<Box
+							<LayoutsBox
 								:title-text="boxes.downloadResearch.text"
 								:schema="boxes.downloadResearch.schema"
-								:left-logo="boxes.downloadResearch.leftLogo"
 								:right-logo="boxes.downloadResearch.rightLogo"
 							/>
 						</a>
@@ -134,110 +127,88 @@
 	</div>
 </template>
 
-<script>
-	import Box from '@/components/box/Box.vue'
-	import Pdf from '@/assets/pdfs/SACRAMENTO-Luciano-Cordaria-desenvolvimento-de-aplicacao-web-para-violao-e-guitarra.pdf'
+<script lang="ts" setup>
+	import pdf from '@/assets/pdfs/SACRAMENTO-Luciano-Cordaria-desenvolvimento-de-aplicacao-web-para-violao-e-guitarra.pdf'
 
-	export default {
-		components: { Box },
+	const title = 'SOBRE'
 
-		data() {
-			return {
-				title: 'SOBRE',
-				pdf: Pdf,
-
-				boxes: {
-					what: {
-						text: '<h2>O que é?</h2>',
-						schema: 'the-project',
-						leftLogo: false,
-						rightLogo: false,
-					},
-					doing: {
-						text: '<h2>O que faz?</h2>',
-						schema: 'the-project',
-						leftLogo: false,
-						rightLogo: false,
-					},
-					callInAction: {
-						text: '<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
-						schema: 'the-project',
-						leftLogo: true,
-						rightLogo: false,
-					},
-					aboutResearch: {
-						text: '<h2>Como surgiu?</h2>',
-						schema: 'the-research',
-						leftLogo: false,
-						rightLogo: false,
-					},
-					downloadResearch: {
-						text: `
-                           <div
-                    class="
-                      col
-                      download-research
-                      d-flex
-                      align-items-center
-                      justify-content-around
-                      small-line-height
-                      text-center
-                    "
-                  >
-                    <div>A Pesquisa<br />Na íntegra</div>
-                    <div>&nbsp;|&nbsp;<br />&nbsp;|&nbsp;</div>
-                    <div>Baixe<br /><span class="font-bold">Aqui</span></div>
-                    <div>
-                      
-                        <img
-                          @mouseover="icon.url = imageMouseOver(icon)"
-                          @mouseleave="icon.url = imageMouseLeave(icon)"
-                          class="img img-fluid icon"
-                          :src="icon.url"
-                          :alt="icon.altText"
-                        />
-                    </div>
-                  </div>
-                `,
-						schema: 'the-research',
-						leftLogo: false,
-						rightLogo: true,
-					},
-				},
-				researchUrl: '/files/pdf/pesquisa.pdf',
-			}
+	const boxes = {
+		what: {
+			text: '<h2>O que é?</h2>',
+			schema: 'the-project',
 		},
-		head() {
-			return {
-				title: 'Cordaria - O Projeto',
-				meta: [
-					{
-						hid: 'titleprojeto',
-						name: 'title',
-						content: 'Cordaria - Já praticou hoje?',
-					},
-					{
-						hid: 'projeto',
-						name: 'description',
-						content:
-							'O projeto Cordaria é resultado de uma pesquisa que vem para auxiliar, educandos e professores, a prática de violão e guitarra',
-					},
-					{
-						hid: 'projetokeys',
-						name: 'keywords',
-						content:
-							'pesquisa, prática, música, projeto, violão, guitarra, método',
-					},
-				],
-				link: [
-					{
-						rel: 'canonical',
-						href: 'https://cordaria.com.br',
-					},
-				],
-			}
+		doing: {
+			text: '<h2>O que faz?</h2>',
+			schema: 'the-project',
+		},
+		callInAction: {
+			text: '<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
+			schema: 'the-project',
+			leftLogo: true,
+		},
+		aboutResearch: {
+			text: '<h2>Como surgiu?</h2>',
+			schema: 'the-research',
+		},
+		downloadResearch: {
+			text: `
+	                          <div
+	                   class="
+	                     col
+	                     download-research
+	                     d-flex
+	                     align-items-center
+	                     justify-content-around
+	                     small-line-height
+	                     text-center
+	                   "
+	                 >
+	                   <div>A Pesquisa<br />Na íntegra</div>
+	                   <div>&nbsp;|&nbsp;<br />&nbsp;|&nbsp;</div>
+	                   <div>Baixe<br /><span class="font-bold">Aqui</span></div>
+	                   <div>
+
+	                       <img
+	                         @mouseover="icon.url = imageMouseOver(icon)"
+	                         @mouseleave="icon.url = imageMouseLeave(icon)"
+	                         class="img img-fluid icon"
+	                         :src="icon.url"
+	                         :alt="icon.altText"
+	                       />
+	                   </div>
+	                 </div>
+	               `,
+			schema: 'the-research',
+			rightLogo: true,
 		},
 	}
+	useHead({
+		title: 'Cordaria - O Projeto',
+		meta: [
+			{
+				hid: 'titleprojeto',
+				name: 'title',
+				content: 'Cordaria - Já praticou hoje?',
+			},
+			{
+				hid: 'projeto',
+				name: 'description',
+				content:
+					'O projeto Cordaria é resultado de uma pesquisa que vem para auxiliar, educandos e professores, a prática de violão e guitarra',
+			},
+			{
+				hid: 'projetokeys',
+				name: 'keywords',
+				content: 'pesquisa, prática, música, projeto, violão, guitarra, método',
+			},
+		],
+		link: [
+			{
+				rel: 'canonical',
+				href: 'https://cordaria.com.br',
+			},
+		],
+	})
 </script>
 
 <style scoped>
