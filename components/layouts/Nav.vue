@@ -28,10 +28,10 @@
 				<ul class="navbar-nav" :class="{ collapseColor: !isCollapse }">
 					<li class="nav-item">
 						<nuxt-link
-							to="entrar"
+							to="tutorial"
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>Jogar</span></nuxt-link
+							><span>Tutorial</span></nuxt-link
 						>
 					</li>
 					<li v-if="status === 'authenticated'" else class="nav-item">
