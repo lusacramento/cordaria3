@@ -1,29 +1,36 @@
 <template>
-	<div class="box-title container-fluid d-flex justify-content-center mb-4">
+	<div
+		class="box-title container-fluid d-flex justify-content-center align-items-center"
+	>
 		<div
-			class="row text-center justify-content-center align-items-center"
+			class="row text-center justify-content-center align-items-center border-10"
 			:class="outboxColor"
 		>
-			<div
-				class="boxes outbox"
-				@mouseover="icon.url = imageMouseOver(icon)"
-				@mouseleave="icon.url = imageMouseLeave(icon)"
-			>
-				<div class="boxes inbox d-flex align-items-center" :class="inboxColor">
-					<div v-if="props.leftLogo" class="px-1">
-						<img
-							class="img img-fluid icon"
-							:src="icon.url"
-							:alt="icon.altText"
-						/>
-					</div>
-					<div v-html="props.titleText" />
-					<div v-if="props.rightLogo" class="px-1">
-						<img
-							class="img img-fluid icon"
-							:src="icon.url"
-							:alt="icon.altText"
-						/>
+			<div class="col">
+				<div
+					class="boxes outbox"
+					@mouseover="icon.url = imageMouseOver(icon)"
+					@mouseleave="icon.url = imageMouseLeave(icon)"
+				>
+					<div
+						class="boxes inbox d-flex align-items-center border-10"
+						:class="inboxColor"
+					>
+						<div v-if="props.leftLogo" class="px-1">
+							<img
+								class="img img-fluid icon"
+								:src="icon.url"
+								:alt="icon.altText"
+							/>
+						</div>
+						<div v-html="props.titleText" />
+						<div v-if="props.rightLogo" class="px-1">
+							<img
+								class="img img-fluid icon"
+								:src="icon.url"
+								:alt="icon.altText"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -34,6 +41,16 @@
 <script lang="ts" setup>
 	import iconCordariaEnabled from '@/assets/imgs/icone-cordaria-enabled.png'
 	import iconCordariaDisabled from '@/assets/imgs/icone-cordaria-disabled.png'
+	import iconCordariaIndex from '@/assets/imgs/icone-cordaria-index.png'
+
+	onBeforeMount(() => {
+		icon.url =
+			useRoute().name === 'index' ? iconCordariaIndex : iconCordariaDisabled
+	})
+
+	onMounted(() => {
+		applySchema()
+	})
 
 	const props = defineProps({
 		titleText: {
@@ -57,15 +74,11 @@
 	const inboxColor = ref('')
 	const outboxColor = ref('')
 	const icon = {
-		url: iconCordariaDisabled,
+		url: '',
 		altText: 'Inicie agora',
 		enabled: iconCordariaEnabled,
 		disabled: iconCordariaDisabled,
 	}
-
-	onMounted(() => {
-		applySchema()
-	})
 
 	function applySchema() {
 		switch (props.schema) {
@@ -85,12 +98,17 @@
 				inboxColor.value = 'inbox-research'
 				outboxColor.value = 'outbox-research'
 				break
+			case 'index':
+				inboxColor.value = 'inbox-index'
+				outboxColor.value = 'outbox-index'
 			default:
 		}
 	}
+
 	function imageMouseOver(img: any) {
 		return img.enabled
 	}
+
 	function imageMouseLeave(img: any) {
 		return img.disabled
 	}
@@ -117,43 +135,47 @@
 		padding: 0px 10px;
 	}
 
+	.border-10 {
+		border-radius: 10px;
+	}
+
 	.inbox-project {
 		background-color: var(--the-project-inbox);
-		border-radius: 10px;
 	}
 
 	.outbox-project {
 		background-color: var(--the-project-outbox);
-		border-radius: 10px;
 	}
 
 	.inbox-tutorial {
 		background-color: var(--the-tutorial-inbox);
-		border-radius: 10px;
 	}
 
 	.outbox-tutorial {
 		background-color: var(--the-tutorial-outbox);
-		border-radius: 10px;
 	}
 
 	.inbox-pratice {
 		background-color: var(--the-pratice-inbox);
-		border-radius: 10px;
 	}
 
 	.outbox-pratice {
 		background-color: var(--the-pratice-outbox);
-		border-radius: 10px;
 	}
 
 	.inbox-research {
 		background-color: var(--the-research-inbox);
-		border-radius: 10px;
 	}
 
 	.outbox-research {
 		background-color: var(--the-research-outbox);
-		border-radius: 10px;
+	}
+
+	.inbox-index {
+		background-color: var(--index-inbox);
+	}
+
+	.outbox-index {
+		background-color: var(--index-outbox);
 	}
 </style>
