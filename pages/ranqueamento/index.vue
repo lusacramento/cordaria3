@@ -103,4 +103,8 @@
 		margin: 5px;
 		width: 150px;
 	}
+
+	.layer-center {
+		height: 50vh;
+	}
 </style>
