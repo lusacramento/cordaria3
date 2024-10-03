@@ -55,17 +55,18 @@
 	</div>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				title: 'DICAS',
-				section: '',
-				isSelected: false,
-				text: [
-					{
-						id: 'ambiente',
-						value: `<h4>Esolhendo o Ambiente</h4>
+<script lang="ts" setup>
+	onMounted(() => {
+		section.value = text[0].value
+	})
+
+	const title = 'DICAS'
+	const section = ref('')
+	const isSelected = false
+	const text = [
+		{
+			id: 'ambiente',
+			value: `<h4>Esolhendo o Ambiente</h4>
               <p class="justify">
                 A escolha um ambiente tranquilo é ideal para mantermos livre de
                 distrações durante toda sua atividade.
@@ -77,11 +78,11 @@
                 ideal é quando os joelhos estejam em um ângulo de 90 graus
                 quando sentado.
               </p>`,
-						isSelected: true,
-					},
-					{
-						id: 'pre-estudo',
-						value: `<h4>Respirando</h4>
+			isSelected: true,
+		},
+		{
+			id: 'pre-estudo',
+			value: `<h4>Respirando</h4>
               <p class="justify">
                 Antes de começar a estudar, PARE! Respire fundo algumas vezes.
                 Este método ajuda a esvaziar a cabeça e focar sua concentração
@@ -97,11 +98,11 @@
                 Caso haja dificuldade de afinar, recorra a aplicativos
                 afinadores
               </p>`,
-						isSelected: false,
-					},
-					{
-						id: 'estudo',
-						value: ` <h4>
+			isSelected: false,
+		},
+		{
+			id: 'estudo',
+			value: ` <h4>
                 Exercitando com saúde
               </h4>
               <p class="justify">
@@ -121,11 +122,11 @@
                 estudo; Essas dicas, além de prevenir lesões, você terá
                 rendimento melhor e sua saúde agradece!
               </p>`,
-						isSelected: false,
-					},
-					{
-						id: 'performance',
-						value: `
+			isSelected: false,
+		},
+		{
+			id: 'performance',
+			value: `
               <h4>Pulo do gato</h4>
               <p class="justify">
                 Mantenha a disciplina! Seja assíduo e organize seu horário de
@@ -144,71 +145,58 @@
                 Deixe de timidez! Exercite também em um volume mais alto. Isso
                 lhe trará uma maior segurança ao fazer musical.
               </p>`,
-						isSelected: false,
-					},
-					// {
-					//   id: "pos-estudo",
-					//   value: `<h4>Pós-Estudo</h4>
-					//       <p class="justify">
-					//         E por último, não menos importante... • Cuide bem de seu
-					//         instrumento! Lembre de limpar somente com um pano húmido e
-					//         troque as cordas com frequência. Mantenha-o sempre dentro da sua
-					//         bag, quando não estiver sendo utilizado.
-					//         <br />
-					//         Agindo assim, seu instrumento com certeza vai retribuir!
-					//       </p>`,
-					//   isSelected: false,
-					// },
-				],
-			}
+			isSelected: false,
 		},
+		// {
+		//   id: "pos-estudo",
+		//   value: `<h4>Pós-Estudo</h4>
+		//       <p class="justify">
+		//         E por último, não menos importante... • Cuide bem de seu
+		//         instrumento! Lembre de limpar somente com um pano húmido e
+		//         troque as cordas com frequência. Mantenha-o sempre dentro da sua
+		//         bag, quando não estiver sendo utilizado.
+		//         <br />
+		//         Agindo assim, seu instrumento com certeza vai retribuir!
+		//       </p>`,
+		//   isSelected: false,
+		// },
+	]
 
-		head() {
-			return {
-				title: 'Cordaria - Dicas',
-				meta: [
-					{
-						hid: 'titleddicas',
-						name: 'title',
-						content: 'Cordaria - Dicas para estudo de cordas',
-					},
-					{
-						hid: 'dicas',
-						name: 'description',
-						content:
-							'Dicas para um bom estudo com saúde e melhorias na sua performance.',
-					},
-				],
-				link: [
-					{
-						rel: 'canonical',
-						href: 'https://cordaria.com.br/dicas',
-					},
-					{
-						hid: 'dicaskeys',
-						name: 'keywords',
-						content:
-							'Dicas, Performance, Desenvolvimento, cordas, Violão, Guitarra',
-					},
-				],
-			}
-		},
+	useHead({
+		title: 'Cordaria - Dicas',
+		meta: [
+			{
+				hid: 'titleddicas',
+				name: 'title',
+				content: 'Cordaria - Dicas para estudo de cordas',
+			},
+			{
+				hid: 'dicas',
+				name: 'description',
+				content:
+					'Dicas para um bom estudo com saúde e melhorias na sua performance.',
+			},
+		],
+		link: [
+			{
+				rel: 'canonical',
+				href: 'https://cordaria.com.br/dicas',
+			},
+			{
+				hid: 'dicaskeys',
+			},
+		],
+	})
 
-		mounted() {
-			this.section = this.text[0].value
-		},
-		methods: {
-			updateText(i) {
-				this.removeAllActive()
-				this.text[i].isSelected = true
-				return this.text[i].value
-			},
-			removeAllActive() {
-				this.text.forEach((element) => {
-					element.isSelected = false
-				})
-			},
-		},
+	function updateText(i: number) {
+		removeAllActive()
+		text[i].isSelected = true
+		return text[i].value
+	}
+	function removeAllActive() {
+		text.forEach((element) => {
+			element.isSelected = false
+		})
 	}
 </script>
 <style>
