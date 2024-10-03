@@ -95,6 +95,7 @@ export default defineNuxtConfig({
 					display: 'fullscreen',
 					orientation: 'landscape',
 					theme_color: '#1c1f26',
+					background_color: '#1c1f26',
 					icons: [
 						{
 							src: '/imgs/icons/icon-192x192.png',
