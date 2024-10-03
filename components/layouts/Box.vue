@@ -46,11 +46,11 @@
 		},
 		leftLogo: {
 			type: Boolean,
-			required: true,
+			required: false,
 		},
 		rightLogo: {
 			type: Boolean,
-			required: true,
+			required: false,
 		},
 	})
 
