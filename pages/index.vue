@@ -3,8 +3,12 @@
 		<div class="container-fluid">
 			<LayoutsHeader>
 				<template #center>
-					<div class="d-flex justify-content-center">
-						<h1>{{ title }}</h1>
+					<div class="d-flex justify-content-center align-items-center">
+						<LayoutsBox
+							:title-text="box.titleText"
+							:schema="box.schema"
+							:left-logo="box.leftLogo"
+						/>
 					</div>
 				</template>
 			</LayoutsHeader>
@@ -74,8 +78,11 @@
 
 	import { Instrument } from '~/types/Instrument'
 
+	onBeforeMount(async () => {
+		await loadSettings()
+	})
+
 	useHead({
-		title: 'Cordaria - O Projeto',
 		meta: [
 			{
 				hid: 'titleprojeto',
@@ -102,11 +109,11 @@
 		],
 	})
 
-	onBeforeMount(async () => {
-		await loadSettings()
-	})
-
-	const title = 'Já praticou hoje?'
+	const box = {
+		titleText: '<h1>Já praticou hoje?<h1>',
+		schema: 'index',
+		leftLogo: true,
+	}
 
 	const instrument = ref(Instrument.NOT_SELECTED)
 
