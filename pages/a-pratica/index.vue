@@ -45,7 +45,7 @@
 										class="btn btn-primary"
 										@click.prevent="exit('/')"
 									>
-										Sair
+										Voltar
 									</button>
 								</li>
 								<li>
