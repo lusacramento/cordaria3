@@ -43,7 +43,7 @@
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
 							@click.prevent="handleLogout()"
-							><span>Sair</span></nuxt-link
+							><span>Logout</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">
