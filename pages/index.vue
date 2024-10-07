@@ -1,19 +1,17 @@
 <template>
 	<div id="the-project" class="the-project">
-		<div class="container-fluid">
-			<LayoutsHeader>
-				<template #center>
-					<div class="d-flex justify-content-center align-items-center">
-						<LayoutsBox
-							:title-text="box.titleText"
-							:schema="box.schema"
-							:left-logo="box.leftLogo"
-						/>
-					</div>
-				</template>
-			</LayoutsHeader>
-		</div>
-		<div class="container layer-center">
+		<LayoutsHeader>
+			<template #center>
+				<div class="d-flex justify-content-center align-items-center">
+					<LayoutsBox
+						:title-text="box.titleText"
+						:schema="box.schema"
+						:left-logo="box.leftLogo"
+					/>
+				</div>
+			</template>
+		</LayoutsHeader>
+		<div class="container content">
 			<aside class="row d-flex justify-content-center">
 				<div class="col-lg-12 col-md-9 col-12">
 					<button

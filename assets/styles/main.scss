@@ -29,25 +29,19 @@
 	--clues-border-nav: 2px solid rgba(128, 128, 128, 0.5);
 	--clues-border-estudo: 1px solid rgba(255, 139, 0, 0.7);
 
-	// --bg-app: #1c1f26;
 
-	// --bg-nav: #1d1e28;
 	--bg-nav-collapse: #1d1e28da;
 	--borders-nav: 15px solid #1a1b24;
 
 	--border-main: 1px solid #8e8f94;
 
-	--bg-layer-top: #282a36;
-	--bg-layer-center: rgb(40, 42, 54);
-	--bg-degrade-layer-center: linear-gradient(
-		180deg,
-		rgba(40, 42, 54, 1) 37%,
-		rgba(29, 30, 40, 1) 77%	
-	);
-
-	// --bg-error: #b4423f !important;
-	// --bg-success: #39c2a1 !important;
-	// --bg-warn: #ffd740 !important;
+	// --bg-layer-top: #282a36;
+	// --bg-layer-center: rgb(40, 42, 54);
+	// --bg-degrade-layer-center: linear-gradient(
+	// 	180deg,
+	// 	rgba(40, 42, 54, 1) 37%,
+	// 	rgba(29, 30, 40, 1) 77%	
+	// );
 
 	.alert {
 		color: var(--bg-warn);
@@ -147,8 +141,5 @@ h4 {
 	font-weight: var(--font-semi-bold);
 	font-size: var(--font-size-h4) !important;
 }
-// html {
-// 	/* overflow: hidden; */
-// 	background-color: var(--bg-app);
-// }
+
 

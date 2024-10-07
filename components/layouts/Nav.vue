@@ -25,7 +25,10 @@
 				class="navbar-collapse justify-content-end me-5"
 				:class="{ collapse: isCollapse }"
 			>
-				<ul class="navbar-nav" :class="{ collapseColor: !isCollapse }">
+				<ul
+					class="navbar-nav d-flex align-items-center"
+					:class="{ collapseColor: !isCollapse }"
+				>
 					<li class="nav-item">
 						<nuxt-link
 							to="tutorial"
@@ -60,6 +63,9 @@
 						>
 							<span>Sobre</span></nuxt-link
 						>
+					</li>
+					<li class="nav-item">
+						<LayoutsColorModePicker />
 					</li>
 					<li class="nav-item">
 						<a class="nav-link email-link" :href="icons.email.href">
@@ -220,9 +226,6 @@
 	.nav-link {
 		color: var(--font-color-nav) !important;
 		margin: 0 10px;
-	}
-
-	.img-brand {
 	}
 
 	.theProjectLinkActive {
