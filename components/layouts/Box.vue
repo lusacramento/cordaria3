@@ -41,16 +41,29 @@
 <script lang="ts" setup>
 	import iconCordariaEnabled from '@/assets/imgs/icone-cordaria-enabled.png'
 	import iconCordariaDisabled from '@/assets/imgs/icone-cordaria-disabled.png'
-	import iconCordariaIndex from '@/assets/imgs/icone-cordaria-index.png'
+	import lightCordariaIcon from '@/assets/imgs/logos/light-cordaria-icon.png'
+	import darkCordariaIcon from '@/assets/imgs/logos/dark-cordaria-icon.png'
 
 	onBeforeMount(() => {
-		icon.url =
-			useRoute().name === 'index' ? iconCordariaIndex : iconCordariaDisabled
+		const iconTheme = updateIcon(value.value)
+		icon.value.url =
+			useRoute().name === 'index' ? iconTheme : iconCordariaDisabled
 	})
+
+	const { value } = toRefs(useColorMode())
 
 	onMounted(() => {
 		applySchema()
 	})
+
+	watch(value, async (newValue) => {
+		console.log('trocou o thema: ', newValue)
+		icon.value.url = await updateIcon(newValue)
+	})
+
+	function updateIcon(theme: string) {
+		return theme === 'dark' ? darkCordariaIcon : lightCordariaIcon
+	}
 
 	const props = defineProps({
 		titleText: {
@@ -73,12 +86,12 @@
 
 	const inboxColor = ref('')
 	const outboxColor = ref('')
-	const icon = {
+	const icon = ref({
 		url: '',
 		altText: 'Inicie agora',
 		enabled: iconCordariaEnabled,
 		disabled: iconCordariaDisabled,
-	}
+	})
 
 	function applySchema() {
 		switch (props.schema) {
@@ -156,7 +169,7 @@
 	}
 
 	.inbox-pratice {
-		background-color: var(--the-pratice-inbox);
+		background-color: var(--bg-title-box-in);
 	}
 
 	.outbox-pratice {
@@ -172,10 +185,14 @@
 	}
 
 	.inbox-index {
-		background-color: var(--index-inbox);
+		background-color: var(--bg-title-box-in);
 	}
 
 	.outbox-index {
-		background-color: var(--index-outbox);
+		background-color: var(--bg-title-box-out);
+	}
+
+	.icon {
+		width: 50px;
 	}
 </style>
