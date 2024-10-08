@@ -1,5 +1,5 @@
 <template>
-	<div id="the-pratice" class="cordaria">
+	<div class="cordaria">
 		<LayoutsOffCanvas @showStatistics="payload" />
 		<LayoutsToast ref="toast" :type="toaster.type">
 			<template #header>{{ toaster.header }}</template>
@@ -10,110 +10,137 @@
 		</LayoutsModal>
 		<CordariaTips ref="tips" />
 
-		<div class="container-fluid">
-			<LayoutsHeader>
-				<template #left>
-					<button
-						class="btn btn-primary"
-						type="button"
-						data-bs-toggle="offcanvas"
-						data-bs-target="#offcanvasWithBothOptions"
-						aria-controls="offcanvasWithBothOptions"
-					>
-						Preferências
-					</button>
-					<button
-						ref="userDetailsModalButton"
-						type="button"
-						class="btn btn-primary"
-						data-bs-toggle="modal"
-						:data-bs-target="`#${modal.id}`"
-						hidden
-					>
-						Launch demo modal
-					</button>
-					<button
-						type="button"
-						class="btn btn-primary"
-						@click.prevent="exit('/')"
-					>
-						Sair
-					</button>
-				</template>
-				<template #center>
-					<div class="d-flex justify-content-center">
-						<div>Pontos: {{ points }}</div>
+		<div id="the-practice" class="container-fluid p-0">
+			<div class="row">
+				<div class="col">
+					<LayoutsHeader>
+						<template #left>
+							<ul class="align-items-center">
+								<li>
+									<button
+										class="btn btn-primary"
+										type="button"
+										data-bs-toggle="offcanvas"
+										data-bs-target="#offcanvasWithBothOptions"
+										aria-controls="offcanvasWithBothOptions"
+									>
+										Preferências
+									</button>
+								</li>
+								<li>
+									<button
+										ref="userDetailsModalButton"
+										type="button"
+										class="btn btn-primary"
+										data-bs-toggle="modal"
+										:data-bs-target="`#${modal.id}`"
+										hidden
+									>
+										Launch demo modal
+									</button>
+								</li>
+								<li>
+									<button
+										type="button"
+										class="btn btn-primary"
+										@click.prevent="exit('/')"
+									>
+										Voltar
+									</button>
+								</li>
+								<li>
+									<LayoutsColorModePicker class="" />
+								</li>
+							</ul>
+
+							<div class="d-flex"></div>
+						</template>
+						<template #center>
+							<div class="d-flex justify-content-center">
+								<div>Pontos: {{ points }}</div>
+							</div>
+						</template>
+						<template #right>
+							<div
+								class="d-flex align-items-center justify-content-end avatar-link"
+								@click.prevent="toogleUserDetailsForm()"
+							>
+								<div
+									class="avatar d-flex justify-content-center align-items-center"
+								>
+									<img
+										:src="avatar"
+										class="img-fluid"
+										alt="avatar do usuário"
+									/>
+								</div>
+								<div class="mx-2">@{{ getUserName }}</div>
+							</div>
+						</template>
+					</LayoutsHeader>
+				</div>
+			</div>
+			<div class="row d-flex justify-content-center">
+				<div
+					class="col-lg-10 content justify-content-center align-items-center"
+				>
+					<div v-if="isShowStatistics" class="d-block exercise">
+						<StatisticsTable :toggle-show-statistics="toggleShowStatistics" />
 					</div>
-				</template>
-				<template #right>
 					<div
-						class="d-flex align-items-center justify-content-end avatar-link"
-						@click.prevent="toogleUserDetailsForm()"
+						v-else
+						class="row exercise justify-content-center bg-exercise-screen"
 					>
 						<div
-							class="avatar d-flex justify-content-center align-items-center"
+							class="play-button d-flex justify-content-center align-items-center d-flex"
 						>
-							<img :src="avatar" class="img-fluid" alt="avatar do usuário" />
-						</div>
-						<div class="mx-2">@{{ getUserName }}</div>
-					</div>
-				</template>
-			</LayoutsHeader>
-			<div v-if="isShowStatistics" class="d-block">
-				<StatisticsTable :toggle-show-statistics="toggleShowStatistics" />
-			</div>
-			<div
-				v-else
-				class="row exercise justify-content-center bg-exercise-screen"
-			>
-				<div class="col-lg-10">
-					<div
-						class="play-button d-flex justify-content-center align-items-center d-flex"
-					>
-						<div v-if="!isShowGameScreen">
-							<button class="btn btn-play" :disabled="!isLoaded">
-								<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
-								<img class="img-lesson" :src="lessonImg" alt="" />
-								<Box
-									:title-text="boxButtons.play.callInAction.text as string"
-									:schema="boxButtons.play.callInAction.schema"
-									:left-logo="boxButtons.play.callInAction.leftLogo"
-									:right-logo="boxButtons.play.callInAction.rightLogo"
-									@click.prevent="start()"
-								/>
-							</button>
-						</div>
-						<div v-else>
-							<div class="row mb-5">
-								<div class="col">
-									<CordariaScreen />
-								</div>
+							<div v-if="!isShowGameScreen">
+								<button class="btn btn-play" :disabled="!isLoaded">
+									<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
+									<img class="img-lesson" :src="lessonImg" alt="" />
+									<LayoutsBox
+										:title-text="boxButtons.play.callInAction.text as string"
+										:schema="boxButtons.play.callInAction.schema"
+										:left-logo="boxButtons.play.callInAction.leftLogo"
+										:right-logo="boxButtons.play.callInAction.rightLogo"
+										@click.prevent="start()"
+									/>
+								</button>
 							</div>
-							<div class="row">
-								<div class="col d-flex justify-content-center">
-									<button type="button" class="btn">
-										<LayoutsBox
-											:title-text="boxButtons.stop.callInAction.text"
-											:schema="boxButtons.stop.callInAction.schema"
-											:left-logo="boxButtons.stop.callInAction.leftLogo"
-											:right-logo="boxButtons.stop.callInAction.rightLogo"
-											@click.prevent="exit('/a-pratica')"
-										/>
-									</button>
+							<div v-else>
+								<div class="row mb-5">
+									<div class="col">
+										<CordariaScreen />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col d-flex justify-content-center">
+										<button type="button" class="btn">
+											<LayoutsBox
+												:title-text="boxButtons.stop.callInAction.text"
+												:schema="boxButtons.stop.callInAction.schema"
+												:left-logo="boxButtons.stop.callInAction.leftLogo"
+												:right-logo="boxButtons.stop.callInAction.rightLogo"
+												@click.prevent="exit('/a-pratica')"
+											/>
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="">
-				<button
-					type="button"
-					@click.prevent="toggleShowStatistics()"
-					class="btn btn-outline-light"
-				>
-					Estatísticas
-				</button>
+			<div class="row">
+				<div class="col">
+					<button
+						type="button"
+						@click.prevent="toggleShowStatistics()"
+						class="btn btn-outline-light"
+					>
+						Estatísticas
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -271,10 +298,10 @@
 </script>
 
 <style scoped>
-	.exercise {
+	.content {
+		/* background-color: var(--bg-content) !important; */
+		width: 80%;
 		height: 80vh;
-		display: flex;
-		align-items: center;
 	}
 
 	#start-button:hover {

@@ -21,7 +21,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	@media (min-width: 991.98px) {
 		div.app {
 			grid-template-rows: 17vh 70vh 11vh;
@@ -33,7 +33,6 @@
 		margin: 0;
 
 		color: white;
-		background-color: var(--bg-app);
 
 		grid-template-areas:
 			'nav'
@@ -43,9 +42,6 @@
 
 	#nav {
 		grid-area: nav;
-		background-color: var(--bg-nav);
-		border-top: var(--borders-nav);
-		border-bottom: var(--borders-nav);
 	}
 	#main {
 		grid-area: main;
@@ -54,22 +50,12 @@
 
 	#footer {
 		grid-area: foot;
-		background-color: var(--bg-app) !important;
 	}
 
 	.hideFooter {
 		display: none;
 	}
 
-	.layer-top {
-		background-color: var(--bg-layer-top);
-	}
-
-	.layer-center {
-		width: 80% !important;
-		background: var(--bg-layer-center);
-		background: var(--bg-degrade-layer-center);
-	}
 	.justify {
 		text-align: justify;
 	}
