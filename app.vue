@@ -1,9 +1,5 @@
 <template>
-	<NuxtPwaManifest />
 	<div class="">
-		<div class="color-mode-picker">
-			<LayoutsColorModePicker />
-		</div>
 		<div class="layout">
 			<NuxtLayout>
 				<NuxtPage />
@@ -11,11 +7,7 @@
 		</div>
 	</div>
 </template>
-<script lang="ts" setup>
-	definePageMeta({
-		colorMode: 'light',
-	})
-</script>
+<script lang="ts" setup></script>
 
 <style>
 	.page-enter-active,

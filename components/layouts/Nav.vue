@@ -25,13 +25,16 @@
 				class="navbar-collapse justify-content-end me-5"
 				:class="{ collapse: isCollapse }"
 			>
-				<ul class="navbar-nav" :class="{ collapseColor: !isCollapse }">
+				<ul
+					class="navbar-nav d-flex align-items-center"
+					:class="{ collapseColor: !isCollapse }"
+				>
 					<li class="nav-item">
 						<nuxt-link
-							to="entrar"
+							to="tutorial"
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
-							><span>Jogar</span></nuxt-link
+							><span>Tutorial</span></nuxt-link
 						>
 					</li>
 					<li v-if="status === 'authenticated'" else class="nav-item">
@@ -40,7 +43,7 @@
 							class="nav-link the-pratice-link"
 							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
 							@click.prevent="handleLogout()"
-							><span>Sair</span></nuxt-link
+							><span>Logout</span></nuxt-link
 						>
 					</li>
 					<li class="nav-item">
@@ -60,6 +63,9 @@
 						>
 							<span>Sobre</span></nuxt-link
 						>
+					</li>
+					<li class="nav-item">
+						<LayoutsColorModePicker />
 					</li>
 					<li class="nav-item">
 						<a class="nav-link email-link" :href="icons.email.href">
@@ -220,9 +226,6 @@
 	.nav-link {
 		color: var(--font-color-nav) !important;
 		margin: 0 10px;
-	}
-
-	.img-brand {
 	}
 
 	.theProjectLinkActive {

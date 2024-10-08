@@ -1,15 +1,16 @@
 <template>
-	<header>
-		<div class="layer-top row d-flex align-items-center justify-content-center">
-			<div class="col">
-				<slot name="left" class=""></slot>
-			</div>
-			<div class="col-auto">
-				<slot name="center" class=""></slot>
-			</div>
-			<div class="col">
-				<slot name="right" class=""></slot>
-			</div>
+	<header
+		id="header"
+		class="row d-flex justify-content-around align-items-center"
+	>
+		<div class="col">
+			<slot name="left" class=""></slot>
+		</div>
+		<div class="col-auto">
+			<slot name="center" class=""></slot>
+		</div>
+		<div class="col">
+			<slot name="right" class="4"></slot>
 		</div>
 	</header>
 </template>
@@ -20,12 +21,4 @@
 	})
 </script>
 
-<style scoped>
-	.layer-top {
-		height: 120px;
-	}
-
-	.slot {
-		display: flex;
-	}
-</style>
+<style scoped></style>

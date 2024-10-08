@@ -9,7 +9,7 @@
 						@click.prevent="update(Instrument.ACOUSTICGUITAR)"
 						:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
 					>
-						Violão
+						<img :src="acousticGuitarIcon" alt="" class="img-fluid" />
 					</button>
 					<button
 						type="button"
@@ -17,7 +17,7 @@
 						:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
 						@click.prevent="update(Instrument.ELECTRICGUITAR)"
 					>
-						Guitarra
+						<img :src="electricGuitarIcon" alt="" class="img-fluid" />
 					</button>
 					<button
 						type="button"
@@ -25,7 +25,7 @@
 						@click.prevent="update(Instrument.BASS)"
 						:class="{ active: instrument === Instrument.BASS }"
 					>
-						Baixo
+						<img :src="bassIcon" alt="" class="img-fluid" />
 					</button>
 					<button
 						type="button"
@@ -33,7 +33,7 @@
 						@click.prevent="update(Instrument.CAVACO)"
 						:class="{ active: instrument === Instrument.CAVACO }"
 					>
-						Cavaquinho
+						<img :src="cavacoIcon" alt="" class="img-fluid" />
 					</button>
 				</template>
 			</LayoutsHeader>
@@ -47,6 +47,10 @@
 <script lang="ts" setup>
 	import { Instrument } from '~/types/Instrument'
 	import type { Ranking } from '~/types/Ranking'
+	import acousticGuitarIcon from '~/assets/imgs/instrument-list/acoustic-guitar-icon.png'
+	import electricGuitarIcon from '~/assets/imgs/instrument-list/electric-guitar-icon.png'
+	import bassIcon from '~/assets/imgs/instrument-list/bass-icon.png'
+	import cavacoIcon from '~/assets/imgs/instrument-list/cavaco-icon.png'
 
 	const { getInstrument } = useMySettingsStore()
 
@@ -101,6 +105,13 @@
 
 	.btn {
 		margin: 5px;
-		width: 150px;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		border: none;
+	}
+
+	.layer-center {
+		height: 50vh;
 	}
 </style>
