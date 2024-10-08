@@ -2,6 +2,7 @@
 	<div class="">
 		<ul class="d-flex">
 			<li
+				v-if="value === 'dark'"
 				class="theme-icon-area align-items-center d-flex"
 				:class="{
 					'dark-border': !isDarkModeSelected,
@@ -14,6 +15,7 @@
 				/>
 			</li>
 			<li
+				v-if="value === 'light'"
 				class="theme-icon-area d-flex align-items-center"
 				:class="{
 					'light-border': isDarkModeSelected,
