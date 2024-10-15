@@ -5,7 +5,7 @@
 				<template #center>
 					<button
 						type="button"
-						class="btn btn-outline-success"
+						class="btn btn-acoustic-guitar"
 						@click.prevent="update(Instrument.ACOUSTICGUITAR)"
 						:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
 					>
@@ -13,7 +13,7 @@
 					</button>
 					<button
 						type="button"
-						class="btn btn-outline-danger"
+						class="btn btn-electric-guitar"
 						:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
 						@click.prevent="update(Instrument.ELECTRICGUITAR)"
 					>
@@ -21,7 +21,7 @@
 					</button>
 					<button
 						type="button"
-						class="btn btn-outline-warning"
+						class="btn btn-bass"
 						@click.prevent="update(Instrument.BASS)"
 						:class="{ active: instrument === Instrument.BASS }"
 					>
@@ -29,7 +29,7 @@
 					</button>
 					<button
 						type="button"
-						class="btn btn-outline-info"
+						class="btn btn-cavaco"
 						@click.prevent="update(Instrument.CAVACO)"
 						:class="{ active: instrument === Instrument.CAVACO }"
 					>
@@ -113,5 +113,35 @@
 
 	.layer-center {
 		height: 50vh;
+	}
+
+	.btn-acoustic-guitar.active {
+		background-color: var(--acoustic-guitar-color) !important;
+	}
+	.btn-electric-guitar.active {
+		background-color: var(--electric-guitar-color) !important;
+	}
+	.btn-bass.active {
+		background-color: var(--bass-color) !important;
+	}
+	.btn-cavaco.active {
+		background-color: var(--cavaco-color) !important;
+	}
+
+	.btn-acoustic-guitar:not(.active):hover {
+		background: transparent;
+		border: 1px solid var(--acoustic-guitar-color);
+	}
+	.btn-electric-guitar:not(.active):hover {
+		background: transparent;
+		border: 1px solid var(--electric-guitar-color);
+	}
+	.btn-bass:not(.active):hover {
+		background: transparent;
+		border: 1px solid var(--bass-color);
+	}
+	.btn-cavaco:not(.active):hover {
+		background: transparent;
+		border: 1px solid var(--cavaco-color);
 	}
 </style>
