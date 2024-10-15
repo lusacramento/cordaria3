@@ -18,6 +18,7 @@ function convertJSONtoLessons(originalLessons: any[]) {
 			description: element.description,
 			icon: element.icon,
 			isAwarded: element.isawarded === 'true',
+			awardNumber: parseInt(element.awardnumber),
 		}
 
 		lesson.message = message

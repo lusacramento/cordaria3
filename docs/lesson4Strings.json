@@ -10,6 +10,7 @@
         "title": "Dica",
         "description": "Escolha bem a altura de seu acento. Nada de cadeira muito alta ou muito baixa para seu tamanho!",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -23,6 +24,7 @@
         "title": "Dica",
         "description": "Avance a lição somente se você se sentir seguro!",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -36,6 +38,7 @@
         "title": "Dica",
         "description": "Relaxe! Lembre-se  de relaxar os músculos desnecessários!",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -49,6 +52,7 @@
         "title": "Dica",
         "description": "Preste atenção na sua postura. Além de prevenir lesões, seu rendimento será melhor e sua saúde agradece!",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -62,6 +66,7 @@
         "title": "Dica",
         "description": "Cuide bem de seu instrumento. Ele com certeza vai retribuir!",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -75,6 +80,7 @@
         "title": "Dica",
         "description": "Deixe de timidez! Exercite também em um volume mais alto.",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -88,6 +94,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -101,6 +108,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -114,6 +122,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "5"
     },
     {
@@ -127,6 +136,7 @@
         "title": "Parabéns!",
         "description": "Você concluiu o tutorial! Ganhou o 1º troféu!",
         "isawarded": "true",
+        "awardnumber": "1",
         "points": "10"
     },
     {
@@ -140,6 +150,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -153,6 +164,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -166,6 +178,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -179,6 +192,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -192,6 +206,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -205,6 +220,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -218,6 +234,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -231,6 +248,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -244,6 +262,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "15"
     },
     {
@@ -257,6 +276,7 @@
         "title": "Parabéns!",
         "description": "Você exercitou todos os dedos. Agora vamos tentar o mesmo com outras cordas! Ganhou o 2º troféu!",
         "isawarded": "true",
+        "awardnumber": "2",
         "points": "30"
     },
     {
@@ -270,6 +290,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -283,6 +304,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -296,6 +318,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -309,6 +332,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -322,6 +346,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -335,6 +360,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -348,6 +374,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -361,6 +388,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -374,6 +402,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -387,6 +416,7 @@
         "title": "Informação",
         "description": "Você exercitou a segunda corda!",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -400,6 +430,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -413,6 +444,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -426,6 +458,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -439,6 +472,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -452,6 +486,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -465,6 +500,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -478,6 +514,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -491,6 +528,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -504,6 +542,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "30"
     },
     {
@@ -517,6 +556,7 @@
         "title": "Parabéns!",
         "description": "Você exercitou a terceira corda! Ganhou o terceiro troféu!",
         "isawarded": "true",
+        "awardnumber": "3",
         "points": "60"
     },
     {
@@ -530,6 +570,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -543,6 +584,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -556,6 +598,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -569,6 +612,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -582,6 +626,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -595,6 +640,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -608,6 +654,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -621,6 +668,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -634,6 +682,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -647,6 +696,7 @@
         "title": "Informação",
         "description": "Você exercitou todas as cordas!",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -660,6 +710,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -673,6 +724,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -686,6 +738,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -699,6 +752,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -712,6 +766,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -725,6 +780,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -738,6 +794,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -751,6 +808,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -764,6 +822,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -777,6 +836,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -790,6 +850,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -803,6 +864,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -816,6 +878,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -829,6 +892,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -842,6 +906,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -855,6 +920,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -868,6 +934,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -881,6 +948,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -894,6 +962,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "40"
     },
     {
@@ -907,6 +976,7 @@
         "title": "Parabéns!",
         "description": "Que tal dar uma acelerada? Ganhou o quarto troféu!",
         "isawarded": "true",
+        "awardnumber": "4",
         "points": "80"
     },
     {
@@ -920,6 +990,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -933,6 +1004,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -946,6 +1018,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -959,6 +1032,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -972,6 +1046,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -985,6 +1060,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -998,6 +1074,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1011,6 +1088,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1024,6 +1102,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1037,6 +1116,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1050,6 +1130,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1063,6 +1144,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1076,6 +1158,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1089,6 +1172,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1102,6 +1186,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1115,6 +1200,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1128,6 +1214,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1141,6 +1228,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1154,6 +1242,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1167,6 +1256,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1180,6 +1270,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1193,6 +1284,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1206,6 +1298,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1219,6 +1312,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1232,6 +1326,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1245,6 +1340,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1258,6 +1354,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1271,6 +1368,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1284,6 +1382,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "50"
     },
     {
@@ -1297,6 +1396,7 @@
         "title": "Parabéns!",
         "description": "Você pegou o jeito! Vamos tentar com várias cordas? Ganhou o quinto troféu",
         "isawarded": "true",
+        "awardnumber": "5",
         "points": "100"
     },
     {
@@ -1310,6 +1410,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1323,6 +1424,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1336,6 +1438,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1349,6 +1452,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1362,6 +1466,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1375,6 +1480,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1388,6 +1494,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1401,6 +1508,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1414,6 +1522,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1427,6 +1536,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1440,6 +1550,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1453,6 +1564,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1466,6 +1578,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1479,6 +1592,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1492,6 +1606,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1505,6 +1620,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1518,6 +1634,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1531,6 +1648,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1544,6 +1662,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1557,6 +1676,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1570,6 +1690,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1583,6 +1704,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1596,6 +1718,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1609,6 +1732,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1622,6 +1746,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1635,6 +1760,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1648,6 +1774,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1661,6 +1788,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1674,6 +1802,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1687,6 +1816,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1700,6 +1830,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1713,6 +1844,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1726,6 +1858,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1739,6 +1872,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1752,6 +1886,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1765,6 +1900,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1778,6 +1914,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1791,6 +1928,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1804,6 +1942,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "60"
     },
     {
@@ -1817,6 +1956,7 @@
         "title": "Parabéns!",
         "description": "Você está ficando fera! Ganhou o sexto troféu!",
         "isawarded": "true",
+        "awardnumber": "6",
         "points": "120"
     },
     {
@@ -1830,6 +1970,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1843,6 +1984,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1856,6 +1998,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1869,6 +2012,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1882,6 +2026,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1895,6 +2040,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1908,6 +2054,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1921,6 +2068,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1934,6 +2082,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1947,6 +2096,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1960,6 +2110,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1973,6 +2124,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1986,6 +2138,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -1999,6 +2152,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2012,6 +2166,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2025,6 +2180,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2038,6 +2194,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2051,6 +2208,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2064,6 +2222,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2077,6 +2236,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2090,6 +2250,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2103,6 +2264,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2116,6 +2278,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2129,6 +2292,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "70"
     },
     {
@@ -2142,6 +2306,7 @@
         "title": "Parabéns!",
         "description": "Ganhou o sétimo troféu!",
         "isawarded": "true",
+        "awardnumber": "7",
         "points": "140"
     },
     {
@@ -2155,6 +2320,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2168,6 +2334,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2181,6 +2348,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2194,6 +2362,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2207,6 +2376,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2220,6 +2390,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2233,6 +2404,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2246,6 +2418,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2259,6 +2432,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2272,6 +2446,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2285,6 +2460,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2298,6 +2474,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2311,6 +2488,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2324,6 +2502,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2337,6 +2516,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2350,6 +2530,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2363,6 +2544,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2376,6 +2558,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2389,6 +2572,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2402,6 +2586,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2415,6 +2600,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2428,6 +2614,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2441,6 +2628,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2454,6 +2642,7 @@
         "title": "",
         "description": "",
         "isawarded": "false",
+        "awardnumber": "0",
         "points": "80"
     },
     {
@@ -2467,6 +2656,7 @@
         "title": "Parabéns!",
         "description": "Você zerou o jogo! Parabéns! Ganhou o mega troféu e seu nome no hall de usuário mestre!",
         "isawarded": "true",
+        "awardnumber": "8",
         "points": "160"
     }
 ]
