@@ -50,11 +50,47 @@
 			/>
 		</td>
 		<td>
+			<input
+				id="icon-lesson-input"
+				type="text"
+				class="form form-control"
+				v-model="lesson.message.icon"
+				rows="3"
+			/>
+		</td>
+		<td>
+			<input
+				id="title-lesson-input"
+				type="text"
+				class="form form-control"
+				v-model="lesson.message.title"
+				rows="3"
+			/>
+		</td>
+		<td>
 			<textarea
 				id="message-lesson-input"
 				type="text"
 				class="form form-control"
-				v-model="lesson.message"
+				v-model="lesson.message.description"
+				rows="3"
+			/>
+		</td>
+		<td>
+			<input
+				id="isAwarded-lesson-input"
+				type="text"
+				class="form form-control"
+				v-model="lesson.message.isAwarded"
+				rows="3"
+			/>
+		</td>
+		<td>
+			<input
+				id="awardNumber-lesson-input"
+				type="text"
+				class="form form-control"
+				v-model="lesson.message.awardNumber"
 				rows="3"
 			/>
 		</td>
