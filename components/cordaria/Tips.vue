@@ -14,6 +14,8 @@
 	import AwardIcon7 from '~/assets/imgs/awards/big/award-7.png'
 	import AwardIcon8 from '~/assets/imgs/awards/big/award-8.png'
 
+	import JSConfetti from 'js-confetti'
+
 	let timerEstimedInSeconds = 5
 	const timerEstimedInMiliSeconds = timerEstimedInSeconds * 1000
 	let timerInterval = 0
@@ -22,7 +24,19 @@
 	const iconHtml = ref()
 	const icon = ref()
 
+	const confetti = ref()
+	confetti.value = new JSConfetti()
+
 	async function showAlert(data: LessonMessage) {
+		confetti.value
+			.addConfetti({
+				confettiRadius: 3,
+				confettiNumber: 500,
+			})
+			.then(() => {
+				confetti.value.clearCanvas()
+			})
+
 		if (data.isAwarded) {
 			switch (data.awardNumber) {
 				case 1:
@@ -132,6 +146,10 @@
 		display: flex !important;
 		justify-content: center !important;
 		align-items: center !important;
+		border: none;
+	}
+
+	canvas {
 		border: none;
 	}
 </style>
