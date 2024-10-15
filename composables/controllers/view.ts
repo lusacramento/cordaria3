@@ -76,10 +76,7 @@ export const useViewController = () => {
 	}
 
 	async function showTips(message: LessonMessage) {
-		dataTips.value.title = (await message.title) as string
-		dataTips.value.message = (await message.description) as string
-		dataTips.value.icon = (await message.icon) as SweetAlertIcon
-		tips.value.showAlert(dataTips.value)
+		tips.value.showAlert(message)
 	}
 
 	function showToast(

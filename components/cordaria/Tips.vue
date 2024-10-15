@@ -1,23 +1,93 @@
 <template>
-	<div id="tip-box" class="tip"></div>
+	<div id="tip-box" class="tip" />
 </template>
 
 <script lang="ts" setup>
-	import Swal, { type SweetAlertIcon } from 'sweetalert2'
-	import type { SweetAlertData } from '~/types/SweetAlertData'
+	import Swal from 'sweetalert2'
+	import type { LessonMessage } from '~/types/LessonMessage'
+	import AwardIcon1 from '~/assets/imgs/awards/big/award-1.png'
+	import AwardIcon2 from '~/assets/imgs/awards/big/award-2.png'
+	import AwardIcon3 from '~/assets/imgs/awards/big/award-3.png'
+	import AwardIcon4 from '~/assets/imgs/awards/big/award-4.png'
+	import AwardIcon5 from '~/assets/imgs/awards/big/award-5.png'
+	import AwardIcon6 from '~/assets/imgs/awards/big/award-6.png'
+	import AwardIcon7 from '~/assets/imgs/awards/big/award-7.png'
+	import AwardIcon8 from '~/assets/imgs/awards/big/award-8.png'
 
-	let timerEstimed = 5
+	import JSConfetti from 'js-confetti'
+
+	let timerEstimedInSeconds = 5
+	const timerEstimedInMiliSeconds = timerEstimedInSeconds * 1000
 	let timerInterval = 0
 
-	function showAlert(data: SweetAlertData) {
+	const awardIcon = ref()
+	const iconHtml = ref()
+	const icon = ref()
+
+	const confetti = ref()
+	confetti.value = new JSConfetti()
+
+	async function showAlert(data: LessonMessage) {
+		if (data.isAwarded) {
+			confetti.value
+				.addConfetti({
+					confettiRadius: 3,
+					confettiNumber: 500,
+				})
+				.then(() => {
+					confetti.value.clearCanvas()
+				})
+		}
+
+		if (data.isAwarded) {
+			switch (data.awardNumber) {
+				case 1:
+					awardIcon.value = AwardIcon1
+					break
+				case 2:
+					awardIcon.value = AwardIcon2
+					break
+				case 3:
+					awardIcon.value = AwardIcon3
+					break
+				case 4:
+					awardIcon.value = AwardIcon4
+					break
+				case 5:
+					awardIcon.value = AwardIcon5
+					break
+				case 6:
+					awardIcon.value = AwardIcon6
+					break
+				case 7:
+					awardIcon.value = AwardIcon7
+					break
+				case 8:
+					awardIcon.value = AwardIcon8
+					break
+
+				default:
+					awardIcon.value = null
+					icon.value = null
+					break
+			}
+
+			iconHtml.value = `<img src="${awardIcon.value}" alt="ícone do ${data.awardNumber}º troféu" class="big-award-icon d-flex justify-self-center"/>`
+		} else {
+			iconHtml.value = null
+			icon.value = data.icon
+		}
+
 		Swal.fire({
+			animation: false,
 			title: `<h1 class="title-tips">${data.title}</h1>`,
-			icon: data.icon,
-			html: `<p class="text-tips">${data.message}</p>
-	        <p class="close-tips">Fechando em ${timerEstimed} segundos.</p>`,
+			iconHtml: iconHtml.value,
+			icon: icon.value,
+			html: `<p class="text-tips">${data.description}</p>
+	        <p class="close-tips">Fechando em ${timerEstimedInSeconds} segundos.</p>`,
 			showCloseButton: true,
 			showConfirmButton: false,
-			timer: 5000,
+			timer: timerEstimedInMiliSeconds,
 			background: '#000000b8',
 			timerProgressBar: true,
 			didOpen: () => {
@@ -25,13 +95,13 @@
 				timerInterval = window.setInterval(() => {
 					const timerLeft = Swal.getTimerLeft()
 					if (typeof timerLeft == 'number') {
-						timerEstimed = Math.round(timerLeft / 1000)
+						timerEstimedInSeconds = Math.round(timerLeft / 1000)
 					}
 
 					Swal.update({
-						html: `<p class="text-tips">${data.message}</p><p class="close-tips">Fechando em ${timerEstimed} segundos.</p>`,
+						html: `<p class="text-tips">${data.description}</p><p class="close-tips">Fechando em ${timerEstimedInSeconds} segundos.</p>`,
 					})
-				}, 100)
+				}, 200)
 			},
 			willClose: () => {
 				clearInterval(timerInterval)
@@ -67,5 +137,21 @@
 
 	.swal2-select {
 		display: none !important;
+	}
+
+	.big-award-icon {
+		width: 130%;
+	}
+
+	.swal2-icon,
+	.swal2-icon-content {
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
+		border: none;
+	}
+
+	canvas {
+		border: none;
 	}
 </style>

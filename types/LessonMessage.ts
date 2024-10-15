@@ -5,4 +5,5 @@ export interface LessonMessage {
 	description: 'string'
 	icon: SweetAlertIcon
 	isAwarded: boolean
+	awardNumber: number
 }

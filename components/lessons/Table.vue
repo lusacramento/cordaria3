@@ -12,7 +12,11 @@
 					<th scope="col">Primeiro<br />Dedo</th>
 					<th scope="col">Corda</th>
 					<th scope="col">Batidas<br />Por<br />Minuto</th>
-					<th scope="col">Mensagem</th>
+					<th scope="col">Icone</th>
+					<th scope="col">Titulo</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">É premiado?</th>
+					<th scope="col">Número Premiação</th>
 					<th scope="col">Pontos</th>
 					<th scope="col">Ações</th>
 				</tr>
