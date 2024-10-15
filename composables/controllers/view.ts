@@ -113,9 +113,9 @@ export const useViewController = () => {
 	// game mechanics
 	function start() {
 		toggleShowGameScreen()
-		// game.payload()
-		const isCompleted = toRef(useGameController().isCompleted)
-		isCompleted.value = true
+		game.payload()
+		// const isCompleted = toRef(useGameController().isCompleted)
+		// isCompleted.value = true
 	}
 
 	function payload() {

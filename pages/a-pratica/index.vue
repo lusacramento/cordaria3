@@ -11,7 +11,7 @@
 		<CordariaTips ref="tips" />
 
 		<div id="the-practice" class="container-fluid p-0">
-			<div class="row">
+			<div v-if="!isShowGameScreen" class="row">
 				<div class="col">
 					<LayoutsHeader>
 						<template #left>
@@ -80,16 +80,17 @@
 					</LayoutsHeader>
 				</div>
 			</div>
-			<div class="row d-flex justify-content-center">
+			<div class="row d-flex justify-content-center align-items-center">
 				<div
-					class="col-lg-10 content justify-content-center align-items-center"
+					class="col-lg-10 content d-flex justify-content-center align-items-center"
 				>
-					<div v-if="isShowStatistics" class="d-block exercise">
+					<div class="row"></div>
+					<div v-if="isShowStatistics" class="d-block row">
 						<StatisticsTable :toggle-show-statistics="toggleShowStatistics" />
 					</div>
 					<div
 						v-else
-						class="row exercise justify-content-center bg-exercise-screen"
+						class="row exercise justify-content-center align-items-center d-flex exercise-screen"
 					>
 						<div
 							class="play-button d-flex justify-content-center align-items-center d-flex"
@@ -107,7 +108,7 @@
 									/>
 								</button>
 							</div>
-							<div v-else>
+							<div v-else class="cards-screen">
 								<div class="row mb-5">
 									<div class="col">
 										<CordariaScreen />
@@ -348,5 +349,9 @@
 
 	.avatar-link {
 		cursor: pointer;
+	}
+
+	.cards-screen {
+		padding-top: 20%;
 	}
 </style>
