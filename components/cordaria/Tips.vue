@@ -28,14 +28,16 @@
 	confetti.value = new JSConfetti()
 
 	async function showAlert(data: LessonMessage) {
-		confetti.value
-			.addConfetti({
-				confettiRadius: 3,
-				confettiNumber: 500,
-			})
-			.then(() => {
-				confetti.value.clearCanvas()
-			})
+		if (data.isAwarded) {
+			confetti.value
+				.addConfetti({
+					confettiRadius: 3,
+					confettiNumber: 500,
+				})
+				.then(() => {
+					confetti.value.clearCanvas()
+				})
+		}
 
 		if (data.isAwarded) {
 			switch (data.awardNumber) {
