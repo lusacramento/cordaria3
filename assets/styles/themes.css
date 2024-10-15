@@ -5,6 +5,7 @@
 	--bg-success: rgba(57, 194, 161, 1) !important;
 	--bg-warn: rgba(255, 215, 64, 1) !important;
 
+	--color-text-white: rgba(112, 111, 108, 1);
 	--color-white-50: rgba(255, 255, 255, 0.5);
 	--color-white-70: rgba(255, 255, 255, 0.7);
 
@@ -25,8 +26,8 @@
 		rgba(215, 213, 201, 1) 37%,
 		rgba(240, 248, 255, 1) 77%
 	);
-	--border-nav-light: 15px solid var(--bg-app-light);
-	--text-color-light: var(--color-white-50);
+	--border-nav-light: 15px solid rgba(229, 228, 219, 1);
+	--text-color-light: var(--color-text-white);
 	--bg-title-box-light-in: rgba(238, 235, 235, 1);
 	--bg-title-box-light-out: rgba(227, 224, 217, 1);
 
