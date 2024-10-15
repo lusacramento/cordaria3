@@ -93,20 +93,26 @@
 						class="row exercise justify-content-center align-items-center d-flex exercise-screen"
 					>
 						<div
-							class="play-button d-flex justify-content-center align-items-center d-flex"
+							class="d-flex justify-content-center align-items-center d-flex"
 						>
-							<div v-if="!isShowGameScreen">
-								<button class="btn btn-play" :disabled="!isLoaded">
+							<div v-if="!isShowGameScreen" class="justify-content-center">
+								<div class="row m-4 text-center">
 									<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
-									<img class="img-lesson" :src="lessonImg" alt="" />
-									<LayoutsBox
-										:title-text="boxButtons.play.callInAction.text as string"
-										:schema="boxButtons.play.callInAction.schema"
-										:left-logo="boxButtons.play.callInAction.leftLogo"
-										:right-logo="boxButtons.play.callInAction.rightLogo"
-										@click.prevent="start()"
-									/>
-								</button>
+								</div>
+								<div class="row m-4">
+									<LessonFigure />
+								</div>
+								<div class="row m-4">
+									<button class="btn btn-play" :disabled="!isLoaded">
+										<LayoutsBox
+											:title-text="boxButtons.play.callInAction.text as string"
+											:schema="boxButtons.play.callInAction.schema"
+											:left-logo="boxButtons.play.callInAction.leftLogo"
+											:right-logo="boxButtons.play.callInAction.rightLogo"
+											@click.prevent="start()"
+										/>
+									</button>
+								</div>
 							</div>
 							<div v-else class="cards-screen">
 								<div class="row mb-5">
