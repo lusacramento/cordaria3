@@ -8,7 +8,7 @@ import disabledLightCavaco from '~/assets/imgs/instruments/index/light/disabled/
 import enabledLightCavaco from '~/assets/imgs/instruments/index/light/enabled/cavaco.png'
 
 import disabledDarkAcousticGuitar from '~/assets/imgs/instruments/index/dark/disabled/acoustic-guitar.png'
-import enebledDarkAcousticGuitar from '~/assets/imgs/instruments/index/dark/enabled/acoustic-guitar.png'
+import enabledDarkAcousticGuitar from '~/assets/imgs/instruments/index/dark/enabled/acoustic-guitar.png'
 import disabledDarkElectricGuitar from '~/assets/imgs/instruments/index/dark/disabled/electric-guitar.png'
 import enabledDarkElectricGuitar from '~/assets/imgs/instruments/index/dark/enabled/electric-guitar.png'
 import disabledDarkBass from '~/assets/imgs/instruments/index/dark/disabled/bass.png'
@@ -41,18 +41,18 @@ export const useInstrumentSelector = () => {
 	const { value } = toRefs(useColorMode())
 
 	watch(value, (newValue) => {
-		updateThemeImages()
+		removeHighlightOfAllInstruments()
 		updateActiveInstrumentImage(instrument.value)
 	})
 
 	const { instrument } = storeToRefs(useMySettingsStore())
 
 	watch(instrument, () => {
-		updateThemeImages()
+		removeHighlightOfAllInstruments()
 		updateActiveInstrumentImage(instrument.value)
 	})
 
-	function updateThemeImages() {
+	function removeHighlightOfAllInstruments() {
 		switch (value.value) {
 			case 'dark':
 				instruments.value.acousticGuitar.url = disabledDarkAcousticGuitar
@@ -71,14 +71,15 @@ export const useInstrumentSelector = () => {
 		}
 	}
 
+
 	function updateActiveInstrumentImage(instrument: Instrument) {
 		switch (instrument) {
 			case Instrument.ACOUSTICGUITAR:
 				instruments.value.acousticGuitar.url =
 					value.value === 'dark'
-						? enebledDarkAcousticGuitar
+						? enabledDarkAcousticGuitar
 						: enabledLightAcousticGuitar
-				instruments.value.acousticGuitar.url = enebledDarkAcousticGuitar
+				instruments.value.acousticGuitar.url = enabledDarkAcousticGuitar
 				break
 			case Instrument.ELECTRICGUITAR:
 				instruments.value.electricGuitar.url =
@@ -103,11 +104,34 @@ export const useInstrumentSelector = () => {
 		}
 	}
 
+	function highlightInstrument(instrument: Instrument){
+		switch (value.value) {
+			case 'dark':
+				if(instruments.value.acousticGuitar.id == instrument) instruments.value.acousticGuitar.url = enabledDarkAcousticGuitar
+				if(instruments.value.electricGuitar.id == instrument) instruments.value.electricGuitar.url = enabledDarkElectricGuitar
+				if(instruments.value.bass.id == instrument) instruments.value.bass.url = enabledDarkBass
+				if(instruments.value.cavaco.id == instrument) instruments.value.cavaco.url = enabledDarkCavaco
+				break;
+				case 'light':
+				if(instruments.value.acousticGuitar.id == instrument) instruments.value.acousticGuitar.url = enabledLightAcousticGuitar
+				if(instruments.value.electricGuitar.id == instrument) instruments.value.electricGuitar.url = enabledLightElectricGuitar
+				if(instruments.value.bass.id == instrument) instruments.value.bass.url = enabledLightBass
+				if(instruments.value.cavaco.id == instrument) instruments.value.cavaco.url = enabledLightCavaco
+				break;
+		
+			default:
+				break;
+		}
+	}
+
 	function joinGame(instrument: Instrument) {
 		console.log(instrument)
 	}
 
-	function mouseHover(newInstrument: Instrument) {}
+	function mouseHover(newInstrument: Instrument) {
+		removeHighlightOfAllInstruments()
+		highlightInstrument(newInstrument)
+	}
 
 	// function mouseLeave() {
 	// 	updateActiveInstrumentImage(instrument.value)
@@ -115,7 +139,7 @@ export const useInstrumentSelector = () => {
 
 	return {
 		instruments,
-		updateThemeImages,
+		updateThemeImages: removeHighlightOfAllInstruments,
 		updateActiveInstrumentImage,
 		joinGame,
 		mouseHover,
