@@ -1,15 +1,15 @@
 <template>
 	<div class="container-fluid d-flex justify-content-center">
-		<div id="carouselExample" class="carousel slide">
+		<div id="instrument-carousel" class="carousel slide">
 			<div class="carousel-inner">
 				<div
 					class="carousel-item"
 					:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
 				>
 					<img
-						:src="instrumentsImage.acousticGuitar"
-						class="d-block"
-						alt="Violão"
+						:src="instruments.acousticGuitar.url"
+						class="d-block img img-fluid"
+						:alt="instruments.acousticGuitar.id"
 						@click.prevent="joinGame(Instrument.ACOUSTICGUITAR)"
 					/>
 				</div>
@@ -18,9 +18,9 @@
 					:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
 				>
 					<img
-						:src="instrumentsImage.electricGuitar"
-						class="d-block"
-						alt="Guitarra"
+						:src="instruments.electricGuitar.url"
+						class="d-block img img-fluid"
+						:alt="instruments.electricGuitar.id"
 						@click.prevent="joinGame(Instrument.ELECTRICGUITAR)"
 					/>
 				</div>
@@ -29,9 +29,9 @@
 					:class="{ active: instrument === Instrument.BASS }"
 				>
 					<img
-						:src="instrumentsImage.bass"
-						class="d-block"
-						alt="Baixo"
+						:src="instruments.bass.url"
+						class="d-block img img-fluid"
+						:alt="instruments.bass.id"
 						@click.prevent="joinGame(Instrument.BASS)"
 					/>
 				</div>
@@ -40,9 +40,9 @@
 					:class="{ active: instrument === Instrument.CAVACO }"
 				>
 					<img
-						:src="instrumentsImage.cavaco"
-						class="d-block"
-						alt="Cavaquinho"
+						:src="instruments.cavaco.url"
+						class="d-block img img-fluid"
+						:alt="instruments.cavaco.id"
 						@click.prevent="joinGame(Instrument.CAVACO)"
 					/>
 				</div>
@@ -50,7 +50,7 @@
 			<button
 				class="carousel-control-prev"
 				type="button"
-				data-bs-target="#carouselExample"
+				data-bs-target="#instrument-carousel"
 				data-bs-slide="prev"
 			>
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -59,7 +59,7 @@
 			<button
 				class="carousel-control-next"
 				type="button"
-				data-bs-target="#carouselExample"
+				data-bs-target="#instrument-carousel"
 				data-bs-slide="next"
 			>
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -72,8 +72,7 @@
 <script lang="ts" setup>
 	import { Instrument } from '~/types/Instrument'
 
-	const { instrumentsImage } = useInstrumentSelector()
-	const { updateThemeImages, joinGame } = useInstrumentSelector()
+	const { instruments, updateThemeImages, joinGame } = useInstrumentSelector()
 
 	onBeforeMount(async () => {
 		await updateThemeImages()
@@ -83,7 +82,8 @@
 </script>
 
 <style scoped>
-	img {
+	.img {
 		cursor: pointer;
+		width: 70vw;
 	}
 </style>

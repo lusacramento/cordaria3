@@ -71,7 +71,6 @@ export const useInstrumentSelector = () => {
 		}
 	}
 
-
 	function updateActiveInstrumentImage(instrument: Instrument) {
 		switch (instrument) {
 			case Instrument.ACOUSTICGUITAR:
@@ -104,28 +103,36 @@ export const useInstrumentSelector = () => {
 		}
 	}
 
-	function highlightInstrument(instrument: Instrument){
+	function highlightInstrument(instrument: Instrument) {
 		switch (value.value) {
 			case 'dark':
-				if(instruments.value.acousticGuitar.id == instrument) instruments.value.acousticGuitar.url = enabledDarkAcousticGuitar
-				if(instruments.value.electricGuitar.id == instrument) instruments.value.electricGuitar.url = enabledDarkElectricGuitar
-				if(instruments.value.bass.id == instrument) instruments.value.bass.url = enabledDarkBass
-				if(instruments.value.cavaco.id == instrument) instruments.value.cavaco.url = enabledDarkCavaco
-				break;
-				case 'light':
-				if(instruments.value.acousticGuitar.id == instrument) instruments.value.acousticGuitar.url = enabledLightAcousticGuitar
-				if(instruments.value.electricGuitar.id == instrument) instruments.value.electricGuitar.url = enabledLightElectricGuitar
-				if(instruments.value.bass.id == instrument) instruments.value.bass.url = enabledLightBass
-				if(instruments.value.cavaco.id == instrument) instruments.value.cavaco.url = enabledLightCavaco
-				break;
-		
+				if (instruments.value.acousticGuitar.id == instrument)
+					instruments.value.acousticGuitar.url = enabledDarkAcousticGuitar
+				if (instruments.value.electricGuitar.id == instrument)
+					instruments.value.electricGuitar.url = enabledDarkElectricGuitar
+				if (instruments.value.bass.id == instrument)
+					instruments.value.bass.url = enabledDarkBass
+				if (instruments.value.cavaco.id == instrument)
+					instruments.value.cavaco.url = enabledDarkCavaco
+				break
+			case 'light':
+				if (instruments.value.acousticGuitar.id == instrument)
+					instruments.value.acousticGuitar.url = enabledLightAcousticGuitar
+				if (instruments.value.electricGuitar.id == instrument)
+					instruments.value.electricGuitar.url = enabledLightElectricGuitar
+				if (instruments.value.bass.id == instrument)
+					instruments.value.bass.url = enabledLightBass
+				if (instruments.value.cavaco.id == instrument)
+					instruments.value.cavaco.url = enabledLightCavaco
+				break
+
 			default:
-				break;
+				break
 		}
 	}
 
 	function joinGame(instrument: Instrument) {
-		console.log(instrument)
+		loadInstrument(instrument)
 	}
 
 	function mouseHover(newInstrument: Instrument) {
@@ -133,9 +140,40 @@ export const useInstrumentSelector = () => {
 		highlightInstrument(newInstrument)
 	}
 
-	// function mouseLeave() {
-	// 	updateActiveInstrumentImage(instrument.value)
-	// }
+	function mouseLeave() {
+		removeHighlightOfAllInstruments()
+		updateActiveInstrumentImage(instrument.value)
+	}
+
+	async function loadInstrument(instrument: Instrument) {
+		if (
+			useMySettingsStore().getInstrument !== instrument &&
+			useMyUserStore().getId
+		) {
+			await useMySettingsStore().setInstrument(instrument)
+			await useMySettingsStore().update()
+		} else {
+			await useMySettingsStore().setInstrument(instrument)
+		}
+
+		redirectToPracticePage()
+	}
+
+	function redirectToPracticePage() {
+		useRouter().push('/entrar')
+	}
+
+	const isMobile = ref(verifyIsMobile())
+
+	function verifyIsMobile() {
+		if (
+			navigator.userAgent.match(/iPhone/i) ||
+			navigator.userAgent.match(/iPad/i) ||
+			navigator.userAgent.match(/Android/i)
+		)
+			return true
+		return false
+	}
 
 	return {
 		instruments,
@@ -143,6 +181,7 @@ export const useInstrumentSelector = () => {
 		updateActiveInstrumentImage,
 		joinGame,
 		mouseHover,
-		// mouseLeave,
+		mouseLeave,
+		isMobile,
 	}
 }
