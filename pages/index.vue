@@ -11,7 +11,9 @@
 				</div>
 			</template>
 		</LayoutsHeader>
-		<div class="container content d-flex align-items-center">
+		<div
+			class="container content d-flex align-items-center justify-content-center"
+		>
 			<aside class="row d-flex justify-content-center">
 				<div v-if="isMobile">
 					<InstrumentsSelectorCarousel />
