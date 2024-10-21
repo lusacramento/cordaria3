@@ -8,7 +8,7 @@ import disabledLightCavaco from '~/assets/imgs/instruments/index/light/disabled/
 import enabledLightCavaco from '~/assets/imgs/instruments/index/light/enabled/cavaco.png'
 
 import disabledDarkAcousticGuitar from '~/assets/imgs/instruments/index/dark/disabled/acoustic-guitar.png'
-import enebledDarkAcousticGuitar from '~/assets/imgs/instruments/index/dark/enabled/acoustic-guitar.png'
+import enabledDarkAcousticGuitar from '~/assets/imgs/instruments/index/dark/enabled/acoustic-guitar.png'
 import disabledDarkElectricGuitar from '~/assets/imgs/instruments/index/dark/disabled/electric-guitar.png'
 import enabledDarkElectricGuitar from '~/assets/imgs/instruments/index/dark/enabled/electric-guitar.png'
 import disabledDarkBass from '~/assets/imgs/instruments/index/dark/disabled/bass.png'
@@ -41,18 +41,18 @@ export const useInstrumentSelector = () => {
 	const { value } = toRefs(useColorMode())
 
 	watch(value, (newValue) => {
-		updateThemeImages()
+		removeHighlightOfAllInstruments()
 		updateActiveInstrumentImage(instrument.value)
 	})
 
 	const { instrument } = storeToRefs(useMySettingsStore())
 
 	watch(instrument, () => {
-		updateThemeImages()
+		removeHighlightOfAllInstruments()
 		updateActiveInstrumentImage(instrument.value)
 	})
 
-	function updateThemeImages() {
+	function removeHighlightOfAllInstruments() {
 		switch (value.value) {
 			case 'dark':
 				instruments.value.acousticGuitar.url = disabledDarkAcousticGuitar
@@ -76,9 +76,9 @@ export const useInstrumentSelector = () => {
 			case Instrument.ACOUSTICGUITAR:
 				instruments.value.acousticGuitar.url =
 					value.value === 'dark'
-						? enebledDarkAcousticGuitar
+						? enabledDarkAcousticGuitar
 						: enabledLightAcousticGuitar
-				instruments.value.acousticGuitar.url = enebledDarkAcousticGuitar
+				instruments.value.acousticGuitar.url = enabledDarkAcousticGuitar
 				break
 			case Instrument.ELECTRICGUITAR:
 				instruments.value.electricGuitar.url =
@@ -103,22 +103,85 @@ export const useInstrumentSelector = () => {
 		}
 	}
 
-	function joinGame(instrument: Instrument) {
-		console.log(instrument)
+	function highlightInstrument(instrument: Instrument) {
+		switch (value.value) {
+			case 'dark':
+				if (instruments.value.acousticGuitar.id == instrument)
+					instruments.value.acousticGuitar.url = enabledDarkAcousticGuitar
+				if (instruments.value.electricGuitar.id == instrument)
+					instruments.value.electricGuitar.url = enabledDarkElectricGuitar
+				if (instruments.value.bass.id == instrument)
+					instruments.value.bass.url = enabledDarkBass
+				if (instruments.value.cavaco.id == instrument)
+					instruments.value.cavaco.url = enabledDarkCavaco
+				break
+			case 'light':
+				if (instruments.value.acousticGuitar.id == instrument)
+					instruments.value.acousticGuitar.url = enabledLightAcousticGuitar
+				if (instruments.value.electricGuitar.id == instrument)
+					instruments.value.electricGuitar.url = enabledLightElectricGuitar
+				if (instruments.value.bass.id == instrument)
+					instruments.value.bass.url = enabledLightBass
+				if (instruments.value.cavaco.id == instrument)
+					instruments.value.cavaco.url = enabledLightCavaco
+				break
+
+			default:
+				break
+		}
 	}
 
-	function mouseHover(newInstrument: Instrument) {}
+	function joinGame(instrument: Instrument) {
+		loadInstrument(instrument)
+	}
 
-	// function mouseLeave() {
-	// 	updateActiveInstrumentImage(instrument.value)
-	// }
+	function mouseHover(newInstrument: Instrument) {
+		removeHighlightOfAllInstruments()
+		highlightInstrument(newInstrument)
+	}
+
+	function mouseLeave() {
+		removeHighlightOfAllInstruments()
+		updateActiveInstrumentImage(instrument.value)
+	}
+
+	async function loadInstrument(instrument: Instrument) {
+		if (
+			useMySettingsStore().getInstrument !== instrument &&
+			useMyUserStore().getId
+		) {
+			await useMySettingsStore().setInstrument(instrument)
+			await useMySettingsStore().update()
+		} else {
+			await useMySettingsStore().setInstrument(instrument)
+		}
+
+		redirectToPracticePage()
+	}
+
+	function redirectToPracticePage() {
+		useRouter().push('/entrar')
+	}
+
+	const isMobile = ref(verifyIsMobile())
+
+	function verifyIsMobile() {
+		if (
+			navigator.userAgent.match(/iPhone/i) ||
+			navigator.userAgent.match(/iPad/i) ||
+			navigator.userAgent.match(/Android/i)
+		)
+			return true
+		return false
+	}
 
 	return {
 		instruments,
-		updateThemeImages,
+		updateThemeImages: removeHighlightOfAllInstruments,
 		updateActiveInstrumentImage,
 		joinGame,
 		mouseHover,
-		// mouseLeave,
+		mouseLeave,
+		isMobile,
 	}
 }
