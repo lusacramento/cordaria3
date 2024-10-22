@@ -4,6 +4,7 @@ export interface UserDocument extends Document {
 	email: string
 	userName: string
 	password: string
+	rescuePassword: string
 }
 
 const UserSchema = new Schema({
@@ -26,6 +27,10 @@ const UserSchema = new Schema({
 		type: String,
 		required: true,
 		length: [9, 'Senha deve conter pelo menos 9 caracteres.'],
+	},
+	rescuePassword: {
+		type: String,
+		required: false,
 	},
 })
 
