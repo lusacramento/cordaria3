@@ -1,6 +1,14 @@
 export const useIUser = () => {
 	const registerUrl = '/api/auth/register'
 	const userDetailsUrl = '/api/userdetails'
+	const rescuePasswordUrl = '/api/auth/rescuePassword'
+
+	async function findUserByEmail(email: string) {
+		return await $fetch(rescuePasswordUrl, {
+			method: 'get',
+			params: { email: email },
+		})
+	}
 
 	async function createUser(values: any) {
 		return await $fetch(registerUrl, {
@@ -30,5 +38,11 @@ export const useIUser = () => {
 		})
 	}
 
-	return { createUser, getUserDetails, postUserDetails, setUserDetails }
+	return {
+		findUserByEmail,
+		createUser,
+		getUserDetails,
+		postUserDetails,
+		setUserDetails,
+	}
 }

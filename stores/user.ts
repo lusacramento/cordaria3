@@ -94,6 +94,16 @@ export const useMyUserStore = defineStore({
 			this.loggedIn = false
 		},
 
+		async getUserByEmail() {
+			const user = (await useIUser().findUserByEmail(this.email)) as User
+			console.log(user)
+			if (user._id) {
+				this.setId(user._id)
+				this.setUserName(user.userName)
+				this.setEmail(user.email)
+			}
+		},
+
 		async register() {
 			const user = {
 				userName: this.userName,
