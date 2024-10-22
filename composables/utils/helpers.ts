@@ -47,10 +47,24 @@ export const useHelpers = () => {
 		}
 	}
 
+	function generateRandomHash() {
+		const lenght = 64
+		const characters =
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+		let hash = ''
+
+		for (let i = 0; i < lenght; i++) {
+			hash += characters.charAt(Math.floor(Math.random() * characters.length))
+		}
+
+		return hash
+	}
+
 	return {
 		translate,
 		getQuantityOfStrings,
 		getFileExtension,
 		convertInstrumentEnumToString,
+		generateRandomHash,
 	}
 }
