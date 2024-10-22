@@ -5,7 +5,7 @@ import { defineStore } from 'pinia'
 export const useMyUserStore = defineStore({
 	id: 'myUserStore',
 	state: () => ({
-		id: '' as string,
+		_id: '' as string,
 		userName: '',
 		email: '',
 		password: '',
@@ -18,7 +18,7 @@ export const useMyUserStore = defineStore({
 
 	getters: {
 		getId(state) {
-			return state.id
+			return state._id
 		},
 
 		getUserName(state) {
@@ -51,7 +51,7 @@ export const useMyUserStore = defineStore({
 	},
 	actions: {
 		setId(id: string) {
-			this.id = id
+			this._id = id
 		},
 
 		setUserName(userName: string) {
@@ -103,14 +103,15 @@ export const useMyUserStore = defineStore({
 			this.clearPassword()
 			const response = (await useIUser().createUser(user)) as unknown as User
 
-			this.id = response._id
+			if (response._id) this._id = response._id
 
 			this.setIsNewRegistered(true)
 
 			this.saveSettings()
 		},
+
 		async saveSettings() {
-			useMySettingsStore().setUserId(this.id)
+			useMySettingsStore().setUserId(this._id)
 			await useMySettingsStore().post()
 		},
 	},
