@@ -31,7 +31,7 @@
 						@click="$emit('callFunction')"
 						class="btn btn-primary"
 					>
-						Salvar
+						{{ props.callToActionButtonLabel }}
 					</button>
 				</div>
 			</div>
@@ -44,6 +44,10 @@
 		modal: {
 			type: Object,
 			required: true,
+		},
+		callToActionButtonLabel: {
+			type: String,
+			default: 'Salvar',
 		},
 	})
 </script>
