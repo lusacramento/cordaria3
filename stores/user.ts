@@ -56,7 +56,10 @@ export const useMyUserStore = defineStore({
 
 		setUserName(userName: string) {
 			this.userName = userName
-			return
+		},
+
+		setEmail(email: string) {
+			this.email = email
 		},
 
 		setPassword(password: string) {
