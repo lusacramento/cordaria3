@@ -93,10 +93,6 @@
 				return
 			}
 
-			toaster.value.body = 'E-mail ou senha inválidos.'
-			toaster.value.type = 'error'
-			toast.value.show(toaster.value)
-
 			const responseUser: any = { ...data.value?.user }
 
 			loadUserOnstore(responseUser)
