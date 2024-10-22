@@ -79,6 +79,8 @@
 			password: useMyUserStore().getPassword,
 		}
 
+		useMyUserStore().clearPassword()
+
 		try {
 			const response: any = await signIn('credentials', {
 				...newUser,
