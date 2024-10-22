@@ -98,7 +98,7 @@ export const useMyUserStore = defineStore({
 				password: this.password,
 				confirmPassword: this.confirmPassword,
 				acceptTerms: this.acceptTerms,
-			}
+			} as User
 
 			this.clearPassword()
 			const response = (await useIUser().createUser(user)) as unknown as User
