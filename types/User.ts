@@ -3,4 +3,7 @@ export interface User {
 	email: string
 	userName: string
 	password: string
+	confirmPassword?: string
+	acceptTerms?: boolean
+	rescuePassword?: string
 }
