@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose'
 
 export interface UserDocument extends Document {
 	email: string
-	username: string
+	userName: string
 	password: string
 }
 
@@ -15,7 +15,7 @@ const UserSchema = new Schema({
 		index: true,
 	},
 
-	username: {
+	userName: {
 		type: String,
 		required: true,
 		unique: true,

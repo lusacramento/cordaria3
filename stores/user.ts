@@ -93,7 +93,7 @@ export const useMyUserStore = defineStore({
 
 		async register() {
 			const user = {
-				username: this.userName,
+				userName: this.userName,
 				email: this.email,
 				password: this.password,
 				confirmPassword: this.confirmPassword,

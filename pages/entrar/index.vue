@@ -111,7 +111,7 @@
 
 	function loadUserOnstore(user: any) {
 		userStore.setId(user._id)
-		userStore.setUserName(user.username)
+		userStore.setUserName(user.userName)
 		userStore.logIn()
 	}
 </script>

@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 	try {
 		if (
 			!body.email ||
-			!body.username ||
+			!body.userName ||
 			!body.password ||
 			!body.confirmPassword ||
 			!body.acceptTerms
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
 				message: 'O email não tem o formato válido',
 			})
 
-		if (!validations.validateUserName(body.username))
+		if (!validations.validateUserName(body.userName))
 			throw createError({
 				statusCode: 400,
 				statusMessage: 'Bad Request',
