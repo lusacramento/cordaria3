@@ -59,7 +59,7 @@
 		loginModalButton.value.click()
 		if (useMyUserStore().getIsNewRegistered) {
 			toaster.value.header = 'Sucesso!'
-			toaster.value.body = 'Cadastro registrado. Por favor,faça o login.'
+			toaster.value.body = 'Cadastro registrado. Por favor, faça o login.'
 			toaster.value.type = 'success'
 			toast.value.show(toaster.value)
 			useMyUserStore().setIsNewRegistered(false)
