@@ -20,7 +20,6 @@
 					data-bs-placement="right"
 					data-bs-custom-class="custom-tooltip"
 					:data-bs-title="user.email.info"
-					@focus="showToolTip(emailEl)"
 					:class="{
 						'is-valid': user.email.isValidated,
 						'is-invalid': !user.email.isValidated,
@@ -48,7 +47,6 @@
 					data-bs-placement="right"
 					data-bs-custom-class="custom-tooltip"
 					:data-bs-title="user.name.info"
-					@focus="showToolTip(userNameEl)"
 					:class="{
 						'is-valid': user.name.isValidated,
 						'is-invalid': !user.name.isValidated,
@@ -76,7 +74,6 @@
 					data-bs-placement="right"
 					data-bs-custom-class="custom-tooltip"
 					:data-bs-title="user.password.info"
-					@focus="showToolTip(passwordEl)"
 					:class="{
 						'is-valid': user.password.isValidated,
 						'is-invalid': !user.password.isValidated,
@@ -117,7 +114,6 @@
 					data-bs-placement="right"
 					data-bs-custom-class="custom-tooltip"
 					:data-bs-title="user.confirmPassword.info"
-					@focus="showToolTip(confirmPasswordEl)"
 					:class="{
 						'is-valid': user.confirmPassword.isValidated,
 						'is-invalid': !user.confirmPassword.isValidated,
@@ -149,7 +145,6 @@
 					data-bs-placement="left"
 					data-bs-custom-class="custom-tooltip"
 					:data-bs-title="user.acceptTerms.info"
-					@focus="showToolTip(acceptTermsEl)"
 				/>
 				<label
 					class="form-check-label"
@@ -182,20 +177,26 @@
 </template>
 
 <script lang="ts" setup>
-	const bootstrap = () => import('bootstrap')
+	const { createTooltip } = useTooltip()
 
 	const emailEl = ref()
+	const emailTooltip = ref()
 	const userNameEl = ref()
+	const userNameTooltip = ref()
 	const passwordEl = ref()
+	const passwordTooltip = ref()
 	const confirmPasswordEl = ref()
+	const confirmPasswordTooltip = ref()
 	const acceptTermsEl = ref()
+	const acceptTermsTooltip = ref()
 
-	function showToolTip(el: Element) {
-		bootstrap().then((response) => {
-			const tt = new response.Tooltip(el, { fallbackPlacements: ['right'] })
-			tt.show()
-		})
-	}
+	onMounted(() => {
+		emailTooltip.value = createTooltip(emailEl.value)
+		passwordTooltip.value = createTooltip(passwordEl.value)
+		userNameTooltip.value = createTooltip(userNameEl.value)
+		confirmPasswordTooltip.value = createTooltip(confirmPasswordEl.value)
+		acceptTermsTooltip.value = createTooltip(acceptTermsEl.value)
+	})
 
 	const { currentType, currentIcon, toggleVisibility } = usePasswordInput()
 

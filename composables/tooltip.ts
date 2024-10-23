@@ -1,7 +1,7 @@
 export const useTooltip = () => {
 	const bootstrap = () => import('bootstrap')
 
-	function createToolTip(el: Element) {
+	function createTooltip(el: Element) {
 		bootstrap().then((response) => {
 			return new response.Tooltip(el, {
 				fallbackPlacements: ['right'],
@@ -10,6 +10,6 @@ export const useTooltip = () => {
 		})
 	}
 	return {
-		createToolTip,
+		createTooltip,
 	}
 }
