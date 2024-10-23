@@ -80,6 +80,11 @@
 			<div class="col-auto">
 				<NuxtLink to="/registrar">Não tem uma conta?</NuxtLink>
 			</div>
+			<div class="row justify-content-center">
+				<div class="col-auto">
+					<NuxtLink to="/recuperar-senha">Esqueceu sua senha?</NuxtLink>
+				</div>
+			</div>
 		</div>
 	</form>
 </template>

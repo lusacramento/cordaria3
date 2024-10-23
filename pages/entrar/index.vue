@@ -59,7 +59,7 @@
 		loginModalButton.value.click()
 		if (useMyUserStore().getIsNewRegistered) {
 			toaster.value.header = 'Sucesso!'
-			toaster.value.body = 'Cadastro registrado. Por favor,faça o login.'
+			toaster.value.body = 'Cadastro registrado. Por favor, faça o login.'
 			toaster.value.type = 'success'
 			toast.value.show(toaster.value)
 			useMyUserStore().setIsNewRegistered(false)
@@ -79,6 +79,8 @@
 			password: useMyUserStore().getPassword,
 		}
 
+		useMyUserStore().clearPassword()
+
 		try {
 			const response: any = await signIn('credentials', {
 				...newUser,
@@ -92,10 +94,6 @@
 				toast.value.show(toaster.value)
 				return
 			}
-
-			toaster.value.body = 'E-mail ou senha inválidos.'
-			toaster.value.type = 'error'
-			toast.value.show(toaster.value)
 
 			const responseUser: any = { ...data.value?.user }
 
@@ -111,7 +109,7 @@
 
 	function loadUserOnstore(user: any) {
 		userStore.setId(user._id)
-		userStore.setUserName(user.username)
+		userStore.setUserName(user.userName)
 		userStore.logIn()
 	}
 </script>

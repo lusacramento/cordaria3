@@ -5,7 +5,7 @@ import { defineStore } from 'pinia'
 export const useMyUserStore = defineStore({
 	id: 'myUserStore',
 	state: () => ({
-		id: '' as string,
+		_id: '' as string,
 		userName: '',
 		email: '',
 		password: '',
@@ -13,12 +13,13 @@ export const useMyUserStore = defineStore({
 		acceptTerms: false,
 		isNewRegistered: false,
 		loggedIn: false,
+		rescueToken: '',
 		theme: 'dark',
 	}),
 
 	getters: {
 		getId(state) {
-			return state.id
+			return state._id
 		},
 
 		getUserName(state) {
@@ -48,15 +49,22 @@ export const useMyUserStore = defineStore({
 		getloggedIn(state) {
 			return state.loggedIn
 		},
+
+		getRescueToken(state) {
+			return state.rescueToken
+		},
 	},
 	actions: {
 		setId(id: string) {
-			this.id = id
+			this._id = id
 		},
 
 		setUserName(userName: string) {
 			this.userName = userName
-			return
+		},
+
+		setEmail(email: string) {
+			this.email = email
 		},
 
 		setPassword(password: string) {
@@ -65,6 +73,10 @@ export const useMyUserStore = defineStore({
 
 		setIsNewRegistered(newRegistered: boolean) {
 			this.isNewRegistered = newRegistered
+		},
+
+		setRescueToken(token: string) {
+			this.rescueToken = this.rescueToken
 		},
 
 		isAllFields() {
@@ -91,27 +103,64 @@ export const useMyUserStore = defineStore({
 			this.loggedIn = false
 		},
 
+		async getUserByEmail() {
+			this.setId('')
+			const user = (await useIUser().findUserByEmail(this.email)) as User
+			if (user) {
+				if (user._id) this.setId(user?._id)
+				this.setUserName(user.userName)
+				this.setEmail(user.email)
+				return user
+			}
+			return null
+		},
+
 		async register() {
 			const user = {
-				username: this.userName,
+				userName: this.userName,
 				email: this.email,
 				password: this.password,
 				confirmPassword: this.confirmPassword,
 				acceptTerms: this.acceptTerms,
-			}
+				rescuePassword: '',
+			} as User
 
 			this.clearPassword()
 			const response = (await useIUser().createUser(user)) as unknown as User
 
-			this.id = response._id
+			if (response._id) this._id = response._id
 
 			this.setIsNewRegistered(true)
 
 			this.saveSettings()
 		},
+
 		async saveSettings() {
-			useMySettingsStore().setUserId(this.id)
+			useMySettingsStore().setUserId(this._id)
 			await useMySettingsStore().post()
+		},
+
+		async updateUser(values: {}) {
+			const user = (await useIUser().setUser(this._id, values)) as User
+
+			if (user) {
+				if (user._id) this._id = user._id
+				this.setUserName(user.userName)
+				this.setEmail(user.email)
+				if (user.rescuePassword?.token)
+					this.rescueToken = user.rescuePassword?.token
+			}
+		},
+
+		async getToken(token: string) {
+			const response = (await useIUser().getRescuePassword(token)) as User
+			if (response) {
+				if (response._id) this._id = response._id
+				this.email = response.email
+				if (response.rescuePassword?.token)
+					this.rescueToken = response.rescuePassword?.token
+			}
+			return response.rescuePassword
 		},
 	},
 })

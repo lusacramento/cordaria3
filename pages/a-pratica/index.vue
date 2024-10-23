@@ -289,7 +289,7 @@
 		// @ts-ignore
 		setId(user._id)
 		// @ts-ignore
-		setUserName(user?.username)
+		setUserName(user?.userName)
 		// @ts-ignore
 		setId(user._id)
 		logIn()
