@@ -5,5 +5,8 @@ export interface User {
 	password: string
 	confirmPassword?: string
 	acceptTerms?: boolean
-	rescuePassword?: string
+	rescuePassword?: {
+		token?: string
+		expiresAt?: Date
+	}
 }

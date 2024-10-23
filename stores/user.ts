@@ -13,6 +13,7 @@ export const useMyUserStore = defineStore({
 		acceptTerms: false,
 		isNewRegistered: false,
 		loggedIn: false,
+		rescueToken: '',
 		theme: 'dark',
 	}),
 
@@ -48,6 +49,10 @@ export const useMyUserStore = defineStore({
 		getloggedIn(state) {
 			return state.loggedIn
 		},
+
+		getRescueToken(state) {
+			return state.rescueToken
+		},
 	},
 	actions: {
 		setId(id: string) {
@@ -68,6 +73,10 @@ export const useMyUserStore = defineStore({
 
 		setIsNewRegistered(newRegistered: boolean) {
 			this.isNewRegistered = newRegistered
+		},
+
+		setRescueToken(token: string) {
+			this.rescueToken = this.rescueToken
 		},
 
 		isAllFields() {
