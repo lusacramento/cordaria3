@@ -139,5 +139,28 @@ export const useMyUserStore = defineStore({
 			useMySettingsStore().setUserId(this._id)
 			await useMySettingsStore().post()
 		},
+
+		async updateUser(values: {}) {
+			const user = (await useIUser().setUser(this._id, values)) as User
+
+			if (user) {
+				if (user._id) this._id = user._id
+				this.setUserName(user.userName)
+				this.setEmail(user.email)
+				if (user.rescuePassword?.token)
+					this.rescueToken = user.rescuePassword?.token
+			}
+		},
+
+		async getToken(token: string) {
+			const response = (await useIUser().getRescuePassword(token)) as User
+			if (response) {
+				if (response._id) this._id = response._id
+				this.email = response.email
+				if (response.rescuePassword?.token)
+					this.rescueToken = response.rescuePassword?.token
+			}
+			return response.rescuePassword
+		},
 	},
 })

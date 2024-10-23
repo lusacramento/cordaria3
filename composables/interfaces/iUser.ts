@@ -1,10 +1,11 @@
 export const useIUser = () => {
 	const registerUrl = '/api/auth/register'
 	const userDetailsUrl = '/api/userdetails'
-	const rescuePasswordUrl = '/api/auth/rescuePassword'
+	const userUrl = '/api/user'
+	const tokenUrl = 'api/user/token'
 
 	async function findUserByEmail(email: string) {
-		return await $fetch(rescuePasswordUrl, {
+		return await $fetch(userUrl, {
 			method: 'get',
 			params: { email: email },
 		})
@@ -14,6 +15,14 @@ export const useIUser = () => {
 		return await $fetch(registerUrl, {
 			method: 'post',
 			body: values,
+		})
+	}
+
+	async function setUser(id: string, body: {}) {
+		return await $fetch(userUrl, {
+			method: 'put',
+			params: { id: id },
+			body: body,
 		})
 	}
 
@@ -38,11 +47,20 @@ export const useIUser = () => {
 		})
 	}
 
+	async function getRescuePassword(token: string) {
+		return $fetch(tokenUrl, {
+			method: 'get',
+			params: { token: token },
+		})
+	}
+
 	return {
 		findUserByEmail,
 		createUser,
+		setUser,
 		getUserDetails,
 		postUserDetails,
 		setUserDetails,
+		getRescuePassword,
 	}
 }
