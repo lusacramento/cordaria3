@@ -66,18 +66,16 @@
 </template>
 
 <script lang="ts" setup>
-	const { createToolTip } = useTooltip()
+	const { createTooltip } = useTooltip()
 
 	const passwordEl = ref()
 	const repeatPasswordEl = ref()
-	const passwordToolTip = ref()
-	const repeatPasswordToolTip = ref()
-
-	onBeforeMount(() => {})
+	const passwordTooltip = ref()
+	const repeatPasswordTooltip = ref()
 
 	onMounted(() => {
-		passwordToolTip.value = createToolTip(passwordEl.value)
-		repeatPasswordToolTip.value = createToolTip(repeatPasswordEl.value)
+		passwordTooltip.value = createTooltip(passwordEl.value)
+		repeatPasswordTooltip.value = createTooltip(repeatPasswordEl.value)
 	})
 
 	// user data

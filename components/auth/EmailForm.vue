@@ -45,13 +45,13 @@
 </template>
 
 <script lang="ts" setup>
-	const { createToolTip } = useTooltip()
+	const { createTooltip } = useTooltip()
 
 	const emailEl = ref()
-	const toolTipEmail = ref()
+	const tooltipEmail = ref()
 
 	onMounted(() => {
-		toolTipEmail.value = createToolTip(emailEl.value)
+		tooltipEmail.value = createTooltip(emailEl.value)
 	})
 
 	// user data
