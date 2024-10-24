@@ -12,21 +12,16 @@
 					<div
 						class="exercise-screen d-flex align-items-center justify-content-center"
 					>
-						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
+						<LayoutsModal
+							ref="registerModal"
+							:modal="modal"
+							@callFunction="handleFormSubmit()"
+							:call-to-action-button-label="modal.buttonLabel"
+						>
 							<template #body>
 								<AuthRegisterForm />
 							</template>
 						</LayoutsModal>
-						<button
-							ref="registerModalButton"
-							type="button"
-							class="btn btn-primary"
-							data-bs-toggle="modal"
-							:data-bs-target="`#${modal.id}`"
-							hidden
-						>
-							Launch demo modal
-						</button>
 					</div>
 				</div>
 			</div>
@@ -54,15 +49,12 @@
 	const modal = {
 		title: 'Cadastrar',
 		id: 'registerModal',
+		buttonLabel: 'Registrar',
 	}
-	const registerModalButton: any = ref()
+	const registerModal = ref()
 
 	onMounted(() => {
-		registerModalButton.value.click()
-	})
-
-	onBeforeUnmount(() => {
-		registerModalButton.value.click()
+		registerModal.value.show()
 	})
 
 	// handle register

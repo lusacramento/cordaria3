@@ -12,21 +12,16 @@
 					<div
 						class="exercise-screen d-flex align-items-center justify-content-center"
 					>
-						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
+						<LayoutsModal
+							:modal="modal"
+							ref="loginModal"
+							@callFunction="handleFormSubmit()"
+							:call-to-action-button-label="modal.buttonLabel"
+						>
 							<template #body>
 								<AuthLoginForm />
 							</template>
 						</LayoutsModal>
-						<button
-							ref="loginModalButton"
-							type="button"
-							class="btn btn-primary"
-							data-bs-toggle="modal"
-							:data-bs-target="`#${modal.id}`"
-							hidden
-						>
-							Launch demo modal
-						</button>
 					</div>
 				</div>
 			</div>
@@ -45,8 +40,9 @@
 	const modal = {
 		title: 'Entrar',
 		id: 'loginModal',
+		buttonLabel: 'Entrar',
 	}
-	const loginModalButton: any = ref()
+	const loginModal = ref()
 
 	const toast = ref()
 	const toaster = ref({
@@ -56,7 +52,7 @@
 	})
 
 	onMounted(() => {
-		loginModalButton.value.click()
+		loginModal.value.show()
 		if (useMyUserStore().getIsNewRegistered) {
 			toaster.value.header = 'Sucesso!'
 			toaster.value.body = 'Cadastro registrado. Por favor, faça o login.'
@@ -64,10 +60,6 @@
 			toast.value.show(toaster.value)
 			useMyUserStore().setIsNewRegistered(false)
 		}
-	})
-
-	onBeforeUnmount(() => {
-		loginModalButton.value.click()
 	})
 
 	// handle ogin

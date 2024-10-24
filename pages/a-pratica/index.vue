@@ -5,7 +5,12 @@
 			<template #header>{{ toaster.header }}</template>
 			<template #body><div v-html="toaster.body" /></template>
 		</LayoutsToast>
-		<LayoutsModal :modal="modal" @callFunction="submitUserDetails">
+		<LayoutsModal
+			ref="userDetailsModal"
+			:modal="modal"
+			@callFunction="submitUserDetails"
+			:call-to-action-button-label="modal.buttonLabel"
+		>
 			<template #body><UserDetailsForm /></template>
 		</LayoutsModal>
 		<CordariaTips ref="tips" />
@@ -25,18 +30,6 @@
 										aria-controls="offcanvasWithBothOptions"
 									>
 										Preferências
-									</button>
-								</li>
-								<li>
-									<button
-										ref="userDetailsModalButton"
-										type="button"
-										class="btn btn-primary"
-										data-bs-toggle="modal"
-										:data-bs-target="`#${modal.id}`"
-										hidden
-									>
-										Launch demo modal
 									</button>
 								</li>
 								<li>
@@ -182,7 +175,7 @@
 		isLoaded,
 		isShowGameScreen,
 		isShowStatistics,
-		userDetailsModalButton,
+		userDetailsModal,
 		boxButtons,
 		modal,
 		tips,
