@@ -44,20 +44,16 @@
 	}
 	const loginModal = ref()
 
-	const toast = ref()
-	const toaster = ref({
-		header: '',
-		body: '',
-		type: '',
-	})
+	const { toast, toaster, showToast } = useViewController()
 
 	onMounted(() => {
 		loginModal.value.show()
 		if (useMyUserStore().getIsNewRegistered) {
-			toaster.value.header = 'Sucesso!'
-			toaster.value.body = 'Cadastro registrado. Por favor, faça o login.'
-			toaster.value.type = 'success'
-			toast.value.show(toaster.value)
+			showToast(
+				'Sucesso!',
+				'Cadastro registrado. Por favor, faça o login.',
+				'success',
+			)
 			useMyUserStore().setIsNewRegistered(false)
 		}
 	})
@@ -80,10 +76,9 @@
 			})
 
 			if (response.error) {
-				if (response.error === 'Unauthorized') toaster.value.header = 'Erro!'
-				toaster.value.body = 'E-mail ou senha inválidos.'
-				toaster.value.type = 'error'
-				toast.value.show(toaster.value)
+				if (response.error === 'Unauthorized')
+					showToast('Erro!', 'E-mail ou senha inválidos.', 'error')
+
 				return
 			}
 

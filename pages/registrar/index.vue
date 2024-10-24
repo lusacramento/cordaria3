@@ -36,12 +36,7 @@
 
 	const userStore = useMyUserStore()
 
-	const toast = ref()
-	const toaster = ref({
-		header: '',
-		body: '',
-		type: '',
-	})
+	const { toast, toaster, showToast } = useViewController()
 
 	const title = ref('REGISTRAR')
 
@@ -68,10 +63,7 @@
 				name: 'entrar',
 			})
 		} catch (e: any) {
-			toaster.value.header = 'Erro'
-			toaster.value.body = e.data.message
-			toaster.value.type = 'error'
-			toast.value?.show()
+			showToast('Erro', e.data.message, 'error')
 			return
 		}
 	}
