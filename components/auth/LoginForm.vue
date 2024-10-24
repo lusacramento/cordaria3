@@ -20,7 +20,6 @@
 					data-bs-placement="right"
 					data-bs-custom-class="custom-tooltip"
 					data-bs-title="Digite um email válido."
-					@focus="showToolTip(emailEl)"
 					:class="{
 						'is-valid': user.email.isValidated,
 						'is-invalid': !user.email.isValidated,
@@ -51,7 +50,6 @@
 					data-bs-placement="right"
 					data-bs-custom-class="custom-tooltip"
 					data-bs-title="Confirma senha deve ser igual a senha."
-					@focus="showToolTip(passwordEl)"
 					aria-label="Alterar visualização de senha"
 					aria-describedby="login-password-viewer"
 					:class="{
@@ -80,22 +78,27 @@
 			<div class="col-auto">
 				<NuxtLink to="/registrar">Não tem uma conta?</NuxtLink>
 			</div>
+			<div class="row justify-content-center">
+				<div class="col-auto">
+					<NuxtLink to="/recuperar-senha">Esqueceu sua senha?</NuxtLink>
+				</div>
+			</div>
 		</div>
 	</form>
 </template>
 
 <script lang="ts" setup>
-	const bootstrap = () => import('bootstrap')
+	const { createTooltip } = useTooltip()
 
 	const emailEl = ref()
+	const emailTooltip = ref()
 	const passwordEl = ref()
+	const passwordTooltip = ref()
 
-	function showToolTip(el: Element) {
-		bootstrap().then((response) => {
-			const tt = new response.Tooltip(el, { fallbackPlacements: ['right'] })
-			tt.show()
-		})
-	}
+	onMounted(() => {
+		emailTooltip.value = createTooltip(emailEl.value)
+		passwordTooltip.value = createTooltip(passwordEl.value)
+	})
 
 	// user data
 	const { email, password } = storeToRefs(useMyUserStore())

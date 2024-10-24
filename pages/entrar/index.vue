@@ -12,21 +12,16 @@
 					<div
 						class="exercise-screen d-flex align-items-center justify-content-center"
 					>
-						<LayoutsModal :modal="modal" @callFunction="handleFormSubmit()">
+						<LayoutsModal
+							:modal="modal"
+							ref="loginModal"
+							@callFunction="handleFormSubmit()"
+							:call-to-action-button-label="modal.buttonLabel"
+						>
 							<template #body>
 								<AuthLoginForm />
 							</template>
 						</LayoutsModal>
-						<button
-							ref="loginModalButton"
-							type="button"
-							class="btn btn-primary"
-							data-bs-toggle="modal"
-							:data-bs-target="`#${modal.id}`"
-							hidden
-						>
-							Launch demo modal
-						</button>
 					</div>
 				</div>
 			</div>
@@ -45,29 +40,22 @@
 	const modal = {
 		title: 'Entrar',
 		id: 'loginModal',
+		buttonLabel: 'Entrar',
 	}
-	const loginModalButton: any = ref()
+	const loginModal = ref()
 
-	const toast = ref()
-	const toaster = ref({
-		header: '',
-		body: '',
-		type: '',
-	})
+	const { toast, toaster, showToast } = useViewController()
 
 	onMounted(() => {
-		loginModalButton.value.click()
+		loginModal.value.show()
 		if (useMyUserStore().getIsNewRegistered) {
-			toaster.value.header = 'Sucesso!'
-			toaster.value.body = 'Cadastro registrado. Por favor,faça o login.'
-			toaster.value.type = 'success'
-			toast.value.show(toaster.value)
+			showToast(
+				'Sucesso!',
+				'Cadastro registrado. Por favor, faça o login.',
+				'success',
+			)
 			useMyUserStore().setIsNewRegistered(false)
 		}
-	})
-
-	onBeforeUnmount(() => {
-		loginModalButton.value.click()
 	})
 
 	// handle ogin
@@ -79,6 +67,8 @@
 			password: useMyUserStore().getPassword,
 		}
 
+		useMyUserStore().clearPassword()
+
 		try {
 			const response: any = await signIn('credentials', {
 				...newUser,
@@ -86,16 +76,11 @@
 			})
 
 			if (response.error) {
-				if (response.error === 'Unauthorized') toaster.value.header = 'Erro!'
-				toaster.value.body = 'E-mail ou senha inválidos.'
-				toaster.value.type = 'error'
-				toast.value.show(toaster.value)
+				if (response.error === 'Unauthorized')
+					showToast('Erro!', 'E-mail ou senha inválidos.', 'error')
+
 				return
 			}
-
-			toaster.value.body = 'E-mail ou senha inválidos.'
-			toaster.value.type = 'error'
-			toast.value.show(toaster.value)
 
 			const responseUser: any = { ...data.value?.user }
 
@@ -111,7 +96,7 @@
 
 	function loadUserOnstore(user: any) {
 		userStore.setId(user._id)
-		userStore.setUserName(user.username)
+		userStore.setUserName(user.userName)
 		userStore.logIn()
 	}
 </script>

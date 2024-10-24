@@ -19,7 +19,7 @@ export const useViewController = () => {
 		`<div style="font-size:1.5em">CARREGANDO...</div>`,
 	)
 
-	const userDetailsModalButton: any = ref()
+	const userDetailsModal = ref()
 
 	const boxButtons = ref({
 		play: {
@@ -43,6 +43,7 @@ export const useViewController = () => {
 	const modal = {
 		title: 'Finalize seu cadastro',
 		id: 'userDetailsModal',
+		buttonLabel: 'Salvar',
 	}
 
 	const tips = ref()
@@ -95,7 +96,7 @@ export const useViewController = () => {
 	}
 
 	function toogleUserDetailsForm() {
-		userDetailsModalButton.value.click()
+		userDetailsModal.value.show()
 	}
 
 	function enablePlayButton() {
@@ -133,7 +134,7 @@ export const useViewController = () => {
 		isLoaded,
 		isShowGameScreen,
 		isShowStatistics,
-		userDetailsModalButton,
+		userDetailsModal,
 		boxButtons,
 		modal,
 		tips,
