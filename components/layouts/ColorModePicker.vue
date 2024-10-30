@@ -4,27 +4,23 @@
 			<li
 				v-if="value === 'dark'"
 				class="theme-icon-area align-items-center d-flex"
-				:class="{
-					'dark-border': !isDarkModeSelected,
-					enabled: !isDarkModeSelected,
-				}"
+				@mouseover="iconTheme.light.stroke = 'rgba(255, 255, 255, 1)'"
+				@mouseleave="iconTheme.light.stroke = 'rgba(255, 255, 255, .5)'"
 			>
 				<ThemeIconsLight
-					@click.prevent="changeColor('light')"
-					:mode="iconThemeMode"
+					@click.prevent="changeTheme('light')"
+					:mode="iconTheme.light"
 				/>
 			</li>
 			<li
 				v-if="value === 'light'"
 				class="theme-icon-area d-flex align-items-center"
-				:class="{
-					'light-border': isDarkModeSelected,
-					enabled: isDarkModeSelected,
-				}"
+				@mouseover="iconTheme.dark.stroke = 'rgba(0, 0, 0, 1)'"
+				@mouseleave="iconTheme.dark.stroke = 'rgba(0, 0, 0, .5)'"
 			>
 				<ThemeIconsDark
-					@click.prevent="changeColor('dark')"
-					:mode="iconThemeMode"
+					@click.prevent="changeTheme('dark')"
+					:mode="iconTheme.dark"
 				/>
 			</li>
 		</ul>
@@ -34,34 +30,26 @@
 <script lang="ts" setup>
 	onBeforeMount(() => {
 		isDarkModeSelected.value = value.value === 'dark' ? true : false
-		iconThemeMode.value = isDarkModeSelected.value
-			? iconTheme.dark
-			: iconTheme.light
 	})
 	const { preference, value } = toRefs(useColorMode())
 
 	const isDarkModeSelected = ref(false)
 
-	const iconThemeMode = ref()
-
-	const iconTheme = {
+	const iconTheme = ref({
 		light: {
-			fill: 'none',
-			stroke: 'rgba(29, 30, 40, 1)',
+			fill: 'rgba(29, 30, 40, 0.1)',
+			stroke: 'rgba(255, 255, 255, .5)',
 		},
 		dark: {
 			fill: 'none',
-			stroke: 'rgba(226, 225, 215, 1)',
+			stroke: 'rgba(0, 0, 0, 0.5)',
 		},
-	}
+	})
 
-	function changeColor(color: string) {
+	function changeTheme(color: string) {
 		preference.value = color
 		value.value = color
 		isDarkModeSelected.value = color === 'dark' ? true : false
-		iconThemeMode.value = isDarkModeSelected.value
-			? iconTheme.dark
-			: iconTheme.light
 	}
 </script>
 
@@ -84,17 +72,5 @@
 
 	.theme-icon-area:hover {
 		top: -3px;
-		background-color: rgba(255, 215, 64, 0.5);
-	}
-
-	.enabled {
-		background-color: rgba(255, 215, 64, 0.2);
-	}
-
-	.light-border {
-		border: 1px solid var(--bg-nav-light);
-	}
-	.dark-border {
-		border: 1px solid var(--bg-nav-dark);
 	}
 </style>
