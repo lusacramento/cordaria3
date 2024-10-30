@@ -149,6 +149,10 @@
 <script lang="ts" setup>
 	import { useMyProgressStore } from '~/stores/progress'
 	import lessonImg from '~/public/imgs/lessons/lesson-002.svg'
+	import { useScreenOrientation } from '@vueuse/core'
+
+	const { lockOrientation } = useScreenOrientation()
+	lockOrientation('landscape-primary')
 
 	definePageMeta({
 		middleware: 'auth',

@@ -27,6 +27,7 @@
 </template>
 
 <script lang="ts" setup>
+	import { useScreenOrientation } from '@vueuse/core'
 	useHead({
 		meta: [
 			{
@@ -57,6 +58,9 @@
 	onBeforeMount(async () => {
 		await loadSettings()
 	})
+
+	const { lockOrientation } = useScreenOrientation()
+	lockOrientation('portrait-primary')
 
 	const { isMobile } = useInstrumentSelector()
 
