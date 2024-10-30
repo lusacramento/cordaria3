@@ -93,7 +93,7 @@ export default defineNuxtConfig({
 						'Cordaria é um método de treinamento para a prática de instrumentos de cordas',
 					lang: 'pt',
 					display: 'fullscreen',
-					orientation: 'landscape',
+					orientation: 'portrait-primary',
 					theme_color: '#1c1f26',
 					background_color: '#1c1f26',
 					icons: [
