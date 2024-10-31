@@ -73,6 +73,15 @@
 	--text-color: var(--color-black-50);
 	--bg-title-box-in: var(--bg-title-box-light-in);
 	--bg-title-box-out: var(--bg-title-box-light-out);
+
+	.table-striped {
+		--bs-table-color: rgba(0, 0, 0, 0.5);
+		--bs-table-striped-color: rgba(0, 0, 0, 0.5);
+
+		--bs-table-bg: #dedad7;
+		--bs-table-striped-bg: #d3cfcc;
+		--bs-table-border-color: rgba(113, 112, 109, 0.3);
+	}
 }
 
 /*************** DARK THEME *********************/
