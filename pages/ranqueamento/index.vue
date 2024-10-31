@@ -3,38 +3,48 @@
 		<div class="container-fluid">
 			<LayoutsHeader>
 				<template #center>
-					<button
-						type="button"
-						class="btn btn-acoustic-guitar"
-						@click.prevent="update(Instrument.ACOUSTICGUITAR)"
-						:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
-					>
-						<img :src="acousticGuitarIcon" alt="" class="img-fluid" />
-					</button>
-					<button
-						type="button"
-						class="btn btn-electric-guitar"
-						:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
-						@click.prevent="update(Instrument.ELECTRICGUITAR)"
-					>
-						<img :src="electricGuitarIcon" alt="" class="img-fluid" />
-					</button>
-					<button
-						type="button"
-						class="btn btn-bass"
-						@click.prevent="update(Instrument.BASS)"
-						:class="{ active: instrument === Instrument.BASS }"
-					>
-						<img :src="bassIcon" alt="" class="img-fluid" />
-					</button>
-					<button
-						type="button"
-						class="btn btn-cavaco"
-						@click.prevent="update(Instrument.CAVACO)"
-						:class="{ active: instrument === Instrument.CAVACO }"
-					>
-						<img :src="cavacoIcon" alt="" class="img-fluid" />
-					</button>
+					<div class="row d-flex justify-content-center">
+						<div class="col">
+							<button
+								type="button"
+								class="btn btn-acoustic-guitar"
+								:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
+								@click.prevent="update(Instrument.ACOUSTICGUITAR)"
+							>
+								<img :src="acousticGuitarIcon" alt="" class="img-fluid" />
+							</button>
+						</div>
+						<div class="col">
+							<button
+								type="button"
+								class="btn btn-electric-guitar"
+								:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
+								@click.prevent="update(Instrument.ELECTRICGUITAR)"
+							>
+								<img :src="electricGuitarIcon" alt="" class="img-fluid" />
+							</button>
+						</div>
+						<div class="col">
+							<button
+								type="button"
+								class="btn btn-bass"
+								:class="{ active: instrument === Instrument.BASS }"
+								@click.prevent="update(Instrument.BASS)"
+							>
+								<img :src="bassIcon" alt="" class="img-fluid" />
+							</button>
+						</div>
+						<div class="col">
+							<button
+								type="button"
+								class="btn btn-cavaco"
+								:class="{ active: instrument === Instrument.CAVACO }"
+								@click.prevent="update(Instrument.CAVACO)"
+							>
+								<img :src="cavacoIcon" alt="" class="img-fluid" />
+							</button>
+						</div>
+					</div>
 				</template>
 			</LayoutsHeader>
 		</div>
@@ -54,7 +64,7 @@
 
 	const { getInstrument } = useMySettingsStore()
 
-	const instrument = ref(Instrument.ACOUSTICGUITAR)
+	const instrument = ref(Instrument.BASS)
 	const ranking: Ref<Array<Ranking>> = ref([])
 
 	onBeforeMount(async () => {
@@ -108,29 +118,34 @@
 		width: 100px;
 		height: 100px;
 		border-radius: 50%;
-		border: none;
 	}
 
 	.layer-center {
 		height: 50vh;
 	}
 
+	.btn-acoustic-guitar.active,
+	.btn-electric-guitar.active,
+	.btn-bass.active,
+	.btn-cavaco.active {
+		border: none;
+	}
 	.btn-acoustic-guitar.active {
-		background-color: var(--acoustic-guitar-color) !important;
+		background-color: var(--ranking-acoustic-guitar-color) !important;
 	}
 	.btn-electric-guitar.active {
-		background-color: var(--electric-guitar-color) !important;
+		background-color: var(--ranking-electric-guitar-color) !important;
 	}
 	.btn-bass.active {
-		background-color: var(--bass-color) !important;
+		background-color: var(--ranking-bass-color) !important;
 	}
 	.btn-cavaco.active {
-		background-color: var(--cavaco-color) !important;
+		background-color: var(--ranking-cavaco-color) !important;
 	}
 
 	.btn-acoustic-guitar:not(.active):hover {
 		background: transparent;
-		border: 1px solid var(--acoustic-guitar-color);
+		border: 1px solid var(--acoustic-guitar-color) !important;
 	}
 	.btn-electric-guitar:not(.active):hover {
 		background: transparent;
