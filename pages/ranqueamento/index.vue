@@ -131,32 +131,28 @@
 		border: none;
 	}
 	.btn-acoustic-guitar.active {
-		background-color: var(--ranking-acoustic-guitar-color) !important;
+		background-color: var(--active-acoustic-guitar-color) !important;
 	}
 	.btn-electric-guitar.active {
-		background-color: var(--ranking-electric-guitar-color) !important;
+		background-color: var(--active-electric-guitar-color) !important;
 	}
 	.btn-bass.active {
-		background-color: var(--ranking-bass-color) !important;
+		background-color: var(--active-bass-color) !important;
 	}
 	.btn-cavaco.active {
-		background-color: var(--ranking-cavaco-color) !important;
+		background-color: var(--active-cavaco-color) !important;
 	}
 
 	.btn-acoustic-guitar:not(.active):hover {
-		background: transparent;
-		border: 1px solid var(--acoustic-guitar-color) !important;
+		background-color: var(--hover-acoustic-guitar-color);
 	}
 	.btn-electric-guitar:not(.active):hover {
-		background: transparent;
-		border: 1px solid var(--electric-guitar-color);
+		background-color: var(--hover-electric-guitar-color);
 	}
 	.btn-bass:not(.active):hover {
-		background: transparent;
-		border: 1px solid var(--bass-color);
+		background-color: var(--hover-bass-color);
 	}
 	.btn-cavaco:not(.active):hover {
-		background: transparent;
-		border: 1px solid var(--cavaco-color);
+		background-color: var(--hover-cavaco-color);
 	}
 </style>
