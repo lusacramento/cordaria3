@@ -7,41 +7,41 @@
 						<div class="col">
 							<button
 								type="button"
-								class="btn btn-acoustic-guitar"
+								class="btn btn-acoustic-guitar d-flex justify-content-center"
 								:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
 								@click.prevent="update(Instrument.ACOUSTICGUITAR)"
 							>
-								<img :src="acousticGuitarIcon" alt="" class="img-fluid" />
+								<img :src="acousticGuitarIcon" alt="" class="img" />
 							</button>
 						</div>
 						<div class="col">
 							<button
 								type="button"
-								class="btn btn-electric-guitar"
+								class="btn btn-electric-guitar d-flex justify-content-center"
 								:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
 								@click.prevent="update(Instrument.ELECTRICGUITAR)"
 							>
-								<img :src="electricGuitarIcon" alt="" class="img-fluid" />
+								<img :src="electricGuitarIcon" alt="" class="img" />
 							</button>
 						</div>
 						<div class="col">
 							<button
 								type="button"
-								class="btn btn-bass"
+								class="btn btn-bass d-flex justify-content-center"
 								:class="{ active: instrument === Instrument.BASS }"
 								@click.prevent="update(Instrument.BASS)"
 							>
-								<img :src="bassIcon" alt="" class="img-fluid" />
+								<img :src="bassIcon" alt="" class="img" />
 							</button>
 						</div>
 						<div class="col">
 							<button
 								type="button"
-								class="btn btn-cavaco"
+								class="btn btn-cavaco d-flex justify-content-center"
 								:class="{ active: instrument === Instrument.CAVACO }"
 								@click.prevent="update(Instrument.CAVACO)"
 							>
-								<img :src="cavacoIcon" alt="" class="img-fluid" />
+								<img :src="cavacoIcon" alt="" class="img" />
 							</button>
 						</div>
 					</div>
@@ -115,9 +115,14 @@
 
 	.btn {
 		margin: 5px;
-		width: 100px;
-		height: 100px;
+		width: 92.8px;
+		height: 95px;
 		border-radius: 50%;
+	}
+
+	.img {
+		display: block;
+		width: 140%;
 	}
 
 	.layer-center {
@@ -131,32 +136,28 @@
 		border: none;
 	}
 	.btn-acoustic-guitar.active {
-		background-color: var(--ranking-acoustic-guitar-color) !important;
+		background-color: var(--active-acoustic-guitar-color) !important;
 	}
 	.btn-electric-guitar.active {
-		background-color: var(--ranking-electric-guitar-color) !important;
+		background-color: var(--active-electric-guitar-color) !important;
 	}
 	.btn-bass.active {
-		background-color: var(--ranking-bass-color) !important;
+		background-color: var(--active-bass-color) !important;
 	}
 	.btn-cavaco.active {
-		background-color: var(--ranking-cavaco-color) !important;
+		background-color: var(--active-cavaco-color) !important;
 	}
 
 	.btn-acoustic-guitar:not(.active):hover {
-		background: transparent;
-		border: 1px solid var(--acoustic-guitar-color) !important;
+		background-color: var(--hover-acoustic-guitar-color);
 	}
 	.btn-electric-guitar:not(.active):hover {
-		background: transparent;
-		border: 1px solid var(--electric-guitar-color);
+		background-color: var(--hover-electric-guitar-color);
 	}
 	.btn-bass:not(.active):hover {
-		background: transparent;
-		border: 1px solid var(--bass-color);
+		background-color: var(--hover-bass-color);
 	}
 	.btn-cavaco:not(.active):hover {
-		background: transparent;
-		border: 1px solid var(--cavaco-color);
+		background-color: var(--hover-cavaco-color);
 	}
 </style>
