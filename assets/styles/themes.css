@@ -11,15 +11,15 @@
 	--bass-color: rgba(173, 0, 225, 0.7);
 	--cavaco-color: rgba(57, 194, 161, 1);
 
-	--enabled-acoustic-guitar-color: rgba(249, 238, 122, 1);
-	--enabled-electric-guitar-color: rgba(243, 152, 136, 1);
-	--enabled-bass-color: rgba(129, 123, 185, 1);
-	--enabled-cavaco-color: rgba(127, 196, 158, 1);
+	--active-acoustic-guitar-color: rgba(249, 238, 122, 0.8);
+	--active-electric-guitar-color: rgba(243, 152, 136, 0.8);
+	--active-bass-color: rgba(129, 123, 185, 0.8);
+	--active-cavaco-color: rgba(127, 196, 158, 0.8);
 
-	--ranking-acoustic-guitar-color: rgba(249, 238, 122, 0.8);
-	--ranking-electric-guitar-color: rgba(243, 152, 136, 0.8);
-	--ranking-bass-color: rgba(129, 123, 185, 0.8);
-	--ranking-cavaco-color: rgba(127, 196, 158, 0.8);
+	--hover-acoustic-guitar-color: rgba(249, 238, 122, 0.3);
+	--hover-electric-guitar-color: rgba(243, 152, 136, 0.3);
+	--hover-bass-color: rgba(129, 123, 185, 0.3);
+	--hover-cavaco-color: rgba(127, 196, 158, 0.3);
 
 	/* FONTS*/
 	--color-text-white: rgba(112, 111, 108, 1);
