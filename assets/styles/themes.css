@@ -6,11 +6,22 @@
 	--bg-warn: rgba(255, 215, 64, 1) !important;
 
 	/* INSTRUMENTS */
-	--bass-color: rgba(173, 0, 225, 0.7);
-	--cavaco-color: rgba(57, 194, 161, 1);
 	--acoustic-guitar-color: rgba(255, 215, 64, 1);
 	--electric-guitar-color: rgba(180, 66, 63, 1);
+	--bass-color: rgba(173, 0, 225, 0.7);
+	--cavaco-color: rgba(57, 194, 161, 1);
 
+	--enabled-acoustic-guitar-color: rgba(249, 238, 122, 1);
+	--enabled-electric-guitar-color: rgba(243, 152, 136, 1);
+	--enabled-bass-color: rgba(129, 123, 185, 1);
+	--enabled-cavaco-color: rgba(127, 196, 158, 1);
+
+	--ranking-acoustic-guitar-color: rgba(249, 238, 122, 0.8);
+	--ranking-electric-guitar-color: rgba(243, 152, 136, 0.8);
+	--ranking-bass-color: rgba(129, 123, 185, 0.8);
+	--ranking-cavaco-color: rgba(127, 196, 158, 0.8);
+
+	/* FONTS*/
 	--color-text-white: rgba(112, 111, 108, 1);
 	--color-white-50: rgba(255, 255, 255, 0.5);
 	--color-white-70: rgba(255, 255, 255, 0.7);
