@@ -4,7 +4,7 @@
 		<td>@{{ rank.userName }}</td>
 		<td>{{ rank.points }}</td>
 		<td class="">
-			<img v-if="rank.awards > 7" :src="award8" alt="award8" class="" />
+			<img v-if="rank.awards > 7" :src="award8" alt="award8" class="me-2" />
 			<img v-if="rank.awards > 6" :src="award7" alt="award7" class="me-2" />
 			<img v-if="rank.awards > 5" :src="award6" alt="award6" class="me-2" />
 			<img v-if="rank.awards > 4" :src="award5" alt="award5" class="me-2" />
@@ -19,14 +19,14 @@
 <script lang="ts" setup>
 	import { type Ranking } from '~/types/Ranking'
 
-	import award1 from '~/public/imgs/awards/1.png'
-	import award2 from '~/public/imgs/awards/2.png'
-	import award3 from '~/public/imgs/awards/3.png'
-	import award4 from '~/public/imgs/awards/4.png'
-	import award5 from '~/public/imgs/awards/5.png'
-	import award6 from '~/public/imgs/awards/6.png'
-	import award7 from '~/public/imgs/awards/7.png'
-	import award8 from '~/public/imgs/awards/8.png'
+	import award1 from '~/assets/imgs/awards/small/1.png'
+	import award2 from '~/assets/imgs/awards/small/2.png'
+	import award3 from '~/assets/imgs/awards/small/3.png'
+	import award4 from '~/assets/imgs/awards/small/4.png'
+	import award5 from '~/assets/imgs/awards/small/5.png'
+	import award6 from '~/assets/imgs/awards/small/6.png'
+	import award7 from '~/assets/imgs/awards/small/7.png'
+	import award8 from '~/assets/imgs/awards/small/8.png'
 
 	const props = defineProps({
 		ranking: { type: Array<Ranking>, required: true },
