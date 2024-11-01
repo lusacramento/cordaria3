@@ -15,18 +15,6 @@
 						alt="Violão"
 						class="img img-fluid acoustic-guitar-image"
 					/>
-					<!-- <input
-						type="radio"
-						class="btn-check"
-						name="options-outlined"
-						id="success-outlined"
-						v-model="instrument"
-						:value="instruments.acousticGuitar.value"
-						autocomplete="off"
-					/>
-					<label class="btn btn-outline-success" for="success-outlined">{{
-						instruments.acousticGuitar.label
-					}}</label> -->
 				</button>
 			</div>
 			<div class="col">
@@ -41,20 +29,6 @@
 						class="img img-fluid"
 						alt="Guitarra"
 					/>
-
-					<!-- <input
-						type="radio"
-						class="btn-check"
-						name="options-outlined"
-						id="danger-outlined"
-						v-model="instrument"
-						:value="instruments.electricGuitar.value"
-						autocomplete="off"
-					/>
-					<label class="btn btn-outline-danger" for="danger-outlined">{{
-						instruments.electricGuitar.label
-					}}</label>
-				</li> -->
 				</button>
 			</div>
 
@@ -66,19 +40,6 @@
 					@click.prevent="changeInstrument(Instrument.BASS)"
 				>
 					<img :src="bassImage" class="img img-fluid" alt="Violão" />
-
-					<!-- <input
-						type="radio"
-						class="btn-check"
-						name="options-outlined"
-						id="danger2-outlined"
-						v-model="instrument"
-						:value="instruments.bass.value"
-						autocomplete="off"
-					/>
-					<label class="btn btn-outline-warning" for="danger2-outlined">{{
-						instruments.bass.label
-					}}</label> -->
 				</button>
 			</div>
 			<div class="col">
@@ -89,19 +50,6 @@
 					@click.prevent="changeInstrument(Instrument.CAVACO)"
 				>
 					<img :src="cavacoImage" class="img img-fluid" alt="Violão" />
-
-					<!-- <input
-						type="radio"
-						class="btn-check"
-						name="options-outlined"
-						id="danger3-outlined"
-						v-model="instrument"
-						:value="instruments.cavaco.value"
-						autocomplete="off"
-					/>
-					<label class="btn btn-outline-info" for="danger3-outlined">{{
-						instruments.cavaco.label
-					}}</label> -->
 				</button>
 			</div>
 		</div>
