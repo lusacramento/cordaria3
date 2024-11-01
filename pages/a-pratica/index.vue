@@ -92,7 +92,7 @@
 								<div class="row m-4 text-center">
 									<h1>Lição {{ lesson?.number }} - {{ lesson?.level }}</h1>
 								</div>
-								<div class="row m-4">
+								<div class="row m-4 justify-content-center d-flex">
 									<LessonFigure />
 								</div>
 								<div class="row m-4">
