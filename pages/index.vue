@@ -3,11 +3,7 @@
 		<LayoutsHeader>
 			<template #center>
 				<div class="d-flex justify-content-center align-items-center">
-					<LayoutsBox
-						:title-text="box.titleText"
-						:schema="box.schema"
-						:left-logo="box.leftLogo"
-					/>
+					<LayoutsBox :box="box" />
 				</div>
 			</template>
 		</LayoutsHeader>
@@ -28,6 +24,7 @@
 
 <script lang="ts" setup>
 	import { useScreenOrientation } from '@vueuse/core'
+	import { type Box } from '~/types/Box'
 	useHead({
 		meta: [
 			{
@@ -80,8 +77,8 @@
 		}
 	}
 
-	const box = {
-		titleText: '<h1>Já praticou hoje?<h1>',
+	const box: Box = {
+		content: '<h1>Já praticou hoje?<h1>',
 		schema: 'index',
 		leftLogo: true,
 	}

@@ -98,10 +98,7 @@
 								<div class="row m-4">
 									<button class="btn btn-play" :disabled="!isLoaded">
 										<LayoutsBox
-											:title-text="boxButtons.play.callInAction.text as string"
-											:schema="boxButtons.play.callInAction.schema"
-											:left-logo="boxButtons.play.callInAction.leftLogo"
-											:right-logo="boxButtons.play.callInAction.rightLogo"
+											:box="boxButtons.play"
 											@click.prevent="start()"
 										/>
 									</button>
@@ -117,10 +114,7 @@
 									<div class="col d-flex justify-content-center">
 										<button type="button" class="btn">
 											<LayoutsBox
-												:title-text="boxButtons.stop.callInAction.text"
-												:schema="boxButtons.stop.callInAction.schema"
-												:left-logo="boxButtons.stop.callInAction.leftLogo"
-												:right-logo="boxButtons.stop.callInAction.rightLogo"
+												:box="boxButtons.stop"
 												@click.prevent="exit('/a-pratica')"
 											/>
 										</button>
