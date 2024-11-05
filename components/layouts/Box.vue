@@ -16,15 +16,15 @@
 						class="boxes inbox d-flex align-items-center border-10"
 						:class="inboxColor"
 					>
-						<div v-if="props.leftLogo" class="px-1">
+						<div v-if="props.box.leftLogo" class="px-1">
 							<img
 								class="img img-fluid icon"
 								:src="icon.url"
 								:alt="icon.altText"
 							/>
 						</div>
-						<div v-html="props.titleText" />
-						<div v-if="props.rightLogo" class="px-1">
+						<div v-html="props.box.content" />
+						<div v-if="props.box.rightLogo" class="px-1">
 							<img
 								class="img img-fluid icon"
 								:src="icon.url"
@@ -44,6 +44,8 @@
 	import lightCordariaIcon from '@/assets/imgs/logos/light-cordaria-icon.png'
 	import darkCordariaIcon from '@/assets/imgs/logos/dark-cordaria-icon.png'
 
+	import type { Box as TypeBox } from '~/types/Box'
+
 	onBeforeMount(() => {
 		const iconTheme = updateIcon(value.value)
 		icon.value.url =
@@ -57,7 +59,6 @@
 	})
 
 	watch(value, async (newValue) => {
-		console.log('trocou o thema: ', newValue)
 		icon.value.url = await updateIcon(newValue)
 	})
 
@@ -66,20 +67,8 @@
 	}
 
 	const props = defineProps({
-		titleText: {
-			type: String,
-			required: true,
-		},
-		schema: {
-			type: String,
-			required: true,
-		},
-		leftLogo: {
-			type: Boolean,
-			required: false,
-		},
-		rightLogo: {
-			type: Boolean,
+		box: {
+			type: Object as Box,
 			required: false,
 		},
 	})
@@ -94,23 +83,7 @@
 	})
 
 	function applySchema() {
-		switch (props.schema) {
-			case 'the-project':
-				inboxColor.value = 'inbox-project'
-				outboxColor.value = 'outbox-project'
-				break
-			case 'the-tutorial':
-				inboxColor.value = 'inbox-tutorial'
-				outboxColor.value = 'outbox-tutorial'
-				break
-			case 'the-pratice':
-				inboxColor.value = 'inbox-pratice'
-				outboxColor.value = 'outbox-pratice'
-				break
-			case 'the-research':
-				inboxColor.value = 'inbox-research'
-				outboxColor.value = 'outbox-research'
-				break
+		switch (props.box.schema) {
 			case 'index':
 				inboxColor.value = 'inbox-index'
 				outboxColor.value = 'outbox-index'
@@ -137,7 +110,6 @@
 
 	.inbox {
 		padding: 4px 25px;
-		color: var(--font-color-h2) !important;
 	}
 	.inbox:hover {
 		background-color: rgba(0, 0, 0, 0.05);
@@ -150,38 +122,6 @@
 
 	.border-10 {
 		border-radius: 10px;
-	}
-
-	.inbox-project {
-		background-color: var(--the-project-inbox);
-	}
-
-	.outbox-project {
-		background-color: var(--the-project-outbox);
-	}
-
-	.inbox-tutorial {
-		background-color: var(--the-tutorial-inbox);
-	}
-
-	.outbox-tutorial {
-		background-color: var(--the-tutorial-outbox);
-	}
-
-	.inbox-pratice {
-		background-color: var(--bg-title-box-in);
-	}
-
-	.outbox-pratice {
-		background-color: var(--the-pratice-outbox);
-	}
-
-	.inbox-research {
-		background-color: var(--the-research-inbox);
-	}
-
-	.outbox-research {
-		background-color: var(--the-research-outbox);
 	}
 
 	.inbox-index {

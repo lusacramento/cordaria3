@@ -40,4 +40,8 @@
 	}
 </script>
 
-<style></style>
+<style scoped>
+	.btn {
+		background-color: var(--bg-success);
+	}
+</style>
