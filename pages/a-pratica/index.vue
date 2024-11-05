@@ -96,7 +96,10 @@
 									<LessonFigure />
 								</div>
 								<div class="row m-4">
-									<button class="btn btn-play" :disabled="!isLoaded">
+									<button
+										class="btn btn-primary btn-controls"
+										:disabled="!isLoaded"
+									>
 										<LayoutsBox
 											:box="boxButtons.play"
 											@click.prevent="start()"
@@ -112,7 +115,10 @@
 								</div>
 								<div class="row">
 									<div class="col d-flex justify-content-center">
-										<button type="button" class="btn">
+										<button
+											type="button btn-primary btn-controls"
+											class="btn d-flex"
+										>
 											<LayoutsBox
 												:box="boxButtons.stop"
 												@click.prevent="exit('/a-pratica')"
@@ -129,8 +135,8 @@
 				<div class="col">
 					<button
 						type="button"
+						class="btn btn-primary"
 						@click.prevent="toggleShowStatistics()"
-						class="btn btn-outline-light"
 					>
 						Estatísticas
 					</button>
@@ -297,24 +303,12 @@
 
 <style scoped>
 	.content {
-		/* background-color: var(--bg-content) !important; */
 		width: 80%;
 		height: 80vh;
 	}
 
 	#start-button:hover {
 		cursor: pointer !important;
-	}
-
-	.btn {
-		background-color: transparent;
-		color: rgba(255, 255, 255, 0.7);
-		border-color: transparent;
-	}
-
-	.btn:hover {
-		color: rgba(255, 255, 255, 1);
-		background-color: rgba(0, 0, 0, 0.1);
 	}
 
 	.avatar {
@@ -330,16 +324,6 @@
 		border-radius: 50%;
 	}
 
-	.btn-play {
-		background-color: transparent;
-		border-color: transparent;
-	}
-
-	.btn-play:hover {
-		color: transparent !important;
-		background-color: transparent !important;
-	}
-
 	.img-lesson {
 		width: 80%;
 	}
@@ -350,5 +334,9 @@
 
 	.cards-screen {
 		padding-top: 20%;
+	}
+
+	.btn-controls:hover {
+		background-color: transparent;
 	}
 </style>
