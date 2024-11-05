@@ -171,6 +171,11 @@ h1 {
 	border: transparent;
 }
 
+.btn:disabled {
+	background-color: transparent;
+	color: var(--text-color);
+}
+
 .btn:hover {
 	background-color: var(--bg-btn-hover);
 }
