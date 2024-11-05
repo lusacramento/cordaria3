@@ -97,6 +97,7 @@
 								</div>
 								<div class="row m-4">
 									<button
+										type="button"
 										class="btn btn-primary btn-controls"
 										:disabled="!isLoaded"
 									>
@@ -116,8 +117,8 @@
 								<div class="row">
 									<div class="col d-flex justify-content-center">
 										<button
-											type="button btn-primary btn-controls"
-											class="btn d-flex"
+											type="button"
+											class="btn d-flex btn-primary btn-controls"
 										>
 											<LayoutsBox
 												:box="boxButtons.stop"
