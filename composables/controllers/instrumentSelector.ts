@@ -18,34 +18,42 @@ import enabledDarkCavaco from '~/assets/imgs/instruments/index/dark/enabled/cava
 import { Instrument } from '~/types/Instrument'
 
 export const useInstrumentSelector = () => {
+	const { value } = toRefs(useColorMode())
+	const { instrument } = storeToRefs(useMySettingsStore())
+	const isMobile = ref(verifyIsMobile())
+
 	const instruments = ref({
 		acousticGuitar: {
 			id: Instrument.ACOUSTICGUITAR,
-			url: disabledDarkAcousticGuitar,
+			url:
+				value.value === 'dark'
+					? disabledDarkAcousticGuitar
+					: disabledLightAcousticGuitar,
 		},
 		electricGuitar: {
 			id: Instrument.ELECTRICGUITAR,
-			url: disabledDarkElectricGuitar,
+			url:
+				value.value === 'dark'
+					? disabledDarkElectricGuitar
+					: disabledLightElectricGuitar,
 		},
 
 		bass: {
 			id: Instrument.BASS,
-			url: disabledDarkBass,
+			url: value.value === 'dark' ? disabledDarkBass : disabledLightBass,
 		},
 		cavaco: {
 			id: Instrument.CAVACO,
-			url: disabledDarkCavaco,
+			url: value.value === 'dark' ? disabledDarkCavaco : disabledLightCavaco,
 		},
 	})
 
-	const { value } = toRefs(useColorMode())
+	highlightInstrument(instrument.value)
 
 	watch(value, (newValue) => {
 		removeHighlightOfAllInstruments()
 		updateActiveInstrumentImage(instrument.value)
 	})
-
-	const { instrument } = storeToRefs(useMySettingsStore())
 
 	watch(instrument, () => {
 		removeHighlightOfAllInstruments()
@@ -162,8 +170,6 @@ export const useInstrumentSelector = () => {
 	function redirectToPracticePage() {
 		useRouter().push('/entrar')
 	}
-
-	const isMobile = ref(verifyIsMobile())
 
 	function verifyIsMobile() {
 		if (

@@ -23,20 +23,14 @@ export const useViewController = () => {
 
 	const boxButtons = ref({
 		play: {
-			callInAction: {
-				text: mainButtonLabel,
-				schema: 'the-project',
-				leftLogo: false,
-				rightLogo: false,
-			},
+			content: mainButtonLabel,
+			schema: 'index',
+			leftLogo: true,
 		},
 		stop: {
-			callInAction: {
-				text: `<div style="font-size:1.5em">Cancelar</div>`,
-				schema: 'the-project',
-				leftLogo: false,
-				rightLogo: false,
-			},
+			content: `<div style="font-size:1.5em">Cancelar</div>`,
+			schema: 'index',
+			leftLogo: true,
 		},
 	})
 

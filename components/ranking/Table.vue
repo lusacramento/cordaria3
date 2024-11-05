@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<table class="table table-dark table-striped">
+		<table class="table table-striped table-dark">
 			<thead>
 				<tr>
 					<th scope="col">#</th>

@@ -1,66 +1,107 @@
 :root {
 	/* BOTH THEMES */
-	/* CARDS */
-	--bg-error: rgba(180, 66, 63, 1) !important;
-	--bg-success: rgba(57, 194, 161, 1) !important;
-	--bg-warn: rgba(255, 215, 64, 1) !important;
+	/* COLOR PALETTE */
+	--color-yellow: rgba(255, 215, 64, 1);
+	--color-yellow-80: rgba(249, 238, 122, 0.8);
+	--color-yellow-30: rgba(249, 238, 122, 0.3);
 
-	/* INSTRUMENTS */
-	--acoustic-guitar-color: rgba(255, 215, 64, 1);
-	--electric-guitar-color: rgba(180, 66, 63, 1);
-	--bass-color: rgba(173, 0, 225, 0.7);
-	--cavaco-color: rgba(57, 194, 161, 1);
+	--color-red: rgba(180, 66, 63, 1);
+	--color-red-80: rgba(243, 152, 136, 0.8);
+	--color-red-30: rgba(243, 152, 136, 0.3);
 
-	--active-acoustic-guitar-color: rgba(249, 238, 122, 0.8);
-	--active-electric-guitar-color: rgba(243, 152, 136, 0.8);
-	--active-bass-color: rgba(129, 123, 185, 0.8);
-	--active-cavaco-color: rgba(127, 196, 158, 0.8);
+	--color-purple: rgba(173, 0, 225, 0.7);
+	--color-purple-80: rgba(129, 123, 185, 0.8);
+	--color-purple-30: rgba(129, 123, 185, 0.3);
 
-	--hover-acoustic-guitar-color: rgba(249, 238, 122, 0.3);
-	--hover-electric-guitar-color: rgba(243, 152, 136, 0.3);
-	--hover-bass-color: rgba(129, 123, 185, 0.3);
-	--hover-cavaco-color: rgba(127, 196, 158, 0.3);
-
-	/* FONTS*/
-	--color-text-white: rgba(112, 111, 108, 1);
-	--color-white-50: rgba(255, 255, 255, 0.5);
-	--color-white-70: rgba(255, 255, 255, 0.7);
+	--color-green: rgba(57, 194, 161, 1);
+	--color-green-80: rgba(127, 196, 158, 0.8);
+	--color-green-30: rgba(127, 196, 158, 0.3);
 
 	--color-white: rgba(255, 255, 255, 1);
+	--color-white-30: rgba(255, 255, 255, 0.3);
 	--color-white-50: rgba(255, 255, 255, 0.5);
 	--color-white-70: rgba(255, 255, 255, 0.7);
+	--color-text-white: rgba(112, 111, 108, 1);
 
 	--color-black: rgba(0, 0, 0, 1);
+	--color-black-30: rgba(0, 0, 0, 0.3);
 	--color-black-50: rgba(0, 0, 0, 0.5);
 	--color-black-70: rgba(0, 0, 0, 0.7);
 
+	--color-app-light: rgba(227, 224, 217, 1);
+	--color-app-dark: rgba(28, 31, 38, 1);
+
+	--color-nav-light: rgba(226, 225, 215, 1);
+	--color-nav-dark: rgba(29, 30, 40, 1);
+
+	--color-header-light: rgba(215, 213, 201, 1);
+	--color-header-dark: rgba(40, 42, 54, 1);
+
+	--color-border-light: rgba(229, 228, 219, 1);
+	--color-border-dark: rgba(26, 27, 36, 1);
+
+	--color-box-light-in: rgba(238, 235, 235, 1);
+	--color-box-light-out: var(--color-app-light);
+
+	--color-box-dark-in: var(--color-nav-dark);
+	--color-box-dark-out: rgba(36, 38, 49, 1);
+
+	--color-table-light: rgba(222, 218, 215, 1);
+	--color-table-striped-light: rgba(211, 207, 204, 1);
+	--color-table-border-light: rgba(113, 112, 109, 0.3);
+
+	/* CARDS */
+	--bg-error: var(--color-red) !important;
+	--bg-success: var(--color-green) !important;
+	--bg-warn: var(--color-yellow) !important;
+
+	/* INSTRUMENTS */
+	--acoustic-guitar-color: var(--color-yellow);
+	--electric-guitar-color: var(--color-red);
+	--bass-color: var(--color-purple);
+	--cavaco-color: var(--color-green);
+
+	--active-acoustic-guitar-color: var(--color-yellow-80);
+	--active-electric-guitar-color: var(--color-red-80);
+	--active-bass-color: var(--color-purple-80);
+	--active-cavaco-color: var(--color-green-80);
+
+	--hover-acoustic-guitar-color: var(--color-yellow-30);
+	--hover-electric-guitar-color: var(--color-red-30);
+	--hover-bass-color: var(--color-purple-30);
+	--hover-cavaco-color: var(--color-green-30);
+
+	/* FONTS*/
+
+	--bg-btn: transparent;
+
 	/* LIGHT THEME */
-	--bg-app-light: rgb(227, 224, 217, 1);
-	--bg-nav-light: rgba(226, 225, 215, 1);
-	--bg-header-light: rgba(215, 213, 201, 1);
+	--bg-app-light: var(--color-app-light);
+	--bg-nav-light: var(--color-nav-light);
+	--bg-header-light: var(--color-header-light);
 	--bg-content-light: linear-gradient(
 		180deg,
-		rgba(215, 213, 201, 1) 37%,
-		rgba(227, 224, 217, 1) 77%
+		var(--color-header-light) 37%,
+		var(--color-app-light) 77%
 	);
-	--border-nav-light: 15px solid rgba(229, 228, 219, 1);
+	--border-nav-light: 15px solid var(--color-border-light);
 	--text-color-light: var(--color-text-white);
-	--bg-title-box-light-in: rgba(238, 235, 235, 1);
-	--bg-title-box-light-out: rgba(227, 224, 217, 1);
+	--bg-title-box-light-in: var(--color-box-light-in);
+	--bg-title-box-light-out: var(--color-box-light-out);
 
 	/* DARK THEME */
-	--bg-app-dark: rgba(28, 31, 38, 1);
-	--bg-nav-dark: rgba(29, 30, 40, 1);
-	--bg-header-dark: rgba(40, 42, 54, 1);
+	--bg-app-dark: var(--color-app-dark);
+	--bg-nav-dark: var(--color-nav-dark);
+	--bg-header-dark: var(--color-header-dark);
 	--bg-content-dark: linear-gradient(
 		180deg,
-		rgba(40, 42, 54, 1) 37%,
-		rgba(29, 30, 40, 1) 77%
+		var(--color-header-dark) 37%,
+		var(--color-app-dark) 77%
 	);
-	--border-nav-dark: 15px solid rgba(26, 27, 36, 1);
+	--border-nav-dark: 15px solid var(--color-border-dark);
 	--text-color-dark: var(--color-dark-50);
-	--bg-title-box-dark-in: rgba(29, 30, 40, 1);
-	--bg-title-box-dark-out: rgba(36, 38, 49, 1);
+	--bg-title-box-dark-in: var(--color-box-dark-in);
+	--bg-title-box-dark-out: var(--color-box-dark-out);
 }
 
 /************ LIGHT THEME ***********************/
@@ -73,6 +114,16 @@
 	--text-color: var(--color-black-50);
 	--bg-title-box-in: var(--bg-title-box-light-in);
 	--bg-title-box-out: var(--bg-title-box-light-out);
+
+	--bg-btn-hover: var(--color-black-30);
+	.table-striped {
+		--bs-table-color: var(--color-black-50);
+		--bs-table-striped-color: var(--color-black-50);
+
+		--bs-table-bg: var(--color-table-light);
+		--bs-table-striped-bg: var(--color-table-striped-light);
+		--bs-table-border-color: var(--color-table-border-light);
+	}
 }
 
 /*************** DARK THEME *********************/
@@ -85,6 +136,8 @@
 	--text-color: var(--color-white-50);
 	--bg-title-box-in: var(--bg-title-box-dark-in);
 	--bg-title-box-out: var(--bg-title-box-dark-out);
+
+	--bg-btn-hover: var(--color-black-30);
 }
 
 /* APPLY THEME */
@@ -113,5 +166,16 @@ h1 {
 }
 
 .btn {
-	color: var(--text-color) !important;
+	color: var(--text-color);
+	background-color: transparent;
+	border: transparent;
+}
+
+.btn:disabled {
+	background-color: transparent;
+	color: var(--text-color);
+}
+
+.btn:hover {
+	background-color: var(--bg-btn-hover);
 }
