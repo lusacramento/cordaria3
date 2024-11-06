@@ -16,15 +16,15 @@
 						class="boxes inbox d-flex align-items-center border-10"
 						:class="inboxColor"
 					>
-						<div v-if="props.box.leftLogo" class="px-1">
+						<div v-if="props.box.leftLogo" class="px-1 left-logo">
 							<img
 								class="img img-fluid icon"
 								:src="icon.url"
 								:alt="icon.altText"
 							/>
 						</div>
-						<div v-html="props.box.content" />
-						<div v-if="props.box.rightLogo" class="px-1">
+						<div v-html="props.box.content" class="center-box" />
+						<div v-if="props.box.rightLogo" class="px-1 right-logo">
 							<img
 								class="img img-fluid icon"
 								:src="icon.url"
@@ -44,7 +44,7 @@
 	import lightCordariaIcon from '@/assets/imgs/logos/light-cordaria-icon.png'
 	import darkCordariaIcon from '@/assets/imgs/logos/dark-cordaria-icon.png'
 
-	import type { Box as TypeBox } from '~/types/Box'
+	import type { Box } from '~/types/Box'
 
 	onBeforeMount(() => {
 		const iconTheme = updateIcon(value.value)
@@ -68,8 +68,8 @@
 
 	const props = defineProps({
 		box: {
-			type: Object as Box,
-			required: false,
+			type: Object as PropType<Box>,
+			required: true,
 		},
 	})
 

@@ -141,9 +141,17 @@
 }
 
 /* APPLY THEME */
+html {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
 body {
 	background-color: var(--bg-app);
 	color: var(--text-color) !important;
+	min-height: 98%;
+	width: 99%;
 }
 
 #nav {
@@ -163,6 +171,7 @@ body {
 
 h1 {
 	color: var(--text-color);
+	margin: 0;
 }
 
 .btn {
@@ -178,4 +187,9 @@ h1 {
 
 .btn:hover {
 	background-color: var(--bg-btn-hover);
+}
+
+.content {
+	width: 80vw;
+	height: 55vh;
 }

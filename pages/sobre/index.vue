@@ -1,15 +1,16 @@
 <template>
 	<div id="the-project" class="the-project">
 		<div class="container-fluid">
-			<LayoutsHeader :title="title" />
+			<LayoutsHeader>
+				<template #center>
+					<LayoutsBox :box="boxes.title" />
+				</template>
+			</LayoutsHeader>
 		</div>
 		<div class="container layer-center">
 			<div class="row justify-content-around">
 				<div class="col-md-4 col-12">
-					<LayoutsBox
-						:title-text="boxes.what.text"
-						:schema="boxes.what.schema"
-					/>
+					<LayoutsBox :box="boxes.what" />
 					<p class="large-line-height">
 						Destinado à pessoas interessadas em iniciar o estudo do violão e
 						guitarra e professores dessa arte, o projeto
@@ -26,10 +27,7 @@
 					</p>
 				</div>
 				<div class="col-md-4 col-12">
-					<LayoutsBox
-						:title-text="boxes.doing.text"
-						:schema="boxes.doing.schema"
-					/>
+					<LayoutsBox :box="boxes.doing" />
 					<p>
 						Sua função é gerar exercícios básicos de digitação com foco na
 						técnica. Tais exercícios vem para
@@ -46,21 +44,14 @@
 			</div>
 			<aside class="row d-flex justify-content-center mt-5 mb-5">
 				<div class="col-lg-6 col-md-9 col-12">
-					<LayoutsBox
-						:title-text="boxes.callInAction.text"
-						:schema="boxes.callInAction.schema"
-						:left-logo="boxes.callInAction.leftLogo"
-					/>
+					<LayoutsBox :box="boxes.callInAction" />
 				</div>
 			</aside>
 		</div>
 		<div class="container mt-5">
 			<div class="row justify-content-around">
 				<section class="col-md-5">
-					<LayoutsBox
-						:title-text="boxes.aboutResearch.text"
-						:schema="boxes.aboutResearch.schema"
-					/>
+					<LayoutsBox :box="boxes.aboutResearch" />
 
 					<p class="justify">
 						A pesquisa
@@ -83,11 +74,7 @@
 				<div class="col-md-5">
 					<aside class="row justify-content-center">
 						<a :href="pdf" target="_blank">
-							<LayoutsBox
-								:title-text="boxes.downloadResearch.text"
-								:schema="boxes.downloadResearch.schema"
-								:right-logo="boxes.downloadResearch.rightLogo"
-							/>
+							<LayoutsBox :box="boxes.downloadResearch" />
 						</a>
 					</aside>
 					<section class="row">
@@ -133,25 +120,31 @@
 	const title = 'SOBRE'
 
 	const boxes = {
+		title: {
+			content: '<h1>SOBRE</h1>',
+			schema: 'index',
+			leftLogo: true,
+		},
 		what: {
-			text: '<h2>O que é?</h2>',
+			content: '<h2>O que é?</h2>',
 			schema: 'the-project',
 		},
 		doing: {
-			text: '<h2>O que faz?</h2>',
+			content: '<h2>O que faz?</h2>',
 			schema: 'the-project',
 		},
 		callInAction: {
-			text: '<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
+			content:
+				'<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
 			schema: 'the-project',
 			leftLogo: true,
 		},
 		aboutResearch: {
-			text: '<h2>Como surgiu?</h2>',
+			content: '<h2>Como surgiu?</h2>',
 			schema: 'the-research',
 		},
 		downloadResearch: {
-			text: `
+			content: `
 	                          <div
 	                   class="
 	                     col

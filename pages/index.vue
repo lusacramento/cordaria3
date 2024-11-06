@@ -84,26 +84,3 @@
 		leftLogo: true,
 	}
 </script>
-
-<style scoped>
-	a {
-		font-size: 1.5em !important;
-	}
-	#the-project {
-		text-align: center;
-	}
-
-	.large-line-height {
-		line-height: 1.7;
-	}
-
-	.btn {
-		width: 260px;
-		border: transparent;
-	}
-
-	.content {
-		width: 80vw;
-		height: 55vh;
-	}
-</style>
