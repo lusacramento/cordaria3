@@ -27,8 +27,13 @@
 		mode: {
 			type: Object,
 			required: true,
-			fill: { type: String, required: false, default: () => 'none' },
+			fill: {
+				type: String,
+				required: false,
+				default: () => 'rgba(255, 255, 255, 0.5)',
+			},
 			stroke: { type: String, required: false, default: () => 'currentColor' },
 		},
 	})
 </script>
+<style scoped></style>
