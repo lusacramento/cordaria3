@@ -1,54 +1,53 @@
 <template>
 	<div id="ranking" class="ranking">
-		<div class="container-fluid">
-			<LayoutsHeader>
-				<template #center>
-					<div class="row d-flex justify-content-center">
-						<div class="col">
-							<button
-								type="button"
-								class="btn btn-acoustic-guitar d-flex justify-content-center"
-								:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
-								@click.prevent="update(Instrument.ACOUSTICGUITAR)"
-							>
-								<img :src="acousticGuitarIcon" alt="" class="img" />
-							</button>
-						</div>
-						<div class="col">
-							<button
-								type="button"
-								class="btn btn-electric-guitar d-flex justify-content-center"
-								:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
-								@click.prevent="update(Instrument.ELECTRICGUITAR)"
-							>
-								<img :src="electricGuitarIcon" alt="" class="img" />
-							</button>
-						</div>
-						<div class="col">
-							<button
-								type="button"
-								class="btn btn-bass d-flex justify-content-center"
-								:class="{ active: instrument === Instrument.BASS }"
-								@click.prevent="update(Instrument.BASS)"
-							>
-								<img :src="bassIcon" alt="" class="img" />
-							</button>
-						</div>
-						<div class="col">
-							<button
-								type="button"
-								class="btn btn-cavaco d-flex justify-content-center"
-								:class="{ active: instrument === Instrument.CAVACO }"
-								@click.prevent="update(Instrument.CAVACO)"
-							>
-								<img :src="cavacoIcon" alt="" class="img" />
-							</button>
-						</div>
+		<LayoutsHeader>
+			<template #center>
+				<div class="row d-flex justify-content-center">
+					<div class="col">
+						<button
+							type="button"
+							class="btn btn-acoustic-guitar d-flex justify-content-center"
+							:class="{ active: instrument === Instrument.ACOUSTICGUITAR }"
+							@click.prevent="update(Instrument.ACOUSTICGUITAR)"
+						>
+							<img :src="acousticGuitarIcon" alt="" class="img" />
+						</button>
 					</div>
-				</template>
-			</LayoutsHeader>
-		</div>
-		<div class="container layer-center">
+					<div class="col">
+						<button
+							type="button"
+							class="btn btn-electric-guitar d-flex justify-content-center"
+							:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
+							@click.prevent="update(Instrument.ELECTRICGUITAR)"
+						>
+							<img :src="electricGuitarIcon" alt="" class="img" />
+						</button>
+					</div>
+					<div class="col">
+						<button
+							type="button"
+							class="btn btn-bass d-flex justify-content-center"
+							:class="{ active: instrument === Instrument.BASS }"
+							@click.prevent="update(Instrument.BASS)"
+						>
+							<img :src="bassIcon" alt="" class="img" />
+						</button>
+					</div>
+					<div class="col">
+						<button
+							type="button"
+							class="btn btn-cavaco d-flex justify-content-center"
+							:class="{ active: instrument === Instrument.CAVACO }"
+							@click.prevent="update(Instrument.CAVACO)"
+						>
+							<img :src="cavacoIcon" alt="" class="img" />
+						</button>
+					</div>
+				</div>
+			</template>
+		</LayoutsHeader>
+
+		<div class="container content layer-center px-5">
 			<RankingTable :ranking="ranking" />
 		</div>
 	</div>
