@@ -152,7 +152,7 @@
 	import { useScreenOrientation } from '@vueuse/core'
 
 	const { lockOrientation } = useScreenOrientation()
-	lockOrientation('landscape-primary')
+	if (useMobile().isMobileDevice()) lockOrientation('landscape-primary')
 
 	definePageMeta({
 		middleware: 'auth',

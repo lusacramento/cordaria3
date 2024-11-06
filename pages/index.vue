@@ -57,7 +57,8 @@
 	})
 
 	const { lockOrientation } = useScreenOrientation()
-	lockOrientation('portrait-primary')
+
+	if (useMobile().isMobileDevice()) lockOrientation('portrait-primary')
 
 	const { isMobile } = useInstrumentSelector()
 
