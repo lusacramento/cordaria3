@@ -1,5 +1,3 @@
-import { enabled } from 'virtual:nuxt-pwa-configuration'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	experimental: {

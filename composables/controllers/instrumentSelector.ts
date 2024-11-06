@@ -20,7 +20,14 @@ import { Instrument } from '~/types/Instrument'
 export const useInstrumentSelector = () => {
 	const { value } = toRefs(useColorMode())
 	const { instrument } = storeToRefs(useMySettingsStore())
-	const isMobile = ref(verifyIsMobile())
+	const { isMobileDevice } = useMobile()
+
+	const isMobile = ref(false)
+
+	if (isMobileDevice()) {
+		isMobile.value = true
+		setADefaultInstrumentWhenNotLoggedAndIsMobile()
+	}
 
 	const instruments = ref({
 		acousticGuitar: {
@@ -169,18 +176,6 @@ export const useInstrumentSelector = () => {
 
 	function redirectToPracticePage() {
 		useRouter().push('/entrar')
-	}
-
-	function verifyIsMobile() {
-		if (
-			navigator.userAgent.match(/iPhone/i) ||
-			navigator.userAgent.match(/iPad/i) ||
-			navigator.userAgent.match(/Android/i)
-		) {
-			setADefaultInstrumentWhenNotLoggedAndIsMobile()
-			return true
-		}
-		return false
 	}
 
 	function setADefaultInstrumentWhenNotLoggedAndIsMobile() {
