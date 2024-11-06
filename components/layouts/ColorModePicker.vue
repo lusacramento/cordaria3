@@ -6,7 +6,7 @@
 			@mouseover="iconTheme.light.stroke = 'rgba(255, 255, 255, 1)'"
 			@mouseleave="iconTheme.light.stroke = 'rgba(255, 255, 255, .5)'"
 		>
-			<ThemeIconsLight
+			<ThemeIconsSun
 				@click.prevent="changeTheme('light')"
 				:mode="iconTheme.light"
 			/>
@@ -17,7 +17,7 @@
 			@mouseover="iconTheme.dark.stroke = 'rgba(0, 0, 0, 1)'"
 			@mouseleave="iconTheme.dark.stroke = 'rgba(0, 0, 0, .5)'"
 		>
-			<ThemeIconsDark
+			<ThemeIconsMoon
 				@click.prevent="changeTheme('dark')"
 				:mode="iconTheme.dark"
 			/>
@@ -35,7 +35,7 @@
 
 	const iconTheme = ref({
 		light: {
-			fill: 'rgba(29, 30, 40, 0.1)',
+			fill: 'rgba(0, 0, 0, 0.5)',
 			stroke: 'rgba(255, 255, 255, .5)',
 		},
 		dark: {
