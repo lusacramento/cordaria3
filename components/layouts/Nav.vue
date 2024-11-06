@@ -21,6 +21,7 @@
 			</NuxtLink>
 			<button
 				class="navbar-toggler"
+				:class="{ 'custom-toggler': isDarkMode }"
 				type="button"
 				data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent"
@@ -28,7 +29,10 @@
 				aria-expanded="false"
 				aria-label="Toggle navigation"
 			>
-				<span class="navbar-toggler-icon"></span>
+				<span
+					class="navbar-toggler-icon"
+					:class="{ 'custom-toggler-icon': isDarkMode }"
+				></span>
 			</button>
 		</div>
 		<div class="col-8 d-flex align-items-center">
@@ -119,6 +123,22 @@
 
 	import instaIconDisabled from '@/assets/imgs/logo-insta-disabled.png'
 	import instaIconEnabled from '@/assets/imgs/logo-insta-enabled.png'
+
+	const { value } = toRefs(useColorMode())
+
+	const isDarkMode = ref()
+
+	onBeforeMount(() => {
+		isDarkMode.value = verifyColorMode(value.value)
+	})
+
+	watch(value, (newValue) => {
+		isDarkMode.value = verifyColorMode(value.value)
+	})
+
+	function verifyColorMode(modeColor: string) {
+		return modeColor === 'dark' ? true : false
+	}
 
 	const icons = {
 		cordaria: reactive({
@@ -242,6 +262,15 @@
 
 	.navbar-toggler {
 		justify-content: end;
+		color: aliceblue !important;
+	}
+
+	.custom-toggler {
+		border-color: var(--color-white-50);
+	}
+
+	.custom-toggler-icon {
+		background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24' /%3E%3C/svg%3E");
 	}
 
 	.theProjectLinkActive {
