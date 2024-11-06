@@ -1,14 +1,15 @@
 <template>
 	<nav
-		class="nav navbar navbar-expand-lg container-fluid align-items-center d-flex"
+		class="navbar navbar-expand-lg d-flex container-fluid justify-content-center"
 	>
-		<div class="col-lg-3 align-items-center d-flex">
-			<nuxt-link
-				id="link-principal"
+		<div
+			class="col-11 col-lg-4 d-flex justify-content-between justify-content-lg-center"
+		>
+			<NuxtLink
+				id="home-link"
 				to="/"
-				class="navbar-brand logo-cordaria"
-				:class="{ active: links.theProject.isLight }"
 				aria-current="page"
+				class="navbar-brand logo-cordaria"
 			>
 				<img
 					:src="icons.cordaria.url"
@@ -17,18 +18,25 @@
 					@mouseover="icons.cordaria.url = icons.cordaria.toLight()"
 					@mouseleave="icons.cordaria.url = icons.cordaria.toDark()"
 				/>
-			</nuxt-link>
-		</div>
-		<div class="col-lg-9 align-items-center d-flex">
-			<div
-				id="navbarSupportedContent"
-				class="navbar-collapse justify-content-end me-5"
-				:class="{ collapse: isCollapse }"
+			</NuxtLink>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
 			>
-				<ul
-					class="navbar-nav d-flex align-items-center"
-					:class="{ collapseColor: !isCollapse }"
-				>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+		<div class="col-8 d-flex align-items-center">
+			<div
+				class="collapse navbar-collapse justify-content-end"
+				id="navbarSupportedContent"
+			>
+				<ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-end">
 					<li class="nav-item">
 						<nuxt-link
 							to="tutorial"
@@ -64,7 +72,9 @@
 							<span>Sobre</span></nuxt-link
 						>
 					</li>
-					<li class="nav-item">
+					<li
+						class="nav-item mx-lg-4 mx-2 my-2 my-lg-0 d-flex align-items-center"
+					>
 						<LayoutsColorModePicker />
 					</li>
 					<li class="nav-item">
@@ -94,6 +104,7 @@
 						</a>
 					</li>
 				</ul>
+				<ul></ul>
 			</div>
 		</div>
 	</nav>
@@ -206,7 +217,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.nav {
 		font-size: var(--font-size-nav);
 		font-family: var(--font-semibold);
@@ -226,6 +237,11 @@
 	.nav-link {
 		color: var(--font-color-nav) !important;
 		margin: 0 10px;
+		font-size: var(--font-size-nav);
+	}
+
+	.navbar-toggler {
+		justify-content: end;
 	}
 
 	.theProjectLinkActive {
@@ -269,7 +285,7 @@
 
 	@media (min-width: 991.98px) {
 		.logo-cordaria {
-			margin-left: 115px;
+			margin-left: 15px;
 		}
 	}
 
