@@ -1,29 +1,27 @@
 <template>
-	<div class="">
-		<ul class="d-flex">
-			<li
-				v-if="value === 'dark'"
-				class="theme-icon-area align-items-center d-flex"
-				@mouseover="iconTheme.light.stroke = 'rgba(255, 255, 255, 1)'"
-				@mouseleave="iconTheme.light.stroke = 'rgba(255, 255, 255, .5)'"
-			>
-				<ThemeIconsLight
-					@click.prevent="changeTheme('light')"
-					:mode="iconTheme.light"
-				/>
-			</li>
-			<li
-				v-if="value === 'light'"
-				class="theme-icon-area d-flex align-items-center"
-				@mouseover="iconTheme.dark.stroke = 'rgba(0, 0, 0, 1)'"
-				@mouseleave="iconTheme.dark.stroke = 'rgba(0, 0, 0, .5)'"
-			>
-				<ThemeIconsDark
-					@click.prevent="changeTheme('dark')"
-					:mode="iconTheme.dark"
-				/>
-			</li>
-		</ul>
+	<div class="color-mode-picker">
+		<div
+			v-if="value === 'dark'"
+			class="theme-icon-area align-items-center d-flex"
+			@mouseover="iconTheme.light.stroke = 'rgba(255, 255, 255, 1)'"
+			@mouseleave="iconTheme.light.stroke = 'rgba(255, 255, 255, .5)'"
+		>
+			<ThemeIconsSun
+				@click.prevent="changeTheme('light')"
+				:mode="iconTheme.light"
+			/>
+		</div>
+		<div
+			v-if="value === 'light'"
+			class="theme-icon-area d-flex align-items-center"
+			@mouseover="iconTheme.dark.stroke = 'rgba(0, 0, 0, 1)'"
+			@mouseleave="iconTheme.dark.stroke = 'rgba(0, 0, 0, .5)'"
+		>
+			<ThemeIconsMoon
+				@click.prevent="changeTheme('dark')"
+				:mode="iconTheme.dark"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -37,7 +35,7 @@
 
 	const iconTheme = ref({
 		light: {
-			fill: 'rgba(29, 30, 40, 0.1)',
+			fill: 'rgba(0, 0, 0, 0.5)',
 			stroke: 'rgba(255, 255, 255, .5)',
 		},
 		dark: {
@@ -54,11 +52,6 @@
 </script>
 
 <style scoped>
-	li {
-		display: inline-block;
-		padding: 2px;
-	}
-
 	.theme-icon-area {
 		height: 25px;
 		position: relative;

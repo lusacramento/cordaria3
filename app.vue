@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="app-vue">
 		<VitePwaManifest />
 		<div class="layout">
 			<NuxtLayout>
