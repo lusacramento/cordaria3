@@ -1,4 +1,14 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+let mongoUrl
+let authOrigin
+
+if (process.env.NODE_ENV === 'production') {
+	mongoUrl = process.env.MONGODB_URI
+	authOrigin = process.env.AUTH_ORIGIN
+} else {
+	mongoUrl = process.env.MONGODB_URI_DEV
+	authOrigin = process.env.AUTH_ORIGIN_DEV
+}
+
 export default defineNuxtConfig({
 	experimental: {
 		asyncContext: true,
@@ -8,7 +18,7 @@ export default defineNuxtConfig({
 
 	runtimeConfig: {
 		authSecret: process.env.AUTH_SECRET,
-		mongorUrl: process.env.MONGODB_URI,
+		mongorUrl: mongoUrl,
 	},
 
 	nitro: {
@@ -33,7 +43,7 @@ export default defineNuxtConfig({
 			},
 		],
 		'@pinia/nuxt',
-		['@sidebase/nuxt-auth', { auth: { baseURL: process.env.AUTH_ORIGIN } }],
+		['@sidebase/nuxt-auth', { auth: { baseURL: authOrigin } }],
 		[
 			'@vee-validate/nuxt',
 			{
