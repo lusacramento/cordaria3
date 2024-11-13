@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  nuxt:
+    build:
+      context: ./
+    ports:
+      - '3000:3000'
+
+    env_file: "./.env"
+    networks:
+      - node-network
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+    restart: always
+    
+
+  mongo:
+    container_name: mongodb
+    image: mongo
+    environment:
+    - MONGODB_URI=mongodb://localhost:27017/cordaria
+    # - MONGODB_INITDB_ROOT_USERNAME=root
+    # - MONGODB_INITDB_ROOT_PASSWORD=
+    - MONGODB_INITDB_DATABASE=cordaria
+
+    networks:
+      - node-network
+
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+volumes:
+  mongo-data:
+
+networks:
+  node-network:
+    driver: bridge
