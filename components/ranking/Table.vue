@@ -3,10 +3,10 @@
 		<table class="table table-striped table-dark">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Usuário</th>
-					<th scope="col">Pontos</th>
-					<th scope="col">Troféus</th>
+					<th scope="col" class="col-1">#</th>
+					<th scope="col" class="col-5">Usuário</th>
+					<th scope="col" class="col-2">Pontos</th>
+					<th scope="col" class="col-auto">Troféus</th>
 				</tr>
 			</thead>
 			<tbody>

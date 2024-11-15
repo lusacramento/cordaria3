@@ -5,7 +5,7 @@
 				<div class="row justify-content-around">
 					<button
 						type="button"
-						class="btn col-4"
+						class="instrument-btn col-4"
 						@click.prevent="joinGame(Instrument.CAVACO)"
 						@mouseover="mouseHover(Instrument.CAVACO)"
 						@mouseleave="mouseLeave"
@@ -14,7 +14,7 @@
 					</button>
 					<button
 						type="button"
-						class="btn col-4"
+						class="instrument-btn col-4"
 						@click.prevent="joinGame(Instrument.ACOUSTICGUITAR)"
 						@mouseover="mouseHover(Instrument.ACOUSTICGUITAR)"
 						@mouseleave="mouseLeave"
@@ -27,7 +27,7 @@
 					</button>
 					<button
 						type="button"
-						class="btn col-4"
+						class="instrument-btn col-4"
 						@click.prevent="joinGame(Instrument.ELECTRICGUITAR)"
 						@mouseover="mouseHover(Instrument.ELECTRICGUITAR)"
 						@mouseleave="mouseLeave"
@@ -40,7 +40,7 @@
 					</button>
 					<button
 						type="button"
-						class="btn col-4"
+						class="instrument-btn col-4"
 						@click.prevent="joinGame(Instrument.BASS)"
 						@mouseover="mouseHover(Instrument.BASS)"
 						@mouseleave="mouseLeave"
@@ -61,8 +61,9 @@
 </script>
 
 <style scoped>
-	.btn {
+	.instrument-btn {
 		width: 260px;
-		border: transparent;
+		border: none;
+		background-color: transparent;
 	}
 </style>
