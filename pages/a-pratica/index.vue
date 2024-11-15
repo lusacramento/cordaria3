@@ -98,7 +98,7 @@
 								<div class="row m-4">
 									<button
 										type="button"
-										class="btn btn-primary btn-controls"
+										class="btn-controls"
 										:disabled="!isLoaded"
 									>
 										<LayoutsBox
@@ -116,10 +116,7 @@
 								</div>
 								<div class="row">
 									<div class="col d-flex justify-content-center">
-										<button
-											type="button"
-											class="btn d-flex btn-primary btn-controls"
-										>
+										<button type="button" class="d-flex btn-controls">
 											<LayoutsBox
 												:box="boxButtons.stop"
 												@click.prevent="exit('/a-pratica')"
@@ -307,10 +304,6 @@
 		height: 80vh;
 	}
 
-	#start-button:hover {
-		cursor: pointer !important;
-	}
-
 	.avatar {
 		color: darkgray;
 		height: 60px;
@@ -336,7 +329,8 @@
 		padding-top: 20%;
 	}
 
-	.btn-controls:hover {
+	.btn-controls {
 		background-color: transparent;
+		border: none;
 	}
 </style>

@@ -20,13 +20,11 @@ export const useViewController = () => {
 	const boxButtons = ref({
 		play: {
 			content: `<div style="font-size:1.5em">CARREGANDO...</div>`,
-			schema: 'index',
-			leftLogo: true,
+			schema: 'green',
 		},
 		stop: {
 			content: `<div style="font-size:1.5em">Cancelar</div>`,
-			schema: 'index',
-			leftLogo: true,
+			schema: 'red',
 		},
 	})
 
