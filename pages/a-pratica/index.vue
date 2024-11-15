@@ -129,7 +129,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div v-if="!isRunning" class="row">
 				<div class="col">
 					<button
 						type="button"
@@ -170,7 +170,7 @@
 	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
 
 	// Controllers
-	const { isCompleted, init } = useGameController()
+	const { isCompleted, init, isRunning } = useGameController()
 
 	const {
 		isLoaded,
