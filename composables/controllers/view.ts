@@ -15,22 +15,16 @@ export const useViewController = () => {
 
 	const isShowStatistics = ref(false)
 
-	const mainButtonLabel = ref(
-		`<div style="font-size:1.5em">CARREGANDO...</div>`,
-	)
-
 	const userDetailsModal = ref()
 
 	const boxButtons = ref({
 		play: {
-			content: mainButtonLabel,
-			schema: 'index',
-			leftLogo: true,
+			content: `<div style="font-size:1.5em">CARREGANDO...</div>`,
+			schema: 'green',
 		},
 		stop: {
 			content: `<div style="font-size:1.5em">Cancelar</div>`,
-			schema: 'index',
-			leftLogo: true,
+			schema: 'red',
 		},
 	})
 
@@ -95,13 +89,13 @@ export const useViewController = () => {
 
 	function enablePlayButton() {
 		setTimeout(() => {
-			mainButtonLabel.value = `<div style="font-size:1.5em">JOGAR</div>`
+			boxButtons.value.play.content = `<div style="font-size:1.5em">JOGAR</div>`
 			isLoaded.value = true
 		}, 2000)
 	}
 
 	function disablePlayButton() {
-		mainButtonLabel.value = `<div style="font-size:1.5em">CARREGANDO...</div>`
+		boxButtons.value.play.content = `<div style="font-size:1.5em">CARREGANDO...</div>`
 		isLoaded.value = false
 	}
 

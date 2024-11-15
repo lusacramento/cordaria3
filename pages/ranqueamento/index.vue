@@ -47,8 +47,12 @@
 			</template>
 		</LayoutsHeader>
 
-		<div class="container content layer-center px-5">
-			<RankingTable :ranking="ranking" />
+		<div class="container content layer-center">
+			<div class="row d-flex justify-content-center">
+				<div class="col-11 col-lg-10">
+					<RankingTable :ranking="ranking" />
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

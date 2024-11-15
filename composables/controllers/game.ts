@@ -20,6 +20,8 @@ const lesson = ref() as Ref<Lesson> | Ref<null>
 
 const isCompleted = ref(false)
 
+const isRunning = ref(false)
+
 export const useGameController = () => {
 	let deckIndex = 0
 	const progressStore = useMyProgressStore()
@@ -70,6 +72,7 @@ export const useGameController = () => {
 	}
 
 	async function startLesson(tempo: number) {
+		isRunning.value = true
 		const fragment = {
 			prev: ref(),
 			current: ref(),
@@ -189,6 +192,7 @@ export const useGameController = () => {
 			clearSequence()
 
 			isCompleted.value = await true
+			isRunning.value = await false
 		}
 
 		function clearSequence() {
@@ -208,5 +212,6 @@ export const useGameController = () => {
 		counter,
 		startLesson,
 		isCompleted,
+		isRunning,
 	}
 }

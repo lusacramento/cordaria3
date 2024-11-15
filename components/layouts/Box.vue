@@ -7,11 +7,7 @@
 			:class="outboxColor"
 		>
 			<div class="col">
-				<div
-					class="boxes outbox"
-					@mouseover="icon.url = imageMouseOver(icon)"
-					@mouseleave="icon.url = imageMouseLeave(icon)"
-				>
+				<div class="boxes outbox">
 					<div
 						class="boxes inbox d-flex align-items-center border-10"
 						:class="inboxColor"
@@ -39,17 +35,13 @@
 </template>
 
 <script lang="ts" setup>
-	import iconCordariaEnabled from '@/assets/imgs/icone-cordaria-enabled.png'
-	import iconCordariaDisabled from '@/assets/imgs/icone-cordaria-disabled.png'
 	import lightCordariaIcon from '@/assets/imgs/logos/light-cordaria-icon.png'
 	import darkCordariaIcon from '@/assets/imgs/logos/dark-cordaria-icon.png'
 
 	import type { Box } from '~/types/Box'
 
 	onBeforeMount(() => {
-		const iconTheme = updateIcon(value.value)
-		icon.value.url =
-			useRoute().name === 'index' ? iconTheme : iconCordariaDisabled
+		icon.value.url = updateIcon(value.value)
 	})
 
 	const { value } = toRefs(useColorMode())
@@ -78,8 +70,6 @@
 	const icon = ref({
 		url: '',
 		altText: 'Inicie agora',
-		enabled: iconCordariaEnabled,
-		disabled: iconCordariaDisabled,
 	})
 
 	function applySchema() {
@@ -87,16 +77,17 @@
 			case 'index':
 				inboxColor.value = 'inbox-index'
 				outboxColor.value = 'outbox-index'
+				break
+			case 'green':
+				inboxColor.value = 'inbox-green'
+				outboxColor.value = 'outbox-green'
+				break
+			case 'red':
+				inboxColor.value = 'inbox-red'
+				outboxColor.value = 'outbox-red'
+				break
 			default:
 		}
-	}
-
-	function imageMouseOver(img: any) {
-		return img.enabled
-	}
-
-	function imageMouseLeave(img: any) {
-		return img.disabled
 	}
 </script>
 
@@ -104,16 +95,14 @@
 	.box-title {
 		cursor: pointer;
 	}
-	a {
-		font-size: 1.5em !important;
-	}
 
 	.inbox {
 		padding: 4px 25px;
+		color: var(--color-white-50);
 	}
+
 	.inbox:hover {
-		background-color: rgba(0, 0, 0, 0.05);
-		color: var(--font-color-hover) !important;
+		color: var(--color-white);
 	}
 
 	.outbox {
@@ -130,6 +119,36 @@
 
 	.outbox-index {
 		background-color: var(--bg-title-box-out);
+	}
+
+	.inbox-green {
+		background-color: rgba(0, 128, 0, 0.5);
+	}
+
+	.outbox-green {
+		background-color: rgba(0, 128, 0, 0.2);
+	}
+
+	.inbox-green:hover,
+	.outbox-green:hover {
+		background-color: rgba(0, 128, 0, 1);
+	}
+
+	.outbox-green:hover {
+		background-color: rgba(0, 128, 0, 1);
+	}
+
+	.inbox-red {
+		background-color: rgba(255, 0, 0, 0.5);
+	}
+
+	.outbox-red {
+		background-color: rgba(255, 0, 0, 0.2);
+	}
+
+	.inbox-red:hover,
+	.outbox-red:hover {
+		background-color: rgba(255, 0, 0, 1);
 	}
 
 	.icon {
