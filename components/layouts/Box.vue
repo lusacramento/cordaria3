@@ -77,6 +77,15 @@
 			case 'index':
 				inboxColor.value = 'inbox-index'
 				outboxColor.value = 'outbox-index'
+				break
+			case 'green':
+				inboxColor.value = 'inbox-green'
+				outboxColor.value = 'outbox-green'
+				break
+			case 'red':
+				inboxColor.value = 'inbox-red'
+				outboxColor.value = 'outbox-red'
+				break
 			default:
 		}
 	}
@@ -86,16 +95,14 @@
 	.box-title {
 		cursor: pointer;
 	}
-	a {
-		font-size: 1.5em !important;
-	}
 
 	.inbox {
 		padding: 4px 25px;
+		color: var(--color-white-50);
 	}
+
 	.inbox:hover {
-		background-color: rgba(0, 0, 0, 0.05);
-		color: var(--font-color-hover) !important;
+		color: var(--color-white);
 	}
 
 	.outbox {
@@ -112,6 +119,36 @@
 
 	.outbox-index {
 		background-color: var(--bg-title-box-out);
+	}
+
+	.inbox-green {
+		background-color: rgba(0, 128, 0, 0.5);
+	}
+
+	.outbox-green {
+		background-color: rgba(0, 128, 0, 0.2);
+	}
+
+	.inbox-green:hover,
+	.outbox-green:hover {
+		background-color: rgba(0, 128, 0, 1);
+	}
+
+	.outbox-green:hover {
+		background-color: rgba(0, 128, 0, 1);
+	}
+
+	.inbox-red {
+		background-color: rgba(255, 0, 0, 0.5);
+	}
+
+	.outbox-red {
+		background-color: rgba(255, 0, 0, 0.2);
+	}
+
+	.inbox-red:hover,
+	.outbox-red:hover {
+		background-color: rgba(255, 0, 0, 1);
 	}
 
 	.icon {
