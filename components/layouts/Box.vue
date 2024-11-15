@@ -7,11 +7,7 @@
 			:class="outboxColor"
 		>
 			<div class="col">
-				<div
-					class="boxes outbox"
-					@mouseover="icon.url = imageMouseOver(icon)"
-					@mouseleave="icon.url = imageMouseLeave(icon)"
-				>
+				<div class="boxes outbox">
 					<div
 						class="boxes inbox d-flex align-items-center border-10"
 						:class="inboxColor"
@@ -39,17 +35,13 @@
 </template>
 
 <script lang="ts" setup>
-	import iconCordariaEnabled from '@/assets/imgs/icone-cordaria-enabled.png'
-	import iconCordariaDisabled from '@/assets/imgs/icone-cordaria-disabled.png'
 	import lightCordariaIcon from '@/assets/imgs/logos/light-cordaria-icon.png'
 	import darkCordariaIcon from '@/assets/imgs/logos/dark-cordaria-icon.png'
 
 	import type { Box } from '~/types/Box'
 
 	onBeforeMount(() => {
-		const iconTheme = updateIcon(value.value)
-		icon.value.url =
-			useRoute().name === 'index' ? iconTheme : iconCordariaDisabled
+		icon.value.url = updateIcon(value.value)
 	})
 
 	const { value } = toRefs(useColorMode())
@@ -78,8 +70,6 @@
 	const icon = ref({
 		url: '',
 		altText: 'Inicie agora',
-		enabled: iconCordariaEnabled,
-		disabled: iconCordariaDisabled,
 	})
 
 	function applySchema() {
@@ -89,14 +79,6 @@
 				outboxColor.value = 'outbox-index'
 			default:
 		}
-	}
-
-	function imageMouseOver(img: any) {
-		return img.enabled
-	}
-
-	function imageMouseLeave(img: any) {
-		return img.disabled
 	}
 </script>
 
