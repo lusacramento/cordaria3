@@ -1,0 +1,74 @@
+:root {
+	--default-font-family: 'Encode Sans';
+
+	/* font styles */
+	--font-thin: 100;
+	--font-extra-light: 200;
+	--font-light: 300;
+	--font-regular: 400;
+	--font-medium: 500;
+	--font-semi-bold: 600;
+	--font-bold: 700;
+	--font-extra-bold: 800;
+	--font-black: 900;
+
+	/* fonts sizes */
+	--font-size-nav: 1.2em;
+	--font-size-h1: 2.4em;
+	--font-size-h2: 1.5em;
+	--font-size-h3: 0.8em;
+	--font-size-h4: 1em;
+	--font-size-p: 0.9em;
+	--font-size-light: 0.9em;
+}
+
+* {
+	font-family: var(--default-font-family);
+}
+
+title {
+	font-weight: var(--font-black);
+	font-size: var(--font-size-h1);
+}
+
+p,
+ul {
+	font-weight: var(--font-regular);
+	font-size: var(--font-size-p);
+	color: var(--font-color-p) !important;
+}
+
+.large-line-height {
+	line-height: 1.7;
+}
+
+a {
+	font-weight: var(--font-semi-bold);
+	color: var(--font-color-link) !important;
+}
+a:hover {
+	color: var(--font-color-hover) !important;
+}
+
+strong {
+	font-weight: var(--font-semi-bold);
+}
+
+b {
+	font-weight: var(--font-bold);
+}
+
+h2 {
+	font-weight: var(--font-semi-bold);
+	font-size: var(--font-size-h2) !important;
+}
+
+h3 {
+	font-weight: var(--font-semi-bold);
+	font-size: var(--font-size-h3) !important;
+}
+
+h4 {
+	font-weight: var(--font-semi-bold);
+	font-size: var(--font-size-h4) !important;
+}
