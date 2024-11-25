@@ -71,8 +71,6 @@
 	--hover-bass-color: var(--color-purple-30);
 	--hover-cavaco-color: var(--color-green-30);
 
-	/* FONTS*/
-
 	--bg-btn: transparent;
 
 	/* LIGHT THEME */
@@ -145,6 +143,7 @@ html {
 	margin: 0;
 	height: 100%;
 	width: 100%;
+	color: var(--text-color);
 }
 
 body {
@@ -169,8 +168,12 @@ body {
 	background: var(--bg-content);
 }
 
-h1 {
-	color: var(--text-color);
+h1,
+h2,
+h3,
+h4 title,
+p {
+	color: var(--text-color) !important;
 	margin: 0;
 }
 
@@ -192,4 +195,17 @@ h1 {
 .content {
 	width: 80vw;
 	height: 55vh;
+}
+
+.alert {
+	color: var(--color-yellow);
+}
+.alert-danger,
+.is-invalid {
+	background-color: var(--color-red) !important;
+}
+
+.alert-success,
+.is-valid {
+	background-color: var(--color-green) !important;
 }
