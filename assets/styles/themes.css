@@ -171,9 +171,14 @@ body {
 h1,
 h2,
 h3,
-h4 title,
+h4,
+title,
+ul,
 p {
 	color: var(--text-color) !important;
+}
+
+h1 {
 	margin: 0;
 }
 

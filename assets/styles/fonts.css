@@ -35,7 +35,6 @@ p,
 ul {
 	font-weight: var(--font-regular);
 	font-size: var(--font-size-p);
-	color: var(--font-color-p) !important;
 }
 
 .large-line-height {
@@ -44,10 +43,6 @@ ul {
 
 a {
 	font-weight: var(--font-semi-bold);
-	color: var(--font-color-link) !important;
-}
-a:hover {
-	color: var(--font-color-hover) !important;
 }
 
 strong {
