@@ -36,7 +36,7 @@
 	const inSubmit = ref(false)
 
 	const apiUrl = '/api/upload-image'
-	const { id } = storeToRefs(useMyUserStore())
+	const { _id } = storeToRefs(useMyUserStore())
 	const { handleFileInput, files } = useFileStorage()
 	const imageDir = '/imgs/uploads'
 
@@ -70,7 +70,7 @@
 			method: 'POST',
 			body: {
 				file,
-				name: id.value,
+				name: _id.value,
 			},
 		})
 		if (response) {
