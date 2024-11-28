@@ -6,5 +6,5 @@ export interface UserDetails {
 	age: number
 	state: string
 	country: string
-	imageUrl: string
+	avatar: string
 }
