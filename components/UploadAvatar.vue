@@ -66,21 +66,23 @@
 		files.value[0].content = await content
 		const file = files.value[0]
 
-		const response = await $fetch(apiUrl, {
-			method: 'POST',
-			body: {
-				file,
-				name: _id.value,
-			},
-		})
-		if (response) {
-			useMyUserDetailsStore().setImageUrl(response.name)
-			inSubmit.value = false
-			// status.value = response.message
-			setTimeout(() => {
-				status.value = ''
-			}, 1000)
-		}
+		useMyUserDetailsStore().setAvatar(file.content)
+
+		// const response = await $fetch(apiUrl, {
+		// 	method: 'POST',
+		// 	body: {
+		// 		file,
+		// 		name: _id.value,
+		// 	},
+		// })
+		// if (response) {
+		// 	useMyUserDetailsStore().setImageUrl(response.name)
+		// 	inSubmit.value = false
+		// 	// status.value = response.message
+		// 	setTimeout(() => {
+		// 		status.value = ''
+		// 	}, 1000)
+		// }
 	}
 </script>
 <style>

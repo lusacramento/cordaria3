@@ -167,7 +167,9 @@
 
 	const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
 
-	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
+	// const avatar = storeToRefs(useMyUserDetailsStore()).image.value.content
+
+	const { avatar } = storeToRefs(useMyUserDetailsStore())
 
 	// Controllers
 	const { isCompleted, init, isRunning } = useGameController()

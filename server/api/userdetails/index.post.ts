@@ -2,14 +2,9 @@ import { UserDetails } from '~/server/models/UserDetails'
 
 export default defineEventHandler(async (event) => {
 	const body = await readBody(event)
+	const avatar = '/imgs/avatar/default-avatar.png'
 
-	if (
-		!body.userId ||
-		!body.fullName ||
-		!body.state ||
-		!body.country ||
-		!body.imageUrl
-	) {
+	if (!body.userId || !body.fullName || !body.state || !body.country) {
 		throw createError({
 			statusCode: 400,
 			statusMessage: 'Bad Request',
@@ -18,6 +13,7 @@ export default defineEventHandler(async (event) => {
 	}
 
 	try {
+		if (body.avatar === '') body.avatar = avatar
 		const userDetails = await UserDetails.updateOne(
 			{ userId: body.userId },
 			body,
