@@ -232,8 +232,11 @@
 				<p id="credit-text" class="text-center">
 					O projeto Cordaria 3.0 foi possível devido ao apoio da
 					<strong>Lei Paulo Gustavo</strong>, Governo Federal,
-					<a href="https://www.gov.br/turismo/pt-br">Ministério do Turismo</a> e
-					<a href="https://portal.contagem.mg.gov.br/"
+					<a href="https://www.gov.br/turismo/pt-br" rel="nofollow"
+						>Ministério do Turismo</a
+					>
+					e
+					<a href="https://portal.contagem.mg.gov.br/" rel="nofollow"
 						>Secretaria Municipal de Cultura do município de Contagem</a
 					>, através da aprovação no EDITAL DE SELEÇÃO LEI PAULO GUSTAVO - Nº
 					004/2023 - FOMENTO AO AUDIOVISUAL DE CONTAGEM, sob nº 249364.
