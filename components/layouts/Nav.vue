@@ -82,7 +82,11 @@
 						<LayoutsColorModePicker />
 					</li>
 					<li class="nav-item">
-						<a class="nav-link email-link" :href="icons.email.href">
+						<a
+							class="nav-link email-link"
+							:href="icons.email.href"
+							:rel="icons.email.rel"
+						>
 							<img
 								class="img img-fluid"
 								:src="icons.email.url"
@@ -97,6 +101,7 @@
 							class="nav-link insta-link"
 							href="https://instagram.com/cordaria.app"
 							target="_blank"
+							:rel="icons.insta.rel"
 						>
 							<img
 								class="img img-fluid"
@@ -149,7 +154,8 @@
 		}),
 
 		email: reactive({
-			href: 'mailto:japraticouhoje@cordaria.com.br',
+			href: 'mailto:cordaria.app@gmail.com',
+			rel: 'nofollow',
 			url: emailIconDisabled,
 			altText: 'Ícone contato',
 			toLight: () => emailIconEnabled,
@@ -158,6 +164,7 @@
 
 		insta: reactive({
 			url: instaIconDisabled,
+			rel: 'nofollow',
 			altText: 'Ícone Instagram',
 			toLight: () => instaIconEnabled,
 			toDark: () => instaIconDisabled,

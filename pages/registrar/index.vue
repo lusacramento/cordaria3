@@ -34,6 +34,11 @@
 		middleware: 'guest',
 	})
 
+	useHead({
+		title: 'A Prática',
+		meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+	})
+
 	const userStore = useMyUserStore()
 
 	const { toast, toaster, showToast } = useViewController()

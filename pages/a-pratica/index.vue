@@ -156,6 +156,11 @@
 		layout: 'pratice',
 	})
 
+	useHead({
+		title: 'A Prática',
+		meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+	})
+
 	onBeforeMount(async () => {
 		await load()
 		if (useMyUserDetailsStore().getId) init()

@@ -128,6 +128,11 @@
 		},
 	})
 
+	useHead({
+		title: 'A Prática',
+		meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+	})
+
 	const isLoaded = ref({
 		allLessons: false,
 		lesson: false,
