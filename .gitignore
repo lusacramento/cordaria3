@@ -133,3 +133,6 @@ dist
 
 #uploads files
 public/imgs/uploads
+
+#dokploy settings backup
+dokploy
