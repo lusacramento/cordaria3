@@ -7,108 +7,244 @@
 				</template>
 			</LayoutsHeader>
 		</div>
-		<div class="container layer-center">
+		<div class="container layer-center content">
 			<div class="row justify-content-around">
-				<div class="col-md-4 col-12">
+				<div class="col-md-4 col-12 mt-4">
 					<LayoutsBox :box="boxes.what" />
-					<p class="large-line-height">
-						Destinado à pessoas interessadas em iniciar o estudo do violão e
-						guitarra e professores dessa arte, o projeto
-						<strong>Cordaria</strong>
-						é um aplicativo
-						<i>web</i>
-						com intuito de auxiliar a prática ao instrumento.
+					<p class="text-justify">
+						Destinado à pessoas interessadas em iniciar o estudo do violão,
+						guitarra, cavaquinho e baixo, e também professores dessa arte, o
+						projeto Cordaria é um aplicativo web com intuito de auxiliar a
+						prática ao instrumento.
 					</p>
-					<p class="large-line-height">
-						Desenvolvido pelo músico e programador
-						<strong>Lu Sacramento</strong>, o projeto é fruto de uma pesquisa
-						sobre novas metodologias e abordagens ao ensino à distância de
-						música.
+					<p class="text-justify">
+						Desenvolvido pelo músico e programador Lu Sacramento, o projeto é
+						fruto de uma pesquisa sobre novas metodologias e abordagens ao
+						ensino à distância de música.
 					</p>
 				</div>
-				<div class="col-md-4 col-12">
-					<LayoutsBox :box="boxes.doing" />
-					<p>
+				<div class="col-md-4 col-12 mt-4">
+					<LayoutsBox :box="boxes.doing" class="" />
+					<p class="text-justify">
 						Sua função é gerar exercícios básicos de digitação com foco na
-						técnica. Tais exercícios vem para
-						<strong>auxiliar o educando</strong> a executar as notas dadas
-						através de uma escrita de tablatura, cuja a linguagem é de fácil
-						entendimento comparado a escrita de partitura.
+						técnica. Tais exercícios vem para auxiliar o educando a executar as
+						notas dadas através de uma escrita de tablatura, com uma linguagem
+						de fácil entendimento comparado a escrita de partitura.
 					</p>
-					<p>
+					<p class="text-justify">
 						Desta forma, o aluno poderá praticar junto ao auxílio de um
-						<strong>“correpetidor” virtual</strong>, em qualquer momento e
-						lugar!
+						“correpetidor” virtual, em qualquer momento e lugar!
 					</p>
 				</div>
 			</div>
+			<hr />
 			<aside class="row d-flex justify-content-center mt-5 mb-5">
 				<div class="col-lg-6 col-md-9 col-12">
-					<LayoutsBox :box="boxes.callInAction" />
+					<LayoutsBox :box="boxes.callInAction" class="call-in-action" />
 				</div>
 			</aside>
+			<hr />
 		</div>
 		<div class="container mt-5">
 			<div class="row justify-content-around">
 				<section class="col-md-5">
-					<LayoutsBox :box="boxes.aboutResearch" />
+					<LayoutsBox :box="boxes.research" class="mb-4" />
 
-					<p class="justify">
-						A pesquisa
-						<strong>
-							“Cordaria – Desenvolvimento de aplicação web para iniciação à
-							prática do violão e guitarra”
-						</strong>
-						surge em um momento delicado da história mundial: a pandemia do
-						Coronavírus – COVID 19. Compelidos a este problema, os profissionais
-						da área da educação, sobre tudo com atuação na área da música
-						enfrentam grandes desafios para conseguir adequar suas atividades
-						para o ensino a distância. Parte deste desafio é devido a escassez
-						de recursos tecnológicos que fogem da metodologia tradicional de
-						ensino, muito das vezes, limitado a vídeos, textos, imagens e de
-						forma repetida. Os problemas se amplificam com usuários oriundos da
-						classe baixa, que tem uma limitação considerável de hardware e/ou
-						baixa conexão de internet.
+					<p class="text-justify">
+						A pesquisa “Cordaria – Desenvolvimento de aplicação web para
+						iniciação à prática do violão e guitarra” surge em um momento
+						delicado da história mundial: a pandemia do Coronavírus – COVID 19.
+						Compelidos a este problema, os profissionais da área da educação,
+						sobre tudo com atuação na área da música enfrentam grandes desafios
+						para conseguir adequar suas atividades para o ensino a distância.
+						Parte deste desafio é devido a escassez de recursos tecnológicos que
+						fogem da metodologia tradicional de ensino, muito das vezes,
+						limitado a vídeos, textos, imagens e de forma repetida. Os problemas
+						se amplificam com usuários oriundos da classe baixa, que tem uma
+						limitação considerável de hardware e/ou baixa conexão de internet.
+					</p>
+					<p class="text-justify">
+						Acesse a pesquisa na íntegra
+						<a :href="pdf" target="_blank">aqui</a>.
 					</p>
 				</section>
 				<div class="col-md-5">
 					<aside class="row justify-content-center">
-						<a :href="pdf" target="_blank">
-							<LayoutsBox :box="boxes.downloadResearch" />
-						</a>
+						<LayoutsBox :box="boxes.idea" class="mb-4" />
 					</aside>
 					<section class="row">
 						<div class="col">
-							<p class="justify large-line-height">
+							<p class="text-justify">
 								Utilizando meus conhecimentos de uma década como professor e
 								alguns anos de desenvolvedor web, implementei uma aplicação para
 								prática de exercícios básicos de violão e guitarra baseada em
 								alguns métodos já experienciados por mim enquanto discente e
-								docente. Com isso, Cordaria pretende
-								<strong
-									>ampliar as possibilidades metodológicas do ensino
-									prático</strong
-								>
-								destes instrumentos num cenário EAD e oferecer uma oportunidade
-								diferente para iniciação da arte do fazer musical, além de
-								incentivar programadores e professores a pensar novas formas de
-								aprendizagem.
+								docente. Com isso, Cordaria pretende ampliar as possibilidades
+								metodológicas do ensino prático destes instrumentos num cenário
+								EAD e oferecer uma oportunidade diferente para iniciação da arte
+								do fazer musical, além de incentivar programadores e professores
+								a pensar novas formas de aprendizagem.
 							</p>
 						</div>
 					</section>
 				</div>
 			</div>
 		</div>
+		<div class="container mt-5">
+			<div class="row justify-content-around">
+				<section class="col-md-5">
+					<LayoutsBox :box="boxes.release" class="mb-4" />
+
+					<div class="accordion accordion-flush" id="accordionExample">
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#collapseOne"
+									aria-expanded="false"
+									aria-controls="collapseOne"
+								>
+									<h3>Versão 3.0</h3>
+								</button>
+							</h2>
+							<div
+								id="collapseOne"
+								class="accordion-collapse collapse"
+								data-bs-parent="#accordionExample"
+							>
+								<div class="accordion-body">
+									<ul class="text-justify">
+										<li>
+											Ampliação de novos instrumentos: cavaquinho e baixo;
+										</li>
+										<li>
+											Sistema de cadastro e criação de perfil de usuários;
+										</li>
+										<li>Sistema de ranqueamento dos usuários;</li>
+										<li>Premiação de medalhas virtuais;</li>
+										<li>Atualização do tutorial;</li>
+										<li>Adição de tema claro;</li>
+										<li>Correções de bugs e melhorias de performance.</li>
+									</ul>
+									<p class="small">
+										Edital de Seleção Lei Paulo Gustavo - Nº 004/2023 - Fomento
+										Ao Audiovisual de Contagem, categoria I - Apoio a Produções
+										Audiovisuais, subcategoria 9 – Game, promovido pela
+										Secretaria Municipal de Cultura.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#collapseTwo"
+									aria-expanded="false"
+									aria-controls="collapseTwo"
+								>
+									<h3>Versão 2.0</h3>
+								</button>
+							</h2>
+							<div
+								id="collapseTwo"
+								class="accordion-collapse collapse"
+								data-bs-parent="#accordionExample"
+							>
+								<div class="accordion-body">
+									<ul class="text-justify">
+										<li>Melhorias de performance;</li>
+										<li>Implementação de novos exercícios.</li>
+									</ul>
+									<p class="small">Desenvolvido de forma autônoma.</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#collapseThree"
+									aria-expanded="false"
+									aria-controls="collapseThree"
+								>
+									<h3>Versão 1.0</h3>
+								</button>
+							</h2>
+							<div
+								id="collapseThree"
+								class="accordion-collapse collapse"
+								data-bs-parent="#accordionExample"
+							>
+								<div class="accordion-body">
+									<ul class="text-justify">
+										<li>
+											Implementação do sistema com exercícios para violão e
+											guitarra.
+										</li>
+										<li>
+											Modo de visualização de três cartas e todas as cartas.
+										</li>
+									</ul>
+
+									<p class="small">
+										A pesquisa foi possível devido ao apoio da Lei Emergencial
+										de Incentivo à Cultura – Lei Aldir Blanc, Governo Federal,
+										Ministério do Turismo e Secretaria Especial de Cultura,
+										através da aprovação no Edital LAB no 14/2020 – “Seleção de
+										Bolsistas para as Áreas Artísticas Técnicas e de Produção
+										Cultural” promovido pela Secretaria de Cultura e Turismo de
+										Minas Gerais – SECULT.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<div class="col-md-5">
+					<aside class="row justify-content-center">
+						<LayoutsBox :box="boxes.expedient" class="mb-4" />
+					</aside>
+					<section class="row">
+						<div class="col">
+							<h4>Direção e Desenvolvimento</h4>
+							<p>
+								<strong><a href="">Lu Sacramento</a></strong>
+							</p>
+							<h4>Design</h4>
+							<p>
+								<strong><a href="">Gabriel Barreto</a></strong>
+							</p>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<hr />
 		<aside class="row justify-content-center mt-5 m-3">
-			<div class="col-9">
+			<div class="col-9 mb-3">
 				<p id="credit-text" class="text-center">
-					Esta pesquisa foi possível devido ao apoio da Lei Emergencial de
-					Incentivo à Cultura – Lei Aldir Blanc, Governo Federal, Ministério do
-					Turismo e Secretaria Especial de Cultura, através da aprovação no
-					Edital LAB no 14/2020 – “Seleção de Bolsistas para as Áreas Artísticas
-					Técnicas e de Produção Cultural” promovido pela Secretaria de Cultura
-					e Turismo de Minas Gerais – SECULT.
+					O projeto Cordaria 3.0 foi possível devido ao apoio da
+					<strong>Lei Paulo Gustavo</strong>, Governo Federal,
+					<a href="https://www.gov.br/turismo/pt-br">Ministério do Turismo</a> e
+					<a href="https://portal.contagem.mg.gov.br/"
+						>Secretaria Municipal de Cultura do município de Contagem</a
+					>, através da aprovação no EDITAL DE SELEÇÃO LEI PAULO GUSTAVO - Nº
+					004/2023 - FOMENTO AO AUDIOVISUAL DE CONTAGEM, sob nº 249364.
 				</p>
+			</div>
+			<div class="col-9 mb-5">
+				<img
+					:src="sponsorLogos"
+					alt="Logotipos dos Patrocinadores"
+					class="img img-fluid sponsor-logos bg-white"
+				/>
 			</div>
 		</aside>
 	</div>
@@ -116,6 +252,7 @@
 
 <script lang="ts" setup>
 	import pdf from '@/assets/pdfs/SACRAMENTO-Luciano-Cordaria-desenvolvimento-de-aplicacao-web-para-violao-e-guitarra.pdf'
+	import sponsorLogos from '~/assets/imgs/sponsors/sponsor-logos.png'
 
 	const title = 'SOBRE'
 
@@ -127,52 +264,32 @@
 		},
 		what: {
 			content: '<h2>O que é?</h2>',
-			schema: 'the-project',
+			schema: 'index',
 		},
 		doing: {
 			content: '<h2>O que faz?</h2>',
-			schema: 'the-project',
+			schema: 'index',
+		},
+		research: {
+			content: '<h2>A Pesquisa</h2>',
+			schema: 'index',
+		},
+		idea: {
+			content: `<h2>Como surgiu?</h2>`,
+			schema: 'index',
+		},
+		release: {
+			content: `<h2>Lançamentos</h2>`,
+			schema: 'index',
+		},
+		expedient: {
+			content: `<h2>Expediente</h2>`,
+			schema: 'index',
 		},
 		callInAction: {
-			content:
-				'<main><a style="font-size:1.5em" class="no-text-decoration" href="/a-pratica">Inicie agora seu treinamento!</a></main>',
-			schema: 'the-project',
+			content: '<h2><NuxtLink to>JÁ PRATICOU HOJE?</NuxtLink></h2>',
+			schema: 'index',
 			leftLogo: true,
-		},
-		aboutResearch: {
-			content: '<h2>Como surgiu?</h2>',
-			schema: 'the-research',
-		},
-		downloadResearch: {
-			content: `
-	                          <div
-	                   class="
-	                     col
-	                     download-research
-	                     d-flex
-	                     align-items-center
-	                     justify-content-around
-	                     small-line-height
-	                     text-center
-	                   "
-	                 >
-	                   <div>A Pesquisa<br />Na íntegra</div>
-	                   <div>&nbsp;|&nbsp;<br />&nbsp;|&nbsp;</div>
-	                   <div>Baixe<br /><span class="font-bold">Aqui</span></div>
-	                   <div>
-
-	                       <img
-	                         @mouseover="icon.url = imageMouseOver(icon)"
-	                         @mouseleave="icon.url = imageMouseLeave(icon)"
-	                         class="img img-fluid icon"
-	                         :src="icon.url"
-	                         :alt="icon.altText"
-	                       />
-	                   </div>
-	                 </div>
-	               `,
-			schema: 'the-research',
-			rightLogo: true,
 		},
 	}
 	useHead({
@@ -205,9 +322,6 @@
 </script>
 
 <style scoped>
-	a {
-		font-size: 1.5em !important;
-	}
 	#the-project {
 		text-align: center;
 	}
@@ -219,6 +333,11 @@
 	#credit-text {
 		font-family: var(--font-light);
 		font-size: var(--font-size-light) !important;
+	}
+
+	#credit-text > a {
+		color: var(--color-text);
+		font-family: var(--font-bold);
 	}
 
 	.the-research p {
@@ -243,5 +362,17 @@
 
 	.small-line-height {
 		line-height: 1.3;
+	}
+
+	.sponsor-logos {
+		width: 80%;
+	}
+
+	.call-in-action {
+		font-size: 1.3em !important;
+	}
+
+	.text-justify {
+		text-align: justify;
 	}
 </style>
