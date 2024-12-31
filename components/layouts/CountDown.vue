@@ -26,7 +26,7 @@ const HOUR = MINUTE * 60
 const DAY = HOUR * 24
 
 // Set the date we're counting down to
-const countDownDate = new Date("Jan 1, 2025 21:14:0").getTime();
+const countDownDate = new Date("Mar 14, 2025 15:00:00").getTime();
 
 const timer = ref({
   days: {
