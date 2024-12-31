@@ -1,21 +1,39 @@
 <template>
 	<div class="selecting-show-mode">
-		<p>Há três tipos de modos de exibição de tela:</p>
-		<ul class="list">
-			<li>2 cartas</li>
-			<li>3 cartas</li>
-			<li>todas as cartas</li>
-		</ul>
-		<br />
-		<p>
-			Através do menu preferências, você pode selecionar o modo que mais te
-			agrada!
-		</p>
+		<div class="container text-center">
+
+			<div class="row">
+				<div class="col">
+					<h2>Selecionando o modo de exibição de tela</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p>Há <strong>três tipos</strong> de modos de <strong>exibição</strong> de tela:</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p><strong>02</strong> Cartas</p>
+				</div>
+				<div class="col">
+					<p><strong>03</strong> Cartas</p>
+				</div>
+				<div class="col">
+					<p><strong>Todas</strong> Cartas</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					Atavés do menu <strong>preferências</strong>, você pode selecionar o modo que mais te agrada!
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
 <style>
-	.selecting-show-mode {
-		text-align: justify;
-	}
+.selecting-show-mode {
+	text-align: justify;
+}
 </style>
