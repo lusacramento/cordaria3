@@ -12,14 +12,6 @@
 							<div class="col">
 								<component v-if="slide.component" :is="slide.component" />
 							</div>
-							<!-- <div class="col-lg-6 col">
-								<div class="container-video mb-3">
-									<iframe class="video" width="560" height="315" :src="slide.src"
-										title="YouTube video player" frameborder="0"
-										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-										referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
-								</div>
-							</div> -->
 						</div>
 					</div>
 				</div>
@@ -79,7 +71,6 @@ const data2 = [
 }
 
 .carousel-indicators {
-	position: relative;
-	bottom: -500px;
+	position: fixed;
 }
 </style>
