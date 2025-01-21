@@ -193,6 +193,7 @@ h3,
 h4,
 title,
 ul,
+ol,
 p {
 	color: var(--text-color) !important;
 }

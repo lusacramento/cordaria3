@@ -90,7 +90,7 @@
 					'text-success': user.acceptTerms.isValidated,
 				}" :for="`login-${user.acceptTerms.id}-input`">
 					Aceito os termos e
-					<NuxtLink to="/" :class="{
+					<NuxtLink to="/termos-e-condicoes" target="_blank" :class="{
 						'alert-success': user.acceptTerms.isValidated,
 						'alert-danger': !user.acceptTerms.isValidated,
 					}">
