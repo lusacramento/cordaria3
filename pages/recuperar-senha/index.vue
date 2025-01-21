@@ -55,6 +55,11 @@
 		middleware: 'guest',
 	})
 
+	useHead({
+		title: 'A Prática',
+		meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+	})
+
 	onBeforeMount(async () => {
 		const query = await useRoute().query
 		if (query.token) {

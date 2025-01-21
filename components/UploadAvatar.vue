@@ -36,7 +36,7 @@
 	const inSubmit = ref(false)
 
 	const apiUrl = '/api/upload-image'
-	const { id } = storeToRefs(useMyUserStore())
+	const { _id } = storeToRefs(useMyUserStore())
 	const { handleFileInput, files } = useFileStorage()
 	const imageDir = '/imgs/uploads'
 
@@ -66,21 +66,23 @@
 		files.value[0].content = await content
 		const file = files.value[0]
 
-		const response = await $fetch(apiUrl, {
-			method: 'POST',
-			body: {
-				file,
-				name: id.value,
-			},
-		})
-		if (response) {
-			useMyUserDetailsStore().setImageUrl(response.name)
-			inSubmit.value = false
-			// status.value = response.message
-			setTimeout(() => {
-				status.value = ''
-			}, 1000)
-		}
+		useMyUserDetailsStore().setAvatar(file.content)
+
+		// const response = await $fetch(apiUrl, {
+		// 	method: 'POST',
+		// 	body: {
+		// 		file,
+		// 		name: _id.value,
+		// 	},
+		// })
+		// if (response) {
+		// 	useMyUserDetailsStore().setImageUrl(response.name)
+		// 	inSubmit.value = false
+		// 	// status.value = response.message
+		// 	setTimeout(() => {
+		// 		status.value = ''
+		// 	}, 1000)
+		// }
 	}
 </script>
 <style>

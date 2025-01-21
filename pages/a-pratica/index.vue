@@ -156,6 +156,11 @@
 		layout: 'pratice',
 	})
 
+	useHead({
+		title: 'A Prática',
+		meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+	})
+
 	onBeforeMount(async () => {
 		await load()
 		if (useMyUserDetailsStore().getId) init()
@@ -167,7 +172,9 @@
 
 	const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
 
-	const { imageUrl: avatar } = storeToRefs(useMyUserDetailsStore())
+	// const avatar = storeToRefs(useMyUserDetailsStore()).image.value.content
+
+	const { avatar } = storeToRefs(useMyUserDetailsStore())
 
 	// Controllers
 	const { isCompleted, init, isRunning } = useGameController()

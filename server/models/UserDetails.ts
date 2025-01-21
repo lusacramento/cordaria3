@@ -6,7 +6,7 @@ export interface UserDetailsDocument extends Document {
 	age: number
 	state: string
 	country: string
-	imageUrl: string
+	avatar: string
 }
 
 const UserDetailsSchema = new Schema({
@@ -37,7 +37,7 @@ const UserDetailsSchema = new Schema({
 		required: true,
 	},
 
-	imageUrl: {
+	avatar: {
 		type: String,
 		required: true,
 	},

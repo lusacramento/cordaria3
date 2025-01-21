@@ -65,6 +65,11 @@
 	import bassIcon from '~/assets/imgs/instrument-list/bass-icon.png'
 	import cavacoIcon from '~/assets/imgs/instrument-list/cavaco-icon.png'
 
+	useHead({
+		title: 'A Prática',
+		meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+	})
+
 	const { getInstrument } = useMySettingsStore()
 
 	const instrument = ref(Instrument.BASS)

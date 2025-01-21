@@ -53,9 +53,12 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
+<<<<<<< HEAD
+=======
       nuxi:
         specifier: ^3.16.0
         version: 3.17.2
+>>>>>>> run
       pinia:
         specifier: ^2.1.7
         version: 2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2))

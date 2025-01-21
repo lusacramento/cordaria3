@@ -1,19 +1,16 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
 	const { status, getSession } = useAuth()
 
-	console.log(status.value)
 	try {
 		const session = await getSession()
 
-		console.log(session)
-
 		// @ts-ignore
-		const name = session.user.username
-		console.log(name)
+		const name = session.user.userName
 
-		if (status.value === 'authenticated' && name === 'admin') {
-			return
-		}
+		if (name === 'admin' && status.value === 'authenticated') return
+
+		await alert('Você não tem permissão para acessar esta página')
+		useRouter().push('/')
 	} catch (error) {
 		return navigateTo({
 			name: 'index',

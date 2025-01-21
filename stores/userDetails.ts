@@ -11,7 +11,7 @@ export const useMyUserDetailsStore = defineStore({
 		age: 0,
 		state: '',
 		country: '',
-		imageUrl: '/imgs/uploads/default-avatar.png',
+		avatar: '',
 	}),
 
 	getters: {
@@ -25,7 +25,7 @@ export const useMyUserDetailsStore = defineStore({
 				age: state.age,
 				state: state.state,
 				country: state.country,
-				imageUrl: state.imageUrl,
+				avatar: state.avatar,
 			}
 		},
 
@@ -33,8 +33,8 @@ export const useMyUserDetailsStore = defineStore({
 			return state.fullName
 		},
 
-		getImageUrl(state) {
-			return state.imageUrl
+		getAvatar(state) {
+			return state.avatar
 		},
 	},
 	actions: {
@@ -46,8 +46,8 @@ export const useMyUserDetailsStore = defineStore({
 			this.userId = id
 		},
 
-		setImageUrl(imageFileName: string) {
-			this.imageUrl = `/imgs/uploads/${imageFileName}`
+		async setAvatar(image: any) {
+			this.avatar = image
 		},
 
 		async set(userDetails: UserDetails) {
@@ -57,7 +57,7 @@ export const useMyUserDetailsStore = defineStore({
 			this.age = userDetails.age
 			this.state = userDetails.state
 			this.country = userDetails.country
-			this.imageUrl = userDetails.imageUrl
+			this.avatar = userDetails.avatar
 		},
 
 		async load() {
