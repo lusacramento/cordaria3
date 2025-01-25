@@ -99,7 +99,7 @@
 			</p>
 		</div>
 		<hr />
-		<div class="terms-and-conditions mb-3 mt-1">
+		<div class="terms-and-conditions mb-5 mt-1">
 			<h2 class="mb-4">📜 Termos e Condições</h2>
 			<h3>1. Termos</h3>
 			<p>
@@ -180,10 +180,8 @@
 				as leis do Cordaria App e você se submete irrevogavelmente à jurisdição exclusiva dos tribunais
 				naquele estado ou localidade e é efetiva a partir de <strong>{{ termsAndConditionsDate }}</strong>.
 			</p>
-
 		</div>
 	</div>
-	<br />
 
 </template>
 
