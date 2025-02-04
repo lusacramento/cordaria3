@@ -36,6 +36,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "@vueuse/nuxt",
     [
       "nuxt-file-storage",
       {
