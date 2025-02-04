@@ -107,7 +107,7 @@ async function deleteUserData() {
 
 <style scoped>
 .form-control {
-	color: rgba(255, 255, 255, 0.5) !important;
+	color: var(--text-color)
 }
 
 .form-control:focus {
