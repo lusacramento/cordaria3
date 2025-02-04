@@ -168,7 +168,7 @@ const {
 } = useViewController()
 
 // Watchers
-watch(score, (newValue, oldValue) => {
+watch(score, (newValue: any, oldValue: any) => {
 	function animateCounter() {
 		newValue <= points.value ? clearInterval(counter) : points.value++
 	}
@@ -181,7 +181,7 @@ watch(score, (newValue, oldValue) => {
 	const counter = setInterval(animateCounter, 10)
 })
 
-watch(isCompleted, async (newValue) => {
+watch(isCompleted, async (newValue: any) => {
 	disablePlayButton()
 	if (newValue === true) {
 		await useMyProgressStore().updateScore()
@@ -249,7 +249,8 @@ async function load() {
 
 async function loadUserStore() {
 	const { getSession } = useAuth()
-	const { user } = await getSession()
+	const session = await getSession()
+	const user = session?.user
 	// @ts-ignore
 	setId(user._id)
 	// @ts-ignore
