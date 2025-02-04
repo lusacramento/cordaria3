@@ -51,7 +51,9 @@
 			<label for="image-url-input" class="form-label">Imagem de perfil</label>
 			<UploadAvatar />
 		</div>
-		<button class="btn btn-danger">Apagar Dados</button>
+		<button @click.prevent="deleteUserData" class="btn btn-danger">
+			Apagar Dados
+		</button>
 	</form>
 </template>
 
@@ -87,6 +89,20 @@ watch(fields.value, () => {
 		country.value,
 	)
 })
+
+async function deleteUserData() {
+	if (confirm('Você perderá todo seu progresso!\nDeseja mesmo apagar sua conta?')) {
+		if (confirm('Este procedimento não poderá ser desfeito, Tem certeza?')) {
+			await useMyUserDetailsStore().delete();
+			useAuth().signOut({ callbackUrl: '/' });
+		}
+	}
+	useViewController().showToast(
+		'Operação cancelada',
+		`Seus dados estão salvos!`,
+		'warn',
+	)
+}
 </script>
 
 <style scoped>
