@@ -37,12 +37,7 @@ export default defineNuxtConfig({
 
   modules: [
     "@vueuse/nuxt",
-    [
-      "nuxt-file-storage",
-      {
-        mount: process.env.STORAGE_LOCAL_DIR,
-      },
-    ],
+
     "@pinia/nuxt",
     [
       "@sidebase/nuxt-auth",
