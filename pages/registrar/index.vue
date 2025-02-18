@@ -9,15 +9,9 @@
 
 			<div class="row justify-content-center bg-exercise-screen">
 				<div class="col-lg-10 layer-center">
-					<div
-						class="exercise-screen d-flex align-items-center justify-content-center"
-					>
-						<LayoutsModal
-							ref="registerModal"
-							:modal="modal"
-							@callFunction="handleFormSubmit()"
-							:call-to-action-button-label="modal.buttonLabel"
-						>
+					<div class="exercise-screen d-flex align-items-center justify-content-center">
+						<LayoutsModal ref="registerModal" :modal="modal" @callFunction="handleFormSubmit()"
+							:call-to-action-button-label="modal.buttonLabel">
 							<template #body>
 								<AuthRegisterForm />
 							</template>
@@ -26,63 +20,67 @@
 				</div>
 			</div>
 		</div>
+		<EmailWelcome ref="emailWelcome" hidden />
 	</div>
 </template>
 
 <script lang="ts" setup>
-	definePageMeta({
-		middleware: 'guest',
-	})
+definePageMeta({
+	middleware: 'guest',
+})
 
-	useHead({
-		title: 'A Prática',
-		meta: [{ name: 'robots', content: 'noindex, nofollow' }],
-	})
+useHead({
+	title: 'A Prática',
+	meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+})
 
-	const userStore = useMyUserStore()
+const emailWelcome = ref()
 
-	const { toast, toaster, showToast } = useViewController()
+const userStore = useMyUserStore()
 
-	const title = ref('REGISTRAR')
+const { toast, toaster, showToast } = useViewController()
 
-	// modal
-	const modal = {
-		title: 'Cadastrar',
-		id: 'registerModal',
-		buttonLabel: 'Registrar',
+const title = ref('REGISTRAR')
+
+// modal
+const modal = {
+	title: 'Cadastrar',
+	id: 'registerModal',
+	buttonLabel: 'Registrar',
+}
+const registerModal = ref()
+
+onMounted(() => {
+	registerModal.value.show()
+})
+
+// handle register
+async function handleFormSubmit() {
+	if (!userStore.isAllFields()) return
+
+	try {
+		await userStore.register()
+		await emailWelcome.value.sendEmail()
+		useRouter().push({
+			name: 'entrar',
+		})
+	} catch (e: any) {
+		showToast('Erro', e.data.message, 'error')
+		return
 	}
-	const registerModal = ref()
-
-	onMounted(() => {
-		registerModal.value.show()
-	})
-
-	// handle register
-	async function handleFormSubmit() {
-		if (!userStore.isAllFields()) return
-
-		try {
-			await userStore.register()
-
-			useRouter().push({
-				name: 'entrar',
-			})
-		} catch (e: any) {
-			showToast('Erro', e.data.message, 'error')
-			return
-		}
-	}
+}
 </script>
 
 <style scoped>
-	.form-control {
-		color: rgba(255, 255, 255, 1) !important;
-	}
-	.form-control:focus {
-		color: rgba(255, 255, 255, 0.9) !important;
-	}
+.form-control {
+	color: rgba(255, 255, 255, 1) !important;
+}
 
-	.messageError {
-		color: white;
-	}
+.form-control:focus {
+	color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.messageError {
+	color: white;
+}
 </style>

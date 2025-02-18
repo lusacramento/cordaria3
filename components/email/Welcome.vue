@@ -12,8 +12,8 @@
               style="width: auto; height: auto; display: flex; justify-content:center; margin: 30px;">
 
           </div>
-          <h1 style="margin:20px;">Bem vindo a nossa plataforma <strong>{{ userName
-              }}</strong>!</h1>
+          <h1 style="margin:20px;">Bem vindo a nossa plataforma <strong>{{ getUserName
+          }}</strong>!</h1>
           <p>Obrigado por ser cadastrar. Estamos felizes em ter você conosco!</p>
           <p>Ah! E não se equeça de seguir nossas páginas no <a href="https://instagram.com/cordaria.app">Instagram</a>
             e
@@ -41,9 +41,11 @@
 import { useSmtp } from '~/composables/smtp';
 import cordariaLogo from '~/assets/imgs/logo-cordaria-disabled.png'
 
+defineExpose({ sendEmail })
+
 const template = ref() as Ref<HTMLElement>
 const status = ref('Aguardando envio') as Ref<any>
-const userName = ref('João')
+const { getUserName } = storeToRefs(useMyUserStore())
 
 async function sendEmail() {
   status.value = 'Enviando'
