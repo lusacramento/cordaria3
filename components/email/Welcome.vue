@@ -8,12 +8,12 @@
         <div class="main"
           style="background-color: rgba(28, 31, 38, 1); justify-content: center; text-align: center;height: 400px;">
           <div class="img" style="display:flex; justify-content:center;">
-            <img :src="logo" alt="Cordaria"
+            <img :src="cordariaLogo" alt="Cordaria"
               style="width: auto; height: auto; display: flex; justify-content:center; margin: 30px;">
 
           </div>
           <h1 style="margin:20px;">Bem vindo a nossa plataforma <strong>{{ userName
-          }}</strong>!</h1>
+              }}</strong>!</h1>
           <p>Obrigado por ser cadastrar. Estamos felizes em ter você conosco!</p>
           <p>Ah! E não se equeça de seguir nossas páginas no <a href="https://instagram.com/cordaria.app">Instagram</a>
             e
@@ -42,8 +42,6 @@ import { useSmtp } from '~/composables/smtp';
 import cordariaLogo from '~/assets/imgs/logo-cordaria-disabled.png'
 
 const template = ref() as Ref<HTMLElement>
-const baseUrl = window.location.origin
-const logo = `${baseUrl}${cordariaLogo}`
 const status = ref('Aguardando envio') as Ref<any>
 const userName = ref('João')
 
