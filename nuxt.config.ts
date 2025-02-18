@@ -36,6 +36,24 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    [
+      "nuxt-mail",
+      {
+        message: {
+          to: "lucianoblackblack@gmail.com",
+        },
+        smtp: {
+          service: "gmail",
+          host: process.env.SMTP_HOST,
+          auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+          },
+        },
+      },
+    ],
+
+    ,
     "@vueuse/nuxt",
 
     "@pinia/nuxt",
