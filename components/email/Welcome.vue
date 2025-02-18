@@ -13,8 +13,8 @@
 
           </div>
           <h1 style="margin:20px;">Bem vindo a nossa plataforma <strong>{{ getUserName
-          }}</strong>!</h1>
-          <p>Obrigado por ser cadastrar. Estamos felizes em ter você conosco!</p>
+              }}</strong>!</h1>
+          <p>Obrigado por se cadastrar. Estamos felizes em ter você conosco!</p>
           <p>Ah! E não se equeça de seguir nossas páginas no <a href="https://instagram.com/cordaria.app">Instagram</a>
             e
             no
