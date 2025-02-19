@@ -51,7 +51,7 @@ const modal = {
 const registerModal = ref()
 
 onMounted(() => {
-	registerModal.value.show()
+	registerModal.value.toggle()
 })
 
 // handle register

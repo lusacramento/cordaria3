@@ -52,7 +52,7 @@
 	const { toast, toaster, showToast } = useViewController()
 
 	onMounted(() => {
-		loginModal.value.show()
+	loginModal.value.toggle()
 		if (useMyUserStore().getIsNewRegistered) {
 			showToast(
 				'Sucesso!',

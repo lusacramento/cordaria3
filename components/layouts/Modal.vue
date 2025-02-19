@@ -43,11 +43,11 @@ const props = defineProps({
 
 const modalButton = ref()
 
-function show() {
+function toggle() {
 	modalButton.value.click()
 }
 
-defineExpose({ show })
+defineExpose({ toggle })
 </script>
 
 <style scoped>

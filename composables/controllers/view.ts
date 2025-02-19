@@ -1,147 +1,147 @@
-import { useGameController } from './game'
-import { type SweetAlertData } from '~/types/SweetAlertData'
-import { type SweetAlertIcon } from 'sweetalert2'
-import type { LessonMessage } from '~/types/LessonMessage'
+import { useGameController } from "./game";
+import { type SweetAlertData } from "~/types/SweetAlertData";
+import { type SweetAlertIcon } from "sweetalert2";
+import type { LessonMessage } from "~/types/LessonMessage";
 
 export const useViewController = () => {
-	// composables
-	const game = useGameController()
-	const { push, go } = useRouter()
+  // composables
+  const game = useGameController();
+  const { push, go } = useRouter();
 
-	// views
-	const isLoaded = ref(false)
+  // views
+  const isLoaded = ref(false);
 
-	const isShowGameScreen = ref(false)
+  const isShowGameScreen = ref(false);
 
-	const isShowStatistics = ref(false)
+  const isShowStatistics = ref(false);
 
-	const userDetailsModal = ref()
+  const userDetailsModal = ref();
 
-	const boxButtons = ref({
-		play: {
-			content: `<div style="font-size:1.5em">CARREGANDO...</div>`,
-			schema: 'green',
-		},
-		stop: {
-			content: `<div style="font-size:1.5em">Cancelar</div>`,
-			schema: 'red',
-		},
-	})
+  const boxButtons = ref({
+    play: {
+      content: `<div style="font-size:1.5em">CARREGANDO...</div>`,
+      schema: "green",
+    },
+    stop: {
+      content: `<div style="font-size:1.5em">Cancelar</div>`,
+      schema: "red",
+    },
+  });
 
-	const modal = {
-		title: 'Finalize seu cadastro',
-		id: 'userDetailsModal',
-		buttonLabel: 'Salvar',
-	}
+  const modal = {
+    title: "Finalize seu cadastro",
+    id: "userDetailsModal",
+    buttonLabel: "Salvar",
+  };
 
-	const tips = ref()
-	const dataTips: Ref<SweetAlertData> = ref({
-		title: '',
-		message: '',
-		icon: 'info',
-	})
+  const tips = ref();
+  const dataTips: Ref<SweetAlertData> = ref({
+    title: "",
+    message: "",
+    icon: "info",
+  });
 
-	// toasts
-	const toast = ref()
-	const toaster = ref({
-		header: '',
-		body: '',
-		type: '',
-	})
+  // toasts
+  const toast = ref();
+  const toaster = ref({
+    header: "",
+    body: "",
+    type: "",
+  });
 
-	const points = ref(0)
-	// lessons
-	const firstLessonNumber = 180
-	const lastLessonNumber = 190
+  const points = ref(0);
+  // lessons
+  const firstLessonNumber = 180;
+  const lastLessonNumber = 190;
 
-	// functions
-	// view
-	function toggleShowGameScreen() {
-		isShowGameScreen.value = !isShowGameScreen.value
-	}
+  // functions
+  // view
+  function toggleShowGameScreen() {
+    isShowGameScreen.value = !isShowGameScreen.value;
+  }
 
-	function toggleShowStatistics() {
-		isShowStatistics.value = !isShowStatistics.value
-	}
+  function toggleShowStatistics() {
+    isShowStatistics.value = !isShowStatistics.value;
+  }
 
-	async function showTips(message: LessonMessage) {
-		tips.value.showAlert(message)
-	}
+  async function showTips(message: LessonMessage) {
+    tips.value.showAlert(message);
+  }
 
-	function showToast(
-		header: string,
-		body: string,
-		type: 'success' | 'warn' | 'error',
-	) {
-		toaster.value.header = header
-		toaster.value.body = body
-		toaster.value.type = type
-		toast.value.show()
-	}
+  function showToast(
+    header: string,
+    body: string,
+    type: "success" | "warn" | "error"
+  ) {
+    toaster.value.header = header;
+    toaster.value.body = body;
+    toaster.value.type = type;
+    toast.value.show();
+  }
 
-	function refreshPage() {
-		useRouter().go(0)
-	}
+  function refreshPage() {
+    useRouter().go(0);
+  }
 
-	function toogleUserDetailsForm() {
-		userDetailsModal.value.show()
-	}
+  function toggleUserDetailsForm() {
+    userDetailsModal.value.toggle();
+  }
 
-	function enablePlayButton() {
-		setTimeout(() => {
-			boxButtons.value.play.content = `<div style="font-size:1.5em">JOGAR</div>`
-			isLoaded.value = true
-		}, 2000)
-	}
+  function enablePlayButton() {
+    setTimeout(() => {
+      boxButtons.value.play.content = `<div style="font-size:1.5em">JOGAR</div>`;
+      isLoaded.value = true;
+    }, 2000);
+  }
 
-	function disablePlayButton() {
-		boxButtons.value.play.content = `<div style="font-size:1.5em">CARREGANDO...</div>`
-		isLoaded.value = false
-	}
+  function disablePlayButton() {
+    boxButtons.value.play.content = `<div style="font-size:1.5em">CARREGANDO...</div>`;
+    isLoaded.value = false;
+  }
 
-	// game mechanics
-	function start() {
-		toggleShowGameScreen()
-		game.payload()
-		// const isCompleted = toRef(useGameController().isCompleted)
-		// isCompleted.value = true
-	}
+  // game mechanics
+  function start() {
+    toggleShowGameScreen();
+    game.payload();
+    // const isCompleted = toRef(useGameController().isCompleted)
+    // isCompleted.value = true
+  }
 
-	function payload() {
-		console.log('payload')
-	}
+  function payload() {
+    console.log("payload");
+  }
 
-	async function exit(to: '/' | '/a-pratica') {
-		const { stopAudios } = useAudio()
+  async function exit(to: "/" | "/a-pratica") {
+    const { stopAudios } = useAudio();
 
-		await stopAudios()
-		to === '/' ? push(to) : go(0)
-	}
+    await stopAudios();
+    to === "/" ? push(to) : go(0);
+  }
 
-	return {
-		isLoaded,
-		isShowGameScreen,
-		isShowStatistics,
-		userDetailsModal,
-		boxButtons,
-		modal,
-		tips,
-		dataTips,
-		toast,
-		toaster,
-		points,
-		firstLessonNumber,
-		lastLessonNumber,
-		toggleShowGameScreen,
-		toggleShowStatistics,
-		showTips,
-		showToast,
-		refreshPage,
-		toogleUserDetailsForm,
-		enablePlayButton,
-		disablePlayButton,
-		start,
-		payload,
-		exit,
-	}
-}
+  return {
+    isLoaded,
+    isShowGameScreen,
+    isShowStatistics,
+    userDetailsModal,
+    boxButtons,
+    modal,
+    tips,
+    dataTips,
+    toast,
+    toaster,
+    points,
+    firstLessonNumber,
+    lastLessonNumber,
+    toggleShowGameScreen,
+    toggleShowStatistics,
+    showTips,
+    showToast,
+    refreshPage,
+    toggleUserDetailsForm,
+    enablePlayButton,
+    disablePlayButton,
+    start,
+    payload,
+    exit,
+  };
+};
