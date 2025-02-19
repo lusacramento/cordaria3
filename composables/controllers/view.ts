@@ -31,6 +31,7 @@ export const useViewController = () => {
     title: "Finalize seu cadastro",
     id: "userDetailsModal",
     buttonLabel: "Salvar",
+    isShowCanceledButton: "true",
   };
 
   const tips = ref();

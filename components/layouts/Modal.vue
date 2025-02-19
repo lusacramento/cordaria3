@@ -15,6 +15,10 @@
 						<slot name="body"></slot>
 					</div>
 					<div class="modal-footer">
+						<button type="button" v-if="modal.isShowCanceledButton" @click.prevent="toggle"
+							class="btn btn-primary">
+							Cancelar
+						</button>
 						<button type="button" @click="$emit('callFunction')" class="btn btn-primary">
 							{{ props.callToActionButtonLabel }}
 						</button>
