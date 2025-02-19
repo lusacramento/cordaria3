@@ -1,6 +1,5 @@
 import { useGameController } from "./game";
 import { type SweetAlertData } from "~/types/SweetAlertData";
-import { type SweetAlertIcon } from "sweetalert2";
 import type { LessonMessage } from "~/types/LessonMessage";
 
 export const useViewController = () => {
