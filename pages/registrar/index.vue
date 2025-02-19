@@ -59,6 +59,7 @@ async function handleFormSubmit() {
 	if (!userStore.isAllFields()) return
 
 	try {
+		await registerModal.value.toggle()
 		await userStore.register()
 		await emailWelcome.value.sendEmail()
 		useRouter().push({
@@ -66,6 +67,7 @@ async function handleFormSubmit() {
 		})
 	} catch (e: any) {
 		showToast('Erro', e.data.message, 'error')
+		registerModal.value.toggle()
 		return
 	}
 }
