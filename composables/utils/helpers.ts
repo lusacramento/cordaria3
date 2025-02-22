@@ -1,70 +1,83 @@
-import { Instrument } from '~/types/Instrument'
+import { Instrument } from "~/types/Instrument";
 
 export const useHelpers = () => {
-	function translate(direction: string | number) {
-		switch (direction) {
-			case 'downToUp':
-				return 'Todas (início do grave)'
-			case 'upToDown':
-				return 'Todas (ínicio do agudo)'
+  function translate(direction: string | number) {
+    switch (direction) {
+      case "downToUp":
+        return "Todas (início do grave)";
+      case "upToDown":
+        return "Todas (ínicio do agudo)";
 
-			default:
-				return direction
-		}
-	}
+      default:
+        return direction;
+    }
+  }
 
-	function getQuantityOfStrings(instrument: Instrument) {
-		switch (true) {
-			case instrument === Instrument.ACOUSTICGUITAR ||
-				instrument === Instrument.ELECTRICGUITAR:
-				return 6
-			case instrument === Instrument.BASS || instrument === Instrument.CAVACO:
-				return 4
-		}
-	}
+  function getQuantityOfStrings(instrument: Instrument) {
+    switch (true) {
+      case instrument === Instrument.ACOUSTICGUITAR ||
+        instrument === Instrument.ELECTRICGUITAR:
+        return 6;
+      case instrument === Instrument.BASS || instrument === Instrument.CAVACO:
+        return 4;
+    }
+  }
 
-	function getFileExtension(name: string) {
-		return name.split('.')[1]
-	}
+  function getFileExtension(name: string) {
+    return name.split(".")[1];
+  }
 
-	function convertInstrumentEnumToString(instrument: Instrument) {
-		switch (instrument) {
-			case Instrument.ACOUSTICGUITAR:
-				return 'acoustic-guitar'
-			case Instrument.ELECTRICGUITAR:
-				return 'electric-guitar'
+  function convertInstrumentEnumToString(instrument: Instrument) {
+    switch (instrument) {
+      case Instrument.ACOUSTICGUITAR:
+        return "acoustic-guitar";
+      case Instrument.ELECTRICGUITAR:
+        return "electric-guitar";
 
-			case Instrument.BASS:
-				return 'bass'
-			case Instrument.CAVACO:
-				return 'cavaco'
+      case Instrument.BASS:
+        return "bass";
+      case Instrument.CAVACO:
+        return "cavaco";
 
-			case Instrument.NOT_SELECTED:
-				throw createError('Instrumento não selecionado.')
+      case Instrument.NOT_SELECTED:
+        throw createError("Instrumento não selecionado.");
 
-			default:
-				throw createError('Instrumento não encontrado.')
-		}
-	}
+      default:
+        throw createError("Instrumento não encontrado.");
+    }
+  }
 
-	function generateRandomHash() {
-		const lenght = 64
-		const characters =
-			'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-		let hash = ''
+  function generateRandomHash() {
+    const lenght = 64;
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let hash = "";
 
-		for (let i = 0; i < lenght; i++) {
-			hash += characters.charAt(Math.floor(Math.random() * characters.length))
-		}
+    for (let i = 0; i < lenght; i++) {
+      hash += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
 
-		return hash
-	}
+    return hash;
+  }
 
-	return {
-		translate,
-		getQuantityOfStrings,
-		getFileExtension,
-		convertInstrumentEnumToString,
-		generateRandomHash,
-	}
-}
+  function expiresAt() {
+    const more30min = 30 * 60 * 1000;
+    return new Date(Date.now() + more30min);
+  }
+
+  function isExpiredToken(expiresAt: Date) {
+    const now = new Date(Date.now());
+    const exp = new Date(expiresAt);
+    return now > exp;
+  }
+
+  return {
+    translate,
+    getQuantityOfStrings,
+    getFileExtension,
+    convertInstrumentEnumToString,
+    generateRandomHash,
+    expiresAt,
+    isExpiredToken,
+  };
+};

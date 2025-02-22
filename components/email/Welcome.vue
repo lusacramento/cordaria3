@@ -13,7 +13,7 @@
 
           </div>
           <h1 style="margin:20px;">Bem vindo a nossa plataforma <strong>{{ getUserName
-              }}</strong>!</h1>
+          }}</strong>!</h1>
           <p>Obrigado por se cadastrar. Estamos felizes em ter você conosco!</p>
           <p>Ah! E não se equeça de seguir nossas páginas no <a href="https://instagram.com/cordaria.app">Instagram</a>
             e
@@ -28,12 +28,6 @@
       </html>
 
     </div>
-    <div class="cta">
-      <button @click.prevent="sendEmail">enviar
-      </button>
-      <hr />
-      {{ status }}
-    </div>
   </div>
 </template>
 
@@ -44,14 +38,10 @@ import cordariaLogo from '~/assets/imgs/logo-cordaria-disabled.png'
 defineExpose({ sendEmail })
 
 const template = ref() as Ref<HTMLElement>
-const status = ref('Aguardando envio') as Ref<any>
-const { getUserName } = storeToRefs(useMyUserStore())
+const { getUserName, getEmail } = storeToRefs(useMyUserStore())
 
 async function sendEmail() {
-  status.value = 'Enviando'
-
-  const content = await template.value.innerHTML
-  status.value = await useSmtp().sendEmail('cordaria.app@gmail.com', 'lucianoblackblack@gmail.com', 'Mensagem de boas vindas - Cordaria App!', content)
+  return await useSmtp().sendEmail(getEmail.value, 'Mensagem de boas vindas - Cordaria App!', template.value.innerHTML)
 }
 
 </script>

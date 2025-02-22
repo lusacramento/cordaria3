@@ -1,12 +1,9 @@
+const from = process.env.EMAIL_USER;
+
 export const useSmtp = () => {
-  async function sendEmail(
-    from: string,
-    to: string,
-    subject: string,
-    content: any
-  ) {
+  async function sendEmail(to: string, subject: string, content: any) {
     const mail = useMail();
-    const status = ref("");
+    const status = ref({ ok: false, message: "" });
 
     try {
       await mail.send({
@@ -15,9 +12,11 @@ export const useSmtp = () => {
         subject: subject,
         html: content,
       });
-      status.value = "Email enviado com sucesso!";
+      status.value.message = "Email enviado com Sucesso";
+      status.value.ok = true;
     } catch (error) {
-      status.value = `Não foi possível enviar o email: ${error}`;
+      status.value.ok = false;
+      status.value.message = `Não foi possível enviar o email: ${error}`;
     }
     return status;
   }

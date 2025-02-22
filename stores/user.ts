@@ -1,166 +1,174 @@
-import { type User } from '~/types/User.js'
-import { useMySettingsStore } from './settings'
-import { defineStore } from 'pinia'
+import { type User } from "~/types/User.js";
+import { useMySettingsStore } from "./settings";
+import { defineStore } from "pinia";
 
 export const useMyUserStore = defineStore({
-	id: 'myUserStore',
-	state: () => ({
-		_id: '' as string,
-		userName: '',
-		email: '',
-		password: '',
-		confirmPassword: '',
-		acceptTerms: false,
-		isNewRegistered: false,
-		loggedIn: false,
-		rescueToken: '',
-		theme: 'dark',
-	}),
+  id: "myUserStore",
+  state: () => ({
+    _id: "" as string,
+    userName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    acceptTerms: false,
+    isNewRegistered: false,
+    loggedIn: false,
+    rescueToken: "",
+    theme: "dark",
+  }),
 
-	getters: {
-		getId(state) {
-			return state._id
-		},
+  getters: {
+    getId(state) {
+      return state._id;
+    },
 
-		getUserName(state) {
-			return state.userName
-		},
+    getUserName(state) {
+      return state.userName;
+    },
 
-		getEmail(state) {
-			return state.email
-		},
+    getEmail(state) {
+      return state.email;
+    },
 
-		getPassword(state) {
-			return state.password
-		},
+    getPassword(state) {
+      return state.password;
+    },
 
-		getConfirmPassword(state) {
-			return state.confirmPassword
-		},
+    getConfirmPassword(state) {
+      return state.confirmPassword;
+    },
 
-		getAcceptTerms(state) {
-			return state.acceptTerms
-		},
+    getAcceptTerms(state) {
+      return state.acceptTerms;
+    },
 
-		getIsNewRegistered(state) {
-			return state.isNewRegistered
-		},
+    getIsNewRegistered(state) {
+      return state.isNewRegistered;
+    },
 
-		getloggedIn(state) {
-			return state.loggedIn
-		},
+    getloggedIn(state) {
+      return state.loggedIn;
+    },
 
-		getRescueToken(state) {
-			return state.rescueToken
-		},
-	},
-	actions: {
-		setId(id: string) {
-			this._id = id
-		},
+    getRescueToken(state) {
+      return state.rescueToken;
+    },
 
-		setUserName(userName: string) {
-			this.userName = userName
-		},
+    getRescueUrl(state) {
+      const baseUrl = useRuntimeConfig().public.origin;
+      return `${baseUrl}/recuperar-senha?token=${state.rescueToken}`;
+    },
+  },
+  actions: {
+    setId(id: string) {
+      this._id = id;
+    },
 
-		setEmail(email: string) {
-			this.email = email
-		},
+    setUserName(userName: string) {
+      this.userName = userName;
+    },
 
-		setPassword(password: string) {
-			this.password = password
-		},
+    setEmail(email: string) {
+      this.email = email;
+    },
 
-		setIsNewRegistered(newRegistered: boolean) {
-			this.isNewRegistered = newRegistered
-		},
+    setPassword(password: string) {
+      this.password = password;
+    },
 
-		setRescueToken(token: string) {
-			this.rescueToken = this.rescueToken
-		},
+    setIsNewRegistered(newRegistered: boolean) {
+      this.isNewRegistered = newRegistered;
+    },
 
-		isAllFields() {
-			return this.email &&
-				this.userName &&
-				this.password &&
-				this.confirmPassword &&
-				this.acceptTerms
-				? true
-				: false
-		},
+    setRescueToken(token: string) {
+      this.rescueToken = this.rescueToken;
+    },
 
-		clearPassword() {
-			this.password = ''
-			this.confirmPassword = ''
-		},
+    isAllFields() {
+      return this.email &&
+        this.userName &&
+        this.password &&
+        this.confirmPassword &&
+        this.acceptTerms
+        ? true
+        : false;
+    },
 
-		logIn() {
-			this.loggedIn = true
-			return this.loggedIn
-		},
+    clearPassword() {
+      this.password = "";
+      this.confirmPassword = "";
+    },
 
-		logOut() {
-			this.loggedIn = false
-		},
+    logIn() {
+      this.loggedIn = true;
+      return this.loggedIn;
+    },
 
-		async getUserByEmail() {
-			this.setId('')
-			const user = (await useIUser().findUserByEmail(this.email)) as User
-			if (user) {
-				if (user._id) this.setId(user?._id)
-				this.setUserName(user.userName)
-				this.setEmail(user.email)
-				return user
-			}
-			return null
-		},
+    logOut() {
+      this.loggedIn = false;
+    },
 
-		async register() {
-			const user = {
-				userName: this.userName,
-				email: this.email,
-				password: this.password,
-				confirmPassword: this.confirmPassword,
-				acceptTerms: this.acceptTerms,
-				rescuePassword: '',
-			} as User
+    async getUserByEmail() {
+      this.setId("");
+      const user = (await useIUser().findUserByEmail(this.email)) as User;
+      if (user) {
+        if (user._id) this.setId(user?._id);
+        this.setUserName(user.userName);
+        this.setEmail(user.email);
+        return user;
+      }
+      return null;
+    },
 
-			this.clearPassword()
-			const response = (await useIUser().createUser(user)) as unknown as User
+    async register() {
+      const user = {
+        userName: this.userName,
+        email: this.email,
+        password: this.password,
+        confirmPassword: this.confirmPassword,
+        acceptTerms: this.acceptTerms,
+        rescuePassword: "",
+      } as User;
 
-			if (response._id) this._id = response._id
+      this.clearPassword();
+      const response = (await useIUser().createUser(user)) as unknown as User;
 
-			this.setIsNewRegistered(true)
+      if (response._id) this._id = response._id;
 
-			this.saveSettings()
-		},
+      this.setIsNewRegistered(true);
 
-		async saveSettings() {
-			useMySettingsStore().setUserId(this._id)
-			await useMySettingsStore().post()
-		},
+      this.saveSettings();
+    },
 
-		async updateUser(values: {}) {
-			const user = (await useIUser().setUser(this._id, values)) as User
+    async saveSettings() {
+      useMySettingsStore().setUserId(this._id);
+      await useMySettingsStore().post();
+    },
 
-			if (user) {
-				if (user._id) this._id = user._id
-				this.setUserName(user.userName)
-				this.setEmail(user.email)
-				if (user.rescuePassword?.token)
-					this.rescueToken = user.rescuePassword?.token
-			}
-		},
+    async updateUser(values: {}) {
+      const user = (await useIUser().setUser(this._id, values)) as User;
 
-		async getToken(token: string) {
-			const response = (await useIUser().getRescuePassword(token)) as User
-			if (response) {
-				if (response._id) this._id = response._id
-				this.email = response.email
-				if (response.rescuePassword?.token)
-					this.rescueToken = response.rescuePassword?.token
-			}
-			return response.rescuePassword
-		},
-	},
-})
+      if (user) {
+        if (user._id) this._id = user._id;
+        this.setUserName(user.userName);
+        this.setEmail(user.email);
+        if (user.rescuePassword?.token)
+          this.rescueToken = user.rescuePassword?.token;
+      }
+    },
+
+    async getToken(token: string) {
+      try {
+        const response = (await useIUser().getRescuePassword(token)) as User;
+        if (response) {
+          if (response._id) this._id = response._id;
+          this.email = response.email;
+          if (response.rescuePassword?.token)
+            return (this.rescueToken = response.rescuePassword?.token);
+        }
+      } catch (error) {
+        return error;
+      }
+    },
+  },
+});

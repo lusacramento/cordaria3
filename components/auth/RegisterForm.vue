@@ -152,7 +152,7 @@ const user: any = ref({
 		content: userName,
 		isValidated: false,
 		isShowInfo: false,
-		info: 'Mínimo 3 caracteres. Somente letras.',
+		info: 'Mínimo 3 e máximo de 25 caracteres. Somente letras.',
 		type: 'text',
 		placeHolder: 'Digite um nome de usuário',
 	},

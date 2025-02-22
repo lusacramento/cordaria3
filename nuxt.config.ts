@@ -19,6 +19,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     authSecret: process.env.AUTH_SECRET,
     mongorUrl: mongoUrl,
+    public: {
+      origin: process.env.ORIGIN,
+    },
   },
 
   nitro: {
