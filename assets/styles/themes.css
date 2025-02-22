@@ -103,7 +103,7 @@
 	--bg-title-box-dark-in: var(--color-box-dark-in);
 	--bg-title-box-dark-out: var(--color-box-dark-out);
 
-	--color-extreme: var(var(--color-white));
+	--color-extreme: var(--color-white);
 }
 
 /************ LIGHT THEME ***********************/
@@ -144,6 +144,7 @@
 	--bg-content: var(--bg-content-dark);
 	--border-nav: var(--border-nav-dark);
 	--text-color: var(--color-white-50);
+	--extreme-text-color: var(--color-black);
 	--bg-title-box-in: var(--bg-title-box-dark-in);
 	--bg-title-box-out: var(--bg-title-box-dark-out);
 
