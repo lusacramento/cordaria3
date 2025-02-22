@@ -183,8 +183,6 @@ async function handlePasswordFormSubmit() {
 
 async function sendEmailWithRescueToken() {
 	return emailRescuePassword.value.sendEmail()
-
-
 }
 
 async function loadToken() {
