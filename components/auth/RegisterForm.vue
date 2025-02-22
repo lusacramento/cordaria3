@@ -109,6 +109,61 @@
 </template>
 
 <script lang="ts" setup>
+interface User {
+	email: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+	name: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+	password: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+		icon: string;
+	};
+	confirmPassword: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+		icon: string;
+	};
+	acceptTerms: {
+		id: string;
+		label: string;
+		content: boolean;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+}
+
 const { createTooltip } = useTooltip()
 
 const emailEl = ref()
@@ -135,11 +190,12 @@ const { currentType, currentIcon, toggleVisibility } = usePasswordInput()
 // user data
 const { email, userName, password, confirmPassword, acceptTerms } =
 	storeToRefs(useMyUserStore())
-const user: any = ref({
+
+const user: Ref<User> = ref({
 	email: {
 		id: 'email',
 		label: 'Email',
-		content: email,
+		content: email.value,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'Digite um email válido.',
@@ -149,7 +205,7 @@ const user: any = ref({
 	name: {
 		id: 'name',
 		label: 'Nome de Usuário',
-		content: userName,
+		content: userName.value,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'Mínimo 3 e máximo de 25 caracteres. Somente letras.',
@@ -159,29 +215,29 @@ const user: any = ref({
 	password: {
 		id: 'password',
 		label: 'Senha',
-		content: password,
+		content: password.value,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'A senha deve conter pelo menos 9 caracteres.',
-		type: currentType,
+		type: currentType.value,
 		placeHolder: 'Digite uma senha',
-		icon: currentIcon,
+		icon: currentIcon.value,
 	},
 	confirmPassword: {
 		id: 'confirm-password',
 		label: 'Confirmar Senha',
-		content: confirmPassword,
+		content: confirmPassword.value,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'As senhas devem ser iguais.',
-		type: currentType,
+		type: currentType.value,
 		placeHolder: 'Repita a senha acima',
-		icon: currentIcon,
+		icon: currentIcon.value,
 	},
 	acceptTerms: {
 		id: 'accept-terms',
 		label: 'Aceitar Termos',
-		content: acceptTerms,
+		content: acceptTerms.value,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'É obrigatório aceitar os termos.',
