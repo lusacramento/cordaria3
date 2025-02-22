@@ -7,11 +7,9 @@
 					'toast-success': props.type === 'success',
 					'toast-warn': props.type === 'warn',
 				}">
-					<!-- <img src="..." class="rounded me-2" alt="..." /> -->
 					<strong class="me-auto">
 						<slot name="header"></slot>
 					</strong>
-					<!-- <small>5 mins ago</small> -->
 					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 				</div>
 				<div class="toast-body" :class="{
