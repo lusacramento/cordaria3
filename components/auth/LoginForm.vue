@@ -61,6 +61,30 @@
 </template>
 
 <script lang="ts" setup>
+interface User {
+	email: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+	password: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+		icon: string;
+	};
+}
+
 const { createTooltip } = useTooltip()
 
 const emailEl = ref()
@@ -78,11 +102,13 @@ const { email, password } = storeToRefs(useMyUserStore())
 
 const { currentType, currentIcon, toggleVisibility } = usePasswordInput()
 
-const user: any = ref({
+
+
+const user: Ref<User> = ref({
 	email: {
 		id: 'email',
 		label: 'Email',
-		content: email,
+		content: email.value,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'Digite um email válido.',
@@ -92,15 +118,15 @@ const user: any = ref({
 	password: {
 		id: 'password',
 		label: 'Senha',
-		content: password,
+		content: password.value,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'A senha deve conter pelo menos 9 caracteres!',
-		type: currentType,
+		type: currentType.value,
 		placeHolder: 'Digite uma senha',
-		icon: currentIcon,
+		icon: currentIcon.value,
 	},
-})
+});
 
 // validations
 
