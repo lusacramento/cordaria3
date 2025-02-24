@@ -22,7 +22,7 @@
 		<div class="mb-3 row align-items-center">
 			<div class="col-3">
 				<label :id="`register-${user.repeatPassword.id}-label`" class="form-label">{{ user.repeatPassword.label
-					}}</label>
+				}}</label>
 			</div>
 			<div class="col-9">
 				<input ref="repeatPasswordEl" :type="user.repeatPassword.type"
@@ -42,6 +42,26 @@
 </template>
 
 <script lang="ts" setup>
+interface User {
+	password: {
+		id: string
+		label: string
+		isValidated: boolean
+		isShowInfo: boolean
+		info: string
+		type: string
+		placeHolder: string
+	}
+	repeatPassword: {
+		id: string
+		label: string
+		isValidated: boolean
+		isShowInfo: boolean
+		info: string
+		type: string
+		placeHolder: string
+	}
+}
 const { createTooltip } = useTooltip()
 
 const passwordEl = ref()
@@ -57,7 +77,7 @@ onMounted(() => {
 // user data
 const { password, confirmPassword } = storeToRefs(useMyUserStore())
 
-const user: any = ref({
+const user: Ref<User> = ref({
 	password: {
 		id: 'password',
 		label: 'Senha',

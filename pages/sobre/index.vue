@@ -247,11 +247,7 @@ import lightSponsorLogos from '~/assets/imgs/sponsors/sponsor-logos.png'
 import darkBarracaoDasIdeiaLogo from '~/assets/imgs/logotipo-barracao-das-ideia-contrast-350x197px.png'
 import lightBarracaoDasIdeiaLogo from '~/assets/imgs/logotipo-barracao-das-ideia-transparent-350x197px.png'
 
-const title = 'SOBRE'
-
 const colorMode = useColorMode()
-
-
 const barracaoDasIdeiaLogo = ref()
 const sponsorLogos = ref()
 

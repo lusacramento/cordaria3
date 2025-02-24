@@ -2,8 +2,7 @@ import { type User } from "~/types/User.js";
 import { useMySettingsStore } from "./settings";
 import { defineStore } from "pinia";
 
-export const useMyUserStore = defineStore({
-  id: "myUserStore",
+export const useMyUserStore = defineStore("myUserStore", {
   state: () => ({
     _id: "" as string,
     userName: "",

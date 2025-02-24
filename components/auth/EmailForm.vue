@@ -7,24 +7,13 @@
 				}}</label>
 			</div>
 			<div class="col-9">
-				<input
-					ref="emailEl"
-					:type="user.email.type"
-					:name="`register-${user.email.id}-input`"
-					:id="`register-${user.email.id}-input`"
-					v-model="email"
-					class="form-control"
-					required
-					:placeholder="user.email.placeHolder"
-					data-bs-toggle="tooltip"
-					data-bs-placement="right"
-					data-bs-custom-class="custom-tooltip"
-					data-bs-title="Digite um email válido."
-					:class="{
+				<input ref="emailEl" :type="user.email.type" :name="`register-${user.email.id}-input`"
+					:id="`register-${user.email.id}-input`" v-model="email" class="form-control" required
+					:placeholder="user.email.placeHolder" data-bs-toggle="tooltip" data-bs-placement="right"
+					data-bs-custom-class="custom-tooltip" data-bs-title="Digite um email válido." :class="{
 						'is-valid': user.email.isValidated,
 						'is-invalid': !user.email.isValidated,
-					}"
-				/>
+					}" />
 				<div v-if="user.email.isShowInfo">
 					<small>{{ user.email.info }}</small>
 				</div>
@@ -45,63 +34,78 @@
 </template>
 
 <script lang="ts" setup>
-	const { createTooltip } = useTooltip()
+interface User {
+	email: {
+		id: string;
+		label: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+}
 
-	const emailEl = ref()
-	const tooltipEmail = ref()
+const { createTooltip } = useTooltip()
 
-	onMounted(() => {
-		tooltipEmail.value = createTooltip(emailEl.value)
-	})
+const emailEl = ref()
+const tooltipEmail = ref()
 
-	// user data
-	const { email } = storeToRefs(useMyUserStore())
+onMounted(() => {
+	tooltipEmail.value = createTooltip(emailEl.value)
+})
 
-	const user: any = ref({
-		email: {
-			id: 'email',
-			label: 'Email',
-			isValidated: false,
-			isShowInfo: false,
-			info: 'Digite um email válido.',
-			type: 'email',
-			placeHolder: 'Digite seu email',
-		},
-	})
+// user data
+const { email } = storeToRefs(useMyUserStore())
 
-	// validations
 
-	const validator = useValidations()
 
-	watch(email, () => {
-		user.value.email.isValidated = validator.validateEmail(email.value)
-	})
+const user: Ref<User> = ref({
+	email: {
+		id: 'email',
+		label: 'Email',
+		isValidated: false,
+		isShowInfo: false,
+		info: 'Digite um email válido.',
+		type: 'email',
+		placeHolder: 'Digite seu email',
+	},
+});
+
+// validations
+
+const validator = useValidations()
+
+watch(email, () => {
+	user.value.email.isValidated = validator.validateEmail(email.value)
+})
 </script>
 
 <style scoped>
-	.alert {
-		color: rgba(255, 255, 255, 1);
-	}
-	.alert-danger {
-		background-color: red;
-	}
+.alert {
+	color: rgba(255, 255, 255, 1);
+}
 
-	.alert-success {
-		background-color: green;
-	}
+.alert-danger {
+	background-color: red;
+}
 
-	.form-control {
-		background-color: transparent !important;
-		color: rgba(255, 255, 255, 0.8) !important;
-	}
+.alert-success {
+	background-color: green;
+}
 
-	.form-control:focus {
-		color: rgba(0, 0, 0, 1) !important;
-		background-color: rgba(255, 255, 255, 1) !important;
-	}
+.form-control {
+	background-color: transparent !important;
+	color: rgba(255, 255, 255, 0.8) !important;
+}
 
-	svg {
-		background-color: transparent;
-		fill: white !important;
-	}
+.form-control:focus {
+	color: rgba(0, 0, 0, 1) !important;
+	background-color: rgba(255, 255, 255, 1) !important;
+}
+
+svg {
+	background-color: transparent;
+	fill: white !important;
+}
 </style>

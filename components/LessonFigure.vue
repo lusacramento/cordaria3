@@ -3,31 +3,28 @@
 </template>
 
 <script lang="ts" setup>
-	const lesson = storeToRefs(useMyProgressStore()).lesson
+const lesson = storeToRefs(useMyProgressStore()).lesson
 
-	const figure = ref(`~/assets/imgs/lessons/6-strings/10.svg`)
+const figure = ref(`~/assets/imgs/lessons/6-strings/10.svg`)
 
-	watch(lesson, async (newLesson) => {
-		console.log(
-			`${newLesson.quantityOfStrings} cordas - ${newLesson.stringNumber}${newLesson.firstFinger}`,
-		)
-		const getLessonImage = () =>
-			fetch(
-				`/imgs/lessons/${newLesson.quantityOfStrings}-strings/${newLesson.stringNumber}${newLesson.firstFinger}.svg`,
-			).then((resp: any) => {
-				console.log(resp.url)
-				if (!resp.ok) return
+watch(lesson, async (newLesson) => {
+	const getLessonImage = () =>
+		fetch(
+			`/imgs/lessons/${newLesson.quantityOfStrings}-strings/${newLesson.stringNumber}${newLesson.firstFinger}.svg`,
+		).then((resp: any) => {
+			console.log(resp.url)
+			if (!resp.ok) return
 
-				return resp.url
-			})
+			return resp.url
+		})
 
-		figure.value = await getLessonImage()
-		console.log('figure: ', figure.value)
-	})
+	figure.value = await getLessonImage()
+	console.log('figure: ', figure.value)
+})
 </script>
 
 <style>
-	.img-lesson {
-		width: 50dvw !important;
-	}
+.img-lesson {
+	width: 50dvw !important;
+}
 </style>

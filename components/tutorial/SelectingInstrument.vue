@@ -48,7 +48,7 @@ import selectingInstrumentOnPreferences from '~/assets/imgs/tutorial/selecting-i
 </script>
 
 <style scoped>
-selecting-instrument {
+.selecting-instrument {
 	text-align: justify !important;
 }
 

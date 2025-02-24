@@ -1,13 +1,14 @@
 <template>
 	<div id="carousel" class="carousel slide carousel-fade">
 		<div class="carousel-indicators">
-			<button v-for="(slide, index) in slides" :key="slide.id" type="button" data-bs-target="#carousel"
+			<button v-for="(slide, index) in props.slides" :key="slide.id" type="button" data-bs-target="#carousel"
 				:data-bs-slide-to="index" :class="slide.class" aria-current="true" :aria-label="`Slide ${index + 1}`" />
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-9">
 				<div class="carousel-inner">
-					<div v-for="slide in slides" :key="slide.id" class="carousel-item text-center" :class="slide.class">
+					<div v-for="slide in props.slides" :key="slide.id" class="carousel-item text-center"
+						:class="slide.class">
 						<div class="row justify-content-center">
 							<div class="col">
 								<component v-if="slide.component" :is="slide.component" />
@@ -30,28 +31,8 @@
 </template>
 
 <script lang="ts" setup>
-import acousticGuitar from '~/assets/imgs/instruments/index/dark/disabled/acoustic-guitar.png'
-import electricGuitar from '~/assets/imgs/instruments/index/dark/disabled/electric-guitar.png'
-import bass from '~/assets/imgs/instruments/index/dark/disabled/bass.png'
-import cavaco from '~/assets/imgs/instruments/index/dark/disabled/cavaco.png'
 const props = defineProps({ slides: { type: Object, required: true } })
 
-const data2 = [
-	{
-		id: 'carousel1',
-		src: acousticGuitar,
-		class: 'active',
-		content: '<h2>Violão</h2>',
-	},
-	{
-		id: 'carousel2',
-		src: electricGuitar,
-		class: '',
-		content: '<h2>Guitarra</h2>',
-	},
-	{ id: 'carousel3', src: bass, class: '', content: '<h2>Baixo</h2>' },
-	{ id: 'carousel4', src: cavaco, class: '', content: '<h2>Cavaco</h2>' },
-]
 </script>
 
 <style scoped>

@@ -135,8 +135,6 @@ const { setId, setUserName, logIn } = useMyUserStore()
 
 const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
 
-// const avatar = storeToRefs(useMyUserDetailsStore()).image.value.content
-
 const { avatar } = storeToRefs(useMyUserDetailsStore())
 
 // Controllers

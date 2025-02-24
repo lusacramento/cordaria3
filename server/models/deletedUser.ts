@@ -1,4 +1,4 @@
-import { Document, model, ObjectId, Schema } from "mongoose";
+import { Document, model, Schema } from "mongoose";
 
 export interface DeletedUser extends Document {
   age: number;

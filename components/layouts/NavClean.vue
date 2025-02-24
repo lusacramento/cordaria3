@@ -111,8 +111,6 @@ const links = reactive({
 	},
 })
 
-const isCollapse = ref(true)
-
 onMounted(async () => {
 	await iniciateActive()
 })
@@ -121,23 +119,12 @@ watch(useRoute, () => {
 	iniciateActive()
 })
 
-const { signOut, status } = useAuth()
-
-async function handleLogout() {
-	useMyUserStore().$reset()
-	useMyUserDetailsStore().$reset()
-	useMySettingsStore().$reset()
-	useMyProgressStore().$reset()
-	await signOut({ callbackUrl: '/entrar' })
-}
-
 function removeAllActive() {
 	links.theProject.isLight = false
 	links.theResearch.isLight = false
 	links.thePratice.isLight = false
 	links.theTutorial.isLight = false
 	links.clues.isLight = false
-	// isOverIconMenu = false
 }
 
 function iniciateActive() {
