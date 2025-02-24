@@ -69,8 +69,6 @@ export const useMyUserDetailsStore = defineStore("myUserDetailsStore", {
 
     async post() {
       this.userId = useMyUserStore().getId;
-      console.log(this.userId);
-
       await useIUser().postUserDetails(this.$state);
     },
 
