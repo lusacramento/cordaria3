@@ -195,7 +195,7 @@ const user: Ref<User> = ref({
 	email: {
 		id: 'email',
 		label: 'Email',
-		content: email.value,
+		content: email,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'Digite um email válido.',
@@ -205,7 +205,7 @@ const user: Ref<User> = ref({
 	name: {
 		id: 'name',
 		label: 'Nome de Usuário',
-		content: userName.value,
+		content: userName,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'Mínimo 3 e máximo de 25 caracteres. Somente letras.',
@@ -215,7 +215,7 @@ const user: Ref<User> = ref({
 	password: {
 		id: 'password',
 		label: 'Senha',
-		content: password.value,
+		content: password,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'A senha deve conter pelo menos 9 caracteres.',
@@ -226,7 +226,7 @@ const user: Ref<User> = ref({
 	confirmPassword: {
 		id: 'confirm-password',
 		label: 'Confirmar Senha',
-		content: confirmPassword.value,
+		content: confirmPassword,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'As senhas devem ser iguais.',
@@ -237,7 +237,7 @@ const user: Ref<User> = ref({
 	acceptTerms: {
 		id: 'accept-terms',
 		label: 'Aceitar Termos',
-		content: acceptTerms.value,
+		content: acceptTerms,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'É obrigatório aceitar os termos.',
