@@ -12,14 +12,12 @@ watch(lesson, async (newLesson) => {
 		fetch(
 			`/imgs/lessons/${newLesson.quantityOfStrings}-strings/${newLesson.stringNumber}${newLesson.firstFinger}.svg`,
 		).then((resp: any) => {
-			console.log(resp.url)
 			if (!resp.ok) return
 
 			return resp.url
 		})
 
 	figure.value = await getLessonImage()
-	console.log('figure: ', figure.value)
 })
 </script>
 
