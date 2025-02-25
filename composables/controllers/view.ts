@@ -83,8 +83,12 @@ export const useViewController = () => {
     useRouter().go(0);
   }
 
-  function toggleUserDetailsForm() {
-    userDetailsModal.value.toggle();
+  function showDetailsFormModal() {
+    userDetailsModal.value.show();
+  }
+
+  function hideDetailsFormModal() {
+    userDetailsModal.value.hide();
   }
 
   function enablePlayButton() {
@@ -137,7 +141,8 @@ export const useViewController = () => {
     showTips,
     showToast,
     refreshPage,
-    toggleUserDetailsForm,
+    showDetailsFormModal,
+    hideDetailsFormModal,
     enablePlayButton,
     disablePlayButton,
     start,

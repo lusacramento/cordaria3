@@ -46,7 +46,7 @@ const loginModal = ref()
 const { toast, toaster, showToast } = useViewController()
 
 onMounted(() => {
-	loginModal.value.toggle()
+	loginModal.value.show()
 	if (useMyUserStore().getIsNewRegistered) {
 		showToast(
 			'Sucesso!',
@@ -55,6 +55,10 @@ onMounted(() => {
 		)
 		useMyUserStore().setIsNewRegistered(false)
 	}
+})
+
+onBeforeUnmount(() => {
+	loginModal.value.hide()
 })
 
 
@@ -67,8 +71,6 @@ async function handleFormSubmit() {
 		password: useMyUserStore().getPassword,
 	}
 
-	loginModal.value.toggle()
-
 	useMyUserStore().clearPassword()
 
 	try {
@@ -80,7 +82,6 @@ async function handleFormSubmit() {
 		if (response.error) {
 			if (response.error === 'Unauthorized')
 				showToast('Erro!', 'E-mail ou senha inválidos.', 'error')
-			loginModal.value.toggle()
 
 			return
 		}

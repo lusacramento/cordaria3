@@ -108,7 +108,7 @@ const user: Ref<User> = ref({
 	email: {
 		id: 'email',
 		label: 'Email',
-		content: email.value,
+		content: email,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'Digite um email válido.',
@@ -118,7 +118,7 @@ const user: Ref<User> = ref({
 	password: {
 		id: 'password',
 		label: 'Senha',
-		content: password.value,
+		content: password,
 		isValidated: false,
 		isShowInfo: false,
 		info: 'A senha deve conter pelo menos 9 caracteres!',

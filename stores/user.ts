@@ -80,7 +80,7 @@ export const useMyUserStore = defineStore("myUserStore", {
     },
 
     setRescueToken(token: string) {
-      this.rescueToken = this.rescueToken;
+      this.rescueToken = token;
     },
 
     isAllFields() {
