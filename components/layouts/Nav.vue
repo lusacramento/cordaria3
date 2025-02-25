@@ -201,6 +201,7 @@ function iniciateActive() {
 	color: var(--font-color-nav) !important;
 	margin: 0 10px;
 	font-size: var(--font-size-nav);
+	cursor: pointer;
 }
 
 .navbar-toggler {
