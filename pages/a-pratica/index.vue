@@ -47,7 +47,7 @@
 						</template>
 						<template #right>
 							<div class="d-flex align-items-center justify-content-end avatar-link"
-								@click.prevent="toggleUserDetailsForm()">
+								@click.prevent="showDetailsFormModal()">
 								<div class="avatar d-flex justify-content-center align-items-center">
 									<img :src="avatar" class="img-fluid" alt="avatar do usuário" />
 								</div>
@@ -157,7 +157,8 @@ const {
 	showTips,
 	showToast,
 	refreshPage,
-	toggleUserDetailsForm,
+	showDetailsFormModal,
+	hideDetailsFormModal,
 	enablePlayButton,
 	disablePlayButton,
 	start,
@@ -223,7 +224,7 @@ async function load() {
 	await useMyUserDetailsStore().load()
 
 	if (!useMyUserDetailsStore().getId) {
-		toggleUserDetailsForm()
+		showDetailsFormModal()
 		showToast('Quase Lá!', 'Complete seu cadastro.', 'warn')
 		return
 	}
@@ -261,7 +262,7 @@ async function loadUserStore() {
 async function submitUserDetails() {
 	await useMyUserDetailsStore().post()
 
-	await toggleUserDetailsForm()
+	await hideDetailsFormModal()
 
 	refreshPage()
 }
