@@ -16,21 +16,21 @@
 			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 				<ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-end">
 					<li class="nav-item">
-						<nuxt-link to="tutorial" class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"><span>Tutorial</span></nuxt-link>
+						<nuxt-link to="tutorial" class="nav-link tutorial-link"
+							:class="{ tutorialLinkActive: links.logout.isLight }"><span>Tutorial</span></nuxt-link>
 					</li>
 					<li v-if="status === 'authenticated'" else class="nav-item">
-						<nuxt-link to="" class="nav-link the-pratice-link"
-							:class="{ thePraticeLinkActive: links.thePratice.isLight }"
+						<nuxt-link to="" class="nav-link logout-link"
+							:class="{ logoutLinkActive: links.logout.isLight }"
 							@click.prevent="handleLogout()"><span>Logout</span></nuxt-link>
 					</li>
 					<li class="nav-item">
-						<nuxt-link to="/ranqueamento" class="nav-link clues-link"
-							:class="{ cluesLinkActive: links.clues.isLight }"><span>Ranqueamento</span></nuxt-link>
+						<nuxt-link to="/ranqueamento" class="nav-link rank-link"
+							:class="{ rankLinkActive: links.rank.isLight }"><span>Ranqueamento</span></nuxt-link>
 					</li>
 					<li class="nav-item">
-						<nuxt-link to="/sobre" class="nav-link the-research-link"
-							:class="{ theResearchLinkActive: links.theResearch.isLight }" aria-current="page">
+						<nuxt-link to="/sobre" class="nav-link about-link"
+							:class="{ aboutLinkActive: links.about.isLight }">
 							<span>Sobre</span></nuxt-link>
 					</li>
 					<li class="nav-item mx-lg-4 mx-2 my-2 my-lg-0 d-flex align-items-center">
@@ -111,19 +111,16 @@ const icons = {
 }
 
 const links = reactive({
-	theProject: {
+	tutorial: {
 		isLight: false,
 	},
-	theResearch: {
+	logout: {
 		isLight: false,
 	},
-	thePratice: {
+	rank: {
 		isLight: false,
 	},
-	theTutorial: {
-		isLight: false,
-	},
-	clues: {
+	about: {
 		isLight: false,
 	},
 })
@@ -132,7 +129,7 @@ onMounted(async () => {
 	await iniciateActive()
 })
 
-watch(useRoute, () => {
+watch(useRoute(), () => {
 	iniciateActive()
 })
 
@@ -147,11 +144,10 @@ async function handleLogout() {
 }
 
 function removeAllActive() {
-	links.theProject.isLight = false
-	links.theResearch.isLight = false
-	links.thePratice.isLight = false
-	links.theTutorial.isLight = false
-	links.clues.isLight = false
+	links.tutorial.isLight = false
+	links.logout.isLight = false
+	links.rank.isLight = false
+	links.about.isLight = false
 }
 
 function iniciateActive() {
@@ -160,20 +156,18 @@ function iniciateActive() {
 	const baseUrl = window.location.origin
 
 	switch (url) {
-		case `${baseUrl}/`:
-			links.theProject.isLight = true
+		case `${baseUrl}/tutorial`:
+			links.logout.isLight = true
 			break
-		case `${baseUrl}/a-pesquisa`:
-			links.theResearch.isLight = true
+		case `${baseUrl}/logout`:
+			links.logout.isLight = true
 			break
-		case `${baseUrl}/a-pratica`:
-			links.thePratice.isLight = true
+		case `${baseUrl}/ranqueamento`:
+			links.rank.isLight = true
 			break
-		case `${baseUrl}/o-tutorial`:
-			links.theTutorial.isLight = true
+		case `${baseUrl}/sobre`:
+			links.about.isLight = true
 			break
-		case `${baseUrl}/dicas`:
-			links.clues.isLight = true
 		default:
 			break
 	}
@@ -217,44 +211,36 @@ function iniciateActive() {
 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24' /%3E%3C/svg%3E");
 }
 
-.theProjectLinkActive {
-	color: var(--the-project-color) !important;
+.tutorialLinkActive {
+	color: var(--tutorial-color) !important;
 }
 
-.the-project-link:hover {
-	color: var(--the-project-color) !important;
+.tutorial-link:hover {
+	color: var(--tutorial-color) !important;
 }
 
-.theResearchLinkActive {
-	color: var(--the-research-color) !important;
+.logoutLinkActive {
+	color: var(--logout-color) !important;
 }
 
-.the-research-link:hover {
-	color: var(--the-research-color) !important;
+.logout-link:hover {
+	color: var(--logout-color) !important;
 }
 
-.thePraticeLinkActive {
-	color: var(--the-pratice-color) !important;
+.rankLinkActive {
+	color: var(--rank-color) !important;
 }
 
-.the-pratice-link:hover {
-	color: var(--the-pratice-color) !important;
+.rank-link:hover {
+	color: var(--rank-color) !important;
 }
 
-.theTutorialLinkActive {
-	color: var(--the-tutorial-color) !important;
+.aboutLinkActive {
+	color: var(--about-color) !important;
 }
 
-.the-tutorial-link:hover {
-	color: var(--the-tutorial-color) !important;
-}
-
-.cluesLinkActive {
-	color: var(--clues-color) !important;
-}
-
-.clues-link:hover {
-	color: var(--clues-color) !important;
+.about-link:hover {
+	color: var(--about-color) !important;
 }
 
 button:hover {

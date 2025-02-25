@@ -52,6 +52,15 @@
 	--color-table-striped-light: rgba(211, 207, 204, 1);
 	--color-table-border-light: rgba(113, 112, 109, 0.3);
 
+	--color-pink: rgba(223, 2, 154, 0.7);
+	--color-scarlet-red: rgba(240, 2, 14, 0.7);
+	--color-orage: rgba(253, 91, 0, 0.7);
+
+	--tutorial-color: var(--color-purple);
+	--rank-color: var(--color-pink);
+	--logout-color: var(--color-scarlet-red);
+	--about-color: var(--color-orage);
+
 	/* CARDS */
 	--bg-error: var(--color-red) !important;
 	--bg-success: var(--color-green) !important;
