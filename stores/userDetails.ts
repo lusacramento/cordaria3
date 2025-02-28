@@ -1,6 +1,7 @@
 import { useMyUserStore } from "./user";
 import { defineStore } from "pinia";
 import type { UserDetails } from "~/types/UserDetails";
+import type { Location } from "~/types/Location";
 
 export const useMyUserDetailsStore = defineStore("myUserDetailsStore", {
   state: () => ({
@@ -8,8 +9,7 @@ export const useMyUserDetailsStore = defineStore("myUserDetailsStore", {
     userId: "",
     fullName: "",
     age: 0,
-    state: "",
-    country: "",
+    location: {} as Location,
     avatar: "",
   }),
 
@@ -22,8 +22,7 @@ export const useMyUserDetailsStore = defineStore("myUserDetailsStore", {
       return {
         fullName: state.fullName,
         age: state.age,
-        state: state.state,
-        country: state.country,
+        location: state.location,
         avatar: state.avatar,
       };
     },
@@ -54,8 +53,7 @@ export const useMyUserDetailsStore = defineStore("myUserDetailsStore", {
       this.userId = (await userDetails.userId) as unknown as string;
       this.fullName = userDetails.fullName;
       this.age = userDetails.age;
-      this.state = userDetails.state;
-      this.country = userDetails.country;
+      this.location = userDetails.location;
       this.avatar = userDetails.avatar;
     },
 
@@ -79,8 +77,7 @@ export const useMyUserDetailsStore = defineStore("myUserDetailsStore", {
     generateAnonymousUser() {
       return {
         age: this.age,
-        state: this.state,
-        country: this.country,
+        location: this.location,
       };
     },
   },

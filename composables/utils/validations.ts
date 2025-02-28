@@ -1,3 +1,5 @@
+import { type Location } from "@/types/Location";
+
 export const useValidations = () => {
   function validateEmail(email: string) {
     var re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -36,13 +38,13 @@ export const useValidations = () => {
     return false;
   }
 
-  function validateState(state: string) {
-    if (state.length >= 2 && state.length <= 30 && sanitize(state)) return true;
-    return false;
-  }
-
-  function validateCountry(country: string) {
-    if (country.length >= 2 && country.length <= 30 && sanitize(country))
+  function validateLocation() {
+    const { location } = storeToRefs(useMyUserDetailsStore());
+    if (
+      location.value.city !== "" &&
+      location.value.state !== "" &&
+      location.value.country !== ""
+    )
       return true;
     return false;
   }
@@ -62,6 +64,22 @@ export const useValidations = () => {
     return regex.test(text);
   }
 
+  function replaceAcents(text: string) {
+    text = text.replace(/[ÀÁÂÃÄÅ]/, "A");
+    text = text.replace(/[àáâãäå]/, "a");
+    text = text.replace(/[ÈÉÊË]/, "E");
+    text = text.replace(/[èéêë]/, "e");
+    text = text.replace(/[ÌÍÎÏ]/, "I");
+    text = text.replace(/[ìíîï]/, "i");
+    text = text.replace(/[ÒÓÔÕÖ]/, "O");
+    text = text.replace(/[òóôõö]/, "o");
+    text = text.replace(/[ÙÚÛÜ]/, "U");
+    text = text.replace(/[ùúûü]/, "u");
+    text = text.replace(/[Ç]/, "C");
+    text = text.replace(/[ç]/, "c");
+    return text;
+  }
+
   return {
     validateEmail,
     validateUserName,
@@ -69,9 +87,9 @@ export const useValidations = () => {
     validateConfirmPassword,
     validateFullName,
     validateAge,
-    validateState,
-    validateCountry,
+    validateLocation,
     validateInstrument,
     sanitize,
+    replaceAcents,
   };
 };
