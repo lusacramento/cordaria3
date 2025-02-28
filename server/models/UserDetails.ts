@@ -1,13 +1,32 @@
 import { Document, model, ObjectId, Schema } from "mongoose";
+import { Location } from "~/types/Location";
 
 export interface UserDetailsDocument extends Document {
   userId: ObjectId;
   fullName: string;
   age: number;
-  state: string;
-  country: string;
+  location: Location;
   avatar: string;
 }
+
+const LocationSchema = new Schema({
+  id: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+});
 
 const UserDetailsSchema = new Schema({
   userId: {
@@ -27,13 +46,8 @@ const UserDetailsSchema = new Schema({
     required: true,
   },
 
-  state: {
-    type: String,
-    required: true,
-  },
-
-  country: {
-    type: String,
+  location: {
+    type: LocationSchema,
     required: true,
   },
 

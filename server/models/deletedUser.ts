@@ -1,11 +1,30 @@
+import { Location } from "~/types/Location";
 import { Document, model, Schema } from "mongoose";
 
 export interface DeletedUser extends Document {
   age: number;
-  state: string;
-  country: string;
+  location: Location;
   deleteAt: Date;
 }
+
+const LocationSchema = new Schema({
+  id: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+});
 
 const DeletedUserSchema = new Schema({
   age: {
@@ -13,15 +32,11 @@ const DeletedUserSchema = new Schema({
     required: true,
   },
 
-  state: {
-    type: String,
+  location: {
+    type: LocationSchema,
     required: true,
   },
 
-  country: {
-    type: String,
-    required: true,
-  },
   deleteAt: {
     type: Date,
     default: Date.now,

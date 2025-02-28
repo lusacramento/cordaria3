@@ -22,29 +22,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-6">
-				<div class="mb-3">
-					<label for="state-input" class="form-label">Estado</label>
-					<input id="state-input" type="text" class="form-control" v-model="state" />
-				</div>
-			</div>
-			<div class="col-6">
-				<div class="mb-3">
-					<label for="country-input" class="form-label">País</label>
-					<input id="country-input" type="text" class="form-control" v-model="country" />
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-6">
-				<div v-if="!fields.state.isValidated">
-					<small class="text-danger"> Somente caracteres alfabéticos. </small>
-				</div>
-			</div>
-			<div class="col-6">
-				<div v-if="!fields.country.isValidated">
-					<small class="text-danger"> Somente caracteres alfabéticos.</small>
-				</div>
+			<div class='col'>
+				<Autocomplete ref="location" />
 			</div>
 		</div>
 		<div class="mb-3 row d-flex justify-content-center">
@@ -58,7 +37,8 @@
 </template>
 
 <script lang="ts" setup>
-const { fullName, age, state, country } = storeToRefs(useMyUserDetailsStore())
+const { fullName, age } = storeToRefs(useMyUserDetailsStore())
+const location = ref()
 
 const fields: any = ref({
 	fullName: { id: 'fullName', content: fullName, isValidated: false },
@@ -67,14 +47,11 @@ const fields: any = ref({
 		content: age,
 		isValidated: false,
 	},
-	state: {
-		id: 'state',
-		content: state,
-		isValidated: false,
-	},
-	country: {
-		id: 'country',
-		content: country,
+
+
+	location: {
+		id: 'location',
+		content: ref(location.value),
 		isValidated: false,
 	},
 })
@@ -84,11 +61,15 @@ watch(fields.value, () => {
 		fullName.value,
 	)
 	fields.value.age.isValidated = useValidations().validateAge(age.value)
-	fields.value.state.isValidated = useValidations().validateState(state.value)
-	fields.value.country.isValidated = useValidations().validateCountry(
-		country.value,
-	)
+	// TODO: validate location
+	// fields.value.location.isValidated = useValidations().validateLocation(location.value.location)
 })
+
+watch(location, () => {
+	fields.value.location.isValidated = useValidations().validateLocation()
+})
+
+
 
 async function deleteUserData() {
 	if (confirm('Você perderá todo seu progresso!\nDeseja mesmo apagar sua conta?')) {
