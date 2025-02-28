@@ -25,31 +25,7 @@
 			<div class='col'>
 				<Autocomplete ref="location" />
 			</div>
-			<!-- <div class="col-6">
-				<div class="mb-3">
-					<label for="state-input" class="form-label">Estado</label>
-					<input id="state-input" type="text" class="form-control" v-model="state" />
-				</div>
-			</div> -->
-			<!-- <div class="col-6">
-				<div class="mb-3">
-					<label for="country-input" class="form-label">País</label>
-					<input id="country-input" type="text" class="form-control" v-model="country" />
-				</div>
-			</div> -->
 		</div>
-		<!-- <div class="row">
-			<div class="col-6">
-				<div v-if="!fields.state.isValidated">
-					<small class="text-danger"> Somente caracteres alfabéticos. </small>
-				</div>
-			</div>
-			<div class="col-6">
-				<div v-if="!fields.country.isValidated">
-					<small class="text-danger"> Somente caracteres alfabéticos.</small>
-				</div>
-			</div>
-		</div> -->
 		<div class="mb-3 row d-flex justify-content-center">
 			<label for="image-url-input" class="form-label">Imagem de perfil</label>
 			<UploadAvatar />
