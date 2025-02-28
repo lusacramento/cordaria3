@@ -1,5 +1,6 @@
 <template>
   <div class="location">
+    <Label>Cidade de Acesso</Label>
     <div id="city" class="container form-control mb-3">
       <div class="input">
         <input v-model="city" class="form-control" @focus="focus" />
