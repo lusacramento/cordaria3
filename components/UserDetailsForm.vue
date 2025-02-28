@@ -61,6 +61,7 @@ watch(fields.value, () => {
 		fullName.value,
 	)
 	fields.value.age.isValidated = useValidations().validateAge(age.value)
+	// TODO: validate location
 	// fields.value.location.isValidated = useValidations().validateLocation(location.value.location)
 })
 
