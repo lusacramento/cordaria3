@@ -7,7 +7,7 @@
 					<h2>Alterando pré-contador</h2>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row mb-3">
 				<div class="col">
 					<p>
 						Você pode aumentar o <strong>número de batidas</strong> do<br />
@@ -15,12 +15,12 @@
 					</p>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row mb-1">
 				<div class="col">
 					<img :src="tutorialGif" alt="Animação do pré-contador" class="img img-fluid" />
 				</div>
 			</div>
-			<div class="row">
+			<div class="row mb-3">
 				<div class="col">
 					<p>Escolha entre <strong>4</strong> até <strong>9</strong> batidas</p>
 				</div>
@@ -49,6 +49,12 @@ import tutorialGif from '~/assets/imgs/tutorial/pre-counter.gif'
 }
 
 img {
-	width: 40%;
+	width: 100%;
+}
+
+@media (min-width: 992px) {
+	img {
+		width: 40%;
+	}
 }
 </style>

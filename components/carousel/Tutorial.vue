@@ -5,7 +5,7 @@
 				:data-bs-slide-to="index" :class="slide.class" aria-current="true" :aria-label="`Slide ${index + 1}`" />
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-9">
+			<div class="col-12 col-lg-9">
 				<div class="carousel-inner">
 					<div v-for="slide in props.slides" :key="slide.id" class="carousel-item text-center"
 						:class="slide.class">
@@ -18,7 +18,6 @@
 				</div>
 			</div>
 		</div>
-
 		<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Previous</span>
@@ -53,5 +52,16 @@ const props = defineProps({ slides: { type: Object, required: true } })
 
 .carousel-indicators {
 	position: fixed;
+	/* margin: 150px; */
+}
+
+.carousel-control-prev {
+	margin: -50px;
+	padding: auto;
+}
+
+.carousel-control-next {
+	margin: -50px;
+	padding: auto;
 }
 </style>
