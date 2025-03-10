@@ -35,6 +35,15 @@ defineExpose({ sendEmail })
 const template = ref() as Ref<HTMLElement>
 const { getUserName, getEmail, getRescueUrl } = storeToRefs(useMyUserStore())
 
+/**
+ * Sends a password recovery email to the user.
+ *
+ * This function retrieves the email address from the `getEmail` reactive reference,
+ * sets the subject to 'Recuperação de senha - Cordaria App', and sends the email
+ * using the SMTP service with the provided email template.
+ *
+ * @returns {Promise<void>} A promise that resolves when the email is sent successfully.
+ */
 async function sendEmail() {
   const to = getEmail.value
   const subject = 'Recuperação de senha - Cordaria App'

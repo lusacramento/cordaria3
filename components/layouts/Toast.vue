@@ -32,6 +32,16 @@ const bootstrap = () => import('bootstrap')
 
 const toast = ref() as Ref<Element>
 
+/**
+ * Function to show a toast notification.
+ * 
+ * This function initializes the Bootstrap Toast component and displays a toast notification.
+ * It first calls the `bootstrap` function, which returns a promise. Once the promise resolves,
+ * it creates a new instance of the Bootstrap Toast component using the resolved response and
+ * the `toast.value` element. Finally, it calls the `show` method on the Toast instance to display it.
+ * 
+ * @returns {void}
+ */
 function show() {
 	bootstrap().then((response) => {
 		const tt = new response.Toast(toast.value)

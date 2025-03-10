@@ -31,7 +31,6 @@
 
 <script lang="ts" setup>
 const props = defineProps({ slides: { type: Object, required: true } })
-
 </script>
 
 <style scoped>

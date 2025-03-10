@@ -142,6 +142,15 @@ watch(user.value, () => {
 	)
 })
 
+/**
+ * Verifies if all user input validations are successful.
+ * 
+ * This function checks if both the email and password fields have been validated.
+ * If both fields are validated, it sets the loading state to false and returns true.
+ * Otherwise, it sets the loading state to true and returns false.
+ * 
+ * @returns {boolean} - Returns true if both email and password are validated, otherwise false.
+ */
 function verifyAllValidations() {
 	if (user.value.email.isValidated && user.value.password.isValidated) {
 		isLoading.value = false
@@ -154,6 +163,10 @@ function verifyAllValidations() {
 
 const isLoading = ref(true)
 
+/**
+ * Toggles the visibility of the password field in the login form.
+ * Calls the `toggleVisibility` function to switch between showing and hiding the password.
+ */
 function togglePasswordView() {
 	toggleVisibility()
 }

@@ -102,9 +102,25 @@ const user: Ref<User> = ref({
 
 const validator = useValidations()
 
+/**
+ * Watches the 'password' reactive property and validates it whenever it changes.
+ * Updates the 'isValidated' property of the user's password with the result of the validation.
+ *
+ * @param {Ref<string>} password - The reactive reference to the password input.
+ * @param {Ref<Object>} user - The reactive reference to the user object.
+ * @param {Function} validator.validatePassword - The function used to validate the password.
+ */
 watch(password, () => {
 	user.value.password.isValidated = validator.validatePassword(password.value)
 })
+/**
+ * Watches the `confirmPassword` ref for changes and validates the password.
+ * If the password is valid, it updates the `isValidated` property of `repeatPassword` in the `user` object.
+ *
+ * @param {Ref} confirmPassword - The ref containing the password to be confirmed.
+ * @param {Object} user - The reactive user object containing the `repeatPassword` property.
+ * @param {Function} validator.validatePassword - The function used to validate the password.
+ */
 watch(confirmPassword, () => {
 	user.value.repeatPassword.isValidated = validator.validatePassword(
 		confirmPassword.value,
