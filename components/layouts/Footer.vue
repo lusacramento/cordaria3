@@ -35,61 +35,55 @@
 	</footer>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				team: {
-					author: {
-						name: 'Lu Sacramento',
-						link: 'https://github.com/lusacramento',
-					},
-					design: {
-						name: 'Gabriel Barreto',
-						link: 'https://mixeldesign.com.br/',
-					},
-				},
-				isDisabledfoot: false,
-				version: 'beta 3.0.0 - 2023',
-			}
-		},
-	}
+<script lang="ts" setup>
+const team = {
+	author: {
+		name: 'Lu Sacramento',
+		link: 'https://github.com/lusacramento',
+	},
+	design: {
+		name: 'Gabriel Barreto',
+		link: 'https://mixeldesign.com.br/',
+	},
+}
+const isDisabledfoot = false
+const version = 'beta 3.0.0 - 2023'
 </script>
 
 <style>
+.footer {
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.credits,
+.copyright,
+.sponsed {
+	font-family: 'Encode Sans';
+	font-weight: var(--font-light);
+}
+
+.credits,
+.sponsed {
+	font-size: 0.8em;
+}
+
+.copyright {
+	font-size: 0.7em;
+}
+
+.disable-footer {
+	display: none;
+}
+
+@media (min-width: 991.96px) {
 	.footer {
-		border-top: 2px solid rgba(255, 255, 255, 0.3);
+		width: 80% !important;
 	}
+}
 
-	.credits,
-	.copyright,
-	.sponsed {
-		font-family: 'Encode Sans';
-		font-weight: var(--font-light);
+@media (max-width: 991.98px) {
+	.credits {
+		text-align: center !important;
 	}
-
-	.credits,
-	.sponsed {
-		font-size: 0.8em;
-	}
-
-	.copyright {
-		font-size: 0.7em;
-	}
-
-	.disable-footer {
-		display: none;
-	}
-
-	@media (min-width: 991.96px) {
-		.footer {
-			width: 80% !important;
-		}
-	}
-
-	@media (max-width: 991.98px) {
-		.credits {
-			text-align: center !important;
-		}
-	}
+}
 </style>
