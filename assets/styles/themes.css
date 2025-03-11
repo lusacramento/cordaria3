@@ -52,6 +52,15 @@
 	--color-table-striped-light: rgba(211, 207, 204, 1);
 	--color-table-border-light: rgba(113, 112, 109, 0.3);
 
+	--color-pink: rgba(223, 2, 154, 0.7);
+	--color-scarlet-red: rgba(240, 2, 14, 0.7);
+	--color-orage: rgba(253, 91, 0, 0.7);
+
+	--tutorial-color: var(--color-purple);
+	--rank-color: var(--color-pink);
+	--logout-color: var(--color-scarlet-red);
+	--about-color: var(--color-orage);
+
 	/* CARDS */
 	--bg-error: var(--color-red) !important;
 	--bg-success: var(--color-green) !important;
@@ -103,7 +112,7 @@
 	--bg-title-box-dark-in: var(--color-box-dark-in);
 	--bg-title-box-dark-out: var(--color-box-dark-out);
 
-	--color-extreme: var(var(--color-white));
+	--color-extreme: var(--color-white);
 }
 
 /************ LIGHT THEME ***********************/
@@ -144,6 +153,7 @@
 	--bg-content: var(--bg-content-dark);
 	--border-nav: var(--border-nav-dark);
 	--text-color: var(--color-white-50);
+	--extreme-text-color: var(--color-black);
 	--bg-title-box-in: var(--bg-title-box-dark-in);
 	--bg-title-box-out: var(--bg-title-box-dark-out);
 

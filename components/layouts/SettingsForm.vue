@@ -21,38 +21,15 @@
 			<div class="col-4"><label for="">todas cartas</label></div>
 		</div>
 		<div class="row mb-4 justify-content-center d-flex">
-			<div
-				class="col-4 img-view-mode d-flex"
-				:class="{ 'enabled-view-mode': viewMode == ViewMode.CARDS2 }"
-			>
-				<img
-					:src="img2Cards"
-					alt=""
-					height="40px"
-					@click.prevent="alterViewMode(ViewMode.CARDS2)"
-				/>
+			<div class="col-4 img-view-mode d-flex" :class="{ 'enabled-view-mode': viewMode == ViewMode.CARDS2 }">
+				<img :src="img2Cards" alt="" height="40px" @click.prevent="alterViewMode(ViewMode.CARDS2)" />
 			</div>
-			<div
-				class="col-4 img-view-mode d-flex"
-				:class="{ 'enabled-view-mode': viewMode == ViewMode.CARDS3 }"
-			>
-				<img
-					:src="img3Cards"
-					alt=""
-					height="40px"
-					@click.prevent="alterViewMode(ViewMode.CARDS3)"
-				/>
+			<div class="col-4 img-view-mode d-flex" :class="{ 'enabled-view-mode': viewMode == ViewMode.CARDS3 }">
+				<img :src="img3Cards" alt="" height="40px" @click.prevent="alterViewMode(ViewMode.CARDS3)" />
 			</div>
-			<div
-				class="col-4 img-view-mode justify-content-center d-flex"
-				:class="{ 'enabled-view-mode': viewMode == ViewMode.CARDSALL }"
-			>
-				<img
-					:src="imgAllCards"
-					alt=""
-					height="40px"
-					@click.prevent="alterViewMode(ViewMode.CARDSALL)"
-				/>
+			<div class="col-4 img-view-mode justify-content-center d-flex"
+				:class="{ 'enabled-view-mode': viewMode == ViewMode.CARDSALL }">
+				<img :src="imgAllCards" alt="" height="40px" @click.prevent="alterViewMode(ViewMode.CARDSALL)" />
 			</div>
 		</div>
 		<div class="row mb-4 justify-content-center">
@@ -61,14 +38,7 @@
 			</div>
 			<div class="row mb-4">
 				<div class="col">
-					<input
-						v-model="counter"
-						type="range"
-						class="form-range"
-						min="4"
-						max="10"
-						id="range"
-					/>
+					<input v-model="counter" type="range" class="form-range" min="4" max="10" id="range" />
 				</div>
 				<div class="col-4">
 					<span class="d-flex justify-content-center">{{ counter }}</span>
@@ -79,50 +49,60 @@
 </template>
 
 <script lang="ts" setup>
-	import img3Cards from '~/public/imgs/cards/img-3-cards.png'
-	import img2Cards from '~/public/imgs/cards/img-2-cards.png'
-	import imgAllCards from '~/public/imgs/cards/img-all-cards.png'
-	import { ViewMode } from '~/types/ViewMode'
+import img3Cards from '~/public/imgs/cards/img-3-cards.png'
+import img2Cards from '~/public/imgs/cards/img-2-cards.png'
+import imgAllCards from '~/public/imgs/cards/img-all-cards.png'
+import { ViewMode } from '~/types/ViewMode'
 
-	const { viewMode, counter } = storeToRefs(useMySettingsStore())
-	const { setViewMode } = useMySettingsStore()
+const { viewMode, counter } = storeToRefs(useMySettingsStore())
+const { setViewMode } = useMySettingsStore()
 
-	watch(counter, () => {
-		useMySettingsStore().update()
-	})
+/**
+ * Watches the `counter` variable for changes and triggers the `update` method
+ * from the `useMySettingsStore` store whenever `counter` changes.
+ */
+watch(counter, () => {
+	useMySettingsStore().update()
+})
 
-	function alterViewMode(newViewMode: ViewMode) {
-		setViewMode(newViewMode)
-		useMySettingsStore().update()
-	}
+/**
+ * Alters the current view mode and updates the settings store.
+ *
+ * @param {ViewMode} newViewMode - The new view mode to be set.
+ */
+function alterViewMode(newViewMode: ViewMode) {
+	setViewMode(newViewMode)
+	useMySettingsStore().update()
+}
 </script>
 
 <style scoped>
-	label {
-		font-family: 'Encode Sans';
-		font-weight: var(--font-regular);
-		font-size: 0.9em;
-	}
+label {
+	font-family: 'Encode Sans';
+	font-weight: var(--font-regular);
+	font-size: 0.9em;
+}
 
-	.form-check-input {
-		float: none;
-	}
-	.form-check {
-		padding-left: 0;
-	}
+.form-check-input {
+	float: none;
+}
 
-	span {
-		font-family: 'Encode Sans';
-		font-weight: var(--font-regular);
-		font-size: 0.9em;
-	}
+.form-check {
+	padding-left: 0;
+}
 
-	.img-view-mode {
-		opacity: 0.3;
-	}
+span {
+	font-family: 'Encode Sans';
+	font-weight: var(--font-regular);
+	font-size: 0.9em;
+}
 
-	.img-view-mode:hover,
-	.enabled-view-mode {
-		opacity: 1;
-	}
+.img-view-mode {
+	opacity: 0.3;
+}
+
+.img-view-mode:hover,
+.enabled-view-mode {
+	opacity: 1;
+}
 </style>

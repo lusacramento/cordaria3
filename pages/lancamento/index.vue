@@ -21,13 +21,4 @@ definePageMeta({
 })
 
 import CountDown from '~/components/layouts/CountDown.vue';
-import type { Box } from '~/types/Box';
-const box: Box = {
-  content: '<h1>Já praticou hoje?<h1>',
-  schema: 'index',
-  leftLogo: true,
-}
-
 </script>
-
-<style></style>

@@ -109,6 +109,61 @@
 </template>
 
 <script lang="ts" setup>
+interface User {
+	email: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+	name: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+	password: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+		icon: string;
+	};
+	confirmPassword: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+		icon: string;
+	};
+	acceptTerms: {
+		id: string;
+		label: string;
+		content: boolean;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+}
+
 const { createTooltip } = useTooltip()
 
 const emailEl = ref()
@@ -135,7 +190,8 @@ const { currentType, currentIcon, toggleVisibility } = usePasswordInput()
 // user data
 const { email, userName, password, confirmPassword, acceptTerms } =
 	storeToRefs(useMyUserStore())
-const user: any = ref({
+
+const user: Ref<User> = ref({
 	email: {
 		id: 'email',
 		label: 'Email',
@@ -152,7 +208,7 @@ const user: any = ref({
 		content: userName,
 		isValidated: false,
 		isShowInfo: false,
-		info: 'Mínimo 3 caracteres. Somente letras.',
+		info: 'Mínimo 3 e máximo de 25 caracteres. Somente letras.',
 		type: 'text',
 		placeHolder: 'Digite um nome de usuário',
 	},
@@ -163,9 +219,9 @@ const user: any = ref({
 		isValidated: false,
 		isShowInfo: false,
 		info: 'A senha deve conter pelo menos 9 caracteres.',
-		type: currentType,
+		type: currentType.value,
 		placeHolder: 'Digite uma senha',
-		icon: currentIcon,
+		icon: currentIcon.value,
 	},
 	confirmPassword: {
 		id: 'confirm-password',
@@ -174,9 +230,9 @@ const user: any = ref({
 		isValidated: false,
 		isShowInfo: false,
 		info: 'As senhas devem ser iguais.',
-		type: currentType,
+		type: currentType.value,
 		placeHolder: 'Repita a senha acima',
-		icon: currentIcon,
+		icon: currentIcon.value,
 	},
 	acceptTerms: {
 		id: 'accept-terms',
@@ -193,6 +249,16 @@ const user: any = ref({
 // validations
 const validator = useValidations()
 
+/**
+ * Watches for changes in the `user.value` object and validates its properties.
+ * 
+ * Validates the following fields:
+ * - `email`: Uses `validator.validateEmail` to check the validity of the email content.
+ * - `name`: Uses `validator.validateUserName` to check the validity of the name content.
+ * - `password`: Uses `validator.validatePassword` to check the validity of the password content.
+ * - `confirmPassword`: Uses `validator.validateConfirmPassword` to check the validity of the confirm password content against the password content.
+ * - `acceptTerms`: Sets `isValidated` to true if `acceptTerms.content` is true.
+ */
 watch(user.value, () => {
 	user.value.email.isValidated = validator.validateEmail(
 		user.value.email.content,
@@ -213,6 +279,10 @@ watch(user.value, () => {
 	}
 })
 
+/**
+ * Toggles the visibility of the password field in the registration form.
+ * Calls the `toggleVisibility` function to switch between showing and hiding the password.
+ */
 function togglePasswordView() {
 	toggleVisibility()
 }

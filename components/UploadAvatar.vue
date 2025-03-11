@@ -1,21 +1,13 @@
 <template>
 	<div class="container justify-content-center d-flex">
-		<form action="" method="post">
+		<form>
 			<ClientOnly>
-				<picture-input
-					ref="pictureInput"
-					width="150"
-					height="150"
-					margin="16"
-					accept="image/jpeg,image/png"
-					size="10"
-					button-class="btn btn-primary"
-					:custom-strings="{
+				<picture-input ref="pictureInput" width="150" height="150" margin="16" accept="image/jpeg,image/png"
+					size="10" button-class="btn btn-primary" :custom-strings="{
 						upload: '<h4>ok!</h4>',
 						drag: 'Arraste a imagem aqui ou clique para alterar',
-					}"
-					@change="onChange($event)"
-				>
+						change: 'Alterar',
+					}" @change="onChange">
 				</picture-input>
 			</ClientOnly>
 			<div v-if="inSubmit" class="d-flex justify-content-center">
@@ -23,77 +15,67 @@
 					Upload
 				</button>
 			</div>
-
-			{{ status }}
 		</form>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import PictureInput from 'vue-picture-input'
+import PictureInput from 'vue-picture-input'
 
-	const status = ref('')
-	const inSubmit = ref(false)
+const inSubmit = ref(false)
 
-	const apiUrl = '/api/upload-image'
-	const { _id } = storeToRefs(useMyUserStore())
-	const { handleFileInput, files } = useFileStorage()
-	const imageDir = '/imgs/uploads'
+/**
+ * Handles the change event for the upload avatar component.
+ * Sets the `inSubmit` state to true to indicate that a submission is in progress.
+ * 
+ * @async
+ */
+async function onChange() {
+	inSubmit.value = true
+}
 
-	let isFinishOnChange = ref(false)
+/**
+ * Handles the submission of the avatar image.
+ * 
+ * This function performs the following steps:
+ * 1. Creates a new FileReader instance.
+ * 2. Retrieves the first element with the class name 'picture-preview' and casts it to an HTMLCanvasElement.
+ * 3. Converts the content of the canvas to a data URL.
+ * 4. Sets up an empty onload event handler for the FileReader.
+ * 5. Submits the image content using the submitImage function.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the submission is complete.
+ */
+async function handleSubmit() {
+	const reader = new FileReader()
+	const elements = document.getElementsByClassName('picture-preview')
+	const canvas = elements[0] as HTMLCanvasElement
+	const content = canvas.toDataURL()
 
-	const imgSrc = ref(`${imageDir}/default-avatar.jpg`)
+	reader.onload = () => { }
+	submitImage(content)
+}
 
-	async function onChange(e: any) {
-		handleFileInput(e)
-		isFinishOnChange.value = true
-		inSubmit.value = true
-
-		const elements = document.getElementsByClassName('picture-preview')
-		const canvas = elements[0] as HTMLCanvasElement
-	}
-
-	async function handleSubmit() {
-		const reader = new FileReader()
-		const elements = document.getElementsByClassName('picture-preview')
-		const canvas = elements[0] as HTMLCanvasElement
-		const content = canvas.toDataURL()
-		reader.onload = (e) => {}
-		submitImage(content)
-	}
-
-	async function submitImage(content: any) {
-		files.value[0].content = await content
-		const file = files.value[0]
-
-		useMyUserDetailsStore().setAvatar(file.content)
-
-		// const response = await $fetch(apiUrl, {
-		// 	method: 'POST',
-		// 	body: {
-		// 		file,
-		// 		name: _id.value,
-		// 	},
-		// })
-		// if (response) {
-		// 	useMyUserDetailsStore().setImageUrl(response.name)
-		// 	inSubmit.value = false
-		// 	// status.value = response.message
-		// 	setTimeout(() => {
-		// 		status.value = ''
-		// 	}, 1000)
-		// }
-	}
+/**
+ * Submits an image to set as the user's avatar.
+ *
+ * @param {any} content - The image content to be submitted.
+ * @returns {Promise<void>} - A promise that resolves when the avatar is set.
+ */
+async function submitImage(content: any) {
+	await useMyUserDetailsStore().setAvatar(content)
+	inSubmit.value = false
+}
 </script>
 <style>
-	picture-input,
-	input,
-	canvas {
-		background-color: transparent !important;
-	}
+picture-input,
+input,
+canvas {
+	background-color: transparent !important;
+}
 
-	canvas {
-		border: solid 2px rgba(255, 255, 255, 0.5);
-		border-radius: 50%;
-	}
+canvas {
+	border: solid 2px rgba(255, 255, 255, 0.5);
+	border-radius: 50%;
+}
 </style>

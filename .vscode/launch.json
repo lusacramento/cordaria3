@@ -16,7 +16,11 @@
 			"name": "server: nuxt",
 			"outputCapture": "std",
 			"runtimeExecutable": "pnpm",
-			"args": ["run", "dev", "--host"]
+			"args": [
+				"run",
+				"dev",
+				"--host"
+			]
 		},
 		{
 			"type": "firefox",
@@ -25,6 +29,18 @@
 			"url": "http://localhost:8000",
 			"webRoot": "${workspaceFolder}",
 			"pathMappings": [
+				{
+					"url": "http://localhost:8000/_nuxt/pages",
+					"path": "${workspaceFolder}/pages"
+				},
+				{
+					"url": "http://localhost:8000/_nuxt/pages",
+					"path": "${workspaceFolder}/pages"
+				},
+				{
+					"url": "http://localhost:8000/_nuxt/components",
+					"path": "${workspaceFolder}/components"
+				},
 				{
 					"url": "http://localhost:8000/_nuxt/components/ranking",
 					"path": "${workspaceFolder}/components/statistics"

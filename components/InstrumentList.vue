@@ -2,53 +2,29 @@
 	<ul id="instrument-list" class="justify-content-center d-flex">
 		<div class="row">
 			<div class="col">
-				<button
-					type="button"
-					class="btn btn-acoustic-guitar"
-					:class="{
-						active: instrument === Instrument.ACOUSTICGUITAR,
-					}"
-					@click.prevent="changeInstrument(Instrument.ACOUSTICGUITAR)"
-				>
-					<img
-						:src="acousticGuitarImage"
-						alt="Violão"
-						class="img img-fluid acoustic-guitar-image"
-					/>
+				<button type="button" class="btn btn-acoustic-guitar" :class="{
+					active: instrument === Instrument.ACOUSTICGUITAR,
+				}" @click.prevent="changeInstrument(Instrument.ACOUSTICGUITAR)">
+					<img :src="acousticGuitarImage" alt="Violão" class="img img-fluid acoustic-guitar-image" />
 				</button>
 			</div>
 			<div class="col">
-				<button
-					type="button"
-					class="btn btn-electric-guitar"
+				<button type="button" class="btn btn-electric-guitar"
 					:class="{ active: instrument === Instrument.ELECTRICGUITAR }"
-					@click.prevent="changeInstrument(Instrument.ELECTRICGUITAR)"
-				>
-					<img
-						:src="electricGuitarImage"
-						class="img img-fluid"
-						alt="Guitarra"
-					/>
+					@click.prevent="changeInstrument(Instrument.ELECTRICGUITAR)">
+					<img :src="electricGuitarImage" class="img img-fluid" alt="Guitarra" />
 				</button>
 			</div>
 
 			<div class="col">
-				<button
-					type="button"
-					class="btn btn-bass"
-					:class="{ active: instrument === Instrument.BASS }"
-					@click.prevent="changeInstrument(Instrument.BASS)"
-				>
+				<button type="button" class="btn btn-bass" :class="{ active: instrument === Instrument.BASS }"
+					@click.prevent="changeInstrument(Instrument.BASS)">
 					<img :src="bassImage" class="img img-fluid" alt="Violão" />
 				</button>
 			</div>
 			<div class="col">
-				<button
-					type="button"
-					class="btn btn-cavaco"
-					:class="{ active: instrument === Instrument.CAVACO }"
-					@click.prevent="changeInstrument(Instrument.CAVACO)"
-				>
+				<button type="button" class="btn btn-cavaco" :class="{ active: instrument === Instrument.CAVACO }"
+					@click.prevent="changeInstrument(Instrument.CAVACO)">
 					<img :src="cavacoImage" class="img img-fluid" alt="Violão" />
 				</button>
 			</div>
@@ -57,91 +33,93 @@
 </template>
 
 <script lang="ts" setup>
-	import { Instrument } from '~/types/Instrument'
+import { Instrument } from '~/types/Instrument'
 
-	import acousticGuitarImage from '~/assets/imgs/instruments/settings/acoustic-guitar.png'
-	import electricGuitarImage from '~/assets/imgs/instruments/settings/electric-guitar.png'
-	import bassImage from '~/assets/imgs/instruments/settings/bass.png'
-	import cavacoImage from '~/assets/imgs/instruments/settings/cavaco.png'
+import acousticGuitarImage from '~/assets/imgs/instruments/settings/acoustic-guitar.png'
+import electricGuitarImage from '~/assets/imgs/instruments/settings/electric-guitar.png'
+import bassImage from '~/assets/imgs/instruments/settings/bass.png'
+import cavacoImage from '~/assets/imgs/instruments/settings/cavaco.png'
 
-	const { instrument } = storeToRefs(useMySettingsStore())
-	const instruments = ref({
-		default: ref(),
-		acousticGuitar: {
-			label: 'violao',
-			value: Instrument.ACOUSTICGUITAR,
-		},
-		electricGuitar: {
-			label: 'guitarra',
-			value: Instrument.ELECTRICGUITAR,
-		},
-		bass: {
-			label: 'baixo',
-			value: Instrument.BASS,
-		},
-		cavaco: {
-			label: 'cavaco',
-			value: Instrument.CAVACO,
-		},
-	})
+const { instrument } = storeToRefs(useMySettingsStore())
 
-	watch(instrument, async (newValue, oldValue, on) => {
-		console.log(instrument.value)
-		if (oldValue === Instrument.NOT_SELECTED) return
 
-		await useMySettingsStore().update()
-		await useMyProgressStore().load()
-		await useMyProgressStore().loadScore()
-		await useGameController().init()
-	})
+/**
+ * Watches for changes in the `instrument` variable and performs a series of asynchronous operations
+ * when the `instrument` changes from a value other than `Instrument.NOT_SELECTED`.
+ *
+ * @param {any} newValue - The new value of the `instrument`.
+ * @param {any} oldValue - The old value of the `instrument`.
+ * @param {Function} on - The callback function to register the watcher.
+ *
+ * @returns {Promise<void>} - A promise that resolves when all asynchronous operations are complete.
+ */
+watch(instrument, async (newValue, oldValue, on) => {
+	if (oldValue === Instrument.NOT_SELECTED) return
 
-	function changeInstrument(newInstrument: Instrument) {
-		instrument.value = newInstrument
-	}
+	await useMySettingsStore().update()
+	await useMyProgressStore().load()
+	await useMyProgressStore().loadScore()
+	await useGameController().init()
+})
+
+/**
+ * Changes the current instrument to the specified new instrument.
+ *
+ * @param {Instrument} newInstrument - The new instrument to set.
+ */
+function changeInstrument(newInstrument: Instrument) {
+	instrument.value = newInstrument
+}
 </script>
 
 <style scoped>
-	.btn {
-		margin: 5px;
-		width: 92.8px;
-		height: 95px;
-		border-radius: 50%;
-	}
+.btn {
+	margin: 5px;
+	width: 92.8px;
+	height: 95px;
+	border-radius: 50%;
+}
 
-	.btn-acoustic-guitar.active,
-	.btn-electric-guitar.active,
-	.btn-bass.active,
-	.btn-cavaco.active {
-		border: none;
-	}
+.btn-acoustic-guitar.active,
+.btn-electric-guitar.active,
+.btn-bass.active,
+.btn-cavaco.active {
+	border: none;
+}
 
-	.btn-acoustic-guitar.active {
-		background-color: var(--active-acoustic-guitar-color) !important;
-	}
-	.btn-electric-guitar.active {
-		background-color: var(--active-electric-guitar-color) !important;
-	}
-	.btn-bass.active {
-		background-color: var(--active-bass-color) !important;
-	}
-	.btn-cavaco.active {
-		background-color: var(--active-cavaco-color) !important;
-	}
+.btn-acoustic-guitar.active {
+	background-color: var(--active-acoustic-guitar-color) !important;
+}
 
-	.btn-acoustic-guitar:not(.active):hover {
-		background-color: var(--hover-acoustic-guitar-color);
-	}
-	.btn-electric-guitar:not(.active):hover {
-		background-color: var(--hover-electric-guitar-color);
-	}
-	.btn-bass:not(.active):hover {
-		background-color: var(--hover-bass-color);
-	}
-	.btn-cavaco:not(.active):hover {
-		background-color: var(--hover-cavaco-color);
-	}
+.btn-electric-guitar.active {
+	background-color: var(--active-electric-guitar-color) !important;
+}
 
-	img {
-		width: 100px;
-	}
+.btn-bass.active {
+	background-color: var(--active-bass-color) !important;
+}
+
+.btn-cavaco.active {
+	background-color: var(--active-cavaco-color) !important;
+}
+
+.btn-acoustic-guitar:not(.active):hover {
+	background-color: var(--hover-acoustic-guitar-color);
+}
+
+.btn-electric-guitar:not(.active):hover {
+	background-color: var(--hover-electric-guitar-color);
+}
+
+.btn-bass:not(.active):hover {
+	background-color: var(--hover-bass-color);
+}
+
+.btn-cavaco:not(.active):hover {
+	background-color: var(--hover-cavaco-color);
+}
+
+img {
+	width: 100px;
+}
 </style>

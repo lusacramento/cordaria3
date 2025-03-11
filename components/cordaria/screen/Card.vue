@@ -1,13 +1,13 @@
 <template>
-	<div :id="card.id" :key="card.id" class="m-2 card align-items-center justify-content-center" :class="{
-		pastCardColor: card.status === 'prev',
-		currentCardColor: card.status === 'current',
-		futureCardColor: card.status === 'next',
+	<div :id="props.card.id" :key="props.card.id" class="m-2 card align-items-center justify-content-center" :class="{
+		pastCardColor: props.card.status === 'prev',
+		currentCardColor: props.card.status === 'current',
+		futureCardColor: props.card.status === 'next',
 	}">
-		<CordariaScreenCardFragment v-for="fragment in card.fragments" :id="fragment.id" :key="fragment.id"
+		<CordariaScreenCardFragment v-for="fragment in props.card.fragments" :id="fragment.id" :key="fragment.id"
 			:fragment="fragment" />
-		<div class="text-center" :class="{ string: !allCard, stringAllCard: allCard }">
-			{{ card.str }}
+		<div class="text-center" :class="{ string: !props.allCard, stringAllCard: props.allCard }">
+			{{ props.card.str }}
 		</div>
 	</div>
 </template>

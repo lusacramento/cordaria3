@@ -31,6 +31,18 @@ const icon = ref()
 const confetti = ref()
 confetti.value = new JSConfetti()
 
+/**
+ * Displays an alert with confetti and award icon if applicable.
+ * 
+ * @param {LessonMessage} data - The data object containing information for the alert.
+ * @param {boolean} data.isAwarded - Indicates if an award is given.
+ * @param {number} data.awardNumber - The number of the award.
+ * @param {string} data.icon - The icon to be displayed if no award is given.
+ * @param {string} data.title - The title of the alert.
+ * @param {string} data.description - The description of the alert.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when the alert is shown.
+ */
 async function showAlert(data: LessonMessage) {
 	if (data.isAwarded) {
 		confetti.value
@@ -82,6 +94,24 @@ async function showAlert(data: LessonMessage) {
 		icon.value = data.icon
 	}
 
+	/**
+	 * Displays a SweetAlert2 modal with custom content and a countdown timer.
+	 * 
+	 * @param {Object} data - The data object containing the title and description for the modal.
+	 * @param {string} data.title - The title to be displayed in the modal.
+	 * @param {string} data.description - The description to be displayed in the modal.
+	 * @param {Object} iconHtml - The HTML content for the icon.
+	 * @param {Object} icon - The icon type for the modal.
+	 * @param {number} timerEstimedInSeconds - The initial countdown time in seconds.
+	 * @param {number} timerEstimedInMiliSeconds - The initial countdown time in milliseconds.
+	 * @param {string} bg - The background color for the modal.
+	 * 
+	 * The modal will display a title, description, and a countdown timer that updates every 200 milliseconds.
+	 * The modal will automatically close when the timer reaches zero.
+	 * The timer progress bar is displayed at the bottom of the modal.
+	 * The modal shows a loading animation while the timer is running.
+	 * The interval for updating the countdown timer is cleared when the modal is closed.
+	 */
 	Swal.fire({
 		animation: false,
 		title: `<h1 class="title-tips">${data.title}</h1>`,

@@ -1,91 +1,90 @@
-import { defineStore } from 'pinia'
-import { Instrument } from '~/types/Instrument.js'
-import type { Settings } from '~/types/Settings'
-import { ViewMode } from '~/types/ViewMode'
+import { defineStore } from "pinia";
+import { Instrument } from "~/types/Instrument.js";
+import type { Settings } from "~/types/Settings";
+import { ViewMode } from "~/types/ViewMode";
 
-export const useMySettingsStore = defineStore({
-	id: 'mySettingsStore',
-	state: () => ({
-		userId: '',
-		counter: 4,
-		viewMode: ViewMode.CARDS3,
-		instrument: Instrument.NOT_SELECTED,
-		showStatistics: false,
-	}),
+export const useMySettingsStore = defineStore("mySettingsStore", {
+  state: () => ({
+    userId: "",
+    counter: 4,
+    viewMode: ViewMode.CARDS3,
+    instrument: Instrument.NOT_SELECTED,
+    showStatistics: false,
+  }),
 
-	getters: {
-		getCounter(state) {
-			return state.counter
-		},
+  getters: {
+    getCounter(state) {
+      return state.counter;
+    },
 
-		getViewMode(state) {
-			return state.viewMode
-		},
+    getViewMode(state) {
+      return state.viewMode;
+    },
 
-		getInstrument(state) {
-			return state.instrument
-		},
+    getInstrument(state) {
+      return state.instrument;
+    },
 
-		getShowStatistics(state) {
-			return state.showStatistics
-		},
-	},
+    getShowStatistics(state) {
+      return state.showStatistics;
+    },
+  },
 
-	actions: {
-		setUserId(id: string) {
-			this.userId = id
-		},
+  actions: {
+    setUserId(id: string) {
+      this.userId = id;
+    },
 
-		setAll(settings: Settings) {
-			this.counter = settings.counter
-			this.viewMode = settings.viewMode
-			this.instrument = settings.instrument
-		},
+    setAll(settings: Settings) {
+      this.counter = settings.counter;
+      this.viewMode = settings.viewMode;
+      this.instrument = settings.instrument;
+    },
 
-		setCounter(value: number) {
-			this.counter = value
-		},
+    setCounter(value: number) {
+      this.counter = value;
+    },
 
-		setViewMode(value: ViewMode) {
-			this.viewMode = value
-		},
+    setViewMode(value: ViewMode) {
+      this.viewMode = value;
+    },
 
-		setInstrument(instrument: Instrument) {
-			this.instrument = instrument
-		},
+    setInstrument(instrument: Instrument) {
+      this.instrument = instrument;
+    },
 
-		toogleShowStatistics() {
-			this.showStatistics = !this.showStatistics
-		},
+    toogleShowStatistics() {
+      this.showStatistics = !this.showStatistics;
+    },
 
-		generate() {
-			this.userId = useMyUserStore().getId
-		},
+    generate() {
+      this.userId = useMyUserStore().getId;
+    },
 
-		async load() {
-			const settings = (await useISettings().getSettings(
-				useMyUserStore().getId,
-			)) as Settings
+    async load() {
+      const settings = (await useISettings().getSettings(
+        useMyUserStore().getId
+      )) as Settings;
 
-			if (settings) {
-				this.setAll(settings)
-				return
-			}
+      if (settings) {
+        this.setAll(settings);
+        return;
+      }
 
-			this.generate()
-			this.post()
-		},
+      this.generate();
+      this.post();
+    },
 
-		async post() {
-			useISettings().postSettings(this.$state as unknown as Settings)
-		},
+    async post() {
+      useISettings().postSettings(this.$state as unknown as Settings);
+    },
 
-		async update() {
-			this.userId = useMyUserStore().getId
-			return await useISettings().updateSettings(
-				this.userId,
-				this.$state as unknown as Settings,
-			)
-		},
-	},
-})
+    async update() {
+      this.userId = useMyUserStore().getId;
+      return await useISettings().updateSettings(
+        this.userId,
+        this.$state as unknown as Settings
+      );
+    },
+  },
+});

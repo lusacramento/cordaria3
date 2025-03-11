@@ -1,40 +1,40 @@
-import { model, Schema, ObjectId } from 'mongoose'
-import { Instrument } from '~/types/Instrument'
-import { ViewMode } from '~/types/ViewMode'
+import { model, Schema, ObjectId, Document } from "mongoose";
+import { Instrument } from "~/types/Instrument";
+import { ViewMode } from "~/types/ViewMode";
 
 export interface SettingsDocument extends Document {
-	userId: ObjectId
-	instrument: Instrument
-	viewMode: ViewMode
-	counter: number
+  userId: ObjectId;
+  instrument: Instrument;
+  viewMode: ViewMode;
+  counter: number;
 }
 
 const SettingsSchema = new Schema({
-	userId: {
-		type: Schema.Types.ObjectId,
-		ref: 'User',
-		required: true,
-		unique: true,
-	},
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+    unique: true,
+  },
 
-	instrument: {
-		type: String,
-		required: true,
-		enum: Object.values(Instrument),
-		unique: false,
-		index: false,
-	},
+  instrument: {
+    type: String,
+    required: true,
+    enum: Object.values(Instrument),
+    unique: false,
+    index: false,
+  },
 
-	viewMode: {
-		type: String,
-		required: true,
-		enum: Object.values(ViewMode),
-	},
+  viewMode: {
+    type: String,
+    required: true,
+    enum: Object.values(ViewMode),
+  },
 
-	counter: {
-		type: Number,
-		required: true,
-	},
-})
+  counter: {
+    type: Number,
+    required: true,
+  },
+});
 
-export const Settings = model<SettingsDocument>('Settings', SettingsSchema)
+export const Settings = model<SettingsDocument>("Settings", SettingsSchema);

@@ -59,10 +59,25 @@ onBeforeMount(() => {
 	isDarkMode.value = verifyColorMode(value.value)
 })
 
+/**
+ * Watches the 'value' property for changes and updates the 'isDarkMode' state
+ * based on the result of the 'verifyColorMode' function.
+ *
+ * @param {Ref} value - A Vue ref object that is being watched for changes.
+ * @param {Function} verifyColorMode - A function that determines if the color mode is dark.
+ * @param {Ref} isDarkMode - A Vue ref object that holds the state of the dark mode.
+ * @param {any} newValue - The new value of the 'value' property after the change.
+ */
 watch(value, (newValue) => {
 	isDarkMode.value = verifyColorMode(value.value)
 })
 
+/**
+ * Verifies if the provided color mode is 'dark'.
+ *
+ * @param {string} modeColor - The color mode to verify.
+ * @returns {boolean} - Returns true if the color mode is 'dark', otherwise false.
+ */
 function verifyColorMode(modeColor: string) {
 	return modeColor === 'dark' ? true : false
 }
@@ -91,78 +106,6 @@ const icons = {
 		toLight: () => instaIconEnabled,
 		toDark: () => instaIconDisabled,
 	}),
-}
-
-const links = reactive({
-	theProject: {
-		isLight: false,
-	},
-	theResearch: {
-		isLight: false,
-	},
-	thePratice: {
-		isLight: false,
-	},
-	theTutorial: {
-		isLight: false,
-	},
-	clues: {
-		isLight: false,
-	},
-})
-
-const isCollapse = ref(true)
-
-onMounted(async () => {
-	await iniciateActive()
-})
-
-watch(useRoute, () => {
-	iniciateActive()
-})
-
-const { signOut, status } = useAuth()
-
-async function handleLogout() {
-	useMyUserStore().$reset()
-	useMyUserDetailsStore().$reset()
-	useMySettingsStore().$reset()
-	useMyProgressStore().$reset()
-	await signOut({ callbackUrl: '/entrar' })
-}
-
-function removeAllActive() {
-	links.theProject.isLight = false
-	links.theResearch.isLight = false
-	links.thePratice.isLight = false
-	links.theTutorial.isLight = false
-	links.clues.isLight = false
-	// isOverIconMenu = false
-}
-
-function iniciateActive() {
-	removeAllActive()
-	const url = window.location.href
-	const baseUrl = window.location.origin
-
-	switch (url) {
-		case `${baseUrl}/`:
-			links.theProject.isLight = true
-			break
-		case `${baseUrl}/a-pesquisa`:
-			links.theResearch.isLight = true
-			break
-		case `${baseUrl}/a-pratica`:
-			links.thePratice.isLight = true
-			break
-		case `${baseUrl}/o-tutorial`:
-			links.theTutorial.isLight = true
-			break
-		case `${baseUrl}/dicas`:
-			links.clues.isLight = true
-		default:
-			break
-	}
 }
 </script>
 
@@ -200,46 +143,6 @@ function iniciateActive() {
 
 .custom-toggler-icon {
 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24' /%3E%3C/svg%3E");
-}
-
-.theProjectLinkActive {
-	color: var(--the-project-color) !important;
-}
-
-.the-project-link:hover {
-	color: var(--the-project-color) !important;
-}
-
-.theResearchLinkActive {
-	color: var(--the-research-color) !important;
-}
-
-.the-research-link:hover {
-	color: var(--the-research-color) !important;
-}
-
-.thePraticeLinkActive {
-	color: var(--the-pratice-color) !important;
-}
-
-.the-pratice-link:hover {
-	color: var(--the-pratice-color) !important;
-}
-
-.theTutorialLinkActive {
-	color: var(--the-tutorial-color) !important;
-}
-
-.the-tutorial-link:hover {
-	color: var(--the-tutorial-color) !important;
-}
-
-.cluesLinkActive {
-	color: var(--clues-color) !important;
-}
-
-.clues-link:hover {
-	color: var(--clues-color) !important;
 }
 
 button:hover {

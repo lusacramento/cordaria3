@@ -61,6 +61,30 @@
 </template>
 
 <script lang="ts" setup>
+interface User {
+	email: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+	};
+	password: {
+		id: string;
+		label: string;
+		content: string;
+		isValidated: boolean;
+		isShowInfo: boolean;
+		info: string;
+		type: string;
+		placeHolder: string;
+		icon: string;
+	};
+}
+
 const { createTooltip } = useTooltip()
 
 const emailEl = ref()
@@ -78,7 +102,9 @@ const { email, password } = storeToRefs(useMyUserStore())
 
 const { currentType, currentIcon, toggleVisibility } = usePasswordInput()
 
-const user: any = ref({
+
+
+const user: Ref<User> = ref({
 	email: {
 		id: 'email',
 		label: 'Email',
@@ -96,11 +122,11 @@ const user: any = ref({
 		isValidated: false,
 		isShowInfo: false,
 		info: 'A senha deve conter pelo menos 9 caracteres!',
-		type: currentType,
+		type: currentType.value,
 		placeHolder: 'Digite uma senha',
-		icon: currentIcon,
+		icon: currentIcon.value,
 	},
-})
+});
 
 // validations
 
@@ -116,6 +142,15 @@ watch(user.value, () => {
 	)
 })
 
+/**
+ * Verifies if all user input validations are successful.
+ * 
+ * This function checks if both the email and password fields have been validated.
+ * If both fields are validated, it sets the loading state to false and returns true.
+ * Otherwise, it sets the loading state to true and returns false.
+ * 
+ * @returns {boolean} - Returns true if both email and password are validated, otherwise false.
+ */
 function verifyAllValidations() {
 	if (user.value.email.isValidated && user.value.password.isValidated) {
 		isLoading.value = false
@@ -128,6 +163,10 @@ function verifyAllValidations() {
 
 const isLoading = ref(true)
 
+/**
+ * Toggles the visibility of the password field in the login form.
+ * Calls the `toggleVisibility` function to switch between showing and hiding the password.
+ */
 function togglePasswordView() {
 	toggleVisibility()
 }
