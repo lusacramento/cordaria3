@@ -43,6 +43,16 @@ import cavacoImage from '~/assets/imgs/instruments/settings/cavaco.png'
 const { instrument } = storeToRefs(useMySettingsStore())
 
 
+/**
+ * Watches for changes in the `instrument` variable and performs a series of asynchronous operations
+ * when the `instrument` changes from a value other than `Instrument.NOT_SELECTED`.
+ *
+ * @param {any} newValue - The new value of the `instrument`.
+ * @param {any} oldValue - The old value of the `instrument`.
+ * @param {Function} on - The callback function to register the watcher.
+ *
+ * @returns {Promise<void>} - A promise that resolves when all asynchronous operations are complete.
+ */
 watch(instrument, async (newValue, oldValue, on) => {
 	if (oldValue === Instrument.NOT_SELECTED) return
 
@@ -52,6 +62,11 @@ watch(instrument, async (newValue, oldValue, on) => {
 	await useGameController().init()
 })
 
+/**
+ * Changes the current instrument to the specified new instrument.
+ *
+ * @param {Instrument} newInstrument - The new instrument to set.
+ */
 function changeInstrument(newInstrument: Instrument) {
 	instrument.value = newInstrument
 }

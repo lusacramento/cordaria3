@@ -3,10 +3,25 @@ import { ref } from "vue";
 import type { Location } from "~/types/Location";
 
 export function useIGeonamesApi() {
+  /**
+   * A reactive reference to an array of Location objects.
+   *
+   * @type {Ref<Location[]>}
+   */
   const locations = ref() as Ref<Location[]>;
 
   const username = "lusacramento";
 
+  /**
+   * Fetches a list of cities matching the given city name from the GeoNames API.
+   * Filters the results to include only those that match the city name exactly (ignoring accents)
+   * and are classified as either a city or a region.
+   *
+   * @param {string} city - The name of the city to search for.
+   * @returns {Promise<void>} A promise that resolves when the cities have been fetched and processed.
+   *
+   * @throws Will log an error message to the console if the fetch request fails.
+   */
   async function fetchCities(city: string) {
     try {
       const response = await fetch(

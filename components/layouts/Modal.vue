@@ -49,10 +49,17 @@ onMounted(() => {
 	myModal.value = new bootstrap.Modal(myModal.value)
 })
 
+/**
+ * Function to display the modal.
+ * It calls the `show` method on the `myModal` object to make the modal visible.
+ */
 function show() {
 	myModal.value.show()
 }
 
+/**
+ * Hides the modal by calling the `hide` method on the `myModal` object.
+ */
 function hide() {
 	myModal.value.hide()
 }

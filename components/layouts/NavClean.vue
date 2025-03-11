@@ -59,10 +59,25 @@ onBeforeMount(() => {
 	isDarkMode.value = verifyColorMode(value.value)
 })
 
+/**
+ * Watches the 'value' property for changes and updates the 'isDarkMode' state
+ * based on the result of the 'verifyColorMode' function.
+ *
+ * @param {Ref} value - A Vue ref object that is being watched for changes.
+ * @param {Function} verifyColorMode - A function that determines if the color mode is dark.
+ * @param {Ref} isDarkMode - A Vue ref object that holds the state of the dark mode.
+ * @param {any} newValue - The new value of the 'value' property after the change.
+ */
 watch(value, (newValue) => {
 	isDarkMode.value = verifyColorMode(value.value)
 })
 
+/**
+ * Verifies if the provided color mode is 'dark'.
+ *
+ * @param {string} modeColor - The color mode to verify.
+ * @returns {boolean} - Returns true if the color mode is 'dark', otherwise false.
+ */
 function verifyColorMode(modeColor: string) {
 	return modeColor === 'dark' ? true : false
 }

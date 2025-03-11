@@ -76,10 +76,25 @@ onBeforeMount(() => {
 	isDarkMode.value = verifyColorMode(value.value)
 })
 
+/**
+ * Watches the 'value' property for changes and updates the 'isDarkMode' property
+ * based on the result of the 'verifyColorMode' function.
+ *
+ * @param {Ref} value - A Vue ref object that is being watched for changes.
+ * @param {Function} verifyColorMode - A function that determines if the color mode is dark.
+ * @param {Ref} isDarkMode - A Vue ref object that will be updated based on the color mode.
+ * @param {any} newValue - The new value of the 'value' property after the change.
+ */
 watch(value, (newValue) => {
 	isDarkMode.value = verifyColorMode(value.value)
 })
 
+/**
+ * Verifies if the given color mode is 'dark'.
+ *
+ * @param {string} modeColor - The color mode to verify.
+ * @returns {boolean} - Returns true if the color mode is 'dark', otherwise false.
+ */
 function verifyColorMode(modeColor: string) {
 	return modeColor === 'dark' ? true : false
 }
@@ -129,12 +144,26 @@ onMounted(async () => {
 	await iniciateActive()
 })
 
+/**
+ * Watches for changes in the route and triggers the `iniciateActive` function.
+ * 
+ * @watch useRoute - A Vue Router composition API function that returns the current route.
+ * @callback - A function that is called whenever the route changes.
+ */
 watch(useRoute(), () => {
 	iniciateActive()
 })
 
 const { signOut, status } = useAuth()
 
+/**
+ * Handles the user logout process by resetting various user-related stores
+ * and signing the user out, redirecting them to the login page.
+ *
+ * @async
+ * @function handleLogout
+ * @returns {Promise<void>} - A promise that resolves when the sign-out process is complete.
+ */
 async function handleLogout() {
 	useMyUserStore().$reset()
 	useMyUserDetailsStore().$reset()
@@ -143,6 +172,10 @@ async function handleLogout() {
 	await signOut({ callbackUrl: '/entrar' })
 }
 
+/**
+ * Function to remove the active state from all navigation links.
+ * It sets the `isLight` property of each link (tutorial, logout, rank, about) to `false`.
+ */
 function removeAllActive() {
 	links.tutorial.isLight = false
 	links.logout.isLight = false
@@ -150,6 +183,20 @@ function removeAllActive() {
 	links.about.isLight = false
 }
 
+/**
+ * Initializes the active state for navigation links based on the current URL.
+ * 
+ * This function first removes the active state from all navigation links by calling `removeAllActive()`.
+ * It then checks the current URL and sets the `isLight` property to `true` for the corresponding navigation link.
+ * 
+ * The function handles the following URLs:
+ * - `${baseUrl}/tutorial`: Sets `links.logout.isLight` to `true`.
+ * - `${baseUrl}/logout`: Sets `links.logout.isLight` to `true`.
+ * - `${baseUrl}/ranqueamento`: Sets `links.rank.isLight` to `true`.
+ * - `${baseUrl}/sobre`: Sets `links.about.isLight` to `true`.
+ * 
+ * If the URL does not match any of the specified cases, no action is taken.
+ */
 function iniciateActive() {
 	removeAllActive()
 	const url = window.location.href

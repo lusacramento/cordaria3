@@ -13,7 +13,7 @@
 
           </div>
           <h1 style="margin:20px;">Bem vindo a nossa plataforma <strong>{{ getUserName
-          }}</strong>!</h1>
+              }}</strong>!</h1>
           <p>Obrigado por se cadastrar. Estamos felizes em ter você conosco!</p>
           <p>Ah! E não se equeça de seguir nossas páginas no <a href="https://instagram.com/cordaria.app">Instagram</a>
             e
@@ -40,6 +40,14 @@ defineExpose({ sendEmail })
 const template = ref() as Ref<HTMLElement>
 const { getUserName, getEmail } = storeToRefs(useMyUserStore())
 
+/**
+ * Sends a welcome email using SMTP.
+ *
+ * This function uses the `useSmtp` composable to send an email with a welcome message.
+ * The email content is retrieved from the `template` element's innerHTML.
+ *
+ * @returns {Promise<void>} A promise that resolves when the email is sent.
+ */
 async function sendEmail() {
   return await useSmtp().sendEmail(getEmail.value, 'Mensagem de boas vindas - Cordaria App!', template.value.innerHTML)
 }

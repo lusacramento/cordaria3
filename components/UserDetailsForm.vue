@@ -56,6 +56,25 @@ const fields: any = ref({
 	},
 })
 
+/**
+ * Watches for changes in the `fields.value` object and performs validation on specific fields.
+ * 
+ * - Validates the `fullName` field using the `validateFullName` method from `useValidations`.
+ * - Validates the `age` field using the `validateAge` method from `useValidations`.
+ * - TODO: Add validation for the `location` field using the `validateLocation` method from `useValidations`.
+ * 
+ * @param {Object} fields.value - The object containing form fields to be validated.
+ * @param {Object} fields.value.fullName - The fullName field object.
+ * @param {Object} fields.value.fullName.isValidated - The validation status of the fullName field.
+ * @param {Object} fields.value.age - The age field object.
+ * @param {Object} fields.value.age.isValidated - The validation status of the age field.
+ * @param {Object} fields.value.location - The location field object (currently not validated).
+ * @param {Object} fields.value.location.isValidated - The validation status of the location field (currently not validated).
+ * @param {Function} useValidations - A function that returns validation methods.
+ * @param {Function} useValidations().validateFullName - Method to validate the fullName field.
+ * @param {Function} useValidations().validateAge - Method to validate the age field.
+ * @param {Function} useValidations().validateLocation - Method to validate the location field (currently not used).
+ */
 watch(fields.value, () => {
 	fields.value.fullName.isValidated = useValidations().validateFullName(
 		fullName.value,
@@ -65,12 +84,31 @@ watch(fields.value, () => {
 	// fields.value.location.isValidated = useValidations().validateLocation(location.value.location)
 })
 
+/**
+ * Watches the 'location' property for changes and triggers validation.
+ * When 'location' changes, it updates the 'isValidated' property of the 'location' field
+ * by calling the 'validateLocation' method from 'useValidations'.
+ */
 watch(location, () => {
 	fields.value.location.isValidated = useValidations().validateLocation()
 })
 
 
 
+/**
+ * Asynchronously deletes user data after confirming with the user.
+ * 
+ * This function prompts the user with two confirmation dialogs to ensure they
+ * want to delete their account and understand the action is irreversible.
+ * If both confirmations are accepted, it deletes the user data and signs the user out,
+ * redirecting them to the home page.
+ * If the operation is canceled, a toast notification is shown to inform the user
+ * that their data is saved.
+ * 
+ * @async
+ * @function deleteUserData
+ * @returns {Promise<void>} A promise that resolves when the user data is deleted or the operation is canceled.
+ */
 async function deleteUserData() {
 	if (confirm('Você perderá todo seu progresso!\nDeseja mesmo apagar sua conta?')) {
 		if (confirm('Este procedimento não poderá ser desfeito, Tem certeza?')) {

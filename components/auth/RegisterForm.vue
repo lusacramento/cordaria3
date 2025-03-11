@@ -249,6 +249,16 @@ const user: Ref<User> = ref({
 // validations
 const validator = useValidations()
 
+/**
+ * Watches for changes in the `user.value` object and validates its properties.
+ * 
+ * Validates the following fields:
+ * - `email`: Uses `validator.validateEmail` to check the validity of the email content.
+ * - `name`: Uses `validator.validateUserName` to check the validity of the name content.
+ * - `password`: Uses `validator.validatePassword` to check the validity of the password content.
+ * - `confirmPassword`: Uses `validator.validateConfirmPassword` to check the validity of the confirm password content against the password content.
+ * - `acceptTerms`: Sets `isValidated` to true if `acceptTerms.content` is true.
+ */
 watch(user.value, () => {
 	user.value.email.isValidated = validator.validateEmail(
 		user.value.email.content,
@@ -269,6 +279,10 @@ watch(user.value, () => {
 	}
 })
 
+/**
+ * Toggles the visibility of the password field in the registration form.
+ * Calls the `toggleVisibility` function to switch between showing and hiding the password.
+ */
 function togglePasswordView() {
 	toggleVisibility()
 }
