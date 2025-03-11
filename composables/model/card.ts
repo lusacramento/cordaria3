@@ -1,47 +1,84 @@
-import { Fragment } from './fragment'
+import { Fragment } from "./fragment";
 
+/**
+ * Represents a card with content, fragments, and status.
+ */
 export class Card {
-	id: string
-	content: string
-	fragments: Fragment[]
-	isLast: boolean = false
-	status: string
-	str: string
+  /**
+   * The unique identifier of the card.
+   */
+  id: string;
 
-	constructor(content: string, stringNumber: string) {
-		this.id = content
-		this.content = content
+  /**
+   * The content of the card.
+   */
+  content: string;
 
-		this.fragments = this.getFragments(content)
+  /**
+   * The fragments of the card content.
+   */
+  fragments: Fragment[];
 
-		this.isLast = false
+  /**
+   * Indicates whether this card is the last one.
+   */
+  isLast: boolean = false;
 
-		this.status = 'next'
-		this.str = stringNumber
-	}
+  /**
+   * The status of the card.
+   */
+  status: string;
 
-	static getEmptyCard() {
-		return new Card('', '')
-	}
+  /**
+   * A string number associated with the card.
+   */
+  str: string;
 
-	getFragments(content: string) {
-		const fragments = []
+  /**
+   * Creates an instance of Card.
+   * @param content - The content of the card.
+   * @param stringNumber - A string number associated with the card.
+   */
+  constructor(content: string, stringNumber: string) {
+    this.id = content;
+    this.content = content;
+    this.fragments = this.getFragments(content);
+    this.isLast = false;
+    this.status = "next";
+    this.str = stringNumber;
+  }
 
-		for (let index = 0; index < content.length; index++) {
-			const fragmentContent = content[index]
+  /**
+   * Creates an empty card.
+   * @returns A new Card instance with empty content and string number.
+   */
+  static getEmptyCard() {
+    return new Card("", "");
+  }
 
-			const fragment = new Fragment(
-				`${this.id}_${index}_${fragmentContent}`,
-				fragmentContent,
-			)
+  /**
+   * Splits the content into fragments.
+   * @param content - The content to be split into fragments.
+   * @returns An array of Fragment instances.
+   */
+  getFragments(content: string) {
+    const fragments = [];
+    for (let index = 0; index < content.length; index++) {
+      const fragmentContent = content[index];
+      const fragment = new Fragment(
+        `${this.id}_${index}_${fragmentContent}`,
+        fragmentContent
+      );
+      fragments.push(fragment);
+    }
+    return fragments;
+  }
 
-			fragments.push(fragment)
-		}
-
-		return fragments
-	}
-
-	setStatus(status: string) {
-		this.status = status
-	}
+  /**
+   * Sets the status of the card.
+   * @param status - The new status of the card.
+   */
+  setStatus(status: string) {
+    this.status = status;
+  }
 }
