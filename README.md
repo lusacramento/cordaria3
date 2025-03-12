@@ -1,4 +1,3 @@
-<img src=""/>
 <p style="text-align:center"><img src="./assets/imgs/logo-cordaria_escura_new.png" width=40%></p>
 
 # What is?
