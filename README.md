@@ -1,4 +1,4 @@
-<p style="text-align:center"><img src="./assets/imgs/logo-cordaria_escura_new.png" width=40%></p>
+<p style="text-align:center; justify-content:center;"><img src="./assets/imgs/logo-cordaria_escura_new.png" width=25%></p>
 
 # What is?
 Aimed at interested people in starting to study the acoustic and eletric guitar, cavaco and bass, as well as teachers of this art, the Cordaria project is a web application that aims to help students practice the instrument.
