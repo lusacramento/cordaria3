@@ -80,7 +80,7 @@ function update(newInstrument: Instrument) {
 
 async function getRanking() {
 
-	const response = await useIRanking().getRanking(instrument.value, '67d3678e7a646ccaef9e9d83', 'userg')
+	const response = await useIRanking().getRanking(instrument.value, useMyUserStore().getId, useMyUserStore().getUserName)
 	toRanking(response)
 }
 
