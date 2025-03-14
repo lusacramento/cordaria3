@@ -331,5 +331,17 @@ export const useMyUserStore = defineStore("myUserStore", {
         return error;
       }
     },
+    async loadUserStore() {
+      const { getSession } = useAuth();
+      const session = await getSession();
+      const user = session?.user;
+      // @ts-ignore
+      this.setId(user._id);
+      // @ts-ignore
+      this.setUserName(user.userName);
+      // @ts-ignore
+      this.setId(user._id);
+      this.logIn();
+    },
   },
 });

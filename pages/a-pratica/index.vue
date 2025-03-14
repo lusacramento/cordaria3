@@ -131,7 +131,6 @@ onBeforeMount(async () => {
 
 // Stores
 const { getUserName } = storeToRefs(useMyUserStore())
-const { setId, setUserName, logIn } = useMyUserStore()
 
 const { getCurrentLesson, lesson, score } = storeToRefs(useMyProgressStore())
 
@@ -219,7 +218,7 @@ watch(isCompleted, async (newValue: any) => {
 
 // Functions
 async function load() {
-	await loadUserStore()
+	await useMyUserStore().loadUserStore()
 
 	await useMyUserDetailsStore().load()
 
@@ -244,19 +243,6 @@ async function load() {
 
 	await useGameController().init()
 	enablePlayButton()
-}
-
-async function loadUserStore() {
-	const { getSession } = useAuth()
-	const session = await getSession()
-	const user = session?.user
-	// @ts-ignore
-	setId(user._id)
-	// @ts-ignore
-	setUserName(user?.userName)
-	// @ts-ignore
-	setId(user._id)
-	logIn()
 }
 
 async function submitUserDetails() {
