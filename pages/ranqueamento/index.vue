@@ -80,18 +80,19 @@ function update(newInstrument: Instrument) {
 
 async function getRanking() {
 
-	const response = await useIRanking().getRanking(instrument.value, '67d31fa33f0a045839d7c0d2')
+	const response = await useIRanking().getRanking(instrument.value, '67d3678e7a646ccaef9e9d83', 'userg')
 	toRanking(response)
 }
 
 function toRanking(response: any[]) {
 	return response.forEach((element, i) => {
 		const position = {
-			position: i + 1,
+			position: element.position,
 			userName: element.username,
 			points: element.score,
 			awards: element.awards,
-		} as unknown as Ranking
+			isCurrentUser: element.isCurrentUser
+		}
 
 		ranking.value.push(position)
 	})

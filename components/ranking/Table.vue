@@ -20,6 +20,6 @@
 import type { Ranking } from '~/types/Ranking'
 
 const props = defineProps({
-	ranking: { type: Array<Ranking>, required: true },
+	ranking: { type: Array<any>, required: true },
 })
 </script>
