@@ -17,11 +17,9 @@
 </template>
 
 <script lang="ts" setup>
-	import type { Ranking } from '~/types/Ranking'
+import type { Ranking } from '~/types/Ranking'
 
-	const props = defineProps({
-		ranking: { type: Array<Ranking>, required: true },
-	})
+const props = defineProps({
+	ranking: { type: Array<any>, required: true },
+})
 </script>
-
-<style></style>

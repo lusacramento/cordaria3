@@ -8,7 +8,7 @@
       </template>
     </LayoutsHeader>
     <div class="container content d-flex align-items-center justify-content-center">
-      <CountDown />
+      <LayoutsCountDown />
     </div>
   </div>
 </template>
@@ -19,6 +19,4 @@ definePageMeta({
   description: 'Página de lançamento',
   layout: 'clean'
 })
-
-import CountDown from '~/components/layouts/CountDown.vue';
 </script>

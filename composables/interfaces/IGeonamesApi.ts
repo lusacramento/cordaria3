@@ -25,7 +25,7 @@ export function useIGeonamesApi() {
   async function fetchCities(city: string) {
     try {
       const response = await fetch(
-        `http://api.geonames.org/searchJSON?q=${city}&maxRows=20&username=${username}`
+        `https://secure.geonames.org/searchJSON?q=${city}&maxRows=20&username=${username}`
       );
       const data = await response.json();
 
