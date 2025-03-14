@@ -1,5 +1,6 @@
 <template>
-	<tr v-for="(rank, i) in props.ranking" :key="rank.position" :class="{ 'table-active': rank.isCurrentUser }">
+	<tr v-for="(rank, i) in props.ranking" :key="rank.position"
+		:class="{ 'table-active': rank.isCurrentUser, 'active-cell': rank.isCurrentUser }">
 		<th scope="row">{{ rank.position }}
 		</th>
 		<td>@{{ rank.userName }}</td>
@@ -44,4 +45,8 @@ img {
 .isCurrentUser {
 	background-color: black !important;
 }
+
+/* .table-active {
+	font-family: font-weight: var(--font-semi-bold);
+} */
 </style>
