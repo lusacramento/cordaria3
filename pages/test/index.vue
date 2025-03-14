@@ -1,4 +1,7 @@
-<template>
+<!-- // TODO corrigir test -->
+
+
+<!-- <template>
   <div class="container">
     <ul>
       <li v-for="(user, i) in fakeUsers" :key="user.email"><strong>{{ i + 1 }}</strong>: {{ user._id }} - {{
@@ -26,4 +29,4 @@ onBeforeMount(() => {
 })
 </script>
 
-<style></style>
+<style></style> -->
