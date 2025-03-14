@@ -59,11 +59,13 @@ useHead({
 })
 
 const { getInstrument } = useMySettingsStore()
+const { getId, getUserName } = storeToRefs(useMyUserStore())
 
 const instrument = ref(Instrument.BASS)
 const ranking: Ref<Array<Ranking>> = ref([])
 
 onBeforeMount(async () => {
+	await useMyUserStore().loadUserStore()
 	if (getInstrument !== Instrument.NOT_SELECTED)
 		instrument.value = await getInstrument
 
@@ -80,7 +82,8 @@ function update(newInstrument: Instrument) {
 
 async function getRanking() {
 
-	const response = await useIRanking().getRanking(instrument.value, useMyUserStore().getId, useMyUserStore().getUserName)
+
+	const response = await useIRanking().getRanking(instrument.value, getId.value, getUserName.value)
 	toRanking(response)
 }
 
