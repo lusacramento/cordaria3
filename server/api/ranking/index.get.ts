@@ -10,6 +10,9 @@ export default defineEventHandler(async (event) => {
   await verifyParams();
 
   top10 = await getTop10Scores();
+
+  if (top10.length === 0) return;
+
   await addComplementaryData();
 
   if (!isUserTop) {
