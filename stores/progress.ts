@@ -195,6 +195,7 @@ export const useMyProgressStore = defineStore("myProgressStore", {
 
       if (score) {
         this.score = score.score;
+        this.awards = score.awards;
         return;
       }
       await this.postScore();

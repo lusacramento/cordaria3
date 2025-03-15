@@ -84,7 +84,8 @@ async function getRanking() {
 
 
 	const response = await useIRanking().getRanking(instrument.value, getId.value, getUserName.value)
-	toRanking(response)
+	if (response)
+		toRanking(response)
 }
 
 function toRanking(response: any[]) {

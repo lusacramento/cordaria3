@@ -20,7 +20,7 @@ const { value } = useColorMode()
 
 const bg = value === 'dark' ? '#000000b8' : '#e3e0d9e6'
 
-let timerEstimedInSeconds = 6000
+let timerEstimedInSeconds = 10
 const timerEstimedInMiliSeconds = timerEstimedInSeconds * 1000
 let timerInterval = 0
 
