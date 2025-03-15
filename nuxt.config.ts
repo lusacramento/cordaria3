@@ -1,14 +1,3 @@
-let mongoUrl;
-let authOrigin;
-
-if (process.env.NODE_ENV === "production") {
-  mongoUrl = process.env.MONGODB_URI;
-  authOrigin = process.env.AUTH_ORIGIN;
-} else {
-  mongoUrl = process.env.MONGODB_URI_DEV;
-  authOrigin = process.env.AUTH_ORIGIN_DEV;
-}
-
 export default defineNuxtConfig({
   experimental: {
     asyncContext: true,
@@ -18,9 +7,11 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     authSecret: process.env.AUTH_SECRET,
-    mongorUrl: mongoUrl,
+    mongorUrl: process.env.MONGODB_URI,
     public: {
       origin: process.env.ORIGIN,
+      isShowCountdown: process.env.IS_SHOW_CONTDOWN,
+      countdownDate: process.env.COUNTDOWN_DATE,
     },
   },
 
@@ -67,7 +58,7 @@ export default defineNuxtConfig({
           isEnabled: true,
           disableServerSideAuth: false,
           originEnvKey: "AUTH_ORIGIN",
-          baseURL: authOrigin,
+          baseURL: process.env.AUTH_ORIGIN,
           provider: { type: "local" },
           sessionRefresh: {
             enablePeriodically: true,
