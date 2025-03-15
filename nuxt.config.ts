@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     mongorUrl: process.env.MONGODB_URI,
     public: {
       origin: process.env.ORIGIN,
+      isShowCountdown: process.env.IS_SHOW_CONTDOWN,
+      countdownDate: process.env.COUNTDOWN_DATE,
     },
   },
 

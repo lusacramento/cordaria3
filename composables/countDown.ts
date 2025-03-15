@@ -5,7 +5,8 @@ export const useCountDown = () => {
   const DAY = HOUR * 24;
 
   // Set the date we're counting down to
-  const countDownDate = new Date("Mar 18, 2025 19:00:00").getTime();
+  const date = useRuntimeConfig().public.countdownDate;
+  const countDownDate = new Date(date).getTime();
 
   const timer = ref({
     days: {
