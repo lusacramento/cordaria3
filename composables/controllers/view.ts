@@ -54,6 +54,8 @@ export const useViewController = () => {
   const firstLessonNumber = 180;
   const lastLessonNumber = 190;
 
+  const isMockthePractice = true;
+
   // functions
   // view
   /**
@@ -182,9 +184,13 @@ export const useViewController = () => {
    */
   function start() {
     toggleShowGameScreen();
-    game.payload();
-    // const isCompleted = toRef(useGameController().isCompleted)
-    // isCompleted.value = true
+
+    if (isMockthePractice) {
+      const isCompleted = toRef(useGameController().isCompleted);
+      isCompleted.value = true;
+    } else {
+      game.payload();
+    }
   }
 
   /**
