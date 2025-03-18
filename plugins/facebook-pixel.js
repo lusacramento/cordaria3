@@ -25,7 +25,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       "https://connect.facebook.net/en_US/fbevents.js"
     );
 
-    fbq("init", "SEU_PIXEL_ID");
+    fbq("init", "673573768349806");
     fbq("track", "PageView");
 
     // Adicionar ao contexto global para rastrear eventos
