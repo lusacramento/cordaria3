@@ -29,6 +29,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     fbq("track", "PageView");
 
     // Adicionar ao contexto global para rastrear eventos
-    app.$fbq = fbq;
+    nuxtApp.$fbq = fbq;
   }
 })
