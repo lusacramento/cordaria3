@@ -33,7 +33,7 @@
 										Voltar
 									</button>
 								</li>
-								<li>
+								<li class="align-items-center">
 									<LayoutsColorModePicker class="" />
 								</li>
 							</ul>

@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    plugins: ["~/server/index.ts"],
+    plugins: ["~/server/index.ts", "~/plugins/facebook-pixel.js"],
   },
 
   devtools: { enabled: true },
@@ -30,6 +30,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "@nuxt/test-utils/module",
     [
       "nuxt-mail",
       {
