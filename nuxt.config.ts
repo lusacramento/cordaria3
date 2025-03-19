@@ -16,8 +16,10 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    plugins: ["~/server/index.ts", "~/plugins/facebook-pixel.js"],
+    plugins: ["~/server/index.ts"],
   },
+
+  plugins: ["~/plugins/facebook-pixel.js"],
 
   devtools: { enabled: true },
 
