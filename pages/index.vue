@@ -78,7 +78,7 @@ async function loadSettings() {
 }
 
 const box: Box = {
-	content: '<h1>Já praticou hoje?<h1>',
+	content: '<h1>Esolha seu instrumento<h1>',
 	schema: 'index',
 	leftLogo: true,
 }
