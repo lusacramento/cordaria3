@@ -247,9 +247,22 @@ async function load() {
 
 async function submitUserDetails() {
 	await useMyUserDetailsStore().post()
+	verifyIfNewUser()
+}
+
+async function verifyIfNewUser() {
+	if (useMyUserStore().isNewRegistered) {
+		alert('Novo usuário detectado.\nVocê será redirecionado para a página do tutorial.')
+
 		await useMyUserStore().setIsNewRegistered(false)
 
-	await hideDetailsFormModal()
+		await hideDetailsFormModal()
+
+		await useRouter().push({
+			name: 'tutorial',
+		})
+		return
+	}
 
 	refreshPage()
 }
