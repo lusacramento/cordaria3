@@ -247,6 +247,7 @@ async function load() {
 
 async function submitUserDetails() {
 	await useMyUserDetailsStore().post()
+		await useMyUserStore().setIsNewRegistered(false)
 
 	await hideDetailsFormModal()
 
