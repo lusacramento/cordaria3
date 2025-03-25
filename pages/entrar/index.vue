@@ -53,7 +53,6 @@ onMounted(() => {
 			'Cadastro registrado. Por favor, faça o login.',
 			'success',
 		)
-		useMyUserStore().setIsNewRegistered(false)
 	}
 })
 
