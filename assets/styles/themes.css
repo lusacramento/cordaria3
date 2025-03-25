@@ -156,6 +156,7 @@
 	--extreme-text-color: var(--color-black);
 	--bg-title-box-in: var(--bg-title-box-dark-in);
 	--bg-title-box-out: var(--bg-title-box-dark-out);
+	--color-extreme: var(--color-white)
 
 	--bg-btn-hover: var(--color-black-30);
 
