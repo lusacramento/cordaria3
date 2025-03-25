@@ -14,6 +14,32 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+	title: 'Cordaria - Tutorial',
+	meta: [
+		{
+			hid: 'titleddicas',
+			name: 'title',
+			content: 'Tutorial do Cordaria App',
+		},
+		{
+			hid: 'dicas',
+			name: 'description',
+			content:
+				'Tutorial para utilização do aplicativo Cordaria App',
+		},
+	],
+	link: [
+		{
+			rel: 'canonical',
+			href: 'https://cordaria.com.br/dicas',
+		},
+		{
+			hid: 'dicaskeys',
+		},
+	],
+})
+
 const box = {
 	content: '<h1>TUTORIAL<h1>',
 	schema: 'index',
