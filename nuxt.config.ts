@@ -169,7 +169,10 @@ export default defineNuxtConfig({
     ],
   ],
 
-  // sourcemap: true,
+  sourcemap: {
+    server: true,
+    client: true,
+  },
 
   debug: true,
 
