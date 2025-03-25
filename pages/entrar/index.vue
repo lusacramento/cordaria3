@@ -29,7 +29,7 @@ definePageMeta({
 })
 
 useHead({
-	title: 'A Prática',
+	title: 'Entrar',
 	meta: [{ name: 'robots', content: 'noindex, nofollow' }],
 })
 

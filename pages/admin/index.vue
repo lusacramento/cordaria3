@@ -5,15 +5,11 @@
 		</div>
 		<div class="status">
 			<transition name="fade">
-				<div
-					v-if="status.isShow"
-					class="row alert alert-dark d-flex justify-content-center"
-					role="alert"
+				<div v-if="status.isShow" class="row alert alert-dark d-flex justify-content-center" role="alert"
 					:transition="{
 						name: 'bounce',
 						mode: 'out-in',
-					}"
-				>
+					}">
 					{{ status.message }}
 				</div>
 			</transition>
@@ -23,35 +19,17 @@
 				<h2>Buscar Lição</h2>
 				<form class="mt-5">
 					<div class="row mb-3 align-items-center justify-content-center">
-						<label
-							for="lesson-number-admin-input"
-							class="form-label col-2 col-form-label"
-							>Número da Lição</label
-						>
+						<label for="lesson-number-admin-input" class="form-label col-2 col-form-label">Número da
+							Lição</label>
 						<div class="col-1">
-							<input
-								v-model="queryLesson.number"
-								type="number"
-								class="form-control"
-								id="lesson-number-admin-input"
-								min="1"
-								max="190"
-							/>
+							<input v-model="queryLesson.number" type="number" class="form-control"
+								id="lesson-number-admin-input" min="1" max="190" />
 						</div>
-						<label
-							for="strings-quantity-admin-input"
-							class="form-label col-2 col-form-label"
-							>Quantidade de Cordas</label
-						>
+						<label for="strings-quantity-admin-input" class="form-label col-2 col-form-label">Quantidade de
+							Cordas</label>
 						<div class="col-1">
-							<input
-								v-model="queryLesson.quantityOfStrings"
-								type="number"
-								class="form-control"
-								id="strings-quantity-admin-input"
-								min="4"
-								max="6"
-							/>
+							<input v-model="queryLesson.quantityOfStrings" type="number" class="form-control"
+								id="strings-quantity-admin-input" min="4" max="6" />
 						</div>
 						<div class="col-2">
 							<button class="btn btn-primary" @click.prevent="getLesson">
@@ -78,16 +56,10 @@
 
 			<div class="row">
 				<div class="col justify-content-center d-flex">
-					<button
-						class="btn btn-success mx-1"
-						@click.prevent="addAllLessonsOnDataBase"
-					>
+					<button class="btn btn-success mx-1" @click.prevent="addAllLessonsOnDataBase">
 						Adicionar lições
 					</button>
-					<button
-						class="btn btn-danger mx-1"
-						@click.prevent="deleteAllLessonsOnDataBase"
-					>
+					<button class="btn btn-danger mx-1" @click.prevent="deleteAllLessonsOnDataBase">
 						Apagar Lições
 					</button>
 				</div>
@@ -97,11 +69,7 @@
 						<div class="mx-1">
 							<a href="#lessons-manager">Voltar ao Topo</a>
 						</div>
-						<button
-							type="button"
-							class="btn btn-primary"
-							@click.prevent="getAllLessons"
-						>
+						<button type="button" class="btn btn-primary" @click.prevent="getAllLessons">
 							Pegar Todas Lições
 						</button>
 						<h2 class="mx-1 mt-5 mb-3">Todos os exercícios na Base de Dados</h2>
@@ -119,122 +87,123 @@
 </template>
 
 <script lang="ts" setup>
-	import { useLessonsData } from '~/composables/lessons/lessonsData.js'
+import { useLessonsData } from '~/composables/lessons/lessonsData.js'
 
-	definePageMeta({
-		middleware: 'admin',
-		pageTransition: {
-			name: 'rotate',
-		},
-	})
+definePageMeta({
+	middleware: 'admin',
+	pageTransition: {
+		name: 'rotate',
+	},
+})
 
-	useHead({
-		title: 'A Prática',
-		meta: [{ name: 'robots', content: 'noindex, nofollow' }],
-	})
+useHead({
+	title: 'Administração',
+	meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+})
 
-	const isLoaded = ref({
-		allLessons: false,
-		lesson: false,
-	})
+const isLoaded = ref({
+	allLessons: false,
+	lesson: false,
+})
 
-	const importedLessons = ref()
-	const status = ref({
-		isShow: false,
-		message: '' as any,
-	})
+const importedLessons = ref()
+const status = ref({
+	isShow: false,
+	message: '' as any,
+})
 
-	const queryLesson = {
-		number: '1',
-		quantityOfStrings: '4',
+const queryLesson = {
+	number: '1',
+	quantityOfStrings: '4',
+}
+
+watch(status.value, () => {
+	setTimeout(() => {
+		status.value.isShow = false
+	}, 2000)
+})
+
+async function getAllLessons() {
+	try {
+		importedLessons.value = await useILesson().getAll()
+		status.value.isShow = await true
+		status.value.message = await 'Base de Dados carregada com sucesso!'
+		isLoaded.value.allLessons = true
+	} catch (error) {
+		status.value.isShow = true
+		status.value.message = error
 	}
+}
 
-	watch(status.value, () => {
-		setTimeout(() => {
-			status.value.isShow = false
-		}, 2000)
-	})
+const lesson: Ref<any[]> = ref([])
 
-	async function getAllLessons() {
-		try {
-			importedLessons.value = await useILesson().getAll()
+async function getLesson() {
+	try {
+		const response = await useILesson().getLesson(queryLesson)
+		if (response) {
+			lesson.value.pop()
+			lesson.value.push(response.lesson)
+			isLoaded.value.lesson = true
+		}
+	} catch (error) { }
+}
+
+async function addAllLessonsOnDataBase() {
+	try {
+		const lessons = useLessonsData().getLessons()
+		const response = await useILesson().postMany(lessons)
+
+		if (response) {
 			status.value.isShow = await true
-			status.value.message = await 'Base de Dados carregada com sucesso!'
-			isLoaded.value.allLessons = true
+			status.value.message = await response
+		}
+	} catch (error: any) {
+		status.value.isShow = true
+		status.value.message = error
+	}
+}
+
+async function deleteAllLessonsOnDataBase() {
+	const isOk = confirm('Deseja mesmo apagar todas as Lições?')
+	if (isOk) {
+		try {
+			const response = await useILesson().deleteAll()
+
+			status.value.isShow = true
+			status.value.message = response
 		} catch (error) {
 			status.value.isShow = true
 			status.value.message = error
 		}
 	}
-
-	const lesson: Ref<any[]> = ref([])
-
-	async function getLesson() {
-		try {
-			const response = await useILesson().getLesson(queryLesson)
-			if (response) {
-				lesson.value.pop()
-				lesson.value.push(response.lesson)
-				isLoaded.value.lesson = true
-			}
-		} catch (error) {}
-	}
-
-	async function addAllLessonsOnDataBase() {
-		try {
-			const lessons = useLessonsData().getLessons()
-			const response = await useILesson().postMany(lessons)
-
-			if (response) {
-				status.value.isShow = await true
-				status.value.message = await response
-			}
-		} catch (error: any) {
-			status.value.isShow = true
-			status.value.message = error
-		}
-	}
-
-	async function deleteAllLessonsOnDataBase() {
-		const isOk = confirm('Deseja mesmo apagar todas as Lições?')
-		if (isOk) {
-			try {
-				const response = await useILesson().deleteAll()
-
-				status.value.isShow = true
-				status.value.message = response
-			} catch (error) {
-				status.value.isShow = true
-				status.value.message = error
-			}
-		}
-	}
+}
 </script>
 
 <style scoped>
-	.list-group-item {
-		background-color: transparent;
-		border-color: rgba(255, 255, 255, 0.1);
-		width: 160px;
-		justify-content: center;
-	}
+.list-group-item {
+	background-color: transparent;
+	border-color: rgba(255, 255, 255, 0.1);
+	width: 160px;
+	justify-content: center;
+}
 
-	.alert-dark {
-		background-color: transparent;
-		color: white !important;
-	}
+.alert-dark {
+	background-color: transparent;
+	color: white !important;
+}
 
-	.fade-enter-active,
-	.fade-leave-active {
-		transition: all 0.4s;
-	}
-	.fade-enter-from,
-	.fade-leave-to {
-		opacity: 0;
-		filter: blur(1rem);
-	}
+.fade-enter-active,
+.fade-leave-active {
+	transition: all 0.4s;
+}
 
-	.form-control {
-		color: black !important;
-	}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+	filter: blur(1rem);
+}
+
+.form-control {
+	color: black !important;
+}
 </style>

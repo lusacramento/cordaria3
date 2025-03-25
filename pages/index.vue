@@ -34,12 +34,12 @@ useHead({
 			hid: 'projeto',
 			name: 'description',
 			content:
-				'O projeto Cordaria é resultado de uma pesquisa que vem para auxiliar, educandos e professores, a prática de violão e guitarra',
+				'Cordaria App é um aplicativo web para desenvolvimento prático e fácil para violão, cavaquinho, baixo e guitarra',
 		},
 		{
 			hid: 'projetokeys',
 			name: 'keywords',
-			content: 'pesquisa, prática, música, projeto, violão, guitarra, método',
+			content: 'violão, guitarra, cavaquinho, baixo, cordaria',
 		},
 	],
 	link: [

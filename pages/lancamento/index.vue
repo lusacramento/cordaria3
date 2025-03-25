@@ -19,4 +19,9 @@ definePageMeta({
   description: 'Página de lançamento',
   layout: 'clean'
 })
+
+useHead({
+  title: 'Lançamento',
+  meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+})
 </script>
