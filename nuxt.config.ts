@@ -15,6 +15,11 @@ export default defineNuxtConfig({
     },
   },
 
+  site: {
+    url: process.env.ORIGIN,
+    name: "Cordaria App",
+  },
+
   nitro: {
     plugins: ["~/server/index.ts"],
   },
@@ -32,6 +37,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "@nuxtjs/sitemap",
     "@nuxt/test-utils/module",
     [
       "nuxt-mail",
@@ -169,7 +175,10 @@ export default defineNuxtConfig({
     ],
   ],
 
-  // sourcemap: true,
+  sourcemap: {
+    server: true,
+    client: true,
+  },
 
   debug: true,
 
