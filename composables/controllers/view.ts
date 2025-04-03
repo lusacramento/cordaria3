@@ -54,7 +54,7 @@ export const useViewController = () => {
   const firstLessonNumber = 180;
   const lastLessonNumber = 190;
 
-  const isMockthePractice = true;
+  const isMockthePractice = false;
 
   // functions
   // view
