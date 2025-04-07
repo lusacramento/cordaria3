@@ -43,7 +43,7 @@ export default defineNuxtConfig({
       "nuxt-mail",
       {
         message: {
-          to: "lucianoblackblack@gmail.com",
+          from: process.env.EMAIL_USER,
         },
         smtp: {
           service: "gmail",
