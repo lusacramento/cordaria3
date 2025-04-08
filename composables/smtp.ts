@@ -1,4 +1,7 @@
+import { useISMTP } from "./interfaces/iSMTP";
 const from = process.env.EMAIL_USER;
+
+import nodemailer from "nodemailer";
 
 export const useSmtp = () => {
   /**
@@ -23,6 +26,9 @@ export const useSmtp = () => {
       //   subject: subject,
       //   html: content,
       // });
+
+      useISMTP().sendEmail(to, subject, content);
+
       status.value.message = "Email enviado com Sucesso";
       status.value.ok = true;
     } catch (error) {
