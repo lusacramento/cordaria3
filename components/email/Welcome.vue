@@ -4,7 +4,7 @@
     <div ref="template" class="template" lang="en" dir="ltr">
       <html lang="en" dir="ltr">
 
-      <body style="width: 100%; color: rgba(255,255,255,0.8); ">
+      <body style="width: 100%; ">
         <div class="main"
           style="background-color: rgba(28, 31, 38, 1); justify-content: center; text-align: center;height: 400px;">
           <div class="img" style="display:flex; justify-content:center;">
@@ -12,16 +12,24 @@
               style="width: auto; height: auto; display: flex; justify-content:center; margin: 30px;">
 
           </div>
-          <h1 style="margin:20px;">Bem vindo a nossa plataforma <strong>{{ getUserName
+          <h1 style="margin:20px; color: rgba(255,255,255,0.8);">Bem vindo a nossa plataforma <strong>{{ getUserName
               }}</strong>!</h1>
-          <p>Obrigado por se cadastrar. Estamos felizes em ter você conosco!</p>
-          <p>Ah! E não se equeça de seguir nossas páginas no <a href="https://instagram.com/cordaria.app">Instagram</a>
+          <p style="color: rgba(255,255,255,0.8)"><strong>Obrigado</strong> por se cadastrar. Estamos felizes em ter
+            você conosco!</p>
+          <p style="color: rgba(255,255,255,0.8)">Ah! E não se equeça de seguir nossas páginas no <a
+              href="https://instagram.com/cordaria.app">Instagram</a>
             e
             no
             <a href="https://facebook.com/cordaria.app">Facebook</a>.
           </p>
-          <p>Qualquer problema que estiver enfrentando para acessar e usar nossa plataforma, pode entrar em contato pelo
-            nosso <a href="mailto:cordaria.app@gmail.com">email</a>.</p>
+          <p style="color: rgba(255,255,255,0.8)"><strong>Não foi você?</strong> <a href="/report-spam">clique aqui</a>
+            para que possamos
+            proteger seus dados.
+          </p>
+          <p style="color: rgba(255,255,255,0.8)">Se você tiver alguma dúvida, sugestão ou qualquer problema que estiver
+            enfrentando para acessar e usar nossa plataforma,<br />não hesite em entrar em contato conosco. pelo email
+            <a href="mailto:cordaria.app@gmail.com">cordaria.app@gmail.com</a>.
+          </p>
         </div>
       </body>
 
