@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     authSecret: process.env.AUTH_SECRET,
     mongorUrl: process.env.MONGODB_URI,
+    smtpHost: process.env.SMTP_HOST,
+    emailUser: process.env.EMAIL_USER,
+    emailToken: process.env.EMAIL_PASS,
     public: {
       origin: process.env.ORIGIN,
       isShowCountdown: process.env.IS_SHOW_CONTDOWN,
