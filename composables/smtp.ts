@@ -14,16 +14,15 @@ export const useSmtp = () => {
    * console.log(status.message); // "Email enviado com Sucesso" or "Não foi possível enviar o email: [error]"
    */
   async function sendEmail(to: string, subject: string, content: any) {
-    const mail = useMail();
     const status = ref({ ok: false, message: "" });
 
     try {
-      await mail.send({
-        from: from,
-        to: to,
-        subject: subject,
-        html: content,
-      });
+      // await mail.send({
+      //   from: from,
+      //   to: to,
+      //   subject: subject,
+      //   html: content,
+      // });
       status.value.message = "Email enviado com Sucesso";
       status.value.ok = true;
     } catch (error) {

@@ -39,24 +39,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/sitemap",
     "@nuxt/test-utils/module",
-    [
-      "nuxt-mail",
-      {
-        message: {
-          from: process.env.EMAIL_USER,
-        },
-        smtp: {
-          service: "gmail",
-          host: process.env.SMTP_HOST,
-          auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-          },
-        },
-      },
-    ],
-
-    ,
     "@vueuse/nuxt",
 
     "@pinia/nuxt",
