@@ -27,7 +27,7 @@ export const useSmtp = () => {
       //   html: content,
       // });
 
-      useISMTP().sendEmail(to, subject, content);
+      await useISMTP().sendEmail(to, subject, content);
 
       status.value.message = "Email enviado com Sucesso";
       status.value.ok = true;
