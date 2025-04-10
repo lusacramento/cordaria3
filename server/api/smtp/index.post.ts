@@ -5,15 +5,15 @@ export default defineEventHandler(async (event) => {
   let info = {} as SentMessageInfo;
   const { to, subject, content } = await readBody(event);
 
-  const { emailUser, emailToken } = useRuntimeConfig();
+  const { emailUser, emailToken, smtpHost } = useRuntimeConfig();
 
   const transporter = nodemailer.createTransport({
-    host: useRuntimeConfig().smtpHost,
+    host: smtpHost,
     port: 587,
     secure: false, // true for port 465, false for other ports
     auth: {
-      user: useRuntimeConfig().emailUser, // generated ethereal user
-      pass: useRuntimeConfig().emailToken, // generated ethereal password
+      user: emailUser, // generated ethereal user
+      pass: emailToken, // generated ethereal password
     },
   });
 
@@ -31,11 +31,9 @@ export default defineEventHandler(async (event) => {
 
   try {
     await main();
-
-    console.log("Message sent: %s", info.messageId);
   } catch (error) {
     console.error("Error sending email:", error);
   }
 
-  return "Hello Nitro";
+  return;
 });
