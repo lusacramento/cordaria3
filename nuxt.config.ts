@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     authSecret: process.env.AUTH_SECRET,
     mongorUrl: process.env.MONGODB_URI,
+    smtpHost: process.env.SMTP_HOST,
+    emailUser: process.env.EMAIL_USER,
+    emailToken: process.env.EMAIL_PASS,
     public: {
       origin: process.env.ORIGIN,
       isShowCountdown: process.env.IS_SHOW_CONTDOWN,
@@ -39,24 +42,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/sitemap",
     "@nuxt/test-utils/module",
-    [
-      "nuxt-mail",
-      {
-        message: {
-          from: process.env.EMAIL_USER,
-        },
-        smtp: {
-          service: "gmail",
-          host: process.env.SMTP_HOST,
-          auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-          },
-        },
-      },
-    ],
-
-    ,
     "@vueuse/nuxt",
 
     "@pinia/nuxt",

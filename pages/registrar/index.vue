@@ -65,7 +65,7 @@ async function handleFormSubmit() {
 	try {
 		await userStore.register()
 		await emailWelcome.value.sendEmail()
-		useRouter().push({
+		await useRouter().push({
 			name: 'entrar',
 		})
 	} catch (e: any) {
