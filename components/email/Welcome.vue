@@ -22,7 +22,7 @@
             no
             <a href="https://facebook.com/cordaria.app">Facebook</a>.
           </p>
-          <p style="color: rgba(255,255,255,0.8)"><strong>Não foi você?</strong> <a href="/report-spam">clique aqui</a>
+          <p style="color: rgba(255,255,255,0.8)"><strong><a href="/report-spam">Não foi você? clique aqui</a></strong>
             para que possamos
             proteger seus dados.
           </p>
