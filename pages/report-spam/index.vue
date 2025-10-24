@@ -13,7 +13,7 @@
 
           </div>
           <h1 style="margin:20px; color: rgba(255,255,255,0.8);">Bem vindo a nossa plataforma <strong>{{ getUserName
-              }}</strong>!</h1>
+          }}</strong>!</h1>
           <p style="color: rgba(255,255,255,0.8)"><strong>Obrigado</strong> por se cadastrar. Estamos felizes em ter
             você conosco!</p>
           <p style="color: rgba(255,255,255,0.8)">Ah! E não se equeça de seguir nossas páginas no <a
